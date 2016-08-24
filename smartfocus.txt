@@ -1,0 +1,46 @@
+*** Settings ***
+Library           Selenium2Library    10    2    run_on_failure=Fail Keyword
+
+*** Variables ***
+${BROWSER}        chrome
+${LOGIN URL}      https://qa-sfui.themessagecloud.com/
+
+*** Test Cases ***
+smartfocustest
+    set selenium speed    .1
+    Open Browser    ${LOGIN URL}    ${BROWSER}
+    Maximize Browser Window
+    page should contain    Login To Your Account:
+    #click element    q
+    input text    IDToken1    mf_e1
+    input password    IDToken2    computer2.
+    #run keyword and ignore error    Click Button    loginButton
+    #page should contain    SmartFocus: The Message Cloud
+    Click Link    name=Login.Submit
+    Sleep    5
+    #Click element     title=Email
+    #Click Element     xpath='//*[@title="Email"]'
+    #Mouse Down On Link    The Message Cloud
+    #Click Link    Smart Personalization Email
+    #page should contain    Dynamic personalization for email means you can:
+    #page should contain    Personalize based on Weather
+    #page should contain    Personalize based on Gender
+    #Suite Teardown
+    Wait Until Page contains     Send
+
+Login In
+    set selenium speed    .1
+    Open Browser    ${LOGIN URL}    ${BROWSER}
+    Maximize Browser Window
+    page should contain    Login To Your Account:
+    input text    IDToken1    mf_e1
+    input password    IDToken2    computer2.
+    Click Link    name=Login.Submit
+
+Create Email
+
+*** Keywords ***
+Suite Teardown
+    Close All Browsers
+
+Verify that the second banner
