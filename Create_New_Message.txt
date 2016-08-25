@@ -5,6 +5,7 @@ Library           create_emails.py
 *** Variables ***
 ${BROWSER}        chrome
 ${LOGIN URL}      https://qa-sfui.themessagecloud.com/
+${screenshots}    ${EMPTY}
 
 *** Test Cases ***
 smartfocustest
@@ -40,7 +41,7 @@ Login In
 
 Create_New_Message
     ${click_result}=    create emails    mf_e1    computer2.    https://qa-sfui.themessagecloud.com/sfui/i
-    Should be equal    ${click_result}     engage button
+    Should be equal    ${click_result}    engage button
     ${click_create}=    click create
     Should be equal    ${click_create}    message builder
     Close Browser
@@ -49,4 +50,6 @@ Create_New_Message
 Suite Teardown
     Close All Browsers
 
-Verify that the second banner
+Fail keyword
+    log source
+    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot

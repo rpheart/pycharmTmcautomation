@@ -28,6 +28,7 @@ def click_create():
 		hover.perform()
 		time.sleep(10)
 		message_builder = driver.find_element_by_xpath("//ul[@class='dropdown-modules' and @title='Message Builder']/li[@class='dropdown-module']").click()
+		time.sleep(30)
 		return 'message builder'
 	except IOError as e:
 	   print('Error: %s' % e.strerror)
