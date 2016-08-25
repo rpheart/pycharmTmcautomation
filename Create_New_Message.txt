@@ -39,7 +39,11 @@ Login In
     Click Link    name=Login.Submit
 
 Create_New_Message
-    create emails    mf_e1    computer2.    https://qa-sfui.themessagecloud.com/sfui/i
+    ${click_result}=    create emails    mf_e1    computer2.    https://qa-sfui.themessagecloud.com/sfui/i
+    Should be equal    ${click_result}     engage button
+    ${click_create}=    click create
+    Should be equal    ${click_create}    message builder
+    Close Browser
 
 *** Keywords ***
 Suite Teardown
