@@ -2,15 +2,11 @@
 Library           Selenium2Library    10    2    run_on_failure=Fail Keyword    screenshot_root_directory=.
 
 *** Variables ***
-${BROWSER}        chrome
-${LOGIN URL}      https://qa-sfui.themessagecloud.com/
 ${screenshots}    ${EMPTY}
-${USERNAME}       ${EMPTY}
-${PASSWORD}       ${EMPTY}
 
 *** Test Cases ***
 Email_Smoke_Test
-    Login
+    #Login
     Calendar    # Check tabs
     Send    # Check tabs
     Create    # Check tabs
@@ -20,8 +16,8 @@ Email_Smoke_Test
     Reports    # Check tabs
     Folders    # Check tabs
     Workflow    # Check tabs
-    Social    # Check tabs
-    Close Browser
+    Comment    Social    # Check tabs
+    Close All Browsers
 
 *** Keywords ***
 Calendar
@@ -151,18 +147,6 @@ Social
     Sleep    1
     Click Element    xpath=//*[@id="social"]/div[2]/div/ul/li[2]/ul/li/ul/li    # Click Social Administration
     Sleep    2
-
-Login
-    set selenium speed    .1
-    Open Browser    ${LOGIN URL}    ${BROWSER}
-    Maximize Browser Window
-    page should contain    Login To Your Account:
-    input text    IDToken1    ${USERNAME}
-    input password    IDToken2    ${PASSWORD}
-    Click Link    name=Login.Submit
-    Wait until Element Is Visible    //*[@id="SFUI_Nav"]/div/div/ul/li[4]/div    timeout=55
-    Click Element    //*[@id="SFUI_Nav"]/div/div/ul/li[4]/div    # Click on Email
-    Wait Until Element Is Visible    xpath=//*[@id="engage-create"]/div[1]    timeout=30
 
 Fail keyword
     log source
