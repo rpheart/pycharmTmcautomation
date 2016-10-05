@@ -1,4 +1,5 @@
-def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", position="default", timestamp=""):
+def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", height="500", width="500", position="default",
+               timestamp=""):
     if email:
         email = "&ue=" + email
     if cookie_id:
@@ -6,8 +7,8 @@ def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", positi
     if timestamp:
         timestamp = "&tstamp=" + timestamp
 
-    url = "http://%s/api-public/3.0/personaliseemail?a=%s%s%s&e=%s&f=png&l=en&h=500&w=500&pos=%s%s" % (
-        renderer_url, guid, email, cookie_id, engagement_id, position, timestamp)
+    url = "http://%s/api-public/3.0/personaliseemail?a=%s%s%s&e=%s&f=png&l=en&h=%s&w=%s&pos=%s%s" % (
+        renderer_url, guid, email, cookie_id, engagement_id, height, width, position, timestamp)
     return url
 
 
