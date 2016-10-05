@@ -1,0 +1,15 @@
+import os
+
+# QA URL Settings
+advisor = "qa-eu1-advisor1-v3.advisor.smartfocus.com"
+renderer = "qa-eu1-p3-renderer.advisor.smartfocus.com"
+click = "qa-eu1-p3-api-public.advisor.smartfocus.com"
+guid = "e44f26b0-12c7-4c29-aabf-9d11197c9c02"
+aid = "20003"
+username = "qaTest1"
+password = "testPass1"
+
+# QA eventbox Kafka settings
+tcp_server = "10.20.187.97"
+tcp_username = "ubuntu"
+tcp_key = os.path.join("C:/keys/qa-eu-master")
