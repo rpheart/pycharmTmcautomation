@@ -2,15 +2,10 @@
 Library           Selenium2Library    10    2    run_on_failure=Fail Keyword    screenshot_root_directory=.
 
 *** Variables ***
-${BROWSER}        chrome
-${LOGIN URL}      https://qa-sfui.themessagecloud.com/
 ${screenshots}    ${EMPTY}
-${USERNAME}       ${EMPTY}
-${PASSWORD}       ${EMPTY}
 
 *** Test Cases ***
 Send_New_Message_Builder
-    Login_To_Message_Cloud_Click_Email    # 1.Login to message cloud 2.Click on Email tab
     Hover_Create_Select_Message_Builder    # 3.Hover on the Create sub-tab 4.Click on Message Builder -> Add thumbnail.
     Construct_Email_Content    # 5.On the create page, drag and drop the text widget. 6.Click on the title and the body and add sample text. 7.Slide over to 'headers' and enter reply-to address and a subject
     Save_Finalize    # 8.Click on Save&Finalize
@@ -26,19 +21,6 @@ Fail keyword
     log source
     run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
 
-Login_To_Message_Cloud_Click_Email
-    set selenium speed    .1
-    Open Browser    ${LOGIN URL}    ${BROWSER}
-    set global variable    ${screenshots}
-    Maximize Browser Window
-    page should contain    Login To Your Account:
-    input text    IDToken1    ${USERNAME}
-    input password    IDToken2    ${PASSWORD}
-    Click Link    name=Login.Submit    # Click on Submit button
-    Wait until Element Is Visible    xpath=//*[@id="SFUI_Nav"]/div/div/ul/li[4]/div    timeout=55
-    Click Element    xpath=//*[@id="SFUI_Nav"]/div/div/ul/li[4]/div    # Click on Email button
-    Wait Until Element Is Visible    xpath=//*[@id="engage-create"]/div[1]    timeout=30
-
 Hover_Create_Select_Message_Builder
     Click Element    xpath=//*[@id="engage-create"]/div[1]    # Click on Create
     Wait until Element Is Visible    xpath=//*[@id="engage-create"]/div[2]/div/ul/li[1]/span    timeout=5
@@ -51,7 +33,7 @@ Hover_Create_Select_Message_Builder
 Construct_Email_Content
     Wait Until Element Is Visible    css=#content-type-item-text > div    timeout=30
     Click Element    css=#content-type-item-text > div
-    Drag and Drop    css=#content-type-item-text > div    css=#column-276 > div    # Drag Text Widget and drop into block
+    Drag and Drop    css=#content-type-item-text > div    //*[@id="message-html"]/table/tbody/tr/td/table/tbody/tr/td/div/table/tbody/tr/td/div/div/div/div/div/div/span    # Drag Text Widget and drop into block
     Sleep    5
     #--- Type some text
     Click Element    css=div.content-cell.editable.text    # too complicated to use the canvas and hence very verbose steps below
@@ -89,6 +71,20 @@ Save_Finalize
     Wait until element is visible    css=#notification-bar-container > div.notification-bar    timeout=5    # Wait for confirmation bar to appear
     run keyword and ignore error    Wait until page contains    Your message has been successfully saved.    timeout=5    # Wait for the confirmation message to appear
 
+Select_Tests_Enter_Details_Send
+    Sleep    5
+    Click Element    css=#action-bar-tests > span
+    Sleep    5
+    Unselect frame
+    Sleep    2
+    Select frame    css=iframe.sfIFrame    #Click on main frame
+    Select Frame    id=emv-ccmd-iframe    # Click on inner frame
+    Click Element    xpath=//*[@id="palette-tests"]/div/div/div/div/div/div/div/div
+    Sleep    2
+    Click Element    css=#send-test-emails > div.icon    # Send email
+    run keyword and ignore error    Wait until element is visible    css=#notification-bar-container > div.notification-bar    timeout=5    # wait 5 seconds for confirmation bar to be displayed
+    run keyword and ignore error    Wait until page contains    Test has been sent    # Check the confirmation
+
 Verify_Message_Sent_Received
     Unselect Frame
     Click Element    xpath=//*[@id="engage-create"]/div[1]    # Click on Send
@@ -99,18 +95,3 @@ Verify_Message_Sent_Received
     Select Frame    id=emv-ccmd-iframe    # Click on inner frame
     Sleep    10
     Element Should Contain    xpath=//*[@id="tabledivColumn-0-0"]/div    Test Send New Message Builder
-    Suite Teardown
-
-Select_Tests_Enter_Details_Send
-    Sleep    5
-    Click Element    css=#action-bar-tests > span
-    Sleep    5
-    Unselect frame
-    Sleep    2
-    Select frame    css=iframe.sfIFrame    #Click on main frame
-    Select Frame    id=emv-ccmd-iframe    # Click on inner frame
-    Click Element    css=#toggle-button-497 > div.button > div    # add recipiant
-    Sleep    2
-    Click Element    css=#send-test-emails > div.icon    # Send email
-    run keyword and ignore error    Wait until element is visible    css=#notification-bar-container > div.notification-bar    timeout=5    # wait 5 seconds for confirmation bar to be displayed
-    run keyword and ignore error    Wait until page contains    Test has been sent    # Check the confirmation
