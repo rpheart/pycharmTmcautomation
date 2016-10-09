@@ -66,7 +66,7 @@ Choose_A_Webform_Type
     Sleep    2
     Click Element    xpath=//*[@id="entry[0]"]/td[1]/select/option[contains(text(), 'EMAIL')]    # Email
     Sleep    3
-    Input Text    xpath=//*[@id="entry[0]"]/td[3]/input    Email:
+    Input Text    xpath=//*[@id="entry[0]"]/td[3]/input    Email
     Sleep    3
     Click Element    xpath=//*[@id="entry[0]"]/td[4]/select/option[contains(text(), 'TEXT')]    # Input Type 'TEXT'
     Sleep    3
@@ -77,7 +77,7 @@ Choose_A_Webform_Type
     Sleep    3
     Click Element    xpath=//*[@id="entry[1]"]/td[1]/select/option[contains(text(), 'FIRSTNAME')]    #Field Name
     Sleep    3
-    Input Text    xpath=//*[@id="entry[1]"]/td[3]/input    Firstname:    #Display Name
+    Input Text    xpath=//*[@id="entry[1]"]/td[3]/input    Firstname    #Display Name
     Sleep    3
     Click Element    xpath=//*[@id="entry[1]"]/td[4]/select/option[contains(text(), 'TEXT')]    # Input Type
     Sleep    3
@@ -88,7 +88,7 @@ Choose_A_Webform_Type
     Sleep    3
     Click Element    xpath=//*[@id="entry[2]"]/td[1]/select/option[contains(text(), 'LASTNAME')]    #Field Name
     Sleep    3
-    Input Text    xpath=//*[@id="entry[2]"]/td[3]/input    Lastname:    #Display Name
+    Input Text    xpath=//*[@id="entry[2]"]/td[3]/input    Lastname    #Display Name
     Sleep    3
     Click Element    xpath=//*[@id="entry[2]"]/td[4]/select/option[contains(text(), 'TEXT')]    # Input Type
     Sleep    3
@@ -99,7 +99,7 @@ Choose_A_Webform_Type
     Sleep    3
     Click Element    xpath=//*[@id="entry[3]"]/td[1]/select/option[contains(text(), 'CODE')]    # Field Name
     Sleep    3
-    Input Text    xpath=//*[@id="entry[3]"]/td[3]/input    Code:
+    Input Text    xpath=//*[@id="entry[3]"]/td[3]/input    Code
     Sleep    3
     Click Element    xpath=//*[@id="entry[3]"]/td[4]/select/option[contains(text(), 'TEXT')]    # Input Type
     Sleep    3
@@ -120,7 +120,7 @@ Set_Confirmation_Email_Info_And_Save
     Click Element    css=#content > table.validationTable > tbody > tr > td.validationR > a
     Sleep    2
     #--- Webform Preview
-    Input Text    id=EMAIL_FIELD    razart.hasaj@smartfocus.com
+    Input Text    id=EMAIL_FIELD    qa@smartfocus.com
     Sleep    2
     Input Text    id=FIRSTNAME_FIELD    NameWebForm
     Sleep    2
@@ -151,17 +151,16 @@ Search_Subsriibe_Checks
     Sleep    3
     Click Element    xpath=//*[@id="content"]/form/table[2]/tbody/tr[2]/td[2]/select/option[contains(text(), 'contains')]
     Sleep    3
-    Input Text    name=textFieldValue    razart.hasaj@smartfocus.com
+    Input Text    name=textFieldValue    qa@smartfocus.com
     Sleep    2
     Click Element    xpath=//*[@id="iconAddCriteria"]
     Sleep    5
     Click Element    id=iconSearch
     Sleep    10
     # ----Check Values
-    #Element Should Contain    xpath=//*[@id="rows"]/tr/td[contains(text(),"1234")]    1234    # Check 'Code'
     Element Should Contain    xpath=//*[@id="rows"]/tr/td[contains(text(),"SurnameWebForm")]    SurnameWebForm    # Check 'Surname'
     Element Should Contain    xpath=//*[@id="rows"]/tr/td[contains(text(),"NameWebForm")]    NameWebForm    # Check 'Name'
-    Element Should Contain    xpath=//*[@id="rows"]/tr/td[contains(text(),"razart.hasaj@smartfocus.com")]    razart.hasaj@smartfocus.com    # Check 'Email'
+    Element Should Contain    xpath=//*[@id="rows"]/tr/td[contains(text(),"qa@smartfocus.com")]    qa@smartfocus.com    # Check 'Email'
     capture page screenshot    # Teke snapshot befor deleted
     #-- Now Delete it
     Sleep    2
