@@ -1,5 +1,6 @@
 import os
 import unittest
+from datetime import timedelta, datetime
 from random import randint
 
 import requests
@@ -11,8 +12,8 @@ import advisor.utils.tcpdump as tcp
 
 # Globals
 unique_key = randint(1000, 10000)
-email = "TC16_%s@advisortest.com" % unique_key
-cookie_id = "1616161616_%s" % unique_key
+email = "TC14_%s@advisortest.com" % unique_key
+cookie_id = "1414141414_%s" % unique_key
 sku = "009431"
 filtered_response = []
 
@@ -24,7 +25,7 @@ if os.environ["BUILD_ENV"] == "QA":
     aid = settings.qa_aid
     username = settings.qa_username
     password = settings.qa_password
-    engagement = "12889"
+    engagement = "12887"
     tcp_server = settings.qa_tcp_server
     tcp_username = settings.qa_tcp_username
     tcp_key = settings.qa_tcp_key
@@ -35,15 +36,20 @@ elif os.environ["BUILD_ENV"] == "PREPROD":
     aid = settings.preprod_aid
     username = settings.preprod_username
     password = settings.preprod_password
-    engagement = "6766"
+    engagement = "6764"
     tcp_server = settings.preprod_tcp_server
     tcp_username = settings.preprod_tcp_username
     tcp_key = settings.preprod_tcp_key
 else:
     quit()
 
+# time stamp format "2016/09/07" // "YYYY/MM/DD"
+timestamp_with_delta = datetime.now() - timedelta(3)  # deducts 3 days from timestamp
+timestamp3 = timestamp_with_delta.strftime("%Y-%m-%d")  # formats timestamp properly
+
 request_list = [
-    api.offer_open(renderer, guid, engagement, cookie_id=cookie_id, email=email),
+    api.offer_open(renderer, guid, engagement, email=email, timestamp=timestamp3),
+    api.login(advisor, username, password, aid, cookie_id=cookie_id, email=email),
     api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id),
     api.cart_add(advisor, username, password, aid, sku, cookie_id=cookie_id),
     api.buy(advisor, username, password, aid, sku, cookie_id=cookie_id)
@@ -62,8 +68,8 @@ for line in tcp.filter_tcpdump(response):
 class TestBuyEventsResponse(unittest.TestCase):
     def test_is_direct(self):
         global filtered_response
-        self.assertEqual(utils.verify_is_direct(filtered_response), "isDirect=false",
-                         msg='is direct logic should be false')
+        self.assertEqual(utils.verify_is_direct(filtered_response), "isDirect=null",
+                         msg='is direct logic should be null')
 
     def test_suggest_contains_all_event_information(self):
         global filtered_response
