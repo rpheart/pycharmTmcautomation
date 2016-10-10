@@ -1,3 +1,4 @@
+import os
 import unittest
 from random import randint
 
@@ -5,28 +6,53 @@ import requests
 
 import advisor.is_direct_logic.utils as utils
 import advisor.utils.api_calls as api
-import advisor.utils.api_qa_settings as settings
+import advisor.utils.api_settings as settings
 import advisor.utils.tcpdump as tcp
 
-# url settings
-engagement = "12874"
+# Globals
 unique_key = randint(1000, 10000)
 email = "TC01_%s@advisortest.com" % unique_key
 cookie_id = "11111_%s" % unique_key
 sku = "009431"
 filtered_response = []
 
+# Build specific variables
+if os.environ["BUILD_ENV"] == "QA":
+    advisor = settings.qa_advisor
+    renderer = settings.qa_renderer
+    guid = settings.qa_guid
+    aid = settings.qa_aid
+    username = settings.qa_username
+    password = settings.qa_password
+    engagement = "12874"
+    tcp_server = settings.qa_tcp_server
+    tcp_username = settings.qa_tcp_username
+    tcp_key = settings.qa_tcp_key
+elif os.environ["BUILD_ENV"] == "PREPROD":
+    advisor = settings.preprod_advisor
+    renderer = settings.preprod_renderer
+    guid = settings.preprod_guid
+    aid = settings.preprod_aid
+    username = settings.preprod_username
+    password = settings.preprod_password
+    engagement = "6751"
+    tcp_server = settings.preprod_tcp_server
+    tcp_username = settings.preprod_tcp_username
+    tcp_key = settings.preprod_tcp_key
+else:
+    quit()
+
 request_list = [
-    api.offer_open(settings.renderer, settings.guid, engagement, email=email),
-    api.login(settings.advisor, settings.username, settings.password, settings.aid, cookie_id=cookie_id, email=email),
-    api.cart_add(settings.advisor, settings.username, settings.password, settings.aid, sku, cookie_id=cookie_id),
-    api.buy(settings.advisor, settings.username, settings.password, settings.aid, sku, cookie_id=cookie_id)
+    api.offer_open(renderer, guid, engagement, email=email),
+    api.login(advisor, username, password, aid, cookie_id=cookie_id, email=email),
+    api.cart_add(advisor, username, password, aid, sku, cookie_id=cookie_id),
+    api.buy(advisor, username, password, aid, sku, cookie_id=cookie_id)
 ]
 
 for request in request_list:
     requests.get(request)
 
-response = tcp.fetch_tcpdump(settings.tcp_server, settings.tcp_username, settings.tcp_key)
+response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
 
 for line in tcp.filter_tcpdump(response):
     if email in line or cookie_id in line:
