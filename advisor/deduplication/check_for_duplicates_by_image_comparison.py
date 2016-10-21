@@ -6,12 +6,23 @@ import cv2
 import numpy as np
 import requests
 
-import advisor.utils.api_qa_settings as settings
+import advisor.utils.api_settings as settings
 
-renderer = settings.renderer
-guid = settings.guid
+# Globals
 email = "deduplication@renderer.com"
-engagement = "12843"  # preprod engagement ID is "7773"
+product_list = []
+
+# Build Specific Variables
+if os.environ["BUILD_ENV"] == "QA":
+    renderer = settings.api_settings["QA"]["renderer"]
+    guid = settings.client_settings["QA"]["SIDEV01"]["guid"]
+    engagement = "12843"
+elif os.environ["BUILD_ENV"] == "PREPROD":
+    renderer = settings.api_settings["PREPROD"]["renderer"]
+    guid = settings.client_settings["PREPROD"]["PREPRODTMC"]["guid"]
+    engagement = "6727"
+else:
+    quit()
 
 
 def mean_squared_error(image_a, image_b):
