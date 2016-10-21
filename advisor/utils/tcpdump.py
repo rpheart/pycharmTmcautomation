@@ -1,4 +1,5 @@
 import re
+import time
 
 import paramiko
 
@@ -38,8 +39,8 @@ def filter_tcpdump(unfiltered_response):
     return filtered_list
 
 
-def fetch_tcpdump(server, username, key_path):
-    command = "sudo tcpdump -v -A -n -i eth0 -s 0 -c 1 src or dst port 9092"
+def fetch_tcpdump(server, username, key_path, total_packets=3):
+    command = "sudo tcpdump -v -A -n -c %s -i eth0 -s 0 -c 2 src or dst port 9092" % total_packets
 
     client = paramiko.client.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -47,9 +48,31 @@ def fetch_tcpdump(server, username, key_path):
 
     client.connect(server, port=22, username=username, key_filename=key_path)
 
-    ssh_stdin, ssh_stdout, ssh_stderr = client.exec_command(command)
-    response = ssh_stdout.readlines()
+    sleeptime = 0.001
+    outdata, errdata = '', ''
+    ssh_transp = client.get_transport()
+    chan = ssh_transp.open_session()
+    chan.setblocking(0)
+    chan.exec_command(command)
+
+    while True:  # monitoring process
+        # Reading from output streams
+        while chan.recv_ready():
+            outdata += chan.recv(1000)
+        while chan.recv_stderr_ready():
+            errdata += chan.recv_stderr(1000)
+        if chan.exit_status_ready():  # If completed
+            break
+        time.sleep(sleeptime)
+
+    exit_code = chan.recv_exit_status()
+    ssh_transp.close()
+
+    print "Command exit code:", exit_code
+    print "Error:", errdata
+    print "Data:", outdata
+
     if client:
         client.close()
 
-    return response
+    return outdata
