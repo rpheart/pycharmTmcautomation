@@ -55,13 +55,17 @@ def extract_product_id(response):
 
 def get_response(renderer_url, guid_link, user_email, engagement_id, position_value):
     """sends a request to the renderer for a json response and
-    returns the content of the response"""
+    returns the content of the response or raises an exception
+    if the status code of the return is not 200/300"""
 
     request_url = api.offer_open(renderer_url, guid_link, engagement_id, email=user_email, position=position_value,
                                  height=400, width=400, format="json")
-    json_handler = requests.get(request_url)  # get the specified url and store the content as a variable
 
-    return json_handler.content
+    try:
+        json_handler = requests.get(request_url)  # get the specified url and store the content as a variable
+        return json_handler.json()
+    except json_handler.status_code != requests.codes.OK:
+        json_handler.raise_for_status()
 
 
 class TestForDuplication(unittest.TestCase):

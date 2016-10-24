@@ -47,7 +47,11 @@ def get_image(renderer_url, guid_link, user_email, engagement_id, position_value
     image_name = "position_%s.png" % position_value
     request_url = "http://%s/api-public/3.0/personaliseemail?a=%s&ue=%s&e=%s&f=png&l=en&h=400&w=400&pos=%s" % (
         renderer_url, guid_link, user_email, engagement_id, position_value)
-    image_handler = requests.get(request_url)  # ge the specified url and store the content as a variable
+
+    try:
+        image_handler = requests.get(request_url)  # ge the specified url and store the content as a variable
+    except image_handler.status_code != requests.codes.OK:
+        image_handler.raise_for_status()
 
     with open(image_name, 'wb') as outfile:
         outfile.write(image_handler.content)  # write the content of the response to an image file
