@@ -1,5 +1,4 @@
 import itertools
-import json
 import os
 import unittest
 
@@ -34,7 +33,7 @@ def verify_products_differ(product_id_list):
             print "image returned without suggestion"
             return False
         elif a == b:
-            print "%s and %s are duplicate products" % (a, b)
+            print "%s and %s are duplicate suggestions" % (a, b)
             return False
 
     return True
@@ -44,22 +43,21 @@ def extract_product_id(response):
     """pulls sku if it exists as 'itemCode' from response
     and returns it else returns None"""
 
-    json_response = json.loads(response)
-    for layer in json_response["variant"]["layers"]:
+    for layer in response["data"]:
         try:
-            sku = layer["itemCode"]
+            sku = layer["productCode"]
             return sku
         except KeyError:
             continue
 
 
 def get_response(renderer_url, guid_link, user_email, engagement_id, position_value):
-    """sends a request to the renderer for a json response and
-    returns the content of the response or raises an exception
-    if the status code of the return is not 200/300"""
+    """sends a request to the renderer for a suggestion response and
+    returns the content of the response or raises an exception if the
+    status code of the return is not 200/300"""
 
     request_url = api.offer_open(renderer_url, guid_link, engagement_id, email=user_email, position=position_value,
-                                 height=400, width=400, format="json")
+                                 format="sugg")
 
     try:
         json_handler = requests.get(request_url)  # get the specified url and store the content as a variable
