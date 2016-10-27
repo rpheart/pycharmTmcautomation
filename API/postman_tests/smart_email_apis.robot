@@ -1,10 +1,7 @@
 *** Settings ***
 Library           Selenium2Library    10    2    run_on_failure=Fail Keyword
 Library           RequestsLibrary
-Library           resources.py
-Library           Collections
-#Test Setup        Open Connection And Create Message
-#Test Teardown     Close Connection And Delete Test Data
+Resource          api_keywords.robot
 
 *** Variables ***
 ${server}    t1api-globalx.emv2.com
