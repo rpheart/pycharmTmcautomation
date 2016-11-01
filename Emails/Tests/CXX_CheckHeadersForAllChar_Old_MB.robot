@@ -1,29 +1,27 @@
 *** Settings ***
-Documentation    Suite description
-Library           Selenium2Library     10       2
-Resource    Utils/LoginToEmail.robot
+Documentation       Suite description
+Library             Selenium2Library     10       2
+Resource            Utils/keywords.robot
+Variables           Utils/variables.py
+Suite Teardown
 
 *** Variables ***
 
 
 *** Test Cases ***
 InsertXSSInHeaders
-    set selenium speed      0.5
+    set selenium speed      0.1
     Login
-    ClickOnEmail
- #   sleep       3
-    Hover over create
-#    sleep       10
-    Click Old MB
-
-   # Close browser
+    Go To System    ${email_page}
+    Sleep    3
+    Open Content    ${classic_message_builder}      ${classic_message_builder["button_add"]}
+    Sleep    3
+    Select frame    css=iframe.sfIFrame    #Click on main frame
+    Wait Until element Is Visible    id=emv-ccmd-iframe
+    Select Frame    id=emv-ccmd-iframe    # Click on inner frame
+    Sleep    3
+    click element    css=img#accordionIcon.accordionIcon.sprite
+    Sleep    3
+    input text    name=messageName    stuff
 
 *** Keywords ***
-Hover over create
-    [Documentation]     Hover over create menu
-    mouse over      css=li#engage-create
-
-
-Click Old MB
-    [Documentation]     Go to the old message builder from create
-    click element   css=${old_mb}

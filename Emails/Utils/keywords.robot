@@ -3,12 +3,15 @@ Documentation    Suite description
 Library           Selenium2Library
 
 *** Variables ***
+# login variables
 ${url}    https://qa-sfui.themessagecloud.com
 ${username}   mf_e1
 ${password}    computer4.
-${browser}      ie
-${email_tab}    ul.nav.navbar-nav.si-nav > li.logo_button.engage_button
-${old_mb}       li.section.column3 > ul > li.section-item
+${browser}      chrome
+
+# other
+${smartfocus_logo}    i.sf_logo
+
 
 *** Keywords ***
 Login
@@ -20,6 +23,13 @@ Login
     input password    IDToken2    ${password}
     Click Link    name=Login.Submit
 
-ClickOnEmail
-    [Documentation]    Go to email tab
-    click element  css=${email_tab}
+Go To System
+    [Arguments]    ${page}
+    click element    css=${page}
+
+Open Content
+    [Documentation]
+    [Arguments]    ${content_dictionary}      ${page}
+    mouse over      css=${content_dictionary["menu_list"]}
+    click element    css=${page}
+    mouse over    css=${smartfocus_logo}
