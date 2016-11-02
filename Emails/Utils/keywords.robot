@@ -18,14 +18,16 @@ Login
     [Documentation]    Logs in to the message cloud
     Open Browser    ${url}    ${browser}
     Maximize Browser Window
-    Page should contain    Login To Your Account:
-    input text    IDToken1    ${username}
-    input password    IDToken2    ${password}
+    Page Should Contain    Login To Your Account:
+    Input Text    IDToken1    ${username}
+    Input Password    IDToken2    ${password}
     Click Link    name=Login.Submit
+    Wait Until element Is Visible    css=ul.nav.navbar-nav.si-nav > li.logo_button.engage_button    timeout=60
 
 Go To System
     [Arguments]    ${page}
     click element    css=${page}
+    Wait Until element Is Visible    css=iframe.sfIFrame    timeout=60
 
 Open Content
     [Documentation]
@@ -33,3 +35,4 @@ Open Content
     mouse over      css=${content_dictionary["menu_list"]}
     click element    css=${page}
     mouse over    css=${smartfocus_logo}
+    Wait Until element Is Visible    css=iframe.sfIFrame    timeout=60
