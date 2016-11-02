@@ -2,8 +2,6 @@
 Documentation       Suite description
 Library             Selenium2Library     10       2
 Resource            Utils/keywords.robot
-Variables           Utils/variables.py
-Suite Teardown
 
 *** Variables ***
 

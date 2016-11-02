@@ -1,9 +1,11 @@
 # navigation settings
 # system pages
-view_page = "ul.nav.navbar-nav.si-nav > li.logo_button.insight_button"
-analyze_page = "ul.nav.navbar-nav.si-nav > li.logo_button.optimize_button"
-personalization_page = "ul.nav.navbar-nav.si-nav > li.logo_button.define_button"
-email_page = "ul.nav.navbar-nav.si-nav > li.logo_button.engage_button"
+view_page = "css=ul.nav.navbar-nav.si-nav > li.logo_button.insight_button"
+analyze_page = "css=ul.nav.navbar-nav.si-nav > li.logo_button.optimize_button"
+personalization_page = "css=ul.nav.navbar-nav.si-nav > li.logo_button.define_button"
+email_page = "css=ul.nav.navbar-nav.si-nav > li.logo_button.engage_button"
+drop_down_menu = "css=div.btn-group.pull-right"
+smart_focus_logo = "css=i.sf_logo"
 
 # iframes
 iframes = {
@@ -12,9 +14,9 @@ iframes = {
 }
 
 classic_message_builder = {
-    "menu_list": "li#engage-create",
-    "button_add": "li.section.column3 > ul > li:nth-child(2) > ul > li:nth-child(1)",
-    "button_list": "li.section.column3 > ul > li:nth-child(2) > ul > li:nth-child(2)",
+    "menu_list": "css=li#engage-create",
+    "button_add": "css=li.section.column3 > ul > li:nth-child(2) > ul > li:nth-child(1)",
+    "button_list": "css=li.section.column3 > ul > li:nth-child(2) > ul > li:nth-child(2)",
     "create": {
         "header_accordion": "css=img#accordionIcon.accordionIcon.sprite",
         "body_accordion": "css=img#accordionIcon.msg-body02.sprite",

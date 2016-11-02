@@ -1,17 +1,14 @@
 *** Settings ***
-Documentation    Suite description
-Library           Selenium2Library
+Documentation       Suite description
+Library             Selenium2Library
+Variables           variables.py
 
 *** Variables ***
 # login variables
-${url}    https://qa-sfui.themessagecloud.com
-${username}   mf_e1
-${password}    computer4.
+${url}          https://qa-sfui.themessagecloud.com
+${username}     mf_e1
+${password}     computer4.
 ${browser}      chrome
-
-# other
-${smartfocus_logo}    i.sf_logo
-
 
 *** Keywords ***
 Login
@@ -22,17 +19,18 @@ Login
     Input Text    IDToken1    ${username}
     Input Password    IDToken2    ${password}
     Click Link    name=Login.Submit
-    Wait Until element Is Visible    css=ul.nav.navbar-nav.si-nav > li.logo_button.engage_button    timeout=60
+    Wait Until Element Is Visible    ${smart_focus_logo}    timeout=60
 
 Go To System
+    [Documentation]
     [Arguments]    ${page}
-    click element    css=${page}
-    Wait Until element Is Visible    css=iframe.sfIFrame    timeout=60
+    Click Element    ${page}
+    Wait Until Element Is Visible    ${iframes["top"]}    timeout=60
 
 Open Content
     [Documentation]
     [Arguments]    ${content_dictionary}      ${page}
-    mouse over      css=${content_dictionary["menu_list"]}
-    click element    css=${page}
-    mouse over    css=${smartfocus_logo}
-    Wait Until element Is Visible    css=iframe.sfIFrame    timeout=60
+    Mouse Over      ${content_dictionary["menu_list"]}
+    Click Element    ${page}
+    Mouse Over    ${smartfocus_logo}
+    Wait Until Element Is Visible    ${iframes["top"]}    timeout=60
