@@ -30,6 +30,9 @@ Go To System
 Open Content
     [Documentation]
     [Arguments]    ${content_dictionary}      ${page}
+    ${is_visible}=    Run Keyword And Return Status    Element Should Not Be Visible    ${iframes["top"]}
+    Run Keyword If    ${is_visible}
+    ...    Select Window    title=${document_title}    # Click on main frame
     Mouse Over      ${content_dictionary["menu_list"]}
     Click Element    ${page}
     Mouse Over    ${smartfocus_logo}
