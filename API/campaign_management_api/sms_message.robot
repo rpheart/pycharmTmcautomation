@@ -13,7 +13,7 @@ ${host}           http://${server}/apiccmd/services/rest
 ${member_id}      1819306545
 
 #-- SMS variables
-${xml_file}    ../data/sms_message.xml
+${xml_file}       api/data/sms_message.xml
 ${sms_name}       TestName
 ${sms_desc}       APIauto
 ${sms_from}       SmartFocus

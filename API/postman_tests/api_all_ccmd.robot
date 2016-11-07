@@ -9,7 +9,7 @@ Resource          api_keywords.robot
 
 *** Variables ***
 ${host}    http://${server}/apiccmd/services/rest
-${xml_file}    ../data/email_message.xml
+${xml_file}    api/data/email_message.xml
 
 *** Test Cases ***
 Login
