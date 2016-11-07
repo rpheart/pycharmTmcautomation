@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+ <type>sms</type>
+ <name>test name</name>
+   <description>desc test</description>
+   <body>[EMV SMSPART] SMS creation test by API</body>
+ <from>SmartFocus</from>
+</message>

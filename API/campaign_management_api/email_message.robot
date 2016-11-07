@@ -1,7 +1,9 @@
 *** Settings ***
 Library           Selenium2Library    10    2    run_on_failure=Fail Keyword
 Library           RequestsLibrary
+Library           OperatingSystem
 Resource          api_keywords.robot
+Default Tags      api    email
 Test Setup        Run Keywords    Open Connection
 ...               AND    Create Email
 Test Teardown     Close Connection And Delete Test Data
@@ -11,6 +13,7 @@ ${host}    http://${server}/apiccmd/services/rest
 ${member_id}      1819306545
 
 #-- Email variables
+${xml_file}    ../data/email_message.xml
 ${name}    TestEmail
 ${description}    This%20is%20a%20test%20message
 ${subject}    Welcome%20to%20SmartFocus%20test%20session
@@ -25,11 +28,18 @@ ${isBounceback}    0
 ${hotmailUnsubFlg}    1
 ${hotmailUnsubUrl}    www.smarfocus.com
 
-
-
 *** Test Cases ***
-Create Email Message
+Create Email Message Get
     Should Not Be Empty    ${message_id}
+
+Create Email Message Post
+    #-- Create Email message using POST
+    ${message}=    Get File    ${xml_file}
+    ${headers}=    Create Dictionary    content-type=application/xml
+    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+    ${post_message_id}=    Get XML Content    ${create_message.content}
+    Should Not Be Empty    ${post_message_id}
 
 Delete Email Message
     #-- Delete Email message
