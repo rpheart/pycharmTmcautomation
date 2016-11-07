@@ -13,7 +13,7 @@ ${host}    http://${server}/apiccmd/services/rest
 ${member_id}      1819306545
 
 #-- Email variables
-${xml_file}    ../data/email_message.xml
+${xml_file}    data/email_message.xml
 ${name}    TestEmail
 ${description}    This%20is%20a%20test%20message
 ${subject}    Welcome%20to%20SmartFocus%20test%20session
