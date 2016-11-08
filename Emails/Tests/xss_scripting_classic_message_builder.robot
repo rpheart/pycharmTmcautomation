@@ -1,16 +1,16 @@
 *** Settings ***
 Documentation       Suite description
-Library             Selenium2Library    10    2    screenshot_root_directory=.
+Library             Selenium2Library    10    2    run_on_failure=Fail Keyword    screenshot_root_directory=.
 Resource            Utils/keywords.robot
+Default Tags        ui    email    xss
 
 *** Variables ***
-
 
 *** Test Cases ***
 Login And Go To Classic Message Builder
     Login
     Set Selenium Speed    0.1
-    Go To System    ${email_page}
+    Go To ${system_page["email"]}
     Open Content    ${classic_message_builder}      ${classic_message_builder["button_add"]}
 
 XSS scripts in message headers
