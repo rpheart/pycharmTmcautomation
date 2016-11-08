@@ -2,7 +2,7 @@
 Documentation    Suite description
 Library          Selenium2Library    10    2    run_on_failure=Fail Keyword    screenshot_root_directory=.
 Resource         Utils/keywords.robot
-Force Tags       ui    smoke    email
+Default Tags     ui    smoke    email
 
 *** Variables ***
 
