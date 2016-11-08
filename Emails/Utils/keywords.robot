@@ -6,10 +6,10 @@ Variables           variables.py
 *** Variables ***
 ${screenshots}
 # login variables
-${url}          https://qa-sfui.themessagecloud.com
-${username}     mf_e1
-${password}     computer4.
-${browser}      chrome
+${ui_server}        https://qa-sfui.themessagecloud.com
+${ui_username}      mf_e1
+${ui_password}      computer4.
+${browser}          chrome
 
 *** Keywords ***
 Fail Keyword
@@ -18,11 +18,11 @@ Fail Keyword
 
 Login
     [Documentation]    Logs in to the message cloud
-    open browser    ${url}    ${browser}
+    open browser    ${ui_server}    ${browser}
     maximize browser window
     page should contain    Login To Your Account:
-    input text    Input Text    IDToken1    ${username}
-    input password    IDToken2    ${password}
+    input text    IDToken1    ${ui_username}
+    input password    IDToken2    ${ui_password}
     click link    name=Login.Submit
     wait until element is visible    ${smart_focus_logo}    timeout=30
 
