@@ -19,7 +19,7 @@ classic_message_builder = {
     "button_list": "css=li.section.column3 > ul > li:nth-child(2) > ul > li:nth-child(2)",
     "create": {
         "header_accordion": "css=img#accordionIcon.accordionIcon.sprite",
-        "body_accordion": "css=img#accordionIcon.msg-body02.sprite",
+        "body_accordion": "css=img.accordionIcon.msg-body02.sprite",
         "save_button": "id=iconButtonSave",
         "message_name_input": "name=messageName",
         "message_description_input": "name=messageDescription",
@@ -27,7 +27,9 @@ classic_message_builder = {
         "message_to_input": "name=messageTo",
         "message_subject_input": "name=messageSubject",
         "message_reply_to_input": "name=messageReplyTo",
-        "message_custom_header_input": "name=xheaderValue(HEADER)"
+        "message_custom_header_input": "name=xheaderValue(HEADER)",
+        "message_body_text":"css=textarea#textContent.textbox",
+        "message_preview":"css=span.blueBtnText"
     },
     "list": {
 
