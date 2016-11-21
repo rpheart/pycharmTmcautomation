@@ -10,7 +10,8 @@ system_page = {
 
 drop_down_menu = "css=div.btn-group.pull-right"
 smart_focus_logo = "css=i.sf_logo"
-document_title = "SmartFocus"
+document_title = "title=SmartFocus"
+navigation_bar = "css=ul.si-module-navigation"
 
 # iframes
 iframes = {

@@ -34,7 +34,7 @@ def get_xml_content_list(response):
         return tree.attrib["responseStatus"]
 
 
-def close_smart_email_connection(session, token, message_id="", segment_id=""):
+def close_smart_email_connection(session, token, message_id="", segment_id="", template_id=""):
     """if any of the ID's have a value a GET request to delete them based on
     this ID. After the connection to the smart email API is closed."""
 
@@ -43,6 +43,9 @@ def close_smart_email_connection(session, token, message_id="", segment_id=""):
         requests.get(url)
     if segment_id:
         url = "%s/message/deleteMessage/%s/%s" % (session, token, message_id)
+        requests.get(url)
+    if template_id:
+        url = "%s/template/delete/%s/%s" % (session, token, message_id)
         requests.get(url)
 
     url = "%s/connect/close/%s" % (session, token)

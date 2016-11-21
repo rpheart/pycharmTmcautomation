@@ -1,8 +1,7 @@
 *** Settings ***
-Documentation    Suite description
-Library          Selenium2Library    10    2    run_on_failure=Fail Keyword    screenshot_root_directory=.
-Resource         Utils/keywords.robot
-Default Tags     ui    smoke    email
+Documentation       Suite description
+Resource            Utils/keywords.robot
+Default Tags        ui    smoke    email    production
 
 *** Variables ***
 

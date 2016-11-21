@@ -18,9 +18,9 @@ ${name}    TestEmail
 ${description}    This%20is%20a%20test%20message
 ${subject}    Welcome%20to%20SmartFocus%20test%20session
 ${from}    SmartFocus
-${fromEmail}    test@emvqae1.ccemails.net
+${marketingFromEmail}    test@emvqae1.ccemails.net
 ${to}    myclient
-${body}    %5BEMV%20HTMLPART%5Dhi%20there
+${body}    %5BEMV%20HTMLPART%5Dhi%20there%20
 ${encoding}    UTF-8
 ${replyTo}    Documentation
 ${replyToEmail}    documentation@smartfocus.com
@@ -111,3 +111,127 @@ Get Email Message Preview
     Run Keyword If    ${search_email.status_code} != 200    Fail    ${search_email.content}
     ${email_content}=    Get XML Content    ${search_email.content}
     Should Contain    ${email_content}    hi there
+
+Track All Links
+    #-- Create Email message using POST
+    ${message}=    Get File    ${xml_file}
+    ${headers}=    Create Dictionary    content-type=application/xml
+    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+    ${post_message_id}=    Get XML Content    ${create_message.content}
+    Should Not Be Empty    ${post_message_id}
+    #-- Track All Links
+    ${track_links}    Get Request    host    /message/trackAllLinks/${token}/${post_message_id}
+    Run Keyword If    ${track_links.status_code} != 200    Fail    ${track_links.content}
+    ${email_content}=    Get XML Content    ${track_links.content}
+    should be equal as integers    ${email_content}    1
+    #-- Delete Email message
+    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    Run Keyword If    ${delete_email.status_code} != 200    Fail    ${delete_email.content}
+
+Untrack All Links
+    #-- Untrack All Links
+    ${untrack_links}    Get Request    host    /message/untrackAllLinks/${token}/${message_id}
+    Run Keyword If    ${untrack_links.status_code} != 200    Fail    ${untrack_links.content}
+    ${email_content}=    Get XML Content    ${untrack_links.content}
+    should be equal as strings    ${email_content}    true
+
+Track Link by Position
+    #-- Create Email message using POST
+    ${message}=    Get File    ${xml_file}
+    ${headers}=    Create Dictionary    content-type=application/xml
+    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+    ${post_message_id}=    Get XML Content    ${create_message.content}
+    Should Not Be Empty    ${post_message_id}
+    #-- Track Link by Position
+    ${track_links}    Get Request    host    /message/trackLinkByPosition/${token}/${post_message_id}/1/HTML
+    Run Keyword If    ${track_links.status_code} != 200    Fail    ${track_links.content}
+    ${email_content}=    Get XML Content    ${track_links.content}
+    should be equal as integers    ${email_content}    1
+    #-- Delete Email message
+    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    Run Keyword If    ${delete_email.status_code} != 200    Fail    ${delete_email.content}
+
+Untrack Link by Order
+    #-- Create Email message using POST
+    ${message}=    Get File    ${xml_file}
+    ${headers}=    Create Dictionary    content-type=application/xml
+    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+    ${post_message_id}=    Get XML Content    ${create_message.content}
+    Should Not Be Empty    ${post_message_id}
+    #-- Untrack Link by Order
+    ${untrack_links}    Get Request    host    /message/untrackLinkByOrder/${token}/${post_message_id}/1
+    Run Keyword If    ${untrack_links.status_code} != 200    Fail    ${untrack_links.content}
+    ${email_content}=    Get XML Content    ${untrack_links.content}
+    should be equal as strings    ${email_content}    true
+    #-- Delete Email message
+    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    Run Keyword If    ${delete_email.status_code} != 200    Fail    ${delete_email.content}
+
+Get All Tracked Links
+    #-- Create Email message using POST
+    ${message}=    Get File    ${xml_file}
+    ${headers}=    Create Dictionary    content-type=application/xml
+    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+    ${post_message_id}=    Get XML Content    ${create_message.content}
+    Should Not Be Empty    ${post_message_id}
+    #-- Track All Links
+    ${track_links}    Get Request    host    /message/trackAllLinks/${token}/${post_message_id}
+    Run Keyword If    ${track_links.status_code} != 200    Fail    ${track_links.content}
+    ${email_content}=    Get XML Content    ${track_links.content}
+    #-- Get All Tracked Links
+    ${get_tracked_links}    Get Request    host    /message/getAllTrackedLinks/${token}/${post_message_id}
+    Run Keyword If    ${get_tracked_links.status_code} != 200    Fail    ${get_tracked_links.content}
+    ${email_content}=    Get XML Content List    ${get_tracked_links.content}
+    should contain    ${email_content}    1
+    #-- Delete Email message
+    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    Run Keyword If    ${delete_email.status_code} != 200    Fail    ${delete_email.content}
+
+#Get All Unused Tracked Links
+#    #-- Create Email message using POST
+#    ${message}=    Get File    ${xml_file}
+#    ${headers}=    Create Dictionary    content-type=application/xml
+#    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+#    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+#    ${post_message_id}=    Get XML Content    ${create_message.content}
+#    Should Not Be Empty    ${post_message_id}
+#    #-- Track All Links
+#    ${track_links}    Get Request    host    /message/trackAllLinks/${token}/${post_message_id}
+#    Run Keyword If    ${track_links.status_code} != 200    Fail    ${track_links.content}
+#    ${email_content}=    Get XML Content    ${track_links.content}
+#    #-- Get All Unused Tracked Links
+#    ${get_tracked_links}    Get Request    host    /message/getAllUnusedTrackedLinks/${token}/${post_message_id}
+#    Run Keyword If    ${get_tracked_links.status_code} != 200    Fail    ${get_tracked_links.content}
+#    ${email_content}=    Get XML Content List    ${get_tracked_links.content}
+#    should contain    ${email_content}    1
+#    #-- Delete Email message
+#    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+#    Run Keyword If    ${delete_email.status_code} != 200    Fail    ${delete_email.content}
+
+Get All Trackable Links
+    #-- Create Email message using POST
+    ${message}=    Get File    ${xml_file}
+    ${headers}=    Create Dictionary    content-type=application/xml
+    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+    ${post_message_id}=    Get XML Content    ${create_message.content}
+    Should Not Be Empty    ${post_message_id}
+    #-- Get All Trackable Links
+    ${get_trackable_links}    Get Request    host    /message/getAllTrackableLinks/${token}/${post_message_id}
+    Run Keyword If    ${get_trackable_links.status_code} != 200    Fail    ${get_trackable_links.content}
+    ${email_content}=    Get XML Content List    ${get_trackable_links.content}
+    should contain    ${email_content}    1
+    #-- Delete Email message
+    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    Run Keyword If    ${delete_email.status_code} != 200    Fail    ${delete_email.content}
+
+Test HTML Validity
+    #-- Test HTML Validity
+    ${validate_html}    Get Request    host    /message/isHtmlValid/${token}/${message_id}
+    Run Keyword If    ${validate_html.status_code} != 200    Fail    ${validate_html.content}
+    ${email_content}=    Get XML Content    ${validate_html.content}
+    should be equal as strings    ${email_content}    true
