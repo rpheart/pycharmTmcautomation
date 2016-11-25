@@ -20,7 +20,7 @@ def offer_click(click_url, guid, engagement_id, email="", cookie_id="", position
     if timestamp:
         timestamp = "&tstamp=" + timestamp
 
-    url = "http://%s/api-public/3.0/click/4?a=%s&e=%s%s%s&l=en&pos=%s%s" % (
+    url = "http://%s/api-public/3.0/click/1?a=%s&e=%s%s%s&l=en&pos=%s%s" % (
         click_url, guid, engagement_id, email, cookie_id, position, timestamp)
     return url
 
@@ -30,7 +30,7 @@ def login(advisor_url, username, password, aid, cookie_id="", email=""):
         cookie_id = "cookieid=" + cookie_id
         if email:
             email = "&email=" + email
-    if email:
+    elif email:
         email = "email=" + email
 
     url = "http://%s/ips/cred/%s/%s/3.0/notify/%s/login?%s%s" % (
