@@ -3,43 +3,46 @@ import os
 from msvcrt import getch
 from random import randint
 
-import requests
-
 import advisor.is_direct_logic.utils as utils
 import advisor.utils.api_calls as api
 import advisor.utils.api_settings as settings
 import advisor.utils.tcpdump as tcp
+import requests
 
 # Globals
 unique_key = randint(1000, 10000)
-email = "TC01_%s@advisortest.com" % unique_key
-cookie_id = "11111_%s" % unique_key
+email = "TC08_%s@advisortest.com" % unique_key
+cookie_id = "88888_%s" % unique_key
+cbtt = None
 sku = "123"
 filtered_response = []
-root = Tkinter.Tk().withdraw()
+root = Tkinter.Tk()
 
 # Build Specific Variables
 if os.environ["BUILD_ENV"] == "QA":
     advisor = settings.api_settings["QA"]["advisor"]
+    click = settings.api_settings["QA"]["click"]
     renderer = settings.api_settings["QA"]["renderer"]
     guid = settings.client_settings["QA"]["SIDEV01"]["guid"]
     aid = settings.client_settings["QA"]["SIDEV01"]["aid"]
     username = settings.client_settings["QA"]["SIDEV01"]["username"]
     password = settings.client_settings["QA"]["SIDEV01"]["password"]
-    engagement = "12874"
+    engagement = "12881"
     tcp_username = settings.kafka_settings["QA"]["tcp_username"]
     tcp_server = settings.kafka_settings["QA"]["tcp_server"]
 elif os.environ["BUILD_ENV"] == "PREPROD":
     advisor = settings.api_settings["PREPROD"]["advisor"]
+    click = settings.api_settings["PREPROD"]["click"]
     renderer = settings.api_settings["PREPROD"]["renderer"]
     guid = settings.client_settings["PREPROD"]["PREPRODTMC"]["guid"]
     aid = settings.client_settings["PREPROD"]["PREPRODTMC"]["aid"]
     username = settings.client_settings["PREPROD"]["PREPRODTMC"]["username"]
     password = settings.client_settings["PREPROD"]["PREPRODTMC"]["password"]
-    engagement = "6751"
+    engagement = "6758"
     tcp_username = settings.kafka_settings["PREPROD"]["tcp_username"]
     tcp_server = settings.kafka_settings["PREPROD"]["tcp_server"]
 else:
+    print "No environment settings found, please check your environment variables"
     quit()
 
 print "Please login into %s@%s and start the tcpdump, then press any key to continue:" % (tcp_username, tcp_server)
@@ -47,12 +50,29 @@ pause = getch()
 
 request_list = [
     api.offer_open(renderer, guid, engagement, email=email),
-    api.login(advisor, username, password, aid, cookie_id=cookie_id, email=email),
+    api.offer_click(click, guid, engagement, email=email)
+]
+
+for request in request_list:
+    print "sending %s" % request
+    response = requests.get(request)
+    if response.status_code == requests.codes.ok:
+        print "Send OK"
+        if 'cbtt=' in response.url:
+            nonsense, cbtt = response.url.split('cbtt=')
+            print "found cbtt"
+    else:
+        print "Send Failed"
+        print "Terminating test"
+        quit()
+
+request_list_cbtt = [
+    api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id, cbtt=cbtt),
     api.cart_add(advisor, username, password, aid, sku, cookie_id=cookie_id),
     api.buy(advisor, username, password, aid, sku, cookie_id=cookie_id)
 ]
 
-for request in request_list:
+for request in request_list_cbtt:
     print "sending %s" % request
     response = requests.get(request)
     if response.status_code == requests.codes.ok:
@@ -77,17 +97,18 @@ while True:
         break
 
 for line in tcp.filter_tcpdump(kafka_ouput):
-    if email in line or cookie_id in line:
+    if str(unique_key) in line:
         filtered_response.append(line)
 
-if utils.verify_is_direct(filtered_response) == "isDirect=false":
-    print "isDirect=false"
+if utils.verify_is_direct(filtered_response) == "isDirect=true":
+    print utils.verify_is_direct(filtered_response)
 else:
-    print "isDirect should be 'false', instead found '%s'" % utils.verify_is_direct(filtered_response)
+    print "isDirect should be 'true', instead found '%s'" % utils.verify_is_direct(filtered_response)
 
 for line in filtered_response:
     if utils.verify_json_contains_events(line):
         print "Correct info found in", line
+        print ""
     else:
         print utils.verify_json_contains_events(line), line
 

@@ -1,5 +1,5 @@
 evtype_list = ['"evtype":"suggest"', '"evtype":"offer-open"', '"evtype":"offer-click"', '"evtype":"login"',
-               '"evtype":"browse"', '"evtype":"cart-add"', '"evtype":"buy"']
+               '"evtype":"browse"', '"evtype":"cart-add"', '"evtype":"buy"', '"evtype":"social-click"']
 
 suggest_list = ["variantName", "campaignName", "accountName", "engagementName", "messageName", "aguid", "sitekey",
                 "evtype", "campid", "engid", "messid", "varid", "quan", "val"]
@@ -21,7 +21,7 @@ def choose_event_list(json_response):
         return suggest_list
     elif '"evtype":"offer-open"' in json_response:
         return offer_open_list
-    elif '"evtype":"offer-click"' in json_response:
+    elif '"evtype":"offer-click"' in json_response or '"evtype":"social-click"' in json_response:
         return offer_click_list
     elif '"evtype":"login"' in json_response:
         return login_list
