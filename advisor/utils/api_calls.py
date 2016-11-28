@@ -12,16 +12,24 @@ def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", format
     return url
 
 
-def offer_click(click_url, guid, engagement_id, email="", cookie_id="", position="default", timestamp=""):
+def offer_click(click_url, guid, engagement_id, email="", cookie_id="", language="", position="default", lid="", idx="", timestamp=""):
     if email:
         email = "&ue=" + email
     if cookie_id:
         cookie_id = "&uc=" + cookie_id
+    if lid:
+        lid = "&lid=" + lid
+    if idx:
+        idx = "&idx=" + idx
+    if language:
+        language = "&l=" + language
+    if position:
+        position = "&pos=" + position
     if timestamp:
         timestamp = "&tstamp=" + timestamp
 
-    url = "http://%s/api-public/3.0/click/1?a=%s&e=%s%s%s&l=en&pos=%s%s" % (
-        click_url, guid, engagement_id, email, cookie_id, position, timestamp)
+    url = "http://%sa=%s&e=%s%s%s%s%s%s%s%s" % (
+        click_url, guid, engagement_id, email, cookie_id, language, position, lid, idx, timestamp)
     return url
 
 
