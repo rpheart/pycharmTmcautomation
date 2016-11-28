@@ -3,11 +3,12 @@ import os
 from msvcrt import getch
 from random import randint
 
+import requests
+
 import advisor.is_direct_logic.utils as utils
 import advisor.utils.api_calls as api
 import advisor.utils.api_settings as settings
 import advisor.utils.tcpdump as tcp
-import requests
 
 # Globals
 unique_key = randint(1000, 10000)
@@ -39,11 +40,11 @@ elif os.environ["BUILD_ENV"] == "PREPROD":
     tcp_username = settings.kafka_settings["PREPROD"]["tcp_username"]
     tcp_server = settings.kafka_settings["PREPROD"]["tcp_server"]
 else:
-    print "No environment settings found, please check your environment variables"
+    print "No environment settings found, please check your environment variables", getch()
     quit()
 
-print "Please login into %s@%s and start the tcpdump, then press any key to continue:" % (tcp_username, tcp_server)
-pause = getch()
+print "Please login into %s and start the tcpdump, then press any key to continue:" % tcp_server, "\n", getch()
+
 offer_open = api.offer_open(renderer, guid, engagement, email=email)
 
 request_list = [
@@ -61,28 +62,25 @@ for i in range(220):
     requests.get(offer_open)
     if i % 20 == 0:
         print "sent %s" % i
-print "Complete"
+print "Send complete", "\n"
 
 for request in request_list:
     print "sending %s" % request
     response = requests.get(request)
     if response.status_code == requests.codes.ok:
-        print "Send OK"
+        print "Sent"
     else:
         print "Send Failed"
-        print "Terminating test"
+        print "Terminating test, press any key to continue", getch()
         quit()
 
-print "Complete"
+print "Send complete", "\n"
+print "Please copy the response from Kafka to your clipboard and press any key for me to read it", "\n", getch()
 
-print "Please copy the response from Kafka to your clipboard and press any key for me to read it"
-print ""
-pause = getch()
 while True:
     kafka_ouput = root.clipboard_get()
     if not kafka_ouput:
-        print "was not able to read clipboard, please copy text again and press any key"
-        pause = getch()
+        print "was not able to read clipboard, please copy text again and press any key", getch()
         continue
     else:
         break
@@ -92,17 +90,14 @@ for line in tcp.filter_tcpdump(kafka_ouput):
         filtered_response.append(line)
 
 if utils.verify_is_direct(filtered_response) == "isDirect=false":
-    print utils.verify_is_direct(filtered_response)
+    print "Success!", utils.verify_is_direct(filtered_response), "\n"
 else:
-    print "isDirect should be 'false', instead found '%s'" % utils.verify_is_direct(filtered_response)
+    print "isDirect should be 'false', instead found '%s'" % utils.verify_is_direct(filtered_response), "\n"
 
 for line in filtered_response:
     if utils.verify_json_contains_events(line):
-        print "Correct info found in", line
-        print ""
+        print "Correct info found in:", line, "\n"
     else:
-        print utils.verify_json_contains_events(line), line
+        print utils.verify_json_contains_events(line), line, "\n"
 
-print ""
-print "Press any key to continue"
-pause = getch()
+print "Press any key to continue", getch()
