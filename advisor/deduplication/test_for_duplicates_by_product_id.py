@@ -43,7 +43,7 @@ def extract_product_id(response):
     """pulls sku if it exists as 'itemCode' from response
     and returns it else returns None"""
 
-    for layer in response["data"]:
+    for layer in response:
         try:
             sku = layer["productCode"]
             return sku
