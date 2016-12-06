@@ -8,9 +8,9 @@ Variables           variables.py
 ${screenshots}
 
 # login variables
-${ui_server}        https://www.themessagecloud.com
-${ui_username}      auto_t5
-${ui_password}      qa11focus$
+${ui_server}        https://preprod.themessagecloud.com
+${ui_username}      preprodtmc
+${ui_password}      computer5.
 ${browser}          chrome
 
 *** Keywords ***

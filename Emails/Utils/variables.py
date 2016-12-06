@@ -132,29 +132,29 @@ transactional_content_block = {
 }
 
 segments = {
-    "menu": "css=li#engage-list-management",
-    "button_add": "css=li.section.column2 > ul > li:nth-child(1) > ul > li:nth-child(1)",
+    "menu": "id=engage-list-management",
+    "button_add": "css=li.dropdown-module",  # "css=li.section.column2 > ul > li:nth-child(1) > ul > li:nth-child(1)",
     "button_list": "css=li.section.column2 > ul > li:nth-child(1) > ul > li:nth-child(2)",
 }
 
 add_subscriber = {
-    "menu": "css=li#engage-list-management",
-    "button_add": "css=li:nth-child(2).section.column2 > ul > li:nth-child(1) > ul > li:nth-child(1)"
+    "menu": "id=engage-list-management",
+    "button_add": "css=ul.dropdown-modules.single-btn > li.dropdown-module"  # "css=li:nth-child(2).section.column2 > ul > li:nth-child(1) > ul > li:nth-child(1)"
 }
 
 search_subscriber = {
-    "menu": "css=li#engage-list-management",
+    "menu": "id=engage-list-management",
     "button_add": "css=li:nth-child(2).section.column2 > ul > li:nth-child(2) > ul > li:nth-child(1)"
 }
 
 import_subscriber = {
-    "menu": "css=li#engage-list-management",
+    "menu": "id=engage-list-management",
     "button_add": "css=li:nth-child(2).section.column2 > ul > li:nth-child(3) > ul > li:nth-child(1)",
     "button_list": "css=li:nth-child(2).section.column2 > ul > li:nth-child(3) > ul > li:nth-child(2)"
 }
 
 export_subscriber = {
-    "menu": "css=li#engage-list-management",
+    "menu": "id=engage-list-management",
     "button_add": "css=li:nth-child(2).section.column2 > ul > li:nth-child(4) > ul > li:nth-child(1)",
     "button_list": "css=li:nth-child(2).section.column2 > ul > li:nth-child(4) > ul > li:nth-child(2)"
 }
