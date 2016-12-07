@@ -1,0 +1,8 @@
+EMAIL|FIRSTNAME|LASTNAME|DATEOFBIRTH|CODE
+foo@bar.com|foo|bar|01/01/1900|1
+good@test|good|tester|02/02/1900|2
+---|3
+notokay; nope; not happening; never|4
+email@test.com|incorrect|birthday|invalid|5
+validemail@alwaysgood.net|good|data|03/03/1900|6
+patrick.summers@smartfocus.com|patrick|summers|06/09/1989|7
