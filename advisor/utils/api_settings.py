@@ -46,12 +46,14 @@ api_settings = {
     "QA": {
         "advisor": "qa-eu1-advisor1-v3.advisor.smartfocus.com",
         "renderer": "qa-eu1-p3-renderer.advisor.smartfocus.com",
-        "click": "qa-eu1-p3-api-public.advisor.smartfocus.com"
+        "click_advisor": "qa-eu1-p3-api-public.advisor.smartfocus.com/api-public/3.0/click/1?",
+        "click_personaliser": "qa-eu1-p3-api-public.advisor.smartfocus.com/personalization/clickback/click?"
     },
     "PREPROD": {
         "advisor": "preprod-eu1-api-ext-lb-580332958.eu-west-1.elb.amazonaws.com",
         "renderer": "preprod-eu1-p3-renderer.advisor.smartfocus.com",
-        "click": "preprod-eu1-p3-api-public.advisor.smartfocus.com"
+        "click_advisor": "preprod-eu1-p3-api-public.advisor.smartfocus.com/api-public/3.0/click/1?",
+        "click_personaliser": "preprod-eu1-ext.advisor.smartfocus.com/personalization/clickback/click?"
     }
 }
 
