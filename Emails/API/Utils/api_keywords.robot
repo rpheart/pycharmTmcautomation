@@ -1,7 +1,9 @@
 *** Settings ***
-Library           Selenium2Library    10    2    run_on_failure=Fail Keyword
-Library           RequestsLibrary
-Library           api_functions.py
+Documentation
+Library             Selenium2Library    10    2    run_on_failure=Fail Keyword
+Library             RequestsLibrary
+Library             OperatingSystem
+Library             api_functions.py
 
 *** Variables ***
 ${server}    p1itgapie.emv2.com
@@ -10,6 +12,7 @@ ${password}    Standard1!
 ${apikey}    CdX7CrRD4EeekEUMb8M_sqWXawknQfiBuQKoBs9XKa-sH0-e2hqG8dVsgUw
 ${template_id}
 ${message_id}
+${member_id}      1819306545  # QA member id, we need to find one for each client/environment and add it to jenkins
 
 *** Keywords ***
 Open Connection
