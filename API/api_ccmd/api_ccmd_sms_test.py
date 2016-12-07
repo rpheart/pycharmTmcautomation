@@ -1,8 +1,9 @@
 # Testing API responses
 
 import os
-import requests
 import sys
+
+import requests
 
 
 def find_response_id_or_token(response_handler):

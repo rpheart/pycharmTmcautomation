@@ -1,36 +1,46 @@
 *** Settings ***
 Documentation       Suite description
-Library             Selenium2Library
+Library             Selenium2Library    10    2    run_on_failure=fail keyword    screenshot_root_directory=.
 Variables           variables.py
 
 *** Variables ***
+# test variables
+${screenshots}
+
 # login variables
-${url}          https://qa-sfui.themessagecloud.com
-${username}     mf_e1
-${password}     computer4.
-${browser}      chrome
+${ui_server}        https://preprod.themessagecloud.com
+${ui_username}      preprodtmc
+${ui_password}      computer5.
+${browser}          chrome
 
 *** Keywords ***
-Login
+fail keyword
+    log source
+    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
+
+login
     [Documentation]    Logs in to the message cloud
-    Open Browser    ${url}    ${browser}
-    Maximize Browser Window
-    Page Should Contain    Login To Your Account:
-    Input Text    IDToken1    ${username}
-    Input Password    IDToken2    ${password}
-    Click Link    name=Login.Submit
-    Wait Until Element Is Visible    ${smart_focus_logo}    timeout=60
+    open browser    ${ui_server}    ${browser}
+    maximize browser window
+    page should contain    Login To Your Account:
+    input text    IDToken1    ${ui_username}
+    input password    IDToken2    ${ui_password}
+    click link    name=Login.Submit
+    wait until element is visible    ${smart_focus_logo}    timeout=30
 
-Go To System
+go to ${page}
     [Documentation]
-    [Arguments]    ${page}
-    Click Element    ${page}
-    Wait Until Element Is Visible    ${iframes["top"]}    timeout=60
+    select window    ${document_title}    # Select main frame
+    click element    ${page}
+    wait until element is visible    ${navigation_bar}    timeout=30
 
-Open Content
+open content
     [Documentation]
     [Arguments]    ${content_dictionary}      ${page}
-    Mouse Over      ${content_dictionary["menu_list"]}
-    Click Element    ${page}
-    Mouse Over    ${smartfocus_logo}
-    Wait Until Element Is Visible    ${iframes["top"]}    timeout=60
+    select window    ${document_title}    # Select main frame
+    wait until element is visible    ${content_dictionary["menu"]}    timeout=30
+    mouse over    ${content_dictionary["menu"]}
+    wait until element is visible    ${page}    timeout=30
+    click element    ${page}
+    mouse over    ${smartfocus_logo}
+    wait until element is visible    ${navigation_bar}    timeout=30
