@@ -30,6 +30,7 @@ classic_message_builder = {
         "message_custom_header_input": "name=xheaderValue(HEADER)",
         "message_body_text":"css=textarea#textContent.textbox",
         "message_preview":"css=span.blueBtnText"
+		"click_SMS_message": "xpath=//*[@id='engage-create']/div[2]/div/ul/li[1]/ul/li[5]/ul/li[1]"
     },
     "list": {
 
