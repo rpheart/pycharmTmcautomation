@@ -1,22 +1,36 @@
 *** Settings ***
 Library           Selenium2Library    10    2    run_on_failure=Fail Keyword
 Library           RequestsLibrary
+Library           OperatingSystem
 Resource          api_keywords.robot
+Default Tags      api    sms
 Test Setup        Run Keywords    Open Connection
 ...               AND    Create SMS
 Test Teardown     Close Connection And Delete Test Data
 
 *** Variables ***
+${host}           http://${server}/apiccmd/services/rest
+${member_id}      1819306545
+
+#-- SMS variables
+${xml_file}       api/data/sms_message.xml
 ${sms_name}       TestName
 ${sms_desc}       APIauto
 ${sms_from}       SmartFocus
 ${sms_body}       %5BEMV%20SMSPART%5DSMS%20creation%20test%20by%20API
-${host}           http://${server}/apiccmd/services/rest
-${member_id}      1819306545
 
 *** Test Cases ***
 Create SMS Message
     Should Not Be Empty    ${message_id}
+
+Create SMS Message Post
+    #-- Create SMS message using POST
+    ${message}=    Get File    ${xml_file}
+    ${headers}=    Create Dictionary    content-type=application/xml
+    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+    ${post_message_id}=    Get XML Content    ${create_message.content}
+    Should Not Be Empty    ${post_message_id}
 
 Delete SMS Message
     #-- Delete SMS message
