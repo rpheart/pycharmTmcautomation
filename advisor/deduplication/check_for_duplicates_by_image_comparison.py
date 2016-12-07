@@ -6,12 +6,23 @@ import cv2
 import numpy as np
 import requests
 
-import advisor.utils.api_qa_settings as settings
+import advisor.utils.api_settings as settings
 
-renderer = settings.renderer
-guid = settings.guid
+# Globals
 email = "deduplication@renderer.com"
-engagement = "12843"  # preprod engagement ID is "7773"
+product_list = []
+
+# Build Specific Variables
+if os.environ["BUILD_ENV"] == "QA":
+    renderer = settings.api_settings["QA"]["renderer"]
+    guid = settings.client_settings["QA"]["SIDEV01"]["guid"]
+    engagement = "12843"
+elif os.environ["BUILD_ENV"] == "PREPROD":
+    renderer = settings.api_settings["PREPROD"]["renderer"]
+    guid = settings.client_settings["PREPROD"]["PREPRODTMC"]["guid"]
+    engagement = "6727"
+else:
+    quit()
 
 
 def mean_squared_error(image_a, image_b):
@@ -36,7 +47,11 @@ def get_image(renderer_url, guid_link, user_email, engagement_id, position_value
     image_name = "position_%s.png" % position_value
     request_url = "http://%s/api-public/3.0/personaliseemail?a=%s&ue=%s&e=%s&f=png&l=en&h=400&w=400&pos=%s" % (
         renderer_url, guid_link, user_email, engagement_id, position_value)
-    image_handler = requests.get(request_url)  # ge the specified url and store the content as a variable
+
+    try:
+        image_handler = requests.get(request_url)  # ge the specified url and store the content as a variable
+    except image_handler.status_code != requests.codes.OK:
+        image_handler.raise_for_status()
 
     with open(image_name, 'wb') as outfile:
         outfile.write(image_handler.content)  # write the content of the response to an image file

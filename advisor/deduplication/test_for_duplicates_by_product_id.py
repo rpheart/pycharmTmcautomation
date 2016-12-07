@@ -13,12 +13,12 @@ product_list = []
 
 # Build Specific Variables
 if os.environ["BUILD_ENV"] == "QA":
-    renderer = settings.qa_renderer
-    guid = settings.qa_guid
+    renderer = settings.api_settings["QA"]["renderer"]
+    guid = settings.client_settings["QA"]["SIDEV01"]["guid"]
     engagement = "12843"
 elif os.environ["BUILD_ENV"] == "PREPROD":
-    renderer = settings.preprod_renderer
-    guid = settings.preprod_guid
+    renderer = settings.api_settings["PREPROD"]["renderer"]
+    guid = settings.client_settings["PREPROD"]["PREPRODTMC"]["guid"]
     engagement = "6727"
 else:
     quit()
@@ -29,36 +29,41 @@ def verify_products_differ(product_id_list):
      that no ID matches any other ID in the list"""
 
     for a, b in itertools.combinations(product_id_list, 2):
-        if a is None or b is None or a == b:
-            print "%s and %s are duplicate products" % (a, b)
+        if a is None or b is None:
+            print "image returned without suggestion"
+            return False
+        elif a == b:
+            print "%s and %s are duplicate suggestions" % (a, b)
             return False
 
     return True
 
 
-def extract_product_id(json_response):
+def extract_product_id(response):
     """pulls sku if it exists as 'itemCode' from response
     and returns it else returns None"""
 
-    if 'itemCode' in json_response:
-        nonsense, sku_and_data = json_response.split('"itemCode":"', 1)
-        sku, nonsense = sku_and_data.split('"', 1)
-    else:
-        print "No 'itemCode' found!"
-        return None
-
-    return sku
+    for layer in response:
+        try:
+            sku = layer["productCode"]
+            return sku
+        except KeyError:
+            continue
 
 
 def get_response(renderer_url, guid_link, user_email, engagement_id, position_value):
-    """sends a request to the renderer for a json response and
-    returns the content of the response"""
+    """sends a request to the renderer for a suggestion response and
+    returns the content of the response or raises an exception if the
+    status code of the return is not 200/300"""
 
     request_url = api.offer_open(renderer_url, guid_link, engagement_id, email=user_email, position=position_value,
-                                 height=400, width=400, format="raw")
-    json_handler = requests.get(request_url)  # get the specified url and store the content as a variable
+                                 format="sugg")
 
-    return json_handler.content
+    try:
+        json_handler = requests.get(request_url)  # get the specified url and store the content as a variable
+        return json_handler.json()
+    except json_handler.status_code != requests.codes.OK:
+        json_handler.raise_for_status()
 
 
 class TestForDuplication(unittest.TestCase):

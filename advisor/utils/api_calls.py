@@ -1,5 +1,5 @@
-def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", format="png", height="500", width="500", position="default",
-               timestamp=""):
+def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", format="png", height="500", width="500",
+               position="default", timestamp=""):
     if email:
         email = "&ue=" + email
     if cookie_id:
