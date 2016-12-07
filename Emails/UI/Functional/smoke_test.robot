@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       Suite description
-Resource            Emails/Utils/keywords.robot
+Resource            Emails/UI/Utils/keywords.robot
 Default Tags        ui    smoke    email    production
 
 *** Variables ***

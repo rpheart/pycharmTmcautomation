@@ -209,7 +209,7 @@ mobile_reports = {
 
 list_growth_reports = {
     "menu": "css=li#engage-reports",
-    "button_add": "xpath=//li[@id='engage-reports']/div[2]/div/ul/li[3]/ul/li/ul/li"  # TODO find a css selector
+    "button_add": "xpath=//li[@id='engage-reports']/div[2]/div/ul/li[3]/ul/li/ul/li"
 }
 
 folders = {

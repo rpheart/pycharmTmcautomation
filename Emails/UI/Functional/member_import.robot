@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       test importing member files and updating with email or custom keys and checking that the members have been added or updated after each import
-Resource            Emails/Utils/keywords.robot
+Resource            Emails/UI/Utils/keywords.robot
 Library             ImageHorizonLibrary
 Default Tags        ui    email    production
 
