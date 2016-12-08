@@ -19,6 +19,32 @@ iframes = {
     "ccmd": "id=emv-ccmd-iframe"
 }
 
+generics = {
+    "link_management": "xpath=//*[@id='toolbox']//a/div[contains(text(),'Link Management')]",
+    "create_advanced_link": "xpath=//*[@id='navmenu']/li/a[contains(text(),'Create Advanced Link')]",
+    "mirror_link": "xpath=//*[@id='navmenu']//a[contains(text(),'Mirror Link')]",
+    "button_save_add_link": "id=iconSaveAdd",
+    "close_box": "id=popCloseBox",
+    "button_save": "id=iconSave",
+    "text_box": "id=textContent",
+    "insert_dynamic_content_block": "xpath=//*[@id='toolbox']//a/div[contains(text(),'Insert Dynamic Content Block')]",
+    "popup_window": "id=popupFrame",
+    "button_add_criteria": "xpath=//*[@id='iconAddCriteria']",
+    "save_button": "id=iconButtonSave",
+    "preview_button": "xpath=//*[@id='content']/table/tbody/tr/td[@id='ccmd-messages-cell-preview1']/a/img[@id='iconView']",
+    "edit_button": "xpath=//*[@id='content']/table/tbody/tr/td[@id='ccmd-messages-cell-edit1']/a/img[@id='iconEdit']",
+    "copy_button": "xpath=//*[@id='content']/table/tbody/tr/td[@id='ccmd-messages-cell-copy1']/a/img[@id='iconCopy']",
+    "copy_page_title_choose": "xpath=//*[@id='content']//span[contains(text(),'Choose')]",
+    "copy_page_new_name": "xpath=//*[@id='content']//span[contains(text(),'New Name:')]",
+    "new_name_input": "id=nameInput",
+
+
+
+
+
+}
+
+
 # list types
 classic_list = {
     "workflow": "css=#ccmd-messages-cell-workflow1.actionColumnUneven > a > #iconWfmAssign.sprite",
@@ -84,7 +110,11 @@ classic_message_builder = {
         "message_custom_header_input": "name=xheaderValue(HEADER)",
         "expert_tab": "css=#EXPERT.editorMode.editorModeActive.editorModeText",
         "text_editor": "css=#textContent",
-        "message_preview": "css=span.blueBtnText"
+        "message_preview": "css=span.blueBtnText",
+        "button_messages_list": "xpath=//*[@id='ccmd-appBar-messagesButton']/tbody/tr/td[contains(text(),'Messages')]",
+        "button_html_source": "xpath=//*[@id='tabHtml-tab']/a",
+        "html_content_box": "id=tabHtml",
+
     },
     "list": {}
 }
@@ -103,8 +133,13 @@ landing_page = {
 
 content_block = {
     "menu": "css=li#engage-create",
-    "button_add": "css=li.section.column3 > ul > li:nth-child(5) > ul > li:nth-child(1)",
-    "button_list": "css=li.section.column3 > ul > li:nth-child(5) > ul > li:nth-child(2)",
+    "button_add": "xpath=//*[@id='engage-create']//span[contains(text(),'Content Block')]/../ul/li",
+    "button_list": "xpath=//*[@id='engage-create']//span[contains(text(),'Content Block')]/../ul/li[2] ",
+    "content_block_name": "name=name",
+    "content_block_description": "name=description",
+    "toolbox_table": "id=toolbox",
+    "grab_id_from_popup": "xpath=//*[@id='content']/form/table/tbody/tr[1]/td[1]"
+
 }
 
 webform = {
