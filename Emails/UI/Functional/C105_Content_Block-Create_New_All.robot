@@ -1,47 +1,20 @@
 *** Settings ***
-Suite Teardown    Suite_Teardown
-Library           Selenium2Library    10    2    run_on_failure=Fail Keyword
-Resource          ../Utils/keywords.robot
+Documentation       creates new content block, updates, puts in the message (classic builder), sends the test message
+Resource            ../Utils/keywords.robot
 
 *** Variables ***
-${screenshots}    ${EMPTY}
 ${dynamic_content_ID}    ${EMPTY}
 
 *** Test Cases ***
-Login
+login and go to create content block
     Login
-    Set Selenium Speed    0.1
     Go To ${System_Page["email"]}
     Open Content    ${content_block}    ${content_block["button_add"]}
 
-C105_Content_Block-Create_New_All
-    Create_Add_Thumbnail
-    Add_Message_Text_Save_Confirm
-    Add_Dynamic_Content_Block
-    Check_Content_Block_Preview_Create
-    Edit_Content_Block
-    Check_Content_Block_Preview_Edit
-    Copy_Content_Block
-    Test_Content_Block
-    Repeat Keyword    2    Delete_Content_Block    # Run delete
-    Suite_Teardown
-
-*** Keywords ***
-Fail keyword
-    log source
-    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
-
-Create_Add_Thumbnail
-    Open Content    ${content_block}    ${content_block["button_add"]}
-
-Add_Message_Text_Save_Confirm
+add message text save confirm
     # Create message
-    Sleep    5
-    Click Element    ${content_block["content_block_name"]}
     input text    ${content_block["content_block_name"]}    QA auto Content Block    # Add Content Block name
-    Sleep    2
     input text    ${content_block["content_block_description"]}    QA auto Content Block for testing only    # Add description
-    Sleep    7
     Wait until element is visible    ${content_block["toolbox_table"]}
     Sleep    2
     Click Element    ${generics["text_box"]}
@@ -63,15 +36,14 @@ Add_Message_Text_Save_Confirm
     Select frame    ${iframes["ccmd"]}
     Click Element    ${generics["close_box"]}    # Close pupup window
     Sleep    2
-    Click Element    ${generics["button_save"]}    # Save
+    Click Element    ${generics["save_button"]}    # Save
     Sleep    2
     Choose ok on Next confirmation    # Say 'Ok' to alert
     Confirm Action    # Confirm Alert action
     Sleep    2
     #- go to Message
 
-Add_Dynamic_Content_Block
-    [Arguments]    ${global_variable}=
+add dynamic content block
     #- Add Dynamic content block
     Sleep    2
     Unselect frame
@@ -106,34 +78,29 @@ Add_Dynamic_Content_Block
     Choose ok on Next confirmation    # Say 'Ok' to alert
     Confirm Action    # Confirm Alert action
     Sleep    2
-    Input Text    ${classic_message_builder["message_name_input"]}    QA auto Content Block mirror    # Add Title
-    Sleep    2
-    Input Text    ${classic_message_builder["message_description_input"]}    Qa auto mirror for testing only    # Add description
-    Sleep    2
-    Input Text    ${classic_message_builder["message_from_input"]}    qa.auto@smartfocus.com    # Message from
-    Sleep    2
-    Input Text    ${classic_message_builder["message_to_input"]}    qa.auto@smartfocus.com    # Message to
-    Sleep    2
-    Input Text    ${classic_message_builder["message_reply_to_email"]}    qa.test@smartfocus.com    # Reply to
-    Sleep    2
+    Input Text    ${classic_message_builder["create"]["message_name_input"]}    QA auto Content Block mirror    # Add Title
+    Input Text    ${classic_message_builder["create"]["message_description_input"]}    Qa auto mirror for testing only    # Add description
+    Input Text    ${classic_message_builder["create"]["message_from_input"]}    qa.auto@smartfocus.com    # Message from
+    Input Text    ${classic_message_builder["create"]["message_to_input"]}    qa.auto@smartfocus.com    # Message to
+    Input Text    ${classic_message_builder["create"]["message_reply_to_email"]}    qa.test@smartfocus.com    # Reply to
     Click Element    ${generics["save_button"]}    # Save
     Sleep    5
 
-Check_Content_Block_Preview_Create
+check content block preview create
     #-Check 'HTML' content
-    Click Element    ${classic_message_builder["button_messages_list"]}
+    Click Element    ${classic_message_builder["create"]["button_messages_list"]}
     Sleep    5
     Click Element    ${generics["preview_button"]}    # Click preview
     Sleep    2
-    Click Element    ${classic_message_builder["button_html_source"]}    # Switch to HTML content
+    Click Element    ${classic_message_builder["create"]["button_html_source"]}    # Switch to HTML content
     Sleep    2
-    Element Should Contain    ${classic_message_builder["html_content_box"]}    <html><body>QA auto Content Block test<a href="[EMV INCLUDE]${dynamic_content_ID}[EMV /INCLUDE]">Mirror Test</a></body></html>    # Validate content
+    Element Should Contain    ${classic_message_builder["create"]["html_content_box"]}    <html><body>QA auto Content Block test<a href="[EMV INCLUDE]${dynamic_content_ID}[EMV /INCLUDE]">Mirror Test</a></body></html>    # Validate content
     capture page screenshot    # Take screenshot
     Sleep    2
 
-Edit_Content_Block
+edit content block
     # Edit Message
-    Click Element    ${classic_message_builder["button_messages_list"]}    # Click 'Messages'
+    Click Element    ${classic_message_builder["create"]["button_messages_list"]}    # Click 'Messages'
     Sleep    2
     Click Element    ${generics["edit_button"]}    # Click 'Edit'
     Sleep    2
@@ -145,78 +112,51 @@ Edit_Content_Block
     Click Element    ${generics["save_button"]}    # Click on 'Save'
     Sleep    2
 
-Check_Content_Block_Preview_Edit
+check content block preview edit
     #-Check 'HTML' content
-    Click Element    ${classic_message_builder["button_messages_list"]}    # Click 'Messages'
+    Click Element    ${classic_message_builder["create"]["button_messages_list"]}    # Click 'Messages'
     Sleep    5
     Click Element    ${generics["preview_button"]}    # Click Preview
     Sleep    2
-    Click Element    ${classic_message_builder["button_html_source"]}    # Switch to HTML
+    Click Element    ${classic_message_builder["create"]["button_html_source"]}    # Switch to HTML
     Sleep    2
-    Element Should Contain    ${classic_message_builder["html_content_box"]}    <html><body>QA auto Content Block 'Edit' Test complete<a href="[EMV INCLUDE]${dynamic_content_ID}[EMV /INCLUDE]">Mirror Test</a></body></html>    # Validate content
+    Element Should Contain    ${classic_message_builder["create"]["html_content_box"]}    <html><body>QA auto Content Block 'Edit' Test complete<a href="[EMV INCLUDE]${dynamic_content_ID}[EMV /INCLUDE]">Mirror Test</a></body></html>    # Validate content
     capture page screenshot    # Take a screenshot
     Sleep    2
 
-Copy_Content_Block
+copy content block
     # Copy Content Block
-    Click Element    ${classic_message_builder["button_messages_list"]}    # Click 'Messages'
+    Click Element    ${classic_message_builder["create"]["button_messages_list"]}    # Click 'Messages'
     Sleep    2
     Click Element    ${generics["copy_button"]}
     Wait Until Page Contains    Choose a new name for your message copy below    timeout=30    # Check content page
     Element Should Be Visible    ${generics["copy_page_title_choose"]}    # Checks
-    Element Should Be Visible    ${copy_page_new_name"]}    # Checks
-    Clear Element Text    id=nameInput
+    Element Should Be Visible   ${generics["copy_page_new_name"]}    # Checks
+    Clear Element Text    ${generics["new_name_input"]}
     Sleep    2
-    Input Text    id=nameInput    Duplicate Content Block Test    # Input new name for duplication
+    Input Text    ${generics["new_name_input"]}    Duplicate Content Block Test    # Input new name for duplication
     Sleep    2
-    Click Element    css=#content > table.validationTable > tbody > tr > td.validationR > a    # Save duplicated message
+    Click Element    ${generics["save_button"]}    # Save duplicated message
     Sleep    7
 
-Test_Content_Block
+test content block
     # Test \ Message
-    Click Element    xpath=//*[@id="content"]//td[@id="ccmd-messages-cell-test1"]/a/img[@id="iconCampaignTest"]    # Select Test
-    Sleep    5
-    Select Frame    id=popupFrame
-    # Input Campaign name:
-    Input text    name=campaignName    Add two emails for testing    # Type 'Test Campaign name'
-    Sleep    2
-    Input text    //*[@id="content"]//input[@name='emailToAdd']    qa.auto@smartfocus.com    # Input New Test Email
-    Sleep    2
-    Click Element    id=iconAddCriteria    # Add email to 'Test recipients list'
-    Sleep    2
-    Input text    //*[@id="content"]//input[@name='emailToAdd']    qa.test@smartfocus.com    # Input New Test Email
-    Sleep    2
-    Click Element    id=iconAddCriteria    # Add email to 'Test recipients list'
-    Sleep    2
-    Click Element    xpath=//*[@id="content"]//option[contains(text(),"QA_auto")]    # Select Group 'QA_auto'
-    Sleep    2
-    #-- Is Checkbox 'checked'
-    ${check_qa_test}=    Run Keyword And Return Status    Checkbox Should Be Selected    //*[@id="content"]//td[contains(.,'qa.test@smartfocus.com')]/input
-    Run Keyword If    ${check_qa_test}==False    Click Element    //*[@id="content"]//td[contains(.,'qa.test@smartfocus.com')]/input
-    Sleep    1
-    ${check_qa_auto}=    Run Keyword And Return Status    Checkbox Should Be Selected    //*[@id="content"]//td[contains(.,'qa.auto@smartfocus.com')]/input
-    Run Keyword If    ${check_qa_auto}==False    Click Element    //*[@id="content"]//td[contains(.,'qa.auto@smartfocus.com')]/input
-    Sleep    1
-    Click Element    id=updateGroupBtn    # Update Group
-    Sleep    2
-    Click Element    xpath=//*[@id="content"]//option[contains(text(),"QA_auto")]    # Select Group 'QA_auto'
-    Sleep    3
-    Click Element    //*[@id="iconArrowBack"]/../a    # Send a Tests
-    Sleep    2
-    Unselect Frame
-    Select Frame    css=iframe.sfIFrame
-    Select Frame    id=emv-ccmd-iframe
-    Click Element    id=popCloseBox    # Close
+    Open Content    ${classic_message_builder}      ${classic_message_builder["button_list"]}
+    Click Element    ${generics["test_message_icon"]}    # Select Test
+    send classic test message
 
-Delete_Content_Block
+delete content block
     # Delete Duplicate Message
-    Click Element    xpath=//*[@id="content"]/table/tbody/tr/td[@id="ccmd-messages-cell-delete1"]/input[@name="deleteMessage"]    # Select Delete
-    Sleep    2
-    Click Element    id=iconTrash    # Trash message
+    Open Content    ${classic_message_builder}      ${classic_message_builder["button_list"]}
+    Select checkbox    ${generics["delete_checkbox"]}    # Select Delete
+    Click Element    ${generics["delete_icon"]}    # Trash message
     Wait Until Page Contains    Message(s) to delete    # Check Delete page
-    Sleep    2
-    Click Element    xpath=//*[@id="content"]/form/table[2]/tbody/tr/td[2]/a    # Confirm Delete
-    Sleep    2
+    Click Element    ${generics["delete_button"]}    # Confirm Delete
 
-Suite_Teardown
-    Close All Browsers
+    Select checkbox    ${generics["delete_checkbox"]}    # Select Delete
+    Click Element    ${generics["delete_icon"]}    # Trash message
+    Wait Until Page Contains    Message(s) to delete    # Check Delete page
+    Click Element    ${generics["delete_button"]}    # Confirm Delete
+
+close browser
+    close all browsers

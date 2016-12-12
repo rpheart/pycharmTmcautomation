@@ -25,23 +25,30 @@ generics = {
     "mirror_link": "xpath=//*[@id='navmenu']//a[contains(text(),'Mirror Link')]",
     "button_save_add_link": "id=iconSaveAdd",
     "close_box": "id=popCloseBox",
-    "button_save": "id=iconSave",
     "text_box": "id=textContent",
     "insert_dynamic_content_block": "xpath=//*[@id='toolbox']//a/div[contains(text(),'Insert Dynamic Content Block')]",
     "popup_window": "id=popupFrame",
     "button_add_criteria": "xpath=//*[@id='iconAddCriteria']",
-    "save_button": "id=iconButtonSave",
     "preview_button": "xpath=//*[@id='content']/table/tbody/tr/td[@id='ccmd-messages-cell-preview1']/a/img[@id='iconView']",
     "edit_button": "xpath=//*[@id='content']/table/tbody/tr/td[@id='ccmd-messages-cell-edit1']/a/img[@id='iconEdit']",
     "copy_button": "xpath=//*[@id='content']/table/tbody/tr/td[@id='ccmd-messages-cell-copy1']/a/img[@id='iconCopy']",
     "copy_page_title_choose": "xpath=//*[@id='content']//span[contains(text(),'Choose')]",
     "copy_page_new_name": "xpath=//*[@id='content']//span[contains(text(),'New Name:')]",
     "new_name_input": "id=nameInput",
-
-
-
-
-
+    "campaign_name_input": "name=campaignName",
+    "new_test_email_input": "xpath=//*[@id='content']//input[@name='emailToAdd']",
+    "add_criteria_button": "id=iconAddCriteria",
+    "test_group_dropdown": "xpath=//*[@name='groupSelected']",
+    "delete_checkbox": "name=deleteMessage",
+    "delete_icon": "id=iconTrash",
+    "delete_button": "xpath=//*[@id='content']/form/table[2]/tbody/tr/td[2]/a",
+    "test_message_icon": "xpath=//*[@id='content']//td[@id='ccmd-messages-cell-test1']/a/img[@id='iconCampaignTest']",
+    "send_test_button": "id=iconCampaignTest",
+    "email_checkbox_qa_test": """//*[@id="content"]//td[contains(.,'qa.test@smartfocus.com')]/input""",
+    "email_checkbox_qa_auto": """//*[@id="content"]//td[contains(.,'qa.auto@smartfocus.com')]/input""",
+    "save_button": "xpath=.//*[text()='Save' or contains(@title, 'Save')]",
+    "update_button": "xpath=.//*[contains(@title, 'Update')]",
+    "close_button": "xpath=.//*[text()='Close' or contains(@title, 'Close')]",
 }
 
 
@@ -114,7 +121,6 @@ classic_message_builder = {
         "button_messages_list": "xpath=//*[@id='ccmd-appBar-messagesButton']/tbody/tr/td[contains(text(),'Messages')]",
         "button_html_source": "xpath=//*[@id='tabHtml-tab']/a",
         "html_content_box": "id=tabHtml",
-
     },
     "list": {}
 }
