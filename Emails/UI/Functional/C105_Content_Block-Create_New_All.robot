@@ -9,7 +9,7 @@ ${dynamic_content_ID}    ${EMPTY}
 login and go to create content block
     Login
     Go To ${System_Page["email"]}
-    Open Content    ${content_block}    ${content_block["button_add"]}
+    Open Content    ${content_block}    ${content_block["button_add"]["add"]}
 
 add message text save confirm
     # Create message
@@ -50,8 +50,8 @@ add dynamic content block
     Wait Until Element Is Visible    ${classic_message_builder["menu"]}
     Click Element    ${classic_message_builder["menu"]}
     Sleep    2
-    Wait Until Element Is Visible    ${classic_message_builder["button_add"]}
-    Click Element    ${classic_message_builder["button_add"]}    # Click: \ Message
+    Wait Until Element Is Visible    ${classic_message_builder["button_add"]["add"]}
+    Click Element    ${classic_message_builder["button_add"]["add"]}    # Click: \ Message
     Sleep    2
     Wait until element is visible    ${iframes["top"]}    timeout=50
     Select frame    ${iframes["top"]}
@@ -78,29 +78,29 @@ add dynamic content block
     Choose ok on Next confirmation    # Say 'Ok' to alert
     Confirm Action    # Confirm Alert action
     Sleep    2
-    Input Text    ${classic_message_builder["create"]["message_name_input"]}    QA auto Content Block mirror    # Add Title
-    Input Text    ${classic_message_builder["create"]["message_description_input"]}    Qa auto mirror for testing only    # Add description
-    Input Text    ${classic_message_builder["create"]["message_from_input"]}    qa.auto@smartfocus.com    # Message from
-    Input Text    ${classic_message_builder["create"]["message_to_input"]}    qa.auto@smartfocus.com    # Message to
-    Input Text    ${classic_message_builder["create"]["message_reply_to_email"]}    qa.test@smartfocus.com    # Reply to
+    Input Text    ${classic_message_builder["button_add"]["message_name_input"]}    QA auto Content Block mirror    # Add Title
+    Input Text    ${classic_message_builder["button_add"]["message_description_input"]}    Qa auto mirror for testing only    # Add description
+    Input Text    ${classic_message_builder["button_add"]["message_from_input"]}    qa.auto@smartfocus.com    # Message from
+    Input Text    ${classic_message_builder["button_add"]["message_to_input"]}    qa.auto@smartfocus.com    # Message to
+    Input Text    ${classic_message_builder["button_add"]["message_reply_to_email"]}    qa.test@smartfocus.com    # Reply to
     Click Element    ${generics["save_button"]}    # Save
     Sleep    5
 
 check content block preview create
     #-Check 'HTML' content
-    Click Element    ${classic_message_builder["create"]["button_messages_list"]}
+    Click Element    ${classic_message_builder["button_list"]["button_messages_list"]}
     Sleep    5
     Click Element    ${generics["preview_button"]}    # Click preview
     Sleep    2
-    Click Element    ${classic_message_builder["create"]["button_html_source"]}    # Switch to HTML content
+    Click Element    ${classic_message_builder["button_add"]["button_html_source"]}    # Switch to HTML content
     Sleep    2
-    Element Should Contain    ${classic_message_builder["create"]["html_content_box"]}    <html><body>QA auto Content Block test<a href="[EMV INCLUDE]${dynamic_content_ID}[EMV /INCLUDE]">Mirror Test</a></body></html>    # Validate content
+    Element Should Contain    ${classic_message_builder["button_add"]["html_content_box"]}    <html><body>QA auto Content Block test<a href="[EMV INCLUDE]${dynamic_content_ID}[EMV /INCLUDE]">Mirror Test</a></body></html>    # Validate content
     capture page screenshot    # Take screenshot
     Sleep    2
 
 edit content block
     # Edit Message
-    Click Element    ${classic_message_builder["create"]["button_messages_list"]}    # Click 'Messages'
+    Click Element    ${classic_message_builder["button_list"]["button_messages_list"]}    # Click 'Messages'
     Sleep    2
     Click Element    ${generics["edit_button"]}    # Click 'Edit'
     Sleep    2
@@ -114,19 +114,19 @@ edit content block
 
 check content block preview edit
     #-Check 'HTML' content
-    Click Element    ${classic_message_builder["create"]["button_messages_list"]}    # Click 'Messages'
+    Click Element    ${classic_message_builder["button_list"]["button_messages_list"]}    # Click 'Messages'
     Sleep    5
     Click Element    ${generics["preview_button"]}    # Click Preview
     Sleep    2
-    Click Element    ${classic_message_builder["create"]["button_html_source"]}    # Switch to HTML
+    Click Element    ${classic_message_builder["button_add"]["button_html_source"]}    # Switch to HTML
     Sleep    2
-    Element Should Contain    ${classic_message_builder["create"]["html_content_box"]}    <html><body>QA auto Content Block 'Edit' Test complete<a href="[EMV INCLUDE]${dynamic_content_ID}[EMV /INCLUDE]">Mirror Test</a></body></html>    # Validate content
+    Element Should Contain    ${classic_message_builder["button_add"]["html_content_box"]}    <html><body>QA auto Content Block 'Edit' Test complete<a href="[EMV INCLUDE]${dynamic_content_ID}[EMV /INCLUDE]">Mirror Test</a></body></html>    # Validate content
     capture page screenshot    # Take a screenshot
     Sleep    2
 
 copy content block
     # Copy Content Block
-    Click Element    ${classic_message_builder["create"]["button_messages_list"]}    # Click 'Messages'
+    Click Element    ${classic_message_builder["button_list"]["button_messages_list"]}    # Click 'Messages'
     Sleep    2
     Click Element    ${generics["copy_button"]}
     Wait Until Page Contains    Choose a new name for your message copy below    timeout=30    # Check content page
@@ -141,13 +141,13 @@ copy content block
 
 test content block
     # Test \ Message
-    Open Content    ${classic_message_builder}      ${classic_message_builder["button_list"]}
+    Open Content    ${classic_message_builder}      ${classic_message_builder["button_list"]["list"]}
     Click Element    ${generics["test_message_icon"]}    # Select Test
     send classic test message
 
 delete content block
     # Delete Duplicate Message
-    Open Content    ${classic_message_builder}      ${classic_message_builder["button_list"]}
+    Open Content    ${classic_message_builder}      ${classic_message_builder["button_list"]["list"]}
     Select checkbox    ${generics["delete_checkbox"]}    # Select Delete
     Click Element    ${generics["delete_icon"]}    # Trash message
     Wait Until Page Contains    Message(s) to delete    # Check Delete page
