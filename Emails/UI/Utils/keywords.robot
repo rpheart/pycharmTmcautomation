@@ -44,3 +44,29 @@ open content
     click element    ${page}
     mouse over    ${smartfocus_logo}
     wait until element is visible    ${navigation_bar}    timeout=30
+    select frame    ${iframes["top"]}
+    select frame    ${iframes["ccmd"]}
+
+send classic test message
+    [Documentation]
+    @{emails}=    create list    qa.auto@smartfocus.com    qa.test@smartfocus.com
+    Select Frame    ${generics["popup_window"]}
+    wait until page contains    Message Send Test    timeout=30
+    Input text    ${generics["campaign_name_input"]}    Add two emails for testing    # Type 'Test Campaign name'
+
+    # add emails to 'Test Recipients' and to the QA_auto group
+    :for    ${email}    in    @{emails}
+    \    Input text    ${generics["new_test_email_input"]}    ${email}    # Input New Test Email
+    \    Click Element    ${generics["add_criteria_button"]}    # Add email to 'Test recipients list'
+
+    # ensure members are part of group
+    select from list    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
+    select Checkbox    ${generics["email_checkbox_qa_test"]}
+    select Checkbox    ${generics["email_checkbox_qa_auto"]}
+    Click Element    ${generics["update_button"]}    # Update Group
+
+    # send test email to group
+    select from list    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
+    Click Element    ${generics["send_test_button"]}    # Send a Tests
+    wait until page contains    You will receive your test email shortly    timeout=30
+    click element    ${generics["close_button"]}
