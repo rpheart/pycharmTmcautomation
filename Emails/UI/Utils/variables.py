@@ -98,13 +98,31 @@ trigger_campaign = {
 }
 
 new_message_builder = {
-    "menu": "xpath=//*[@id='engage-create']/div[contains(text(),'Create')]",
+    "menu": "xpath=//*[@id='engage-create']//div[contains(text(),'Create')]",
     "standard_content": "xpath=//*[@id='engage-create']//span[contains(text(),'Standard Content')]",
     "button_add": {
-        "add": "xpath=//*[@id='engage-create']//span[contains(text(),'Standard Content')]/../ul/li[2]/ul/li"
+        "add": "xpath=//*[@id='engage-create']//ul[@title='Message Builder']/li",
+        "text_widget": "css=#content-type-item-text > div",
+        "drop_widgets": "xpath=//*[@id='row-options-container']//div[class='icon drag']",
+        "text_content_box": "css=div.content-cell.editable.text",
+        "image_widget": "css=#content-type-item-text-image > div",
+        "chevron_left": "css=#editor-switch > div > div.chevron.left",
+        "reply_to_input": "xpath=//*[@id='reply-to-email']/div[2]/input",
+        "reply_to_comment_input": "xpath=//*[@id='editor-headers'']/div[4]/div[2]/input",
+        "subject_line_input": "xpath=//*[@id='editor-headers'']/div[6]/div/input",
+        "footer": "css=#message-footer > div",
+        "save_and_finalize_button": "css=#msg-editor-btnfinalise > div",
+        "notification_bar": "css=#notification-bar-container > div.notification-bar",
+        "check_message_created": "xpath=//*[@id='archive-list-container'']//div[@id='tabledivColumn-0-0'']//div[contains(text(), 'QA auto test Message')]",
+        "message_name_bar_input": "xpath=//*[@id='action-bar-inputname]",
+
+
+
+
+
     },
     "button_list": {
-        "list": "xpath=//*[@id='engage-create']//span[contains(text(),'Standard Content')]/../ul/li[2]/ul/li[2]"
+        "list": "//*[@id='engage-create']//ul[@title='Message Builder']/li[2]"
     }
 }
 
@@ -145,9 +163,16 @@ classic_message_builder = {
 }
 
 sms_message_builder = {
-    "menu": "xpath=//*[@id='engage-create']/div[contains(text(),'Create')]",
+    "menu": "xpath=//*[@id='engage-create']//div[contains(text(),'Create')]",
     "button_add": {
-        "add": "xpath=//*[@id='engage-create']//span[contains(text(),'SMS Message')]/../ul/li"
+        "add": "xpath=//*[@id='engage-create']//span[contains(text(),'SMS Message')]/../ul/li",
+        "name_input": "id=qa-sms-message-name",
+        "description_input": "id=qa-sms-message-description",
+        "from_input": "id=qa-sms-message-from",
+        "save_and_go_to_sms_messages_button": "xpath=//*[@id='content']/table[2]/tbody/tr/td[2]/a[2]",
+
+
+
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-create']//span[contains(text(),'SMS Message')]/../ul/li[2]"
@@ -155,7 +180,7 @@ sms_message_builder = {
 }
 
 landing_page = {
-    "menu": "xpath=//*[@id='engage-create']/div[contains(text(),'Create')]",
+    "menu": "xpath=//*[@id='engage-create']//div[contains(text(),'Create')]",
     "button_add": {
         "add": "xpath=//*[@id='engage-create']//span[contains(text(),'Landing page')]/../ul/li"
     },
@@ -180,7 +205,7 @@ content_block = {
 }
 
 webform = {
-    "menu": "xpath=//*[@id='engage-create']/div[contains(text(),'Create')]",
+    "menu": "xpath=//*[@id='engage-create']//div[contains(text(),'Create')]",
     "button_add": {
         "add": "xpath=//*[@id='engage-create']//span[contains(text(),'Webform')]/../ul/li"
     },
@@ -190,7 +215,7 @@ webform = {
 }
 
 template = {
-    "menu": "xpath=//*[@id='engage-create']/div[contains(text(),'Create')]",
+    "menu": "xpath=//*[@id='engage-create']//div[contains(text(),'Create')]",
     "button_add": {
         "add": "xpath=//*[@id='engage-create']//span[contains(text(),'Template')]/../ul/li"
     },
@@ -200,7 +225,7 @@ template = {
 }
 
 transactional_message = {
-    "menu": "xpath=//*[@id='engage-create']/div[contains(text(),'Create')]",
+    "menu": "xpath=//*[@id='engage-create']//div[contains(text(),'Create')]",
     "transactional_content": "xpath=//*[@id='engage-create']//span[contains(text(),'Transactional Content')]",
     "button_add": {
         "add": "css=li:nth-child(2).section.column3 > ul > li:nth-child(1) > ul > li:nth-child(1)"
@@ -211,7 +236,7 @@ transactional_message = {
 }
 
 transactional_content_block = {
-    "menu": "xpath=//*[@id='engage-create']/div[contains(text(),'Create')]",
+    "menu": "xpath=//*[@id='engage-create']//div[contains(text(),'Create')]",
     "transactional_content": "xpath=//*[@id='engage-create']//span[contains(text(),'Transactional Content')]",
     "button_add": {
         "add": "css=li:nth-child(2).section.column3 > ul > li:nth-child(2) > ul > li:nth-child(1)"
@@ -222,7 +247,7 @@ transactional_content_block = {
 }
 
 segments = {
-    "menu": "xpath=//*[@id='engage-list-management']/div[contains(text(),'List Management')]",
+    "menu": "xpath=//*[@id='engage-list-management']//div[contains(text(),'List Management')]",
     "subscriber_management": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Subscriber Management')]",
     "button_add": {
         "add": "xpath=//*[@id='engage-list-management']//span[@class='dropdown-module-title no-title' and contains(text(),'Segment')]/../ul/li"
@@ -233,7 +258,7 @@ segments = {
 }
 
 add_subscriber = {
-    "menu": "xpath=//*[@id='engage-list-management']/div[contains(text(),'List Management')]",
+    "menu": "xpath=//*[@id='engage-list-management']//div[contains(text(),'List Management')]",
     "subscriber_management": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Subscriber Management')]",
     "button_add": {
         "add": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Add subscriber')]/../ul/li"
@@ -241,7 +266,7 @@ add_subscriber = {
 }
 
 search_subscriber = {
-    "menu": "xpath=//*[@id='engage-list-management']/div[contains(text(),'List Management')]",
+    "menu": "xpath=//*[@id='engage-list-management']//div[contains(text(),'List Management')]",
     "subscriber_management": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Subscriber Management')]",
     "button_add": {
         "add": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Search subscriber')]/../ul/li"
@@ -249,7 +274,7 @@ search_subscriber = {
 }
 
 import_subscriber = {
-    "menu": "xpath=//*[@id='engage-list-management']/div[contains(text(),'List Management')]",
+    "menu": "xpath=//*[@id='engage-list-management']//div[contains(text(),'List Management')]",
     "subscriber_management": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Subscriber Management')]",
     "button_add": {
         "add": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Import subscriber')]/../ul/li"
@@ -260,7 +285,7 @@ import_subscriber = {
 }
 
 export_subscriber = {
-    "menu": "xpath=//*[@id='engage-list-management']/div[contains(text(),'List Management')]",
+    "menu": "xpath=//*[@id='engage-list-management']//div[contains(text(),'List Management')]",
     "subscriber_management": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Subscriber Management')]",
     "button_add": {
         "add": "xpath=//*[@id='engage-list-management']//span[contains(text(),'Export subscriber')]/../ul/li"
@@ -271,7 +296,7 @@ export_subscriber = {
 }
 
 image_library = {
-    "menu": "xpath=//*[@id='image-library']/div[contains(text(),'Image Library')]"
+    "menu": "xpath=//*[@id='image-library']//div[contains(text(),'Image Library')]"
 }
 
 deliverability = {
