@@ -58,7 +58,7 @@ TMC_API_Send
     Log    ${myList}
     ${count}=    Set Variable    ${0}
     Set Test Variable    ${EMAIL}    ${myList[0]}@bar.com
-    : FOR    ${item}    IN RANGE    ${Runs}
+    : FOR    ${item}    IN RANGE    1    ${Runs}
     \    ${response_status}=    send_email_to_tmc    http://${ADVISOR_HOST}/ips/cred/${USERNAME}/${PASSWORD}/3.0/notify/${ADVISOR_ID}/cart-add?email=${count}${EMAIL}&data=${DATA}
     \    Should be equal    ${response_status}    <Response [200]>    # response should be 200
     \    ${count}=    Evaluate    ${count} + 1
@@ -96,18 +96,21 @@ Nav_Search_Abandon_Cart
     ...    six    seven    eight    nine    ten
     Log    ${myList}
     Set Test Variable    ${EMAIL}    ${myList[0]}@bar.com
+    ${count-lost-emails}=    Set Variable    ${0}
     ${count}=    Set Variable    ${0}
     ${fail}=    Set Variable    ${0}
-    : FOR    ${item}    IN RANGE    ${Runs}
+    : FOR    ${item}    IN RANGE    1    ${Runs}
     \    Wait Until Element Is Visible    xpath=//*[@id="navigation"]//a[./text()='Visitors']    timeout=10
     \    Click Element    xpath=//*[@id="navigation"]//a[./text()='Visitors']    # Click: Visitors
     \    Wait Until Element Is Visible    xpath=//*[@id="representationType"]/option[./text()='Email']    timeout=10
     \    Click Element    xpath=//*[@id="representationType"]/option[./text()='Email']    # Select: Email
     \    Wait Until Element Is Visible    id=searchCriteria    timeout=10
     \    Input text    id=searchCriteria    ${count}${EMAIL}    # Search by email
-    \    Click Element     xpath=//*[@id="content"]//a[@href="javascript:search();"]
+    \    Click Element    xpath=//*[@id="content"]//a[@href="javascript:search();"]
     \    Wait Until Element Is visible    xpath=//*[@id="visitors1"]    timeout=10
-    \    Click Element    xpath=//*[@id="content"]//a[normalize-space(.//text())='${count}${EMAIL}']    # Click: on email
+    \    ${lost_emails}=    Run Keyword And Return Status    Click Element    xpath=//*[@id="content"]//a[normalize-space(.//text())='${count}${EMAIL}']    # Click: on email
+    \    Continue For Loop If    ${lost_emails}
+    \    ${count-lost-emails}=    Evaluate    ${count-lost-emails} + 1
     \    ${count}=    Evaluate    ${count} + 1
     \    Run Keyword If    ${count}==100    Set Test Variable    ${count}    ${0}
     \    Run Keyword If    ${item}==100    Set Test Variable    ${EMAIL}    ${myList[1]}@bar.com
@@ -129,3 +132,4 @@ Nav_Search_Abandon_Cart
     ${success}=    Set Variable    ${Runs} - ${fail}
     Log Many    Success:    ${success}
     Log Many    fail:    ${fail}
+    Log Many    Total-lost-email:    ${count-lost-emails}
