@@ -44,8 +44,8 @@ generics = {
     "create_new": "xpath=//*[contains(@class, 'applicationBar') and contains(text(), 'New')]",
     "save": "xpath=//a[contains(text(),'Save') or ./text() = 'Save']",
     "next": "xpath=//a[contains(text(),'Next') or ./text() = 'Next']",
-    "search_input": "xpath=//input[contains(@class, 'search-input')]",
-    "search_button": "xpath=//*[contains(@class, 'search-input-button-icon')]"
+    "search_input": "xpath=//input[contains(@class, 'search-input') or contains(@class, 'input-text')]",
+    "search_button": "xpath=//*[contains(@class, 'search')]"
 }
 
 # pages
