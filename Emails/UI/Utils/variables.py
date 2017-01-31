@@ -41,7 +41,7 @@ generics = {
     "send_test_button": "xpath=//*[@id='iconArrowBack']/../a",
     "close_popup_box": "id=popCloseBox",
     "send_test_message": "xpath=//*[@id='toolbox']//div[contains(text(),'Send Test Message')]",
-    "create_new": "xpath=//*[@class='applicationBarButtonTextTD' and contains(text(), 'New')]",
+    "create_new": "xpath=//*[contains(@class, 'applicationBar') and contains(text(), 'New')]",
     "save": "xpath=//a[contains(text(),'Save') or ./text() = 'Save']",
     "next": "xpath=//a[contains(text(),'Next') or ./text() = 'Next']",
     "search_input": "xpath=//input[contains(@class, 'search-input')]",
@@ -875,7 +875,11 @@ list_growth_reports = {
         "header_id": "xpath=//div[./text()='ID']",
         "header_status": "xpath=//div[./text()='Status']",
         "header_creation_date": "xpath=//div[./text()='Creation Date']",
-        "header_created_by": "xpath=//div[./text()='Created by']"
+        "header_created_by": "xpath=//div[./text()='Created by']",
+        "create_new": {
+            "report_name": "xpath=//input[contains(@id, 'reportNameInput')]",
+            "create_report": "xpath=//*[contains(text(), 'Create Report')]"
+        }
     }
 }
 
