@@ -8,7 +8,6 @@ Library             String
 
 *** Variables ***
 @{test_data}    nil    ";alert(123);"
-#@{failed_inputs}
 
 *** Test Cases ***
 login and go to email
@@ -34,10 +33,10 @@ Workflow Builder Name
     \    ${test}=    Run Keyword And Return Status    Current Frame Contains    Bad Request!!!
     \    Run Keyword If    ${test} == False    Append To List    ${failed_inputs}    ${line}
 
-    Log Failed Inputs    Name    @{test_data}
+    Log Failed Inputs    Name    @{failed_inputs}
 
 Workflow Builder Description
-    ${failed_inputs}=    Create List
+    @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{test_data}
     \    Open Content    ${workflow_model}    ${workflow_model["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${generics["create_new"]}    timeout=30
@@ -48,12 +47,12 @@ Workflow Builder Description
     \    Input Text    wfmNodeHash_description(nodeLvlCampaign)    test
     \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
     \    ${test}=    Run Keyword And Return Status    Current Frame Contains    Bad Request!!!
-    \    Run Keyword If    ${test}    Append To List    ${failed_inputs}    ${line}
+    \    Run Keyword If    ${test} == False    Append To List    ${failed_inputs}    ${line}
 
-    Log Failed Inputs    Description    @{failed_inputs}
+    Log Failed Inputs    Name    @{failed_inputs}
 
 Workflow Builder Campaign Description
-    ${failed_inputs}=    Create List
+    @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{test_data}
     \    Open Content    ${workflow_model}    ${workflow_model["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${generics["create_new"]}    timeout=30
@@ -64,18 +63,19 @@ Workflow Builder Campaign Description
     \    Input Text    wfmNodeHash_description(nodeLvlCampaign)    ${line}
     \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
     \    ${test}=    Run Keyword And Return Status    Current Frame Contains    Bad Request!!!
-    \    Run Keyword If    ${test}    Append To List    ${failed_inputs}    ${line}
+    \    Run Keyword If    ${test} == False    Append To List    ${failed_inputs}    ${line}
 
-    Log Failed Inputs    Campaign Description    @{failed_inputs}
+    Log Failed Inputs    Name    @{failed_inputs}
 
 *** Keywords ***
 Log Failed Inputs
-    [Arguments]    ${input_name}    ${failed_inputs}
-    Log    ${input_name}    console=yes
-#    Run Keyword If    Len(${failed_inputs}) == 1    console=yes
-    Log    ${failed_inputs}    console=yes
-#    ${my_list}=    ${EMPTY LIST}
-#    ${failed_inputs}=    Create List    @{my_list}
+    [Arguments]    ${input_name}    @{failed_inputs}
+    Log    ${input_name}    level=INFO    console=yes
+    Run Keyword If    len(@{failed_inputs}) == 0    Log    No Errors    console=yes
+    ...    ELSE IF    len(@{failed_inputs}) == 1    Log    @{failed_inputs}    level=WARN
+    ...    ELSE    Log    ${failed_inputs}    level=WARN
+
+    Run Keyword If    len(@{failed_inputs}) > 0    Fail    msg=List of words that failed xss verification
 
 Check For Bad Request
     ${test}=    Run Keyword And Return Status    Current Frame Contains    Bad Request!!!
