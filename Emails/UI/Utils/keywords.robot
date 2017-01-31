@@ -10,8 +10,8 @@ ${screenshots}
 
 # login variables
 ${ui_server}        https://qa-sfui.themessagecloud.com
-${ui_username}      sidevall
-${ui_password}      HeadCheese!10
+${ui_username}      sidev_auto
+${ui_password}      qa11focus1.
 ${browser}          chrome
 
 *** Keywords ***
