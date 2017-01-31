@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation       will check the input of each of the blns values into the workflow workflows screen
+Documentation       will check the input of each of the blns values into the sms reports screen
 Resource            Emails/UI/Utils/keywords.robot
 Default Tags        ui    email    production
 Library             Collections
@@ -17,17 +17,19 @@ SMS Reports Search
     @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{test_data}
     \    Open Content    ${mobile_reports}    ${mobile_reports["button_add"]["add"]}
-    \    Wait Until Page Contains    Reports    timeout=30
+    \    Wait Until Element Is Visible    ${generics["search_input"]}    timeout=30
     \    Input Text    ${generics["search_input"]}    ${line}
     \    Click Element    ${generics["search_button"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    SMS Reports Search    @{failed_inputs}
+    Log Failed Inputs    @{failed_inputs}
+
+Close All Browsers
+    Close All Browsers
 
 *** Keywords ***
 Log Failed Inputs
-    [Arguments]    ${input_name}    @{failed_inputs}
-    Log    ${input_name}    level=INFO    console=yes
+    [Arguments]    @{failed_inputs}
     Run Keyword If    len(@{failed_inputs}) == 0    Log    No Errors    console=yes
     ...    ELSE IF    len(@{failed_inputs}) == 1    Log    @{failed_inputs}    level=WARN
     ...    ELSE    Log    ${failed_inputs}    level=WARN
