@@ -13,37 +13,16 @@ login and go to email
     login
     go to ${system_page["email"]}
 
-Workflow Model Name
+SMS Reports Search
     @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{test_data}
-    \    Open Content    ${workflow}    ${workflow["button_add"]["add"]}
-    \    Wait Until Element Is Visible    ${generics["create_new"]}    timeout=30
-    \    Click Element    ${generics["create_new"]}
-    \    Click Element    xpath=//input[@name='modelId']
-    \    Click Element    ${generics["next"]}
-    \    Input Text    name    ${line}
-    \    Input Text    description    test
-    \    Click Element    xpath=//input[contains(@name, 'wfm')]
-    \    Click Element    ${generics["save"]}
+    \    Open Content    ${mobile_reports}    ${mobile_reports["button_add"]["add"]}
+    \    Wait Until Page Contains    Reports    timeout=30
+    \    Input Text    ${generics["search_input"]}    ${line}
+    \    Click Element    ${generics["search_button"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    Name    @{failed_inputs}
-
-Workflow Model Description
-    @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
-    \    Open Content    ${workflow}    ${workflow["button_add"]["add"]}
-    \    Wait Until Element Is Visible    ${generics["create_new"]}    timeout=30
-    \    Click Element    ${generics["create_new"]}
-    \    Click Element    xpath=//input[@name='modelId']
-    \    Click Element    ${generics["next"]}
-    \    Input Text    name    ${line}
-    \    Input Text    description    test
-    \    Click Element    xpath=//input[contains(@name, 'wfm')]
-    \    Click Element    ${generics["save"]}
-    \    Check For Bad Request    ${line}    ${failed_inputs}
-
-    Log Failed Inputs    Description    @{failed_inputs}
+    Log Failed Inputs    SMS Reports Search    @{failed_inputs}
 
 *** Keywords ***
 Log Failed Inputs
