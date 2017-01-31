@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation       Suite description
 Library             Selenium2Library    10    2    run_on_failure=fail keyword    screenshot_root_directory=.
+Library             OperatingSystem
 Variables           variables.py
 
 *** Variables ***
@@ -8,9 +9,9 @@ Variables           variables.py
 ${screenshots}
 
 # login variables
-${ui_server}        https://preprod.themessagecloud.com
-${ui_username}      preprodtmc
-${ui_password}      computer5.
+${ui_server}        https://qa-sfui.themessagecloud.com
+${ui_username}      sidevall
+${ui_password}      HeadCheese!10
 ${browser}          chrome
 
 *** Keywords ***
