@@ -10,11 +10,6 @@ Library             String
 
 *** Test Cases ***
 login and go to email
-#    ${blns}=    Get File    Emails/UI/Utils/Resources/blns.json
-#    ${test_data}=    Split To Lines    ${blns}
-#    ${length}=    Get Length    ${test_data}
-#    log    ${test_data}    console=yes
-#    Set Suite Variable    ${test_data}
     login
     go to ${system_page["email"]}
 
@@ -28,7 +23,7 @@ Workflow Model Name
     \    Input Text    description    test
     \    Select From List    campaignType    Regular campaign
     \    Input Text    wfmNodeHash_description(nodeLvlCampaign)    test
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    Name    @{failed_inputs}
@@ -43,7 +38,7 @@ Workflow Model Description
     \    Input Text    description    ${line}
     \    Select From List    campaignType    Regular campaign
     \    Input Text    wfmNodeHash_description(nodeLvlCampaign)    test
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    Description    @{failed_inputs}
@@ -58,7 +53,7 @@ Workflow Model Regular Campaign Description
     \    Input Text    description    test
     \    Select From List    campaignType    Regular campaign
     \    Input Text    wfmNodeHash_description(nodeLvlCampaign)    ${line}
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    Regular Campaign Description    @{failed_inputs}
@@ -73,7 +68,7 @@ Workflow Model Trigger Campaign Description
     \    Input Text    description    test
     \    Select From List    campaignType    Trigger Campaign
     \    Input Text    wfmNodeHash_description(nodeLvlReflex)    ${line}
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    Trigger Campaign Description    @{failed_inputs}
@@ -90,7 +85,7 @@ Workflow Model MultiVariate Test Description 1
     \    Input Text    wfmNodeHash_description(nodeLvl0_0)    ${line}
     \    Input Text    wfmNodeHash_description(nodeLvl1_0)    test
     \    Input Text    wfmNodeHash_description(nodeLvlmvt_campaign_rollout)    test
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    MultiVariate Test Description 1    @{failed_inputs}
@@ -107,7 +102,7 @@ Workflow Model MultiVariate Test Description 2
     \    Input Text    wfmNodeHash_description(nodeLvl0_0)    test
     \    Input Text    wfmNodeHash_description(nodeLvl1_0)    ${line}
     \    Input Text    wfmNodeHash_description(nodeLvlmvt_campaign_rollout)    test
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    MultiVariate Test Description 2    @{failed_inputs}
@@ -124,7 +119,7 @@ Workflow Model MultiVariate Test Description 3
     \    Input Text    wfmNodeHash_description(nodeLvl0_0)    test
     \    Input Text    wfmNodeHash_description(nodeLvl1_0)    test
     \    Input Text    wfmNodeHash_description(nodeLvlmvt_campaign_rollout)    ${line}
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    MultiVariate Test Description 3    @{failed_inputs}
@@ -141,7 +136,7 @@ Workflow Model MultiMessage Description 1
     \    Input Text    wfmNodeHash_description(nodeLvl0_0)    ${line}
     \    Input Text    wfmNodeHash_description(nodeLvl1_0)    test
     \    Input Text    wfmNodeHash_description(nodeLvlMultiMessage)    test
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    MultiMessage Description 1    @{failed_inputs}
@@ -158,7 +153,7 @@ Workflow Model MultiMessage Description 2
     \    Input Text    wfmNodeHash_description(nodeLvl0_0)    test
     \    Input Text    wfmNodeHash_description(nodeLvl1_0)    ${line}
     \    Input Text    wfmNodeHash_description(nodeLvlMultiMessage)    test
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    MultiMessage Description 2    @{failed_inputs}
@@ -175,7 +170,7 @@ Workflow Model MultiMessage Description 3
     \    Input Text    wfmNodeHash_description(nodeLvl0_0)    test
     \    Input Text    wfmNodeHash_description(nodeLvl1_0)    test
     \    Input Text    wfmNodeHash_description(nodeLvlMultiMessage)    ${line}
-    \    Click Element    xpath=//a[contains(text(),'Save') or ./text() = 'Save']
+    \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    MultiMessage Description 3    @{failed_inputs}
@@ -197,4 +192,4 @@ Check For Bad Request
 
 Create List
     ${blns}=    Get File    Emails/UI/Utils/Resources/blns.json
-    ${test_data}=    Split To Lines    ${blns}
+    @{test_data}=    Split To Lines    ${blns}

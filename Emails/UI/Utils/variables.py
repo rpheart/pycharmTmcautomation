@@ -41,7 +41,11 @@ generics = {
     "send_test_button": "xpath=//*[@id='iconArrowBack']/../a",
     "close_popup_box": "id=popCloseBox",
     "send_test_message": "xpath=//*[@id='toolbox']//div[contains(text(),'Send Test Message')]",
-    "create_new": "xpath=//*[@class='applicationBarButtonTextTD' and contains(text(), 'New')]"
+    "create_new": "xpath=//*[@class='applicationBarButtonTextTD' and contains(text(), 'New')]",
+    "save": "xpath=//a[contains(text(),'Save') or ./text() = 'Save']",
+    "next": "xpath=//a[contains(text(),'Next') or ./text() = 'Next']",
+    "search_input": "xpath=//input[contains(@class, 'search-input')]",
+    "search_button": "xpath=//*[contains(@class, 'search-input-button-icon')]"
 }
 
 # pages
