@@ -5,13 +5,11 @@ Resource            Emails/UI/Utils/xss_keywords.robot
 Default Tags        ui    email    production
 Library             Collections
 Library             String
+Suite Setup         Run Keywords    Login
+...                 AND    Go To ${system_page["email"]}
 Suite Teardown      Close All Browsers
 
 *** Test Cases ***
-login and go to email
-    login
-    go to ${system_page["email"]}
-
 Workflow Model Name
     @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{test_data}
