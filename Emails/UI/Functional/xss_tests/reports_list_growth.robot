@@ -22,7 +22,7 @@ List Growth Reports Search
     \    Click Element    ${generics["search_button"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 List Growth Report Name
     @{failed_inputs}=    Create List
@@ -34,7 +34,7 @@ List Growth Report Name
     \    Click Element    ${list_growth_reports["button_add"]["create_new"]["create_report"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Close All Browsers
     Close All Browsers

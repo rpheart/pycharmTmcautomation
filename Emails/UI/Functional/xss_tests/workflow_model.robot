@@ -26,7 +26,7 @@ Workflow Model Name
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model Description
     @{failed_inputs}=    Create List
@@ -41,7 +41,7 @@ Workflow Model Description
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model Regular Campaign Description
     @{failed_inputs}=    Create List
@@ -56,7 +56,7 @@ Workflow Model Regular Campaign Description
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model Trigger Campaign Description
     @{failed_inputs}=    Create List
@@ -71,7 +71,7 @@ Workflow Model Trigger Campaign Description
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model MultiVariate Test Description 1
     @{failed_inputs}=    Create List
@@ -88,7 +88,7 @@ Workflow Model MultiVariate Test Description 1
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model MultiVariate Test Description 2
     @{failed_inputs}=    Create List
@@ -105,7 +105,7 @@ Workflow Model MultiVariate Test Description 2
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model MultiVariate Test Description 3
     @{failed_inputs}=    Create List
@@ -122,7 +122,7 @@ Workflow Model MultiVariate Test Description 3
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model MultiMessage Description 1
     @{failed_inputs}=    Create List
@@ -139,7 +139,7 @@ Workflow Model MultiMessage Description 1
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model MultiMessage Description 2
     @{failed_inputs}=    Create List
@@ -156,7 +156,7 @@ Workflow Model MultiMessage Description 2
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Workflow Model MultiMessage Description 3
     @{failed_inputs}=    Create List
@@ -173,7 +173,7 @@ Workflow Model MultiMessage Description 3
     \    Click Element    ${generics["save"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Close All Browsers
     Close All Browsers
