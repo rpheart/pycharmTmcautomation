@@ -5,8 +5,7 @@ Resource            Emails/UI/Utils/xss_keywords.robot
 Default Tags        ui    email    production
 Library             Collections
 Library             String
-
-*** Variables ***
+Suite Teardown      Close All Browsers
 
 *** Test Cases ***
 login and go to email
@@ -35,6 +34,3 @@ List Growth Report Name
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
     Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
-
-Close All Browsers
-    Close All Browsers
