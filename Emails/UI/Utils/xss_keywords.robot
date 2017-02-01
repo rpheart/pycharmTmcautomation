@@ -8,10 +8,12 @@ ${blns}=    Get File    Emails/UI/Utils/Resources/blns.json
 
 *** Keywords ***
 Log Failed Inputs
-    [Arguments]    @{failed_inputs}
+    [Arguments]    ${test_case_name}    @{failed_inputs}
     Run Keyword If    len(@{failed_inputs}) == 0    Log    No Errors    console=yes
-    ...    ELSE IF    len(@{failed_inputs}) == 1    Log    @{failed_inputs}    level=WARN
-    ...    ELSE    Log    ${failed_inputs}    level=WARN
+    ...    ELSE IF    len(@{failed_inputs}) == 1    Run Keywords    Log    ${test_case_name}    level=warn
+    ...    AND    Log    @{failed_inputs}    level=WARN
+    ...    ELSE    Run Keywords    Log    ${test_case_name}    level=warn
+    ...    AND    Log    ${failed_inputs}    level=WARN
 
     Run Keyword If    len(@{failed_inputs}) > 0    Fail    msg=List of words that failed xss verification
 

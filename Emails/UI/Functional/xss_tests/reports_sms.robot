@@ -22,7 +22,7 @@ SMS Reports Search
     \    Click Element    ${generics["search_button"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Close All Browsers
     Close All Browsers

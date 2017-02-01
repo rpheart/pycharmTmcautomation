@@ -25,7 +25,7 @@ Image Library Search
     \    Click Element    ${generics["search_button"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 Image Library Create New Folder
     @{failed_inputs}=    Create List
@@ -40,7 +40,7 @@ Image Library Create New Folder
     \    Click Element    xpath=//div[2]/span[contains(text(),'Create') or ./text() = 'Create']
     \    Check For Bad Request    ${line}    ${failed_inputs}
 
-    Log Failed Inputs    @{failed_inputs}
+    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
 
 #Image Library Add Image
 #    @{failed_inputs}=    Create List
@@ -57,3 +57,6 @@ Image Library Create New Folder
 #    \    Check For Bad Request    ${line}    ${failed_inputs}
 #
 #    Log Failed Inputs    @{failed_inputs}
+
+Close All Browsers
+    Close All Browsers
