@@ -5,14 +5,12 @@ Resource            Emails/UI/Utils/xss_keywords.robot
 Default Tags        ui    email    production    xss
 Library             Collections
 Library             String
+Suite Setup         Run Keywords    Login
+...                 AND    Go To ${system_page["email"]}
+...                 AND    Delete Subscribers
 Suite Teardown      Close All Browsers
 
 *** Test Cases ***
-login and go to email
-    login
-    go to ${system_page["email"]}
-    Delete Subscribers
-
 List Management Add Subscriber Firstname
     @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{test_data}
