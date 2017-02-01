@@ -658,7 +658,22 @@ add_subscriber = {
         "header_database_stats": "xpath=//*[@id='content']//th[./text()='Stats']",
         "save_member": "xpath=//*[@id='iconButtonSave']/../../a[@class='btn blue']",
         "reset": "xpath=//*[@id='iconButtonReset']/../../a[./text()='Reset']",
-        "cancel": "xpath=//*[@id='iconCancel']/../../a[./text()='Cancel']"
+        "cancel": "xpath=//*[@id='iconCancel']/../../a[./text()='Cancel']",
+        "input_fields": {
+            "firstname": "xpath=//input[contains(@name, '(FIRSTNAME)')]",
+            "lastname": "xpath=//input[contains(@name, '(LASTNAME)')]",
+            "email_original": "xpath=//input[contains(@name, '(EMAIL_ORIGINE)')]",
+            "email": "xpath=//input[contains(@name, '(EMAIL)')]",
+            "emv_cellphone": "xpath=//input[contains(@name, '(EMVCELLPHONE)')]",
+            "email_format": "xpath=//input[contains(@name, '(EMAIL_FORMAT)')]",
+            "title": "xpath=//input[contains(@name, '(TITLE)')]",
+            "date_of_birth": "xpath=//input[contains(@name, '(DATEOFBIRTH)')]",
+            "seed": "xpath=//input[contains(@name, '(SEED)')]",
+            "client_urn": "xpath=//input[contains(@name, '(CLIENTURN)')]",
+            "source": "xpath=//input[contains(@name, '(SOURCE)')]",
+            "code": "xpath=//input[contains(@name, '(CODE)')]",
+            "segment": "xpath=//input[contains(@name, '(SEGMENT)')]"
+        }
     }
 }
 
