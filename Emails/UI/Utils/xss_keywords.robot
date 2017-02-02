@@ -1,10 +1,9 @@
 *** Settings ***
 Documentation       contains keywords specific to xss testing
+Variables           Resources/xss_test_data.py
+Library             Collections
 
 *** Variables ***
-${blns}=    Get File    Emails/UI/Utils/Resources/blns.json
-#@{test_data}=    Split To Lines    ${blns}
-@{test_data}    nil    ";alert(123);"
 
 *** Keywords ***
 Log Failed Inputs

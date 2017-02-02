@@ -2,9 +2,7 @@
 Documentation       will check the input of each of the blns values into the list growth reports screen
 Resource            Emails/UI/Utils/keywords.robot
 Resource            Emails/UI/Utils/xss_keywords.robot
-Default Tags        ui    email    production
-Library             Collections
-Library             String
+Default Tags        ui    email    production    xss
 Suite Setup         Run Keywords    Login
 ...                 AND    Go To ${system_page["email"]}
 Suite Teardown      Close All Browsers
@@ -12,7 +10,7 @@ Suite Teardown      Close All Browsers
 *** Test Cases ***
 List Growth Reports Search
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${mobile_reports}    ${mobile_reports["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${generics["search_input"]}    timeout=30
     \    Input Text    ${generics["search_input"]}    ${line}
@@ -23,7 +21,7 @@ List Growth Reports Search
 
 List Growth Report Name
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${list_growth_reports}    ${list_growth_reports["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${generics["create_new"]}    timeout=30
     \    Click Element    ${generics["create_new"]}

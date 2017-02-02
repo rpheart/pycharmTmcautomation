@@ -3,8 +3,6 @@ Documentation       will check the input of each of the blns values into the add
 Resource            Emails/UI/Utils/keywords.robot
 Resource            Emails/UI/Utils/xss_keywords.robot
 Default Tags        ui    email    production    xss
-Library             Collections
-Library             String
 Suite Setup         Run Keywords    Login
 ...                 AND    Go To ${system_page["email"]}
 ...                 AND    Delete Subscribers
@@ -13,7 +11,7 @@ Suite Teardown      Close All Browsers
 *** Test Cases ***
 List Management Add Subscriber Firstname
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    timeout=30
     \    Input Text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    ${line}
@@ -35,7 +33,7 @@ List Management Add Subscriber Firstname Search Subscriber
 
 List Management Add Subscriber Lastname
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    timeout=30
     \    Input Text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    test
@@ -57,7 +55,7 @@ List Management Add Subscriber Lastname Search Subscriber
 
 List Management Add Subscriber Email Origine
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    timeout=30
     \    Input Text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    test
@@ -79,7 +77,7 @@ List Management Add Subscriber Email Origine Search Subscriber
 
 List Management Add Subscriber Email
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    timeout=30
     \    Input Text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    test
@@ -102,7 +100,7 @@ List Management Add Subscriber Email Search Subscriber
 
 List Management Add Subscriber Title
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    timeout=30
     \    Input Text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    test
@@ -124,7 +122,7 @@ List Management Add Subscriber Title Search Subscriber
 
 List Management Add Subscriber Client URN
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    timeout=30
     \    Input Text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    test
@@ -146,7 +144,7 @@ List Management Add Subscriber Client URN Search Subscriber
 
 List Management Add Subscriber Source
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    timeout=30
     \    Input Text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    test
@@ -168,7 +166,7 @@ List Management Add Subscriber Source Search Subscriber
 
 List Management Add Subscriber Segment
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
     \    Wait Until Element Is Visible    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    timeout=30
     \    Input Text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    test
@@ -219,7 +217,7 @@ Verify No Added Subscribers
     Click Element    id=iconSearch
     Sleep    5
     @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{test_data}
+    :FOR    ${line}    In     @{xss_test_data}
     \    ${test}=    Run Keyword And Return Status    Current Frame Contains    ${line}
     \    Run Keyword If    ${test}    Append To List    ${failed_inputs}    ${line}
     Delete Subscribers

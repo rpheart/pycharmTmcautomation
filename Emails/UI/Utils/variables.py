@@ -949,9 +949,3 @@ workflow_model = {
 approval = {
     "menu": "xpath=//*[@id='engage-approval']/div[./text()='Approval']"
 }
-
-# test data
-xss_entries = [
-    """<a href=\"\\x0Bjavascript:javascript:alert(1)\" id=\"fuzzelement1\">test</a>"""
-    """undefined''"""
-]
