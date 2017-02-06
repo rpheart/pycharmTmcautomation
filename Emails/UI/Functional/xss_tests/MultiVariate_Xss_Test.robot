@@ -66,11 +66,6 @@ Loop_Through_Naughty_List
     \    Wait Until Element Is Visible    ${multivariate_campaign['button_add']['define_campaign_and_recipients']}    timeout=10
     \    Click Element    ${multivariate_campaign['button_add']['define_campaign_and_recipients']}
 
-Write_Bad_Date_To_File
-    [Arguments]    ${collect_all_negative_input_list}
-    #Write all negative inputs to a list
-    Append To File    ${EXECDIR}/Functional/xss_tests/logs/error_Log_${TEST_NAME}.txt    ${collect_all_negative_input_list}
-
 Fail keyword
     log source
     run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
