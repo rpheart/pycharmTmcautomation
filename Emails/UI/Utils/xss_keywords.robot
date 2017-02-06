@@ -15,8 +15,12 @@ Check For Bad Request
 Write_Failed_Input_To_File
     [Arguments]    ${test_case_name}    @{failed_inputs}
     ${get_list_length}=    Get Length    ${failed_inputs}
-    Append To File    ${EXECDIR}/Functional/xss_tests/logs/error_Log_${test_case_name}.txt    ${test_case_name}${\n}
+    Run Keyword If    len(@{failed_inputs}) == 0    Log    No Errors    console=yes
+    ...    ELSE    Run Keywords    Append To File    ${EXECDIR}/Functional/xss_tests/logs/error_Log_${test_case_name}.txt    ${test_case_name}${\n}
+    ...    AND    Run_For_Loop    ${test_case_name}    ${failed_inputs}    ${get_list_length}
+    ...    AND    Fail    msg=List of words that failed xss verification
+
+Run_For_Loop
+    [Arguments]    ${test_case_name}    ${failed_inputs}    ${get_list_length}
     :FOR    ${item}    IN RANGE    0    ${get_list_length}
     \    Append To File    ${EXECDIR}/Functional/xss_tests/logs/error_Log_${test_case_name}.txt    ${failed_inputs[${item}]}${\n}
-    Run Keyword If    len(@{failed_inputs}) == 0    Log    No Errors    console=yes
-    ...    ELSE    Fail    msg=List of words that failed xss verification
