@@ -44,8 +44,8 @@ generics = {
     "create_new": "xpath=//*[contains(@class, 'applicationBar') and contains(text(), 'New')]",
     "save": "xpath=//a[contains(text(),'Save') or ./text() = 'Save']",
     "next": "xpath=//a[contains(text(),'Next') or ./text() = 'Next']",
-    "search_input": "xpath=//input[contains(@class, 'search-input') or contains(@class, 'input-text') or contains(@class, 'input-search') or contains(@class, 'SearchInput') or contains(@name, 'searchQuery')]",
-    "search_button": "xpath=//*[contains(@class, 'icon search') or contains(@class, 'applicationBarSearchIcon') or contains(@class, 'searchInputButton') or contains(@class, 'search-input-button-icon') or @id='iconSearch']",
+    "search_input": "xpath=//input[contains(@class, 'search') or contains(@class, 'Search') or contains(@name, 'search-input') or @type='text' and contains(@name, 'searchQuery') or contains(@data-ng-model, 'search')]",
+    "search_button":"xpath=//*[contains(@id, 'searchButton') or contains(@id, 'searchInputButton') or contains(@class, 'search-button') or contains(@class, 'search-input-button') or @id='iconSearch']",
     "select_all": "xpath=//img[@id='iconSelectAll']",
     "trash": "xpath=//*[@id='iconTrash']"
 }
@@ -476,7 +476,6 @@ webform = {
         "previous_step": "xpath=//*[@id='content']//a[@class='btn blue']",
         "submit_form": "xpath=//*[@id='emvForm']//input[@value='Submit Form']",
         "edit_webform": "xpath=//*[@id='content']//a[normalize-space(.//text())='Edit Webform' and @class='btn orange']"
-
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-create']//ul[@title='Webform']/li[2]",
@@ -615,6 +614,7 @@ transactional_content_block = {
     "button_list": {
         "list": "xpath=//*[@id='engage-create']//span[contains(text(),'Transactional Content')]/..//ul[@title='Content Block']/li[2]",
         "dynamic_content_blocks": "xpath=//*[@id='ccmd-appBar-realTimeBannersButton']//td[./text()='Dynamic Content Blocks']",
+        "table": "xpath=//table[@class='list']",
         "header_id": "xpath=//*[@id='content']//th[normalize-space(.//text())='ID']",
         "header_name": "xpath=//*[@id='content']//th[normalize-space(.//text())='Name']",
         "header_description": "xpath=//*[@id='content']//th[normalize-space(.//text())='Description']",
@@ -928,7 +928,11 @@ workflow = {
         "header_update": "xpath=//*[@id='content']//th[./text()='Update']",
         "header_edit": "xpath=//*[@id='content']//th[./text()='Edit']",
         "header_delete": "xpath=//*[@id='content']//span[@class='red' and ./text()='Delete']",
-        "delete": "xpath=//*[@id='iconTrash']/../../a"
+        "delete": "xpath=//*[@id='iconTrash']/../../a",
+        "model_radio_button": "xpath=//input[@name='modelId']",
+        "first_manager_checkbox": "xpath=//input[contains(@name, 'wfm')]",
+        "workflow_name": "xpath=//input[@name='name']",
+        "workflow_description": "xpath=//input[@name='description']"
     }
 }
 
