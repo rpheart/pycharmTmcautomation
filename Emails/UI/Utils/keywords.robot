@@ -6,7 +6,7 @@ Variables           variables.py
 
 *** Variables ***
 # test variables
-${screenshots}
+${screenshots}    ${EMPTY}
 
 # login variables
 ${ui_server}        https://qa-sfui.themessagecloud.com
@@ -32,7 +32,7 @@ login
 go to ${page}
     [Documentation]
     select window    ${document_title}    # Select main frame
-    click element    ${page}
+    Wait Until Keyword Succeeds    5x    10 sec    Click Element    ${page}
     wait until element is visible    ${navigation_bar}    timeout=30
 
 open content
@@ -45,7 +45,9 @@ open content
     click element    ${page}
     mouse over    ${smartfocus_logo}
     wait until element is visible    ${navigation_bar}    timeout=30
+    wait until element is visible    ${iframes["top"]}    timeout=30
     select frame    ${iframes["top"]}
+    wait until element is visible    ${iframes["ccmd"]}    timeout=30
     select frame    ${iframes["ccmd"]}
 
 send classic test message
