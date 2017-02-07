@@ -8,7 +8,7 @@ Suite Setup         Run Keywords    Login
 Suite Teardown      Close All Browsers
 
 *** Test Cases ***
-Send Standard Campaign Search
+Standard_Campaign_Search
     @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{xss_test_data}
     \    Open Content    ${standard_campaign}    ${standard_campaign["button_list"]["list"]}

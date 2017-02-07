@@ -10,14 +10,14 @@ Suite Teardown      Run Keywords    Delete Subscribers
 ...                 AND    Close All Browsers
 
 *** Test Cases ***
-List Management Add Subscriber
+Add_Subscriber
     @{input_fields}=    Create List    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    ${add_subscriber["button_add"]["input_fields"]["lastname"]}    ${add_subscriber["button_add"]["input_fields"]["email_original"]}    ${add_subscriber["button_add"]["input_fields"]["email_original"]}    ${add_subscriber["button_add"]["input_fields"]["email"]}    ${add_subscriber["button_add"]["input_fields"]["title"]}    ${add_subscriber["button_add"]["input_fields"]["client_urn"]}    ${add_subscriber["button_add"]["input_fields"]["source"]}    ${add_subscriber["button_add"]["input_fields"]["segment"]}
     :FOR    ${field}    In    @{input_fields}
     \    Loop Through Test Data    ${field}
     \    Write Failed Input To File    ${TEST_NAME}    ${field}    @{failed_inputs}
     Run Keyword If    ${is_failed}    Fail    msg=List of words that failed xss verification
 
-List Management Search For Added Subscribers
+Search_For_Added_Subscribers
     Open Content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
     Wait Until Element Is Visible    ${search_subscriber["button_add"]["search_button"]}    timeout=30
     Select From List    ${search_subscriber["button_add"]["numeric_field_combo"]}    EMVCELLPHONE

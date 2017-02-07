@@ -10,7 +10,7 @@ Suite Teardown      Run Keywords    Delete Image Test Data
 ...                 AND    Close All Browsers
 
 *** Test Cases ***
-Image Library Search
+Image_Library_Search
     @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{xss_test_data}
     \    go to ${image_library["menu"]}
@@ -21,10 +21,10 @@ Image Library Search
     \    Input Text    ${generics["search_input"]}    ${line}
     \    Click Element    ${generics["search_button"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
+    Write Failed Input To File    ${TEST_NAME}    ${generics["search_input"]}    @{failed_inputs}
+    Run Keyword If    ${is_failed}    Fail    msg=List of words that failed xss verification
 
-    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
-
-Image Library Create New Folder
+Image_Library_Create_New_Folder
     @{failed_inputs}=    Create List
     :FOR    ${line}    In     @{xss_test_data}
     \    go to ${image_library["menu"]}
@@ -36,10 +36,10 @@ Image Library Create New Folder
     \    Input Text    xpath=//input[contains(@class, 'create-folder-input')]    ${line}
     \    Click Element    xpath=//div[2]/span[contains(text(),'Create') or ./text() = 'Create']
     \    Check For Bad Request    ${line}    ${failed_inputs}
+    Write Failed Input To File    ${TEST_NAME}    ${generics["search_input"]}    @{failed_inputs}
+    Run Keyword If    ${is_failed}    Fail    msg=List of words that failed xss verification
 
-    Log Failed Inputs    ${TEST_NAME}    @{failed_inputs}
-
-Image Library Add Image Name
+Image_Library_Add_Image_Name
     @{failed_inputs}=    Create List
     :FOR    ${line}    In    @{xss_test_data}
     \    go to ${image_library["menu"]}
@@ -52,10 +52,10 @@ Image Library Add Image Name
     \    Input Text    name=description    test
     \    Click Element    ${image_library["button_add"]["start_upload_button"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
+    Write Failed Input To File    ${TEST_NAME}    ${generics["search_input"]}    @{failed_inputs}
+    Run Keyword If    ${is_failed}    Fail    msg=List of words that failed xss verification
 
-    Log Failed Inputs    @{failed_inputs}
-
-Image Library Add Image Description
+Image_Library_Add_Image_Description
     @{failed_inputs}=    Create List
     :FOR    ${line}    In    @{xss_test_data}
     \    go to ${image_library["menu"]}
@@ -68,8 +68,8 @@ Image Library Add Image Description
     \    Input Text    name=description    ${line}
     \    Click Element    ${image_library["button_add"]["start_upload_button"]}
     \    Check For Bad Request    ${line}    ${failed_inputs}
-
-    Log Failed Inputs    @{failed_inputs}
+    Write Failed Input To File    ${TEST_NAME}    ${generics["search_input"]}    @{failed_inputs}
+    Run Keyword If    ${is_failed}    Fail    msg=List of words that failed xss verification
 
 #Image Library Rename Image Name
 #    @{failed_inputs}=    Create List
