@@ -44,8 +44,10 @@ generics = {
     "create_new": "xpath=//*[contains(@class, 'applicationBar') and contains(text(), 'New')]",
     "save": "xpath=//a[contains(text(),'Save') or ./text() = 'Save']",
     "next": "xpath=//a[contains(text(),'Next') or ./text() = 'Next']",
-    "search_input": "xpath=//input[contains(@class, 'search-input') or contains(@class, 'input-text')]",
-    "search_button": "xpath=//*[contains(@class, 'search')]"
+    "search_input": "xpath=//input[contains(@class, 'search-input') or contains(@class, 'input-text') or contains(@class, 'input-search') or contains(@class, 'SearchInput') or contains(@name, 'searchQuery')]",
+    "search_button": "xpath=//*[contains(@class, 'icon search') or contains(@class, 'applicationBarSearchIcon') or contains(@class, 'searchInputButton') or contains(@class, 'search-input-button-icon') or @id='iconSearch']",
+    "select_all": "xpath=//img[@id='iconSelectAll']",
+    "trash": "xpath=//*[@id='iconTrash']"
 }
 
 # pages
@@ -121,7 +123,6 @@ multivariate_campaign = {
         "select_email_select_a_field": "xpath=//*[@id='splitrunUI-builderView-testSubject-persoFieldsList-version1']/option[contains(text(),'EMAIL')]",
         "subject_input_version_1": "id=splitrunUI-builderView-testSubject-subjectInput-version1",
         "label_add_version": "xpath=//*[@id='splitrunUI-builderView-addVersionButton']//div[contains(text(),'Add version')]",
-        "continue_button": "xpath=//*[@id='splitrunUI-builderView-nextButton']//div[contains(text(),'Continue')]",
         "1_schedule_the_multivariate_test": "xpath=//*[@id='splitrunuidiv']//legend[./text()='1. Schedule the MultiVariate Test']",
         "send_test_and_schedule_winning_campaign": "xpath=//*[@id='splitrunUI-builderView-breadcrumb-3']//div[contains(text(),'Send test and schedule winning campaign')]",
         "send_now_redio_button": "id=splitrunUI-builderView-sendNowRadioButton",
@@ -135,7 +136,6 @@ multivariate_campaign = {
         "more_options": "xpath=//*[@id='splitrunUI-builderView-moreOptionsButton']//div[./text()='More options']",
         "back_button": "xpath=//*[@id='splitrunUI-builderView-previousButton']//div[contains(text(),'Back')]",
         "schedule_button": "xpath=//*[@id='splitrunUI-builderView-sendCampaignButton']//div[contains(text(),'Schedule')]"
-
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-send']//ul[@title='MultiVariate']/li[2]",
@@ -179,8 +179,8 @@ multimessage_campaign = {
         "schedule_campaign": "xpath=//*[@id='splitrunUI-builderView-breadcrumb-3']//div[contains(text(),'Schedule campaign')]",
         "send_now_redio_button": "id=splitrunUI-builderView-sendNowRadioButton",
         "send_later_redio_button": "id=splitrunUI-builderView-sendLaterRadioButton",
-        "schedule_button": "xpath=//*[@id='splitrunUI-builderView-sendCampaignButton']//div[contains(text(),'Schedule')]"
-
+        "schedule_button": "xpath=//*[@id='splitrunUI-builderView-sendCampaignButton']//div[contains(text(),'Schedule')]",
+        "button_new": "xpath=//span[contains(text(),'New') or ./text() = 'New']"
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-send']//ul[@title='MultiMessage']/li[2]",
@@ -334,7 +334,6 @@ classic_message_builder = {
         "header_test_message": "xpath=//*[@id='ccmd-messages-table']//th[./text()='Test Message']",
         "header_audit_deliverability": "xpath=//*[@id='ccmd-messages-table']//th[./text()='Audit Deliverability']",
         "header_delete": "xpath=//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']"
-
     }
 }
 
@@ -352,7 +351,6 @@ sms_message_builder = {
         "back_button": "xpath=//a[contains(text(),'Back') or ./text() = 'Back']",
         "save_button": "xpath=//a[contains(text(),'Save') or ./text() = 'Save']",
         "save_and_go_to_sms_messages_button": "xpath=//a[contains(text(),'Save and go to SMS Messages') or ./text() = 'Save and go to SMS Messages']"
-
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-create']//ul[@title='SMS Message']/li[2]",
@@ -412,7 +410,6 @@ content_block = {
         "description": "name=description",
         "text_content": "id=textContent",
         "tool_box": "id=toolbox",
-        "text_content": "id=textContent",
         "message_name": "name=messageName",
         "message_description": "name=messageDescription",
         "message_from": "name=messageFrom",
@@ -420,7 +417,6 @@ content_block = {
         "message_reply_to": "name=messageReplyToEmail",
         "html_checkbox": "xpath=//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "xpath=//*[@id='content']//input[@type='radio' and @value='HTML']",
-        "save": "//a[contains(text(),'Save') or ./text()='Save']",
         "content_upload": "xpath=//*[@id='iconUpload']/../../a/div[./text()='Content upload']",
         "track_all_links": "xpath=//*[@id='iconToolboxTrackLinks']/../../a/div[./text()='Track All Links']",
         "link_management": "xpath=//*[@id='iconToolboxLinksManagt']/../../a/div[./text()='Link Management']",
@@ -432,7 +428,6 @@ content_block = {
         "external_content": "xpath=//*[@id='iconToolboxCMS']/../../a/div[./text()='External Content']",
         "dynamic_content_block_personalization": "xpath=//*[@id='iconToolboxMessagePerso']/../../a/div[./text()='Dynamic Content Block Personalization']",
         "dynamic_content_block_preview": "xpath=//*[@id='iconToolboxMessagePreview']/../../a/div[./text()='Dynamic Content Block Preview']"
-
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-create']//ul[@title='Content Block']/li[2]",
@@ -464,7 +459,6 @@ webform = {
         "error_url": "name=errorUrl",
         "next_step": "xpath=//*[@id='iconButtonNext']/../../a[normalize-space(.//text())='Next Step']",
         "webform_type": "xpath=//*[@id='content']//select[@name='type']",
-        "webform_type": "name=type",
         "webform_update_profile": "xpath=//*[@id='webFormTypeDesc']",
         "update_webform_option": "//*[@id='content']//option[normalize-space(.//text())='Update webform']",
         "field_name": "xpath=//*[@id='entry[0]']/td[1]/select/option[normalize-space(.//text())='EMAIL']",
@@ -499,13 +493,11 @@ webform = {
         "select_delete_check_box": "xpath=//*[@id='ccmd-member-archive-cell-delete0']/input[@name='deleteMember']",
         "icon_trash": "xpath=//*[@id='iconTrash']/../../a",
         "confirm_delete": "css=#content > form > table.validationTable > tbody > tr > td.validationR > a",
-
         "first_name": "xpath=//*[@id='content']//th[./text()='First Name']",
         "last_name": "xpath=//*[@id='content']//th[./text()='Last name']",
         "name_webform": "xpath=//*[@id='rows']/tr/td[./text()='NameWebForm']",
         "surname_webform": "xpath=//*[@id='rows']/tr/td[./text()='SurnameWebForm']",
         "qa_auto_email": "xpath=//*[@id='rows']/tr/td[text()='qa.auto@smartfocus.com']",
-
     }
 }
 
@@ -691,8 +683,12 @@ search_subscriber = {
         "select_text_field_option_email": "xpath=//*[@id='content']//select/option[normalize-space(.//text())= 'EMAIL']",
         "text_field_operator": "name=textFieldOperator",
         "text_field_operator_option_contains": "xpath=//*[@id='content']//select/option[normalize-space(.//text())= 'contains']",
-        "search": "id=iconSearch",
         "text_field_value": "name=textFieldValue",
+        "text_search": "id=iconSearch",
+        "numeric_field_combo": "name=numericFieldCombo",
+        "numeric_field_operator": "name=numericFieldOperator",
+        "numeric_field_value": "name=numericFieldValue",
+        "numeric_search": "xpath=//tr[3]/td[4]/a/img[@id='iconAddCriteria']",
         "add_text": "xpath=//*[@id='content']//a[@href='javascript:addText()']",
         "select_number_field": "xpath=//*[@id='iconCriteriaNum']/../select[@name='numericFieldCombo']",
         "number_field_operator": "xpath=//*[@id='content']//select[@name='numericFieldOperator']",
@@ -704,7 +700,9 @@ search_subscriber = {
         "segmentation_operator": "xpath=//*[@id='content']//select[@name='segmentationOperator']",
         "segmentation_index": "xpath=//*[@id='content']//select[@name='segmentationIndex']",
         "add_segmentation": "xpath=//*[@id='content']//a[@href='javascript:addSegmentation()']",
-        "search_chrateria": "xpath=//*[@id='content']//td[./text()='Search Criteria' or normalize-space(.//text())='Search Criteria']"
+        "search_criteria": "xpath=//*[@id='content']//td[./text()='Search Criteria' or normalize-space(.//text())='Search Criteria']",
+        "member_count": "xpath=//*[@id='nbMembers']",
+        "delete_members": "xpath=//a[contains(text(),'Delete Members') or ./text() = 'Delete Members']"
     }
 }
 
@@ -800,10 +798,13 @@ image_library = {
         "image_library": "xpath=//*[@id='appbar-archive-button']/span[./text()='Image Library']",
         "create_new_folder": "xpath=//*[@id='action-bar-create-folder']/span[./text()='Create new folder']",
         "select_all": "xpath=//*[@id='action-bar-select-all']/span[./text()='Select all']",
+        "deselect_all": "xpath=//span[contains(text(), 'Deselect all')]",
+        "delete": "xpath=//span[contains(text(), 'Delete')]",
+        "confirm_delete": "xpath=//div[2]/span[contains(text(), 'Delete')]",
         "storage": "xpath=//*[@id='action-bar']//span[./text()='Storage:']",
         "add_button": "xpath=//*[@id='appbar-add-button']//span[./text()='Add']",
         "image_library_iframe": "id=ImageLibrary-IMAGES_THUMBNAIL_VIEW-frame",
-        "browse_button": "xpath=//*[@id='imagelib-browse-label'][./text()='Browse']",
+        "browse_button": "xpath=//*[@id='imagelib-browse-button']",
         "start_upload_button": "xpath=//*[@id='imagelib-submit-label'][./text()='Start upload']"
     }
 
