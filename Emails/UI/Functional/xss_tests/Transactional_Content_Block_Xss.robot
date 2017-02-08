@@ -8,7 +8,7 @@ Suite Setup         Run Keywords    Login
 Suite Teardown      Close All Browsers
 
 *** Test Cases ***
-Transactional_Content_Block_xss
+Transactional_Content_Block
     # Get first item of transactional content block table
     Open Content    ${transactional_content_block}    ${transactional_content_block["button_list"]["list"]}
     ${most_recent_content_block_id}=    Get Table Cell    ${transactional_content_block["button_list"]["table"]}    3    1

@@ -590,7 +590,8 @@ transactional_message = {
         "custom_search": "xpath=//*[@id='custom-tab']//a[normalize-space(.//text())='Custom Search']",
         "email_lable": "xpath=//*[@id='NotificationCustomForm']//b[./text()='Email']",
         "email_input": "name=email",
-        "custom_form_ok_button": "xpath=//*[@id='NotificationCustomForm']//a[./text()='OK']"
+        "custom_form_ok_button": "xpath=//*[@id='NotificationCustomForm']//a[./text()='OK']",
+        "table": "xpath=//table[@class='list']"
     }
 }
 

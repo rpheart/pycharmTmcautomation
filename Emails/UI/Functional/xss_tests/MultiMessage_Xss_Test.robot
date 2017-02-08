@@ -34,6 +34,17 @@ MultiMessage_Xss
     \    Set Test Variable    ${move_backwards_field}    ${move_backwards_field} - 1
     Write_Failed_Input_To_File    ${TEST_NAME}    @{collect_all_negative_input_list}
 
+Multimessage_Campaign_Search
+    @{failed_inputs}=    Create List
+    :FOR    ${line}    In     @{xss_test_data}
+    \    Open Content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
+    \    Wait Until Element Is Visible    ${generics["search_input"]}    timeout=30
+    \    Input Text    ${generics["search_input"]}    ${line}
+    \    Click Element    ${generics["search_button"]}
+    \    Check For Bad Request    ${line}    ${failed_inputs}
+    Write Failed Input To File    ${TEST_NAME}    ${generics["search_input"]}    @{failed_inputs}
+    Run Keyword If    ${is_failed}    Fail    msg=List of words that failed xss verification
+
 *** Keywords ***
 Loop_Through_Naughty_List
     [Arguments]    ${my_naughty_List_length}    ${fields_list}    ${move_forward_field}    ${move_backwards_field}    ${collect_all_negative_input_list}    ${my_naughty_List}
@@ -67,7 +78,3 @@ Loop_Through_Naughty_List
     \    ...    AND    Append To List    ${collect_all_negative_input_list}    ${my_naughty_List[${i}]}
     \    Wait Until Element Is Visible    ${multimessage_campaign['button_add']['define_campaign_and_recipients']}    timeout=10
     \    Click Element    ${multimessage_campaign['button_add']['define_campaign_and_recipients']}
-
-Fail keyword
-    log source
-    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
