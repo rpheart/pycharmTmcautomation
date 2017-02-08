@@ -34,6 +34,17 @@ Content_Block_Xss
     \    Set Test Variable    ${move_backwards_field}    ${move_backwards_field} - 1
     Write_Failed_Input_To_File    ${TEST_NAME}    @{collect_all_negative_input_list}
 
+Content_Block_Search
+    @{failed_inputs}=    Create List
+    :FOR    ${line}    In     @{xss_test_data}
+    \    Open Content    ${content_block}    ${content_block["button_list"]["list"]}
+    \    Wait Until Element Is Visible    ${generics["search_input"]}    timeout=30
+    \    Input Text    ${generics["search_input"]}    ${line}
+    \    Click Element    ${generics["search_button"]}
+    \    Check For Bad Request    ${line}    ${failed_inputs}
+    Write Failed Input To File    ${TEST_NAME}    ${generics["search_input"]}    @{failed_inputs}
+    Run Keyword If    ${is_failed}    Fail    msg=List of words that failed xss verification
+
 *** Keywords ***
 Loop_Through_Naughty_List
     [Arguments]    ${my_naughty_List_length}    ${fields_list}    ${move_forward_field}    ${move_backwards_field}    ${collect_all_negative_input_list}    ${my_naughty_List}
@@ -52,10 +63,3 @@ Loop_Through_Naughty_List
     \    Run Keyword If    '${alert_text}'=='Your Dynamic Content Block has been saved successfully.'    Run Keywords    Click Element    ${content_block['button_list']['dynamic_content_blocks']}
     \    ...    AND    Wait Until Element Is Visible    xpath=//*[@id='tabledivColumn-0-2']/div[./text()='test']    timeout=20
     \    ...    AND    Click Element    ${content_block['button_list']['new']}
-
-Fail keyword
-    log source
-    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
-
-Suite_Teardown
-    Close All Browsers

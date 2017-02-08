@@ -55,10 +55,3 @@ Loop_Through_Naughty_List
     \    ...    AND    Click Element    ${template['button_list']['new']}
     \    Sleep    2
     \    Run Keyword If    "${alert_text}"!="Template was successfully saved"    Click Element    ${template['button_list']['new']}
-
-Fail keyword
-    log source
-    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
-
-Suite_Teardown
-    Close All Browsers
