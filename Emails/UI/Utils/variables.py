@@ -47,7 +47,8 @@ generics = {
     "search_input": "xpath=//input[contains(@class, 'search') or contains(@class, 'Search') or contains(@name, 'search-input') or @type='text' and contains(@name, 'searchQuery') or contains(@data-ng-model, 'search')]",
     "search_button":"xpath=//*[contains(@id, 'searchButton') or contains(@id, 'searchInputButton') or contains(@class, 'search-button') or contains(@class, 'search-input-button') or @id='iconSearch']",
     "select_all": "xpath=//img[@id='iconSelectAll']",
-    "trash": "xpath=//*[@id='iconTrash']"
+    "trash": "xpath=//*[@id='iconTrash']",
+    "ok_button": "xpath=//a[contains(text(), 'OK')]"
 }
 
 # pages
@@ -438,7 +439,8 @@ content_block = {
         "header_type": "xpath=//*[@id='content-blocks-tablediv-header-type']/div[./text()='Type']",
         "header_creation_date": "xpath=//*[@id='content-blocks-tablediv-header-creation-date']/div[./text()='Creation Date']",
         "header_modification_date": "xpath=//*[@id='content-blocks-tablediv-header-modification-date']/div[./text()='Modification date']",
-        "header_creator": "xpath=//*[@id='content-blocks-tablediv-header-creator']/div[./text()='Creator']"
+        "header_creator": "xpath=//*[@id='content-blocks-tablediv-header-creator']/div[./text()='Creator']",
+        "first_block_id": "xpath=//div[@class='tabledivColumnText']"
     }
 }
 
@@ -846,7 +848,9 @@ test_reports = {
 transactional_reports = {
     "menu": "xpath=//*[@id='engage-reports']/div[./text()='Reports']",
     "button_add": {
-        "add": "xpath=//*[@id='engage-reports']//ul[@title='Transactional']/li"
+        "add": "xpath=//*[@id='engage-reports']//ul[@title='Transactional']/li",
+        "custom_search": "xpath=//a[contains(text(), 'Custom Search')]",
+        "email": "xpath=//input[contains(@name, 'email')]"
     }
 }
 

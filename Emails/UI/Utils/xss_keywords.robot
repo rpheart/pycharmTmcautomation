@@ -36,16 +36,16 @@ Write Failed Input To File
     ...    Log    No Errors
     ...    ELSE
     ...    Run Keywords
-    ...    Append To File    ${EXECDIR}Emails/logs/error_Log_${test_suite_name}.txt    ${test_case_name}${\n}--------------------------------${\n}
-    ...    AND    Write Data    ${test_suite_name}    @{failed_inputs}
-    ...    AND    ${is_failed}=    set variable    True
-    Set Test Variable    ${is_failed}
+    ...    Append To File    ${EXECDIR}/Emails/logs/error_Log_${test_suite_name}.txt    ${test_case_name}${\n}--------------------------------${\n}
+    ...    AND    Write Data    ${test_suite_name}    @{failed_inputs}
+    ...    AND    Set Test Variable    ${is_failed}    True
+#    Set Test Variable    ${is_failed}
 
 Write Data
     [Arguments]    ${test_suite_name}    @{failed_inputs}
     :FOR    ${item}    In    @{failed_inputs}
-    \    Append To File    ${EXECDIR}Emails/logs/error_Log_${test_suite_name}.txt    ${item}${\n}
-    Append To File    ${EXECDIR}Emails/logs/error_Log_${test_suite_name}.txt    ${\n}--------------------------------${\n}
+    \    Append To File    ${EXECDIR}/Emails/logs/error_Log_${test_suite_name}.txt    ${item}${\n}
+    Append To File    ${EXECDIR}/Emails/logs/error_Log_${test_suite_name}.txt    ${\n}--------------------------------${\n}
 
 Create Email String
     [Arguments]    ${line}
