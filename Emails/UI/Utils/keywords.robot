@@ -1,7 +1,9 @@
 *** Settings ***
 Documentation       Suite description
-Library             Selenium2Library    10    2    run_on_failure=fail keyword    screenshot_root_directory=.
+Library             Collections
 Library             OperatingSystem
+Library             Selenium2Library    10    2    run_on_failure=fail keyword    screenshot_root_directory=.
+Library             String
 Variables           variables.py
 
 *** Variables ***
