@@ -1,9 +1,9 @@
 import os
 
 # QA URL Settings
-advisor = "qa-eu1-advisor1-v3.advisor.smartfocus.com"
-renderer = "qa-eu1-p3-renderer.advisor.smartfocus.com"
-click = "qa-eu1-p3-api-public.advisor.smartfocus.com"
+advisor = "qa-eu1-advisor1-v3.Advisor.smartfocus.com"
+renderer = "qa-eu1-p3-renderer.Advisor.smartfocus.com"
+click = "qa-eu1-p3-api-public.Advisor.smartfocus.com"
 guid = "e44f26b0-12c7-4c29-aabf-9d11197c9c02"
 aid = "20003"
 username = "qaTest1"
