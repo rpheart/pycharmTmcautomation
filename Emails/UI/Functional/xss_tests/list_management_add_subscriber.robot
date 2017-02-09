@@ -3,10 +3,12 @@ Documentation       will check the input of each of the blns values into the add
 Resource            ../../Utils/keywords.robot
 Resource            ../../Utils/xss_keywords.robot
 Default Tags        ui    email    xss
-Suite Setup         run keywords    login
+Suite Setup         run keywords
+...                 login
 ...                 AND    go to ${system_page["email"]}
 ...                 AND    delete subscribers
-Suite Teardown      run keywords    delete subscribers
+Suite Teardown      run keywords
+...                 delete subscribers
 ...                 AND    close all browsers
 
 *** Test Cases ***

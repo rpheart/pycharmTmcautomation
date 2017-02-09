@@ -71,7 +71,6 @@ image_library_add_image_description
 
 #Image Library Rename Image Name
 #    @{failed_inputs}=    Create List
-#    Delete Image Test Data
 #    Go To ${image_library["menu"]}
 #    Wait Until Element Is Visible    ${navigation_bar}    timeout=30
 #    Select Frame    ${iframes["top"]}
@@ -89,9 +88,9 @@ image_library_add_image_description
 #    \    Select Frame    ${iframes["ccmd"]}
 #    \    Wait Until Element Is Visible    ${image_library["button_add"]["add_button"]}    timeout=30
 #    \
-#    \    Check For Bad Request    ${line}    ${failed_inputs}
-#
-#    Log Failed Inputs    @{failed_inputs}
+#    \    check for bad request    ${line}    ${failed_inputs}
+#    write failed input to file    ${TEST_NAME}    ${generics["search_input"]}    @{failed_inputs}
+#    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
 
 *** Keywords ***
 upload file

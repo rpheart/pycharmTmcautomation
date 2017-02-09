@@ -4,7 +4,7 @@ Resource            ../../Utils/keywords.robot
 Resource            ../../Utils/xss_keywords.robot
 Default Tags        email    ui    xss
 Suite Setup         run keywords    login
-...                 and    go to ${system_page["email"]}
+...                 AND    go to ${system_page["email"]}
 Suite Teardown      close all browsers
 
 *** Test Cases ***
@@ -19,7 +19,8 @@ transactional_content_block_customer_name
     # Check no new content blocks were created
     open content    ${transactional_content_block}    ${transactional_content_block["button_list"]["list"]}
     ${post_test_content_block_id}=    get table cell    ${transactional_content_block["button_list"]["table"]}    3    1
-    run keyword if    ${post_test_content_block_id} != ${most_recent_content_block_id}    fail    msg=New Content Blocks were created with XSS data
+    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_content_block_id}    ${most_recent_content_block_id}
+    run keyword if    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
 
 transactional_content_block_customer_description
     # Get first item of transactional content block table
@@ -32,7 +33,8 @@ transactional_content_block_customer_description
     # Check no new content blocks were created
     open content    ${transactional_content_block}    ${transactional_content_block["button_list"]["list"]}
     ${post_test_content_block_id}=    get table cell    ${transactional_content_block["button_list"]["table"]}    3    1
-    run keyword if    ${post_test_content_block_id} != ${most_recent_content_block_id}    fail    msg=New Content Blocks were created with XSS data
+    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_content_block_id}    ${most_recent_content_block_id}
+    run keyword if    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
 
 *** Keywords ***
 loop through test data
