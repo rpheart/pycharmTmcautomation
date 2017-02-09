@@ -452,8 +452,8 @@ webform = {
         "STEP_1_settings": "xpath=//*[@id='content']//td[./text()='STEP 1: Settings']",
         "STEP_2_Fields": "xpath=//*[@id='content']//td[normalize-space(.//text())='STEP 2: Fields']",
         "STEP_3_confirmation_email": "xpath=//*[@id='content']//td[./text()='STEP 3: Confirmation Email']",
-        "customer_name": "name=name",
-        "customer_description": "name=description",
+        "name": "name=name",
+        "description": "name=description",
         "select_languages": "name=language",
         "language_option": "xpath=//*[@id='content']//option[contains(text(),'English')]",
         "select_date": "id=datepicker",
@@ -464,11 +464,12 @@ webform = {
         "webform_type": "xpath=//*[@id='content']//select[@name='type']",
         "webform_update_profile": "xpath=//*[@id='webFormTypeDesc']",
         "update_webform_option": "//*[@id='content']//option[normalize-space(.//text())='Update webform']",
-        "field_name": "xpath=//*[@id='entry[0]']/td[1]/select/option[normalize-space(.//text())='EMAIL']",
+        "dupe_url": "name=dupErrorUrl",
+        "field_name": "xpath=//select[@name='entry[0].field']",  #/td[1]/select/option[normalize-space(.//text())='EMAIL']",
         "display_name": "xpath=//*[@id='entry[0]']/td[3]/input[@type='text']",
-        "input_type": "xpath=//*[@id='entry[0]']/td[4]/select/option[normalize-space(.//text())='TEXT']",
+        "input_type": "xpath=//select[@name='entry[0].inputType']",  #/td[4]/select/option[normalize-space(.//text())='TEXT']",
         "default_value": "xpath=//*[@id='entry[0]']/td[6]/input[@type='text']",
-        "validation_type": "xpath=//*[@id='entry[0]']/td[7]/select/option[normalize-space(.//text())='EMAIL']",
+        "validation_type": "xpath=//select[@name='entry[0].fieldType']",  #/td[7]/select/option[normalize-space(.//text())='EMAIL']",
         "text_length": "xpath=//*[@id='entry[0]']/td[8]/input[@type='text']",
         "select_user": "xpath=//*[@id='bounceBackSection']//select/option[./text()='User']",
         "bounce_back_type": "name=bounceBackType",
@@ -478,7 +479,8 @@ webform = {
         "save_webform": "xpath=//*[@id='iconButtonPersonnalisation']/../../a[@class='btn orange']",
         "previous_step": "xpath=//*[@id='content']//a[@class='btn blue']",
         "submit_form": "xpath=//*[@id='emvForm']//input[@value='Submit Form']",
-        "edit_webform": "xpath=//*[@id='content']//a[normalize-space(.//text())='Edit Webform' and @class='btn orange']"
+        "edit_webform": "xpath=//*[@id='content']//a[normalize-space(.//text())='Edit Webform' and @class='btn orange']",
+        "": "",
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-create']//ul[@title='Webform']/li[2]",
@@ -500,6 +502,8 @@ webform = {
         "name_webform": "xpath=//*[@id='rows']/tr/td[./text()='NameWebForm']",
         "surname_webform": "xpath=//*[@id='rows']/tr/td[./text()='SurnameWebForm']",
         "qa_auto_email": "xpath=//*[@id='rows']/tr/td[text()='qa.auto@smartfocus.com']",
+        "search_input": "xpath=//input[contains(@name, 'searchPattern')]",
+        "table": "xpath=//table[@class='list']"
     }
 }
 
@@ -808,7 +812,7 @@ image_library = {
         "storage": "xpath=//*[@id='action-bar']//span[./text()='Storage:']",
         "add_button": "xpath=//*[@id='appbar-add-button']//span[./text()='Add']",
         "image_library_iframe": "id=ImageLibrary-IMAGES_THUMBNAIL_VIEW-frame",
-        "browse_button": "xpath=//*[@id='imagelib-browse-button']",
+        "browse_button": "xpath=//*[@name='uploadFile']",
         "start_upload_button": "xpath=//*[@id='imagelib-submit-label'][./text()='Start upload']"
     }
 
