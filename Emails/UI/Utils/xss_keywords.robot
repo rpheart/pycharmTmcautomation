@@ -50,6 +50,11 @@ create email string
     ${line}=    catenate    SEPARATOR=    ${line}    @test.com
     set test variable    ${line}
 
+create url string
+    [Arguments]    ${line}
+    ${line}=    catenate    SEPARATOR=    http://www.    ${line}    .com
+    set test variable    ${line}
+
 verify xss data on search field
     [Arguments]    ${content_dictionary}      ${page}
     @{failed_inputs}=    create list
