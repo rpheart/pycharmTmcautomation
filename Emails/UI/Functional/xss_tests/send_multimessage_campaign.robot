@@ -10,26 +10,39 @@ Suite Teardown      close all browsers
 
 *** Test Cases ***
 multimessage_campaign_name
-#    # Grab id of latest multimessage
-#    open content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
-#    wait until element is visible    ${multimessage_campaign["button_list"]["first_block_id"]}
-#    ${latest_content_block_id}=    get text    ${multimessage_campaign["button_list"]["first_block_id"]}
+    # Grab id of latest multimessage
+    open content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
+    wait until element is visible    ${multimessage_campaign["button_list"]["first_block_id"]}
+    ${latest_message_id}=    get text    ${multimessage_campaign["button_list"]["first_block_id"]}
 
-    # Check xss data on multimessage campaign field name
+    # Check xss data on multimessage campaign name field
     loop through test data    ${multimessage_campaign["button_add"]["input_name"]}
 
-#    # Check no new content blocks were created
-#    open content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
-#    wait until element is visible    ${multimessage_campaign["button_list"]["first_block_id"]}
-#    ${post_test_content_block_id}=    get text    ${multimessage_campaign["button_list"]["first_block_id"]}
-#    run keyword if    ${post_test_content_block_id} != ${latest_content_block_id}    fail    msg=New Content Blocks were created with XSS data
+    # Check no new content blocks were created
+    open content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
+    wait until element is visible    ${multimessage_campaign["button_list"]["first_block_id"]}
+    ${post_test_message_id}=    get text    ${multimessage_campaign["button_list"]["first_block_id"]}
+    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${latest_message_id}
+    run keyword if    ${is_equal}    fail    msg=New MultiMessage Campaigns were created with XSS data
 
 multimessage_campaign_description
+    # Grab id of latest multimessage
+    open content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
+    wait until element is visible    ${multimessage_campaign["button_list"]["first_block_id"]}
+    ${latest_message_id}=    get text    ${multimessage_campaign["button_list"]["first_block_id"]}
+
+    # Check xss data on multimessage campaign description field
     loop through test data    ${multimessage_campaign["button_add"]["input_description"]}
+
+    # Check no new content blocks were created
+    open content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
+    wait until element is visible    ${multimessage_campaign["button_list"]["first_block_id"]}
+    ${post_test_message_id}=    get text    ${multimessage_campaign["button_list"]["first_block_id"]}
+    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${latest_message_id}
+    run keyword if    ${is_equal}    fail    msg=New MultiMessage Campaigns were created with XSS data
 
 multimessage_campaign_search
     verify xss data on search field    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
-
 
 *** Keywords ***
 loop through test data

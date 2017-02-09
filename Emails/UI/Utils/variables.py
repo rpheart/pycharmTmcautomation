@@ -189,7 +189,8 @@ multimessage_campaign = {
         "campaign_name": "xpath=//*[@id='splitrunuidiv']//div[./text()='Campaign Name']",
         "id": "xpath=//*[@id='splitrunuidiv']//div[./text()='ID']",
         "status": "xpath=//*[@id='splitrunuidiv']//div[./text()='Status']",
-        "send_date": "xpath=//*[@id='splitrunuidiv']//div[./text()='Send date']"
+        "send_date": "xpath=//*[@id='splitrunuidiv']//div[./text()='Send date']",
+        "first_block_id": "xpath="
     }
 }
 
@@ -937,7 +938,8 @@ workflow = {
         "model_radio_button": "xpath=//input[@name='modelId']",
         "first_manager_checkbox": "xpath=//input[contains(@name, 'wfm')]",
         "workflow_name": "xpath=//input[@name='name']",
-        "workflow_description": "xpath=//input[@name='description']"
+        "workflow_description": "xpath=//input[@name='description']",
+        "table": "xpath=//table[@class='list']"
     }
 }
 
