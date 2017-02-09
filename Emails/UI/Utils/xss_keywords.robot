@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation       contains keywords specific to xss testing
 Variables           Resources/xss_test_data.py
-Library             Collections
 
 *** Variables ***
 
@@ -31,7 +30,7 @@ Check For Bad Request
 
 Write Failed Input To File
     [Arguments]    ${test_suite_name}    ${test_case_name}    @{failed_inputs}
-    ${is_failed}=    set variable    False
+    Set Test Variable    ${is_failed}    False
     Run Keyword If    len(@{failed_inputs}) == 0
     ...    Log    No Errors
     ...    ELSE
@@ -39,7 +38,6 @@ Write Failed Input To File
     ...    Append To File    ${EXECDIR}/Emails/logs/error_Log_${test_suite_name}.txt    ${test_case_name}${\n}--------------------------------${\n}
     ...    AND    Write Data    ${test_suite_name}    @{failed_inputs}
     ...    AND    Set Test Variable    ${is_failed}    True
-#    Set Test Variable    ${is_failed}
 
 Write Data
     [Arguments]    ${test_suite_name}    @{failed_inputs}
@@ -51,3 +49,14 @@ Create Email String
     [Arguments]    ${line}
     ${line}=    Catenate    SEPARATOR=    ${line}    @test.com
     Set Test Variable    ${line}
+
+verify xss data on search field
+    [Arguments]    ${content_dictionary}      ${page}
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{xss_test_data}
+    \    open content    ${content_dictionary}    ${page}
+    \    wait until keyword succeeds    30x    1 sec    input text    ${generics["search_input"]}    ${line}
+    \    wait until keyword succeeds    30x    1 sec    click element    ${generics["search_button"]}
+    \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data

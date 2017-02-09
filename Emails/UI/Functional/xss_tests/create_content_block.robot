@@ -1,62 +1,57 @@
 *** Settings ***
-Documentation     will check the input of each of the blns values into the Content Block screen
-Suite Setup       Run Keywords    Login
-...               AND    Go To ${system_page["email"]}
-Suite Teardown    Close All Browsers
-Resource          ../../Utils/keywords.robot
-Resource          ../../Utils/xss_keywords.robot
+Documentation       will check the input of each of the blns values into the Content Block screen
+Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/xss_keywords.robot
+Default Tags        ui    email    xss
+Suite Setup         run keywords
+...                 login
+...                 AND    go to ${system_page["email"]}
+Suite Teardown      close all browsers
 
 *** Test Cases ***
-Name
+content_block_name
     # Grab id of latest content block
-    Open Content    ${content_block}    ${content_block["button_list"]["list"]}
-    ${latest_content_block_id}=    Get Text    ${content_block["button_list"]["first_block_id"]}
+    open content    ${content_block}    ${content_block["button_list"]["list"]}
+    wait until element is visible    ${content_block["button_list"]["first_block_id"]}
+    ${latest_content_block_id}=    get text    ${content_block["button_list"]["first_block_id"]}
 
-    # attempt to create a content block
-    @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{xss_test_data}
-    \    Open Content    ${content_block}    ${content_block["button_add"]["add"]}
-    \    Wait Until Element Is Visible    name=name    timeout=30
-    \    Input Text    name=name    ${line}
-    \    Click Element    ${generics['save']}
-    \    Check For Bad Request    ${line}    ${failed_inputs}
-    Write Failed Input To File    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
-    Run Keyword If    ${is_failed}    Fail    msg=xss verification failed, check the logs folder for data
+    # Check xss data on content block field name
+    loop through test data    ${content_block["button_add"]["name"]}
 
     # Check no new content blocks were created
-    Open Content    ${content_block}    ${content_block["button_list"]["list"]}
-    ${post_test_content_block_id}=    Get Text    ${content_block["button_list"]["first_block_id"]}
-    Run Keyword If    ${post_test_content_block_id} != ${latest_content_block_id}    Fail    msg=New Content Blocks were created with XSS data
+    open content    ${content_block}    ${content_block["button_list"]["list"]}
+    wait until element is visible    ${content_block["button_list"]["first_block_id"]}
+    ${post_test_content_block_id}=    get text    ${content_block["button_list"]["first_block_id"]}
+    run keyword if    ${post_test_content_block_id} != ${latest_content_block_id}    fail    msg=New Content Blocks were created with XSS data
 
-Description
+content_block_description
     # Grab id of latest content block
-    Open Content    ${content_block}    ${content_block["button_list"]["list"]}
-    ${latest_content_block_id}=    Get Text    ${content_block["button_list"]["first_block_id"]}
+    open content    ${content_block}    ${content_block["button_list"]["list"]}
+    wait until element is visible    ${content_block["button_list"]["first_block_id"]}
+    ${latest_content_block_id}=    get text    ${content_block["button_list"]["first_block_id"]}
 
-    # attempt to create a content block
-    @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{xss_test_data}
-    \    Open Content    ${content_block}    ${content_block["button_add"]["add"]}
-    \    Wait Until Element Is Visible    name=name    timeout=30
-    \    Input Text    name=name    Name
-    \    Input Text    name=description    ${line}
-    \    Click Element    ${generics['save']}
-    \    Check For Bad Request    ${line}    ${failed_inputs}
-    Write Failed Input To File    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
-    Run Keyword If    ${is_failed}    Fail    msg=xss verification failed, check the logs folder for data
+    # Check xss data on content block field description
+    loop through test data    ${content_block["button_add"]["description"]}
 
     # Check no new content blocks were created
-    Open Content    ${content_block}    ${content_block["button_list"]["list"]}
-    ${post_test_content_block_id}=    Get Text    ${content_block["button_list"]["first_block_id"]}
-    Run Keyword If    ${post_test_content_block_id} != ${latest_content_block_id}    Fail    msg=New Content Blocks were created with XSS data
+    open content    ${content_block}    ${content_block["button_list"]["list"]}
+    wait until element is visible    ${content_block["button_list"]["first_block_id"]}
+    ${post_test_content_block_id}=    get text    ${content_block["button_list"]["first_block_id"]}
+    run keyword if    ${post_test_content_block_id} != ${latest_content_block_id}    fail    msg=New Content Blocks were created with XSS data
 
-Search
-    @{failed_inputs}=    Create List
-    :FOR    ${line}    In     @{xss_test_data}
-    \    Open Content    ${content_block}    ${content_block["button_list"]["list"]}
-    \    Wait Until Element Is Visible    ${generics["search_input"]}    timeout=30
-    \    Input Text    ${generics["search_input"]}    ${line}
-    \    Click Element    ${generics["search_button"]}
-    \    Check For Bad Request    ${line}    ${failed_inputs}
-    Write Failed Input To File    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
-    Run Keyword If    ${is_failed}    Fail    msg=xss verification failed, check the logs folder for data
+content_block_search
+    verify xss data on search field    ${content_block}    ${content_block["button_list"]["list"]}
+
+*** Keywords ***
+loop through test data
+    [Arguments]    ${field}
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{xss_test_data}
+    \    open content    ${content_block}    ${content_block["button_add"]["add"]}
+    \    wait until element is visible    ${field}    timeout=30
+    \    input text    ${content_block["button_add"]["name"]}    Name
+    \    input text    ${field}    ${line}
+    \    click element    ${generics['save']}
+    \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
