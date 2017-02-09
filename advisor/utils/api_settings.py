@@ -1,9 +1,9 @@
 import os
 
 # QA URL Settings
-qa_advisor = "qa-eu1-advisor1-v3.advisor.smartfocus.com"
-qa_renderer = "qa-eu1-p3-renderer.advisor.smartfocus.com"
-qa_click = "qa-eu1-p3-api-public.advisor.smartfocus.com"
+qa_advisor = "qa-eu1-advisor1-v3.Advisor.smartfocus.com"
+qa_renderer = "qa-eu1-p3-renderer.Advisor.smartfocus.com"
+qa_click = "qa-eu1-p3-api-public.Advisor.smartfocus.com"
 qa_guid = "e44f26b0-12c7-4c29-aabf-9d11197c9c02"
 qa_aid = "20003"
 qa_username = "qaTest1"
@@ -16,8 +16,8 @@ qa_tcp_key = os.path.join("C:/keys/qa-eu-master")
 
 # PreProd URL Settings
 preprod_advisor = "preprod-eu1-api-ext-lb-580332958.eu-west-1.elb.amazonaws.com"
-preprod_renderer = "preprod-eu1-p3-renderer.advisor.smartfocus.com"
-preprod_click = "preprod-eu1-p3-api-public.advisor.smartfocus.com"
+preprod_renderer = "preprod-eu1-p3-renderer.Advisor.smartfocus.com"
+preprod_click = "preprod-eu1-p3-api-public.Advisor.smartfocus.com"
 preprod_guid = "f04323d7-4224-41b9-8906-17327182c866"
 preprod_aid = "50004"
 preprod_username = "u50004Z1EmS9rs"
@@ -44,16 +44,16 @@ kafka_settings = {
 
 api_settings = {
     "QA": {
-        "advisor": "qa-eu1-advisor1-v3.advisor.smartfocus.com",
-        "renderer": "qa-eu1-p3-renderer.advisor.smartfocus.com",
-        "click_advisor": "qa-eu1-p3-api-public.advisor.smartfocus.com/api-public/3.0/click/1?",
-        "click_personaliser": "qa-eu1-p3-api-public.advisor.smartfocus.com/personalization/clickback/click?"
+        "Advisor": "qa-eu1-advisor1-v3.Advisor.smartfocus.com",
+        "renderer": "qa-eu1-p3-renderer.Advisor.smartfocus.com",
+        "click_advisor": "qa-eu1-p3-api-public.Advisor.smartfocus.com/api-public/3.0/click/1?",
+        "click_personaliser": "qa-eu1-p3-api-public.Advisor.smartfocus.com/personalization/clickback/click?"
     },
     "PREPROD": {
-        "advisor": "preprod-eu1-api-ext-lb-580332958.eu-west-1.elb.amazonaws.com",
-        "renderer": "preprod-eu1-p3-renderer.advisor.smartfocus.com",
-        "click_advisor": "preprod-eu1-p3-api-public.advisor.smartfocus.com/api-public/3.0/click/1?",
-        "click_personaliser": "preprod-eu1-ext.advisor.smartfocus.com/personalization/clickback/click?"
+        "Advisor": "preprod-eu1-api-ext-lb-580332958.eu-west-1.elb.amazonaws.com",
+        "renderer": "preprod-eu1-p3-renderer.Advisor.smartfocus.com",
+        "click_advisor": "preprod-eu1-p3-api-public.Advisor.smartfocus.com/api-public/3.0/click/1?",
+        "click_personaliser": "preprod-eu1-ext.Advisor.smartfocus.com/personalization/clickback/click?"
     }
 }
 

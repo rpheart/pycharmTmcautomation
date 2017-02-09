@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import requests
 
-import advisor.utils.api_settings as settings
+import Advisor.utils.api_settings as settings
 
 # Globals
 email = "deduplication@renderer.com"
