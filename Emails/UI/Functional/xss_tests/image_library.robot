@@ -2,7 +2,6 @@
 Documentation       will check the input of each of the blns values into the image library screen
 Resource            ../../Utils/keywords.robot
 Resource            ../../Utils/xss_keywords.robot
-Library             ImageHorizonLibrary
 Default Tags        ui    email    xss
 Suite Setup         run keywords
 ...                 login
@@ -96,10 +95,8 @@ image_library_add_image_description
 upload file
     wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["add_button"]}
     select frame    ${image_library["button_add"]["image_library_iframe"]}
-    wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["browse_button"]}
-    sleep    1
     ${file_path}=    catenate    SEPARATOR=    ${EXECDIR}    \\Emails\\UI\\Utils\\Resources\\puffin.jpg
-    type    ${file_path}    Key.ENTER
+    choose file    ${image_library["button_add"]["browse_button"]}    ${file_path}
     sleep    1
 
 delete image test data
