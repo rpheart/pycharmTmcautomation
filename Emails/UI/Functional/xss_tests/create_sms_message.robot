@@ -74,7 +74,7 @@ loop through test data
     @{failed_inputs}=    Create List
     :for    ${line}    In     @{xss_test_data}
     \    open content    ${sms_message_builder}    ${sms_message_builder["button_add"]["add"]}
-    \    wait until element is visible    ${field}    timeout=30
+    \    wait until element is visible    ${field}
     \    input text    ${sms_message_builder["button_add"]["sms_message_name"]}    Name        # gets over-written if the field being tested is name itself!!
     \    input text    ${sms_message_builder["button_add"]["sms_message_body"]}    Body        # gets over-written if the field being tested is body itself!!
     \    input text    ${field}    ${line}

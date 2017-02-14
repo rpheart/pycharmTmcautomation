@@ -15,10 +15,10 @@ image_library_search
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    go to ${image_library["menu"]}
-    \    wait until element is visible    ${navigation_bar}    timeout=30
+    \    wait until element is visible    ${navigation_bar}
     \    select frame    ${iframes["top"]}
     \    select frame    ${iframes["ccmd"]}
-    \    wait until element is visible    ${generics["search_input"]}    timeout=30
+    \    wait until element is visible    ${generics["search_input"]}
     \    input text    ${generics["search_input"]}    ${line}
     \    click element    ${generics["search_button"]}
     \    check for bad request    ${line}    ${failed_inputs}
@@ -29,7 +29,7 @@ image_library_create_new_folder
     @{failed_inputs}=    create list
     :FOR    ${line}    In     @{xss_test_data}
     \    go to ${image_library["menu"]}
-    \    wait until element is visible    ${navigation_bar}    timeout=30
+    \    wait until element is visible    ${navigation_bar}
     \    select frame    ${iframes["top"]}
     \    select frame    ${iframes["ccmd"]}
     \    wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["create_new_folder"]}
@@ -43,7 +43,7 @@ image_library_add_image_name
     @{failed_inputs}=    create list
     :for    ${line}    in    @{xss_test_data}
     \    go to ${image_library["menu"]}
-    \    wait until element is visible    ${navigation_bar}    timeout=30
+    \    wait until element is visible    ${navigation_bar}
     \    select frame    ${iframes["top"]}
     \    select frame    ${iframes["ccmd"]}
     \    upload file
@@ -57,7 +57,7 @@ image_library_add_image_description
     @{failed_inputs}=    create list
     :for    ${line}    in    @{xss_test_data}
     \    go to ${image_library["menu"]}
-    \    wait until element is visible    ${navigation_bar}    timeout=30
+    \    wait until element is visible    ${navigation_bar}
     \    select frame    ${iframes["top"]}
     \    select frame    ${iframes["ccmd"]}
     \    upload file
@@ -71,10 +71,10 @@ image_library_add_image_description
 #Image Library Rename Image Name
 #    @{failed_inputs}=    Create List
 #    Go To ${image_library["menu"]}
-#    Wait Until Element Is Visible    ${navigation_bar}    timeout=30
+#    Wait Until Element Is Visible    ${navigation_bar}
 #    Select Frame    ${iframes["top"]}
 #    Select Frame    ${iframes["ccmd"]}
-#    Wait Until Element Is Visible    ${image_library["button_add"]["add_button"]}    timeout=30
+#    Wait Until Element Is Visible    ${image_library["button_add"]["add_button"]}
 #    Upload File
 #    Input Text    name=name    Name
 #    Input Text    name=description    Description
@@ -82,10 +82,10 @@ image_library_add_image_description
 #
 #    :FOR    ${line}    In    @{xss_test_data}
 #    \    go to ${image_library["menu"]}
-#    \    Wait Until Element Is Visible    ${navigation_bar}    timeout=30
+#    \    Wait Until Element Is Visible    ${navigation_bar}
 #    \    Select Frame    ${iframes["top"]}
 #    \    Select Frame    ${iframes["ccmd"]}
-#    \    Wait Until Element Is Visible    ${image_library["button_add"]["add_button"]}    timeout=30
+#    \    Wait Until Element Is Visible    ${image_library["button_add"]["add_button"]}
 #    \
 #    \    check for bad request    ${line}    ${failed_inputs}
 #    write failed input to file    ${TEST_NAME}    ${generics["search_input"]}    @{failed_inputs}
@@ -101,7 +101,7 @@ upload file
 
 delete image test data
     go to ${image_library["menu"]}
-    wait until element is visible    ${navigation_bar}    timeout=30
+    wait until element is visible    ${navigation_bar}
     select frame    ${iframes["top"]}
     select frame    ${iframes["ccmd"]}
     wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["select_all"]}

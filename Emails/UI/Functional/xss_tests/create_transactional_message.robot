@@ -116,7 +116,7 @@ loop through test data
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${transactional_message}    ${transactional_message["button_add"]["add"]}
-    \    wait until element is visible    ${transactional_message["button_add"]["message_reply_to_emails"]}    timeout=30
+    \    wait until element is visible    ${transactional_message["button_add"]["message_reply_to_emails"]}
     \    input text    ${transactional_message["button_add"]["message_reply_to_emails"]}    test@test.com
     \    ${is_email}=    run keyword and return status    should contain    ${field}    ReplyToEmail
     \    run keyword if    ${is_email}    run keywords    create email string    ${line}

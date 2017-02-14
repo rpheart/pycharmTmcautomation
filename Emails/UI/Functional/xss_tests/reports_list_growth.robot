@@ -16,7 +16,7 @@ list_growth_report_name
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${list_growth_reports}    ${list_growth_reports["button_add"]["add"]}
-    \    wait until element is visible    ${generics["create_new"]}    timeout=30
+    \    wait until element is visible    ${generics["create_new"]}
     \    click element    ${generics["create_new"]}
     \    input text    ${list_growth_reports["button_add"]["create_new"]["report_name"]}    ${line}
     \    click element    ${list_growth_reports["button_add"]["create_new"]["create_report"]}
