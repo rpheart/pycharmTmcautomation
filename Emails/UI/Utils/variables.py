@@ -44,8 +44,8 @@ generics = {
     "create_new": "xpath=//*[contains(@class, 'applicationBar') and contains(text(), 'New')]",
     "save": "xpath=//a[contains(text(),'Save') or ./text() = 'Save']",
     "next": "xpath=//a[contains(text(),'Next') or ./text() = 'Next']",
-    "search_input": "xpath=//input[contains(@class, 'search') or contains(@class, 'Search') or contains(@name, 'search-input') or @type='text' and contains(@name, 'searchQuery') or contains(@data-ng-model, 'search')]",
-    "search_button":"xpath=//*[contains(@id, 'searchButton') or contains(@id, 'searchInputButton') or contains(@class, 'search-button') or contains(@class, 'search-input-button') or @id='iconSearch']",
+    "search_input": "//input[contains(@class, 'search') or contains(@class, 'Search') or contains(@name, 'search-input') or @type='text' and contains(@name, 'searchQuery') or contains(@data-ng-model, 'search')]",
+    "search_button": "//*[contains(@id, 'searchButton') or contains(@id, 'searchInputButton') or contains(@class, 'search-button') or contains(@class, 'search-input-button') or @id='iconSearch']",
     "select_all": "xpath=//img[@id='iconSelectAll']",
     "trash": "xpath=//*[@id='iconTrash']",
     "ok_button": "xpath=//a[contains(text(), 'OK')]"
@@ -120,6 +120,7 @@ multivariate_campaign = {
         "percent_input_verion_0": "id=splitrunUI-builderView-testSubject-percentInput-version0",
         "percent_input_version_1": "id=splitrunUI-builderView-testSubject-percentInput-version1",
         "number_segmentation_button": "xpath=//*[@id='splitrunUI-builderView-numberSegmentationButton']/tbody/tr/td/div/img",
+        "version_2_input": "xpath=//*[@id='splitrunUI-builderView-testSubject-subjectInput-version1']",
         "select_a_field": "xpath=//*[@id='splitrunUI-builderView-testSubject-persoFieldsButton-version1']/div",
         "select_email_select_a_field": "xpath=//*[@id='splitrunUI-builderView-testSubject-persoFieldsList-version1']/option[contains(text(),'EMAIL')]",
         "subject_input_version_1": "id=splitrunUI-builderView-testSubject-subjectInput-version1",
@@ -133,10 +134,13 @@ multivariate_campaign = {
         "send_after": "id=splitrunUI-builderView-autoSendRadioButton",
         "24_hours_input": "id=splitrunUI-builderView-autoSendInput",
         "opti_send_redio_button": "id=splitrunUI-builderView-optiSendRadioButton",
-        "manual_redio_button": "id=splitrunUI-builderView-manualRadioButton",
+        "manual_radio_button": "id=splitrunUI-builderView-manualRadioButton",
         "more_options": "xpath=//*[@id='splitrunUI-builderView-moreOptionsButton']//div[./text()='More options']",
         "back_button": "xpath=//*[@id='splitrunUI-builderView-previousButton']//div[contains(text(),'Back')]",
-        "schedule_button": "xpath=//*[@id='splitrunUI-builderView-sendCampaignButton']//div[contains(text(),'Schedule')]"
+        "schedule_button": "xpath=//*[@id='splitrunUI-builderView-sendCampaignButton']//div[contains(text(),'Schedule')]",
+        "add_recipient": "xpath=//*[@id='splitrunUI-builderView-alertRecipients-item0-emailInput']",
+        "track_link_hostname": "xpath=//*[@id='splitrunUI-builderView-brandedTrackerHostInput']",
+        "track_url": "xpath=//*[@id='splitrunUI-builderView-endOfTrackingUrlInput']",
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-send']//ul[@title='MultiVariate']/li[2]",
@@ -178,10 +182,15 @@ multimessage_campaign = {
         "continue_button": "xpath=//*[@id='splitrunUI-builderView-nextButton']//div[contains(text(),'Continue')]",
         "1_schedule_the_campaign": "xpath=//*[@id='splitrunuidiv']//legend[contains(text(),'1. Schedule the campaign')]",
         "schedule_campaign": "xpath=//*[@id='splitrunUI-builderView-breadcrumb-3']//div[contains(text(),'Schedule campaign')]",
-        "send_now_redio_button": "id=splitrunUI-builderView-sendNowRadioButton",
-        "send_later_redio_button": "id=splitrunUI-builderView-sendLaterRadioButton",
+        "send_now_radio_button": "id=splitrunUI-builderView-sendNowRadioButton",
+        "send_later_radio_button": "id=splitrunUI-builderView-sendLaterRadioButton",
         "schedule_button": "xpath=//*[@id='splitrunUI-builderView-sendCampaignButton']//div[contains(text(),'Schedule')]",
-        "button_new": "xpath=//span[contains(text(),'New') or ./text() = 'New']"
+        "button_new": "xpath=//span[contains(text(),'New') or ./text() = 'New']",
+        "more_options": "xpath=//*[@id='splitrunUI-builderView-moreOptionsButton']",
+        "add_recipient_button": "xpath=//*[@id='splitrunUI-builderView-alertRecipients-addButton']/div",
+        "add_recipient": "xpath=//*[@id='splitrunUI-builderView-alertRecipients-item0-emailInput']",
+        "track_link_hostname": "xpath=//*[@id='splitrunUI-builderView-brandedTrackerHostInput']",
+        "track_url": "xpath=//*[@id='splitrunUI-builderView-endOfTrackingUrlInput']",
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-send']//ul[@title='MultiMessage']/li[2]",
@@ -190,7 +199,8 @@ multimessage_campaign = {
         "id": "xpath=//*[@id='splitrunuidiv']//div[./text()='ID']",
         "status": "xpath=//*[@id='splitrunuidiv']//div[./text()='Status']",
         "send_date": "xpath=//*[@id='splitrunuidiv']//div[./text()='Send date']",
-        "first_block_id": "xpath="
+        "table": "xpath=//*[@id='splitrunuidiv']/div/div[2]/div/div[1]/div/div[3]/div/div[2]/div/div/table",
+        "first_block_id": "xpath=//*[contains(@id, 'splitRun-archiveView')]/tr[1]/td[2]/div"
     }
 }
 
@@ -229,14 +239,14 @@ new_message_builder = {
         "add_content": "xpath=//*[@id='action-bar-addcontent']/span[./text()='Add content']",
         "change_style": "xpath=//*[@id='action-bar-styles']/span[./text()='Change style']",
         "links": "xpath=//*[@id='action-bar-links']/span[./text()='Links']",
-        "tests": "xpath=//*[@id='action-bar-tests']/span[./text()='Tests']",
+        "tests": "//*[@id='action-bar-tests']/span[./text()='Tests']",
         "import": "xpath=//*[@id='action-bar-import']/span[./text()='Import']",
         "import_input": "xpath=//*[@id='action-bar-import-input' and @type='file']",
         "export": "xpath=//*[@id='action-bar-export']/a/span[./text()='Export']",
-        "headers": "xpath=//*[@id='editor-switch']//div[./text()='Headers']",
+        "headers": "xpath=//div[contains(@class, 'item ') and text()='Headers']",  # //*[@id='editor-switch']//div[./text()='Headers']",
         "visual": "xpath=//*[@id='editor-switch']//div[./text()='Visual']",
         "plain_text": "xpath=//*[@id='editor-switch']//div[./text()='Plain-text']",
-        "contents": "xpath=//*[@id='content-palette']//div[./text()='Contents']",
+        "contents": "//*[@id='content-palette']//div[./text()='Contents']",
         "layout": "id=palette-contents-carousel-layout",
         "basic": "id=palette-contents-carousel-basic",
         "content_blocks": "id=palette-contents-carousel-content-blocks",
@@ -249,7 +259,34 @@ new_message_builder = {
         "html_icon": "xpath=//*[@id='content-type-item-html']/div[@class='icon html-icon']",
         "spacer_icon": "xpath=//*[@id='content-type-item-spacer']/div[@class='icon spacer-icon']",
         "video_icon": "xpath=//*[@id='content-type-item-video']/div[@class='icon video-icon']",
-        "reco_icon": "xpath=//*[@id='content-type-item-reco']/div[@class='icon reco-icon']"
+        "reco_icon": "xpath=//*[@id='content-type-item-reco']/div[@class='icon reco-icon']",
+        "text_widget": "xpath=//*[@id='content-type-item-text']",
+        "chevron_left": "xpath=//*[@id='editor-switch']/div/div[4]",
+        "message_name": "xpath=//*[@id='action-bar-name']",
+        "message_name_input": "xpath=//*[@id='action-bar-inputname']",
+        "empty_canvas": "xpath=//div[contains(@class, 'content-cell empty')]",
+        "add_empty_row": "xpath=//*[@id='action-bar-addrow-icon']",
+        "save_as_a_template": "xpath=//*[@id='msg-editor-btnsaveastemplate']",
+        "save": "xpath=//*[@id='msg-editor-btnsave']",
+        "save_and_finalize": "xpath=//*[@id='msg-editor-btnfinalise']",
+        "company_sender": "xpath=//input[@placeholder='Company Sender']",
+        "reply_to_email": "xpath=//input[contains(@data-bind, 'replyToEmail')]",
+        "reply_to_label": "xpath=//input[@placeholder='My Reply To Label']",
+        "subject": "xpath=//input[@placeholder='What is your subject line?']",
+        "send_to": "xpath=//input[@placeholder='{{FIRSTNAME}} {{LASTNAME}}']",
+        "content_block_search_input": "//*[@id='content-blocks-region']/div/div[3]/div/input",
+        "content_block_search_button": "//*[@id='content-blocks-region']/div/div[3]/div/div/div[2]/div[2]",
+        "templates": "//*[@id='palette-contents-carousel-templates']",
+        "templates_search_input": "//*[@id='templates-region']/div/div[2]/div/input",
+        "templates_search_button": "//*[@id='templates-region']/div/div[2]/div/div/div[2]/div[2]",
+        "save_template_input": "//*[@id='template-name-container']/input",
+        "save_template_button": "//*[@id='template-btnsave']",
+        "add_recipients": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[1]",
+        "test_panel": "//*[@id='content-palette']/div/div/div[2]",
+        "send_test_emails": "//*[@id='send-test-emails']/div[2]",
+        "first_test_email_slider": "//*[@class='test-email']/div/div[2]",
+        "send_test_search_input": "//*[@id='test-email-search-input-container']/div/input",
+        "send_test_search_button": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[2]"
     },
     "button_list": {
         "list": "xpath=//*[@id='engage-create']//ul[@title='Message Builder']/li[2]",
@@ -259,7 +296,8 @@ new_message_builder = {
         "created": "xpath=//*[@id='msg-archive-tablediv-header-creation-date']/div[@title='Created']",
         "last_modified": "xpath=//*[@id='msg-archive-tablediv-header-modification-date']/div[@title='Last modified']",
         "creator": "xpath=//*[@id='msg-archive-tablediv-header-creation-user']/div[@title='Creator']",
-        "qa_auto_test_Message": "xpath=//*[@id='archive-list-container']//div[./text()='QA auto test Message']"
+        "qa_auto_test_Message": "xpath=//*[@id='archive-list-container']//div[./text()='QA auto test Message']",
+        "message_count": "//span[@class='tabledivFooterText']"
     }
 }
 
