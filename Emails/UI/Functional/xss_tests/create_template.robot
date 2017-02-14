@@ -43,13 +43,13 @@ loop through test data
     @{failed_inputs}=    Create List
     :for    ${line}    In     @{xss_test_data}
     \    open content    ${template}    ${template["button_add"]["add"]}
-    \    wait until element is visible    ${field}    timeout=30
+    \    wait until element is visible    ${field}
     \    input text    ${template["button_add"]["template_name"]}    Name        # gets over-written if the field being tested is name itself!!
     \    input text    ${field}    ${line}
     \    ${file_path}=    catenate    SEPARATOR=    ${EXECDIR}    \\Emails\\UI\\Utils\\Resources\\easter_eggs.dwt
     \    choose file      ${template["button_add"]["upload_file"]}   ${file_path}
     \    click element    ${template["button_add"]["import_file"]}
-    \    wait until element is visible    ${template["button_add"]["save"]}    timeout=30
+    \    wait until element is visible    ${template["button_add"]["save"]}
     \    click element    ${generics["save"]}
     \    check for bad request     ${line}    ${failed_inputs}
     write failed input to file    ${TEST_NAME}    ${field}    @{failed_inputs}

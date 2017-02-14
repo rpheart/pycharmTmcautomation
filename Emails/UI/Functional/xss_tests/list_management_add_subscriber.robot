@@ -38,14 +38,14 @@ add_subscriber_segment
 
 search_for_added_subscribers
     open content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
-    wait until element is visible    ${search_subscriber["button_add"]["search_button"]}    timeout=30
+    wait until element is visible    ${search_subscriber["button_add"]["search_button"]}
     select from list    ${search_subscriber["button_add"]["numeric_field_combo"]}    EMVCELLPHONE
     select from list    ${search_subscriber["button_add"]["numeric_field_operator"]}    equals
     input text    ${search_subscriber["button_add"]["numeric_field_value"]}    777
     click element    ${search_subscriber["button_add"]["numeric_search"]}
-    wait until element is visible    ${search_subscriber["button_add"]["text_search"]}    timeout=30
+    wait until element is visible    ${search_subscriber["button_add"]["text_search"]}
     click element    ${search_subscriber["button_add"]["text_search"]}
-    wait until element is visible    ${search_subscriber["button_add"]["member_count"]}    timeout=30
+    wait until element is visible    ${search_subscriber["button_add"]["member_count"]}
     ${subscribers}=    run keyword and return status    element text should be    ${search_subscriber["button_add"]["member_count"]}    0
     run keyword if    ${subscribers} == False    Fail    msg=Members were created using xss data
 
@@ -55,7 +55,7 @@ loop through test data
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${add_subscriber}    ${add_subscriber["button_add"]["add"]}
-    \    wait until element is visible    ${field}    timeout=30
+    \    wait until element is visible    ${field}
     \    input text    ${add_subscriber["button_add"]["input_fields"]["emv_cellphone"]}    777
     \    input text    ${add_subscriber["button_add"]["input_fields"]["email"]}    test@test.com
     \    ${is_email}=    run keyword and return status    should contain    ${field}    (EMAIL)
@@ -69,16 +69,16 @@ loop through test data
 
 delete subscribers
     open content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
-    wait until element is visible    ${search_subscriber["button_add"]["search_button"]}    timeout=30
+    wait until element is visible    ${search_subscriber["button_add"]["search_button"]}
     select from list    ${search_subscriber["button_add"]["numeric_field_combo"]}    EMVCELLPHONE
     select from list    ${search_subscriber["button_add"]["numeric_field_operator"]}    equals
     input text    ${search_subscriber["button_add"]["numeric_field_value"]}    777
     click element    ${search_subscriber["button_add"]["numeric_search"]}
-    wait until element is visible    ${search_subscriber["button_add"]["text_search"]}    timeout=30
+    wait until element is visible    ${search_subscriber["button_add"]["text_search"]}
     click element    ${search_subscriber["button_add"]["text_search"]}
-    wait until element is visible    ${search_subscriber["button_add"]["member_count"]}    timeout=30
+    wait until element is visible    ${search_subscriber["button_add"]["member_count"]}
     :for    ${n}    in range    100  # TODO Turn this into a while false loop
-    \    wait until element is visible    ${search_subscriber["button_add"]["member_count"]}    timeout=30
+    \    wait until element is visible    ${search_subscriber["button_add"]["member_count"]}
     \    ${subscribers}=    run keyword and return status    element text should be    ${search_subscriber["button_add"]["member_count"]}    0
     \    run keyword if    ${subscribers} == False    run keywords    click element    ${generics["select_all"]}
     \    ...    AND    click element    ${generics["trash"]}

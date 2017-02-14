@@ -13,7 +13,7 @@ transactional_message_reports_email
     @{failed_inputs}=    Create List
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${transactional_reports}    ${transactional_reports["button_add"]["add"]}
-    \    wait until element is visible    ${transactional_reports["button_add"]["custom_search"]}    timeout=30
+    \    wait until element is visible    ${transactional_reports["button_add"]["custom_search"]}
     \    click element    ${transactional_reports["button_add"]["custom_search"]}
     \    create email string    ${line}
     \    input text    ${transactional_reports["button_add"]["email"]}    ${line}

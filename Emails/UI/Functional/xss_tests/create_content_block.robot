@@ -50,7 +50,7 @@ loop through test data
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${content_block}    ${content_block["button_add"]["add"]}
-    \    wait until element is visible    ${field}    timeout=30
+    \    wait until element is visible    ${field}
     \    input text    ${content_block["button_add"]["name"]}    Name
     \    input text    ${field}    ${line}
     \    click element    ${generics['save']}

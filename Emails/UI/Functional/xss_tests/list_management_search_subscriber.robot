@@ -13,7 +13,7 @@ search_subscriber
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
-    \    wait until element is visible    name=textFieldCombo    timeout=30
+    \    wait until element is visible    name=textFieldCombo
     \    select from list    name=textFieldCombo    EMAIL
     \    select from list    name=textFieldOperator    equals
     \    input text    name=textFieldValue    ${line}

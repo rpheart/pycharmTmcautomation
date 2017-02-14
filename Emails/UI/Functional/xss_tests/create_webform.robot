@@ -58,7 +58,7 @@ loop through test data step 1
     :for    ${line}    in     @{xss_test_data}
     # Step 1 defaults
     \    open content    ${webform}    ${webform["button_add"]["add"]}
-    \    wait until element is visible    ${webform["button_add"]["name"]}    timeout=30
+    \    wait until element is visible    ${webform["button_add"]["name"]}
     \    input text    ${webform["button_add"]["name"]}    Name
     \    select from list    ${webform["button_add"]["select_languages"]}    English
     \    click element    ${webform["button_add"]["select_date"]}
@@ -80,7 +80,7 @@ loop through test data step 2
     # Step 1 defaults
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${webform}    ${webform["button_add"]["add"]}
-    \    wait until element is visible    ${webform["button_add"]["name"]}    timeout=30
+    \    wait until element is visible    ${webform["button_add"]["name"]}
     \    input text    ${webform["button_add"]["name"]}    Name
     \    select from list    ${webform["button_add"]["select_languages"]}    English
     \    click element    ${webform["button_add"]["select_date"]}
@@ -110,7 +110,7 @@ loop through test data step 3
     :for    ${line}    in     @{xss_test_data}
     # Step 1 defaults
     \    open content    ${webform}    ${webform["button_add"]["add"]}
-    \    wait until element is visible    ${webform["button_add"]["name"]}    timeout=30
+    \    wait until element is visible    ${webform["button_add"]["name"]}
     \    input text    ${webform["button_add"]["name"]}    Name
     \    select from list    ${webform["button_add"]["select_languages"]}    English
     \    click element    ${webform["button_add"]["select_date"]}
