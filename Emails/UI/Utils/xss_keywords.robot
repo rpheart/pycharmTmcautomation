@@ -15,13 +15,13 @@ check for bad request
     run keyword and ignore error    store alert message
 
     # Check for error as popup
-    @{alert_messages}=    create list    -    Error 200 requesting page
+    @{alert_messages}=    create list    Bad Request    #Error 200 requesting page
     :for    ${message}    in    @{alert_messages}
     \    exit for loop if    ${test}
     \    ${test}=    Run Keyword And Return Status    Should Contain    ${alert_message}    ${message}
 
     # Check for error as page
-    @{error_messages}=    create list    Bad Request!!!    save split run error :
+    @{error_messages}=    create list    Bad Request    Bad request    #save split run error :
     :for    ${message}    in    @{error_messages}
     \    exit for loop if    ${test}
     \    ${test}=    run keyword and return status    current frame contains    ${message}
