@@ -1,27 +1,16 @@
 *** Settings ***
 Documentation
 Resource            ../Utils/keywords.robot
+Suite Setup         Run Keywords    Login
+...                 AND    Go To ${System_Page["email"]}
+...                 AND    Open Content    ${new_message_builder}    ${new_message_builder["button_add"]["add"]}
+Suite Teardown      Close All Browsers
 
 *** Variables ***
 ${content_block}    ${EMPTY}
 
 *** Test Cases ***
-login and go to create new message (new message builder)
-    Login
-    Go To ${System_Page["email"]}
-    Open Content    ${new_message_builder}    ${new_message_builder["button_add"]["add"]}
-
-#Create_Select_Message_Builder
-    #Click Element    ${new_message_builder["menu"]}    # Click on Create
-    #Wait until Element Is Visible    ${new_message_builder["button_add"]["add"]}    timeout=5
-    #Click Element    ${new_message_builder["button_add"]["add"]}    # Click on Message Builder
-    # Wait Until element Is Visible    ${iframes["top"]}    timeout=40
-    # Select frame    ${iframes["top"]}    #Click on main frame
-    # Wait Until element Is Visible    ${iframes["ccmd"]}
-    # Select Frame    ${iframes["ccmd"]}    # Click on inner frame
-
 Construct_Email_Content
-    Wait Until Element Is Visible    ${new_message_builder["button_add"]["text_widget"]}    timeout=30
     Click Element    ${new_message_builder["button_add"]["text_widget"]}
     Drag and Drop    ${new_message_builder["button_add"]["text_widget"]}  css=#row-options-container > div > div.action.right # Drag Text Widget and drop into block
     Sleep    5
@@ -32,10 +21,7 @@ Construct_Email_Content
     Press Key    ${new_message_builder["button_add"]["text_content_box"]}    Create New Message Builder\n\n\nDear Tester\n\nThis is Create New Message Builder\nThis is a test message and will be recaved by no one.\n\n\nKind regards\n\nTested by QA
     Sleep    5
     # --- end text
-    #Drag and Drop    ${new_message_builder["button_add"]["image_widget"]}   ${new_message_builder["button_add"]["drop_widgets"]}    # css=#row-options-container > div > div.action.right    # Drag and drop
-    #Sleep    5
     Click Element    id=action-bar-name    # Select Untitled
-    #Sleep    5
     Click Element    ${new_message_builder["button_add"]["message_name_bar_input"]}    # css=#action-bar-inputname
     input text    ${new_message_builder["button_add"]["message_name_bar_input"]}    QA auto test Message    # action-bar-inputname # Name the email type Testing Create New Message Builder
     Press Key    ${new_message_builder["button_add"]["message_name_bar_input"]}    \\09    # action-bar-inputname
@@ -52,7 +38,6 @@ Construct_Email_Content
     Sleep    2
     Press Key    ${new_message_builder["button_add"]["subject_line_input"]}    Confirmation that we are able to automate create message and save. Ignore this content !!!    # Subject:
     Press Key    xpath=//*[@id="editor-headers"]/div[7]/div[2]/input    \\09
-    # -- move to Save_Finalize--
 
 Save_Finalize
     Sleep    5
@@ -72,7 +57,3 @@ Verify_Confirmation_Message
     Select Frame    ${iframes["ccmd"]}    # Click on inner frame
     Sleep    5
     Element Should Contain    ${new_message_builder["button_list"]["check_message_created]}    QA auto test Message
-    Sleep    5
-
-Suite_Teardown
-    Close All Browsers

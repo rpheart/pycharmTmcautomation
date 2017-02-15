@@ -1,7 +1,10 @@
 *** Settings ***
 Documentation       test importing member files and updating with email or custom keys and checking that the members have been added or updated after each import
-Resource            Emails/UI/Utils/keywords.robot
+Resource            ../Utils/keywords.robot
 Library             ImageHorizonLibrary
+Suite Setup         Run Keywords    Login
+...                 AND    Go To ${system_page["email"]}
+Suite Teardown      Close All Browsers
 Default Tags        ui    email    production
 
 *** Variables ***
@@ -16,14 +19,8 @@ ${member_name}      foo
 ${member_surname}      bar
 
 *** Test Cases ***
-login and go to email
-    login
-    go to ${system_page["email"]}
-
 import invalid file
-    open content    ${import_subscriber}    ${import_subscriber["button_add"]}
-    select frame    ${iframes["top"]}
-    select frame    ${iframes["ccmd"]}
+    open content    ${import_subscriber}    ${import_subscriber["button_add"]["add"]}
     wait until element is visible    id=ccmd-import-btn    timeout=30
     upload ${failed_import}
     select window    ${document_title}
@@ -72,7 +69,6 @@ verify members have been imported
     table row should contain    css=${search_table}    ${row_index}    ${member_email}
     table row should contain    css=${search_table}    ${row_index}    ${member_name}
     table row should contain    css=${search_table}    ${row_index}    ${member_surname}
-
 
 *** Keywords ***
 find row in ${table} containing ${identifier}

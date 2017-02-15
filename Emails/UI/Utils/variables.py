@@ -41,7 +41,8 @@ generics = {
     "send_test_button": "xpath=//*[@id='iconArrowBack']/../a",
     "close_popup_box": "id=popCloseBox",
     "send_test_message": "xpath=//*[@id='toolbox']//div[contains(text(),'Send Test Message')]",
-    "create_new": "xpath=//*[@class='applicationBarButtonTextTD' and contains(text(), 'New')]"
+    "create_new": "//*[contains(text(), 'New') and (contains(@class, 'applicationBar') or contains(@class, 'appbar') or contains(@class, 'label'))]",
+    "add": "//*[contains(text(), 'Add') and (contains(@class, 'applicationBar') or contains(@class, 'appbar') or contains(@class, 'label'))]"
 }
 
 # pages
