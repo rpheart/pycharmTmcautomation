@@ -199,7 +199,7 @@ multimessage_campaign = {
         "id": "//*[@id='splitrunuidiv']//div[./text()='ID']",
         "status": "//*[@id='splitrunuidiv']//div[./text()='Status']",
         "send_date": "//*[@id='splitrunuidiv']//div[./text()='Send date']",
-        "table": "//*[@id='splitrunuidiv']/div/div[2]/div/div[1]/div/div[3]/div/div[2]/div/div/table",
+        "table": "xpath=//*[@id='splitrunuidiv']/div/div[2]/div/div[1]/div/div[3]/div/div[2]/div/div/table",
         "first_block_id": "//*[contains(@id, 'splitRun-archiveView')]/tr[1]/td[2]/div"
     }
 }
@@ -558,7 +558,7 @@ webform = {
         "surname_webform": "//*[@id='rows']/tr/td[./text()='SurnameWebForm']",
         "qa_auto_email": "//*[@id='rows']/tr/td[text()='qa.auto@smartfocus.com']",
         "search_input": "//input[contains(@name, 'searchPattern')]",
-        "table": "//table[@class='list']"
+        "table": "xpath=//table[@class='list']"
     }
 }
 
@@ -653,7 +653,7 @@ transactional_message = {
         "email_lable": "//*[@id='NotificationCustomForm']//b[./text()='Email']",
         "email_input": "name=email",
         "custom_form_ok_button": "//*[@id='NotificationCustomForm']//a[./text()='OK']",
-        "table": "//table[@class='list']"
+        "table": "xpath=//table[@class='list']"
     }
 }
 
@@ -677,7 +677,7 @@ transactional_content_block = {
     "button_list": {
         "list": "//*[@id='engage-create']//span[contains(text(),'Transactional Content')]/..//ul[@title='Content Block']/li[2]",
         "dynamic_content_blocks": "//*[@id='ccmd-appBar-realTimeBannersButton']//td[./text()='Dynamic Content Blocks']",
-        "table": "//table[@class='list']",
+        "table": "xpath=//table[@class='list']",
         "header_id": "//*[@id='content']//th[normalize-space(.//text())='ID']",
         "header_name": "//*[@id='content']//th[normalize-space(.//text())='Name']",
         "header_description": "//*[@id='content']//th[normalize-space(.//text())='Description']",
@@ -998,7 +998,7 @@ workflow = {
         "first_manager_checkbox": "//input[contains(@name, 'wfm')]",
         "workflow_name": "//input[@name='name']",
         "workflow_description": "//input[@name='description']",
-        "table": "//table[@class='list']"
+        "table": "xpath=//table[@class='list']"
     }
 }
 
