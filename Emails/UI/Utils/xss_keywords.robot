@@ -2,8 +2,6 @@
 Documentation       contains keywords specific to xss testing
 Variables           Resources/xss_test_data.py
 
-*** Variables ***
-
 *** Keywords ***
 store alert message
     ${alert_message}=    get alert message
@@ -13,18 +11,26 @@ check for bad request
     [Arguments]    ${input}    @{failed_inputs}
     ${test}=    set variable    False
     run keyword and ignore error    store alert message
+    ${is_notification}=    run keyword and return status    element should be visible    //div[contains(@id, 'notification-message')]
+    ${notification_message}=    run keyword if    ${is_notification}    get text    //div[contains(@id, 'notification-message')]/div/div/div[2]
 
-    # Check for error as popup
-    @{alert_messages}=    create list    Bad Request    #Error 200 requesting page
+    # check for error as page
+    @{error_messages}=    create list    Bad Request    Bad request    save split run error :
+    :for    ${message}    in    @{error_messages}
+    \    exit for loop if    ${test}
+    \    ${test}=    run keyword and return status    current frame contains    ${message}
+
+    # check for error as popup
+    @{alert_messages}=    create list    Bad Request    Error 200 requesting page
     :for    ${message}    in    @{alert_messages}
     \    exit for loop if    ${test}
     \    ${test}=    Run Keyword And Return Status    Should Contain    ${alert_message}    ${message}
 
-    # Check for error as page
-    @{error_messages}=    create list    Bad Request    Bad request    #save split run error :
-    :for    ${message}    in    @{error_messages}
+    # check for error as notification
+    @{notification_messages}=    create list    Failed to save.    Bad Request    Bad request
+    :for    ${message}    in    @{notification_messages}
     \    exit for loop if    ${test}
-    \    ${test}=    run keyword and return status    current frame contains    ${message}
+    \    ${test}=    run keyword and return status    should contain    ${notification_message}    ${message}
 
     run keyword if    ${test} == False    append to list    @{failed_inputs}    ${input}
 
