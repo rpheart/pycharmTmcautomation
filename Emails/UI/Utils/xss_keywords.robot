@@ -3,36 +3,32 @@ Documentation       contains keywords specific to xss testing
 Variables           Resources/xss_test_data.py
 
 *** Keywords ***
-store alert message
-    ${alert_message}=    get alert message
-    set test variable    ${alert_message}
-
 check for bad request
     [Arguments]    ${input}    @{failed_inputs}
-    ${test}=    set variable    False
-    run keyword and ignore error    store alert message
+    ${test_passed}=    set variable    False
+
+    # if error is alert
+    ${alert_message}=    run keyword and ignore error    get alert message
+    @{alert_messages}=    create list    bad request    error 200 requesting page
+    :for    ${message}    in    @{alert_messages}
+    \    ${test_passed}=    run keyword and return status    should contain    ${alert_message}[1]    ${message}    ignore_case=True
+    \    return from keyword if    ${test_passed}
+
+    # if error is notification
     ${is_notification}=    run keyword and return status    element should be visible    //div[contains(@id, 'notification-message')]
     ${notification_message}=    run keyword if    ${is_notification}    get text    //div[contains(@id, 'notification-message')]/div/div/div[2]
+    @{notification_messages}=    create list    failed to save.    bad request
+    :for    ${message}    in    @{notification_messages}
+    \    ${test_passed}=    run keyword and return status    should contain    ${notification_message}    ${message}    ignore_case=True
+    \    return from keyword if    ${test_passed}
 
-    # check for error as page
+    # if error is page
     @{error_messages}=    create list    Bad Request    Bad request    save split run error :
     :for    ${message}    in    @{error_messages}
-    \    exit for loop if    ${test}
-    \    ${test}=    run keyword and return status    current frame contains    ${message}
+    \    ${test_passed}=    run keyword and return status    current frame contains    ${message}
+    \    return from keyword if    ${test_passed}
 
-    # check for error as popup
-    @{alert_messages}=    create list    Bad Request    Error 200 requesting page
-    :for    ${message}    in    @{alert_messages}
-    \    exit for loop if    ${test}
-    \    ${test}=    Run Keyword And Return Status    Should Contain    ${alert_message}    ${message}
-
-    # check for error as notification
-    @{notification_messages}=    create list    Failed to save.    Bad Request    Bad request
-    :for    ${message}    in    @{notification_messages}
-    \    exit for loop if    ${test}
-    \    ${test}=    run keyword and return status    should contain    ${notification_message}    ${message}
-
-    run keyword if    ${test} == False    append to list    @{failed_inputs}    ${input}
+    run keyword unless    ${test_passed}    append to list    @{failed_inputs}    ${input}
 
 write failed input to file
     [Arguments]    ${test_suite_name}    ${test_case_name}    @{failed_inputs}
