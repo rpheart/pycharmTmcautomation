@@ -22,8 +22,8 @@ content_block_name
     open content    ${content_block}    ${content_block["button_list"]["list"]}
     wait until element is visible    ${content_block["button_list"]["first_block_id"]}
     ${post_test_content_block_id}=    get text    ${content_block["button_list"]["first_block_id"]}
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_content_block_id}    ${latest_content_block_id}
-    run keyword if    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_content_block_id}    ${latest_content_block_id}
+    run keyword unless    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
 
 content_block_description
     # Grab id of latest content block
@@ -38,8 +38,8 @@ content_block_description
     open content    ${content_block}    ${content_block["button_list"]["list"]}
     wait until element is visible    ${content_block["button_list"]["first_block_id"]}
     ${post_test_content_block_id}=    get text    ${content_block["button_list"]["first_block_id"]}
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_content_block_id}    ${latest_content_block_id}
-    run keyword if    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_content_block_id}    ${latest_content_block_id}
+    run keyword unless    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
 
 content_block_search
     verify xss data on search field    ${content_block}    ${content_block["button_list"]["list"]}

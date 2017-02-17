@@ -24,8 +24,8 @@ landing_page_name_save
     # check page count
     open content    ${landing_page}    ${landing_page["button_list"]["list"]}
     ${post_test_page_count}=    get text    ${landing_page["button_list"]["page_count"]}
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_page_count}    ${pre_test_page_count}
-    run keyword if    ${is_equal}    fail    msg=New Pages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal    ${post_test_page_count}    ${pre_test_page_count}
+    run keyword unless    ${is_equal}    fail    msg=New Pages were created with XSS data
 
 landing_page_name_save_and_finalise
     # check page count
@@ -38,8 +38,8 @@ landing_page_name_save_and_finalise
     # check page count
     open content    ${landing_page}    ${landing_page["button_list"]["list"]}
     ${post_test_page_count}=    get text    ${landing_page["button_list"]["page_count"]}
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_page_count}    ${pre_test_page_count}
-    run keyword if    ${is_equal}    fail    msg=New Pages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal    ${post_test_page_count}    ${pre_test_page_count}
+    run keyword unless    ${is_equal}    fail    msg=New Pages were created with XSS data
 
 landing_page_schedule_overview
     # check page count
@@ -52,8 +52,8 @@ landing_page_schedule_overview
     # check page count
     open content    ${landing_page}    ${landing_page["button_list"]["list"]}
     ${post_test_page_count}=    get text    ${landing_page["button_list"]["page_count"]}
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_page_count}    ${pre_test_page_count}
-    run keyword if    ${is_equal}    fail    msg=New Pages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal    ${post_test_page_count}    ${pre_test_page_count}
+    run keyword unless    ${is_equal}    fail    msg=New Pages were created with XSS data
 
 landing_page_schedule_confirmation_message
     # check page count
@@ -66,8 +66,8 @@ landing_page_schedule_confirmation_message
     # check page count
     open content    ${landing_page}    ${landing_page["button_list"]["list"]}
     ${post_test_page_count}=    get text    ${landing_page["button_list"]["page_count"]}
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_page_count}    ${pre_test_page_count}
-    run keyword if    ${is_equal}    fail    msg=New Pages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal    ${post_test_page_count}    ${pre_test_page_count}
+    run keyword unless    ${is_equal}    fail    msg=New Pages were created with XSS data
 
 landing_page_schedule_submission_url
     # check page count
@@ -80,8 +80,8 @@ landing_page_schedule_submission_url
     # check page count
     open content    ${landing_page}    ${landing_page["button_list"]["list"]}
     ${post_test_page_count}=    get text    ${landing_page["button_list"]["page_count"]}
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_page_count}    ${pre_test_page_count}
-    run keyword if    ${is_equal}    fail    msg=New Pages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal    ${post_test_page_count}    ${pre_test_page_count}
+    run keyword unless    ${is_equal}    fail    msg=New Pages were created with XSS data
 
 landing_page_data_sync_source_field_input
     # check page count
@@ -94,8 +94,8 @@ landing_page_data_sync_source_field_input
     # check page count
     open content    ${landing_page}    ${landing_page["button_list"]["list"]}
     ${post_test_page_count}=    get text    ${landing_page["button_list"]["page_count"]}
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_page_count}    ${pre_test_page_count}
-    run keyword if    ${is_equal}    fail    msg=New Pages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal    ${post_test_page_count}    ${pre_test_page_count}
+    run keyword unless    ${is_equal}    fail    msg=New Pages were created with XSS data
 
 *** Keywords ***
 loop through test data on page name

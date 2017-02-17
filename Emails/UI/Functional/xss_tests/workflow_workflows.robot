@@ -20,8 +20,8 @@ workflow_name
     # Check no new workflows were created
     open content    ${workflow}    ${workflow["button_add"]["add"]}
     ${post_test_workflow_id}=    get table cell    ${workflow["button_add"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_workflow_id}    ${most_recent_workflow_id}
-    run keyword if    ${is_equal}    fail    msg=New workflows were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as strings    ${post_test_workflow_id}    ${most_recent_workflow_id}
+    run keyword unless    ${is_equal}    fail    msg=New workflows were created with XSS data
 
 workflow_description
     # Get first item of workflow table
@@ -34,8 +34,8 @@ workflow_description
     # Check no new workflows were created
     open content    ${workflow}    ${workflow["button_add"]["add"]}
     ${post_test_workflow_id}=    get table cell    ${workflow["button_add"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_workflow_id}    ${most_recent_workflow_id}
-    run keyword if    ${is_equal}    fail    msg=New workflows were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as strings    ${post_test_workflow_id}    ${most_recent_workflow_id}
+    run keyword unless    ${is_equal}    fail    msg=New workflows were created with XSS data
 
 *** Keywords ***
 loop through test data

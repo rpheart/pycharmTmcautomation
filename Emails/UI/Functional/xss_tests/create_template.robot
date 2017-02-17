@@ -20,8 +20,8 @@ template_name
     # Check no new templates were created
     open content    ${template}    ${template["button_list"]["list"]}
     ${post_test_template_id}=    get table cell    ${template["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_template_id}    ${most_recent_template_id}
-    run keyword if    ${is_equal}    fail    msg=New templates were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_template_id}    ${most_recent_template_id}
+    run keyword unless    ${is_equal}    fail    msg=New templates were created with XSS data
 
 template_description
     # Get first item of template table
@@ -34,8 +34,8 @@ template_description
     # Check no new templates were created
     open content    ${template}    ${template["button_list"]["list"]}
     ${post_test_template_id}=    get table cell    ${template["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_template_id}    ${most_recent_template_id}
-    run keyword if    ${is_equal}    fail    msg=New templates were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_template_id}    ${most_recent_template_id}
+    run keyword unless    ${is_equal}    fail    msg=New templates were created with XSS data
 
 *** Keywords ***
 loop through test data

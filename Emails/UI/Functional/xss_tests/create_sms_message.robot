@@ -23,8 +23,8 @@ sms_name
     # Check no new sms messages were created
     open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
     ${post_test_sms_message_id}=    get table cell    ${sms_message_builder["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
-    run keyword if    ${is_equal}    fail    msg=New sms messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New sms messages were created with XSS data
 
 sms_description
     # Get first item of sms message table
@@ -37,8 +37,8 @@ sms_description
     # Check no new sms messages were created
     open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
     ${post_test_sms_message_id}=    get table cell    ${sms_message_builder["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
-    run keyword if    ${is_equal}    fail    msg=New sms messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New sms messages were created with XSS data
 
 sms_from
     # Get first item of sms message table
@@ -51,8 +51,8 @@ sms_from
     # Check no new sms messages were created
     open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
     ${post_test_sms_message_id}=    get table cell    ${sms_message_builder["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
-    run keyword if    ${is_equal}    fail    msg=New sms messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New sms messages were created with XSS data
 
 sms_body
     # Get first item of sms message table
@@ -65,8 +65,8 @@ sms_body
     # Check no new sms messages were created
     open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
     ${post_test_sms_message_id}=    get table cell    ${sms_message_builder["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
-    run keyword if    ${is_equal}    fail    msg=New sms messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New sms messages were created with XSS data
 
 *** Keywords ***
 loop through test data

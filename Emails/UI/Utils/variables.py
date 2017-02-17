@@ -149,7 +149,8 @@ multivariate_campaign = {
         "id": "//*[@id='splitrunuidiv']//div[./text()='ID']",
         "status": "//*[@id='splitrunuidiv']//div[./text()='Status']",
         "test_variable": "//*[@id='splitrunuidiv']//div[./text()='Test variable']",
-        "send_date": "//*[@id='splitrunuidiv']//div[./text()='Send date']"
+        "send_date": "//*[@id='splitrunuidiv']//div[./text()='Send date']",
+        "message_count": "//*[@id='splitrunUI-archiveView-archiveFooterLabel']/tbody/tr/td/div"
     }
 }
 
@@ -200,7 +201,7 @@ multimessage_campaign = {
         "status": "//*[@id='splitrunuidiv']//div[./text()='Status']",
         "send_date": "//*[@id='splitrunuidiv']//div[./text()='Send date']",
         "table": "xpath=//*[@id='splitrunuidiv']/div/div[2]/div/div[1]/div/div[3]/div/div[2]/div/div/table",
-        "first_block_id": "//*[contains(@id, 'splitRun-archiveView')]/tr[1]/td[2]/div"
+        "message_count": "//*[@id='splitrunUI-archiveView-archiveFooterLabel']/tbody/tr/td/div"
     }
 }
 
@@ -381,10 +382,10 @@ sms_message_builder = {
     "menu": "//*[@id='engage-create']/div[./text()='Create']",
     "button_add": {
         "add": "//*[@id='engage-create']//ul[@title='SMS Message']/li",
-        "qa_sms_message_name": "id=qa-sms-message-name",
-        "qa_sms_message_description": "id=qa-sms-message-description",
-        "qa_sms_message_form": "id=qa-sms-message-from",
-        "text_content": "id=textContent",
+        "sms_message_name": "id=qa-sms-message-name",
+        "sms_message_description": "id=qa-sms-message-description",
+        "sms_message_from": "id=qa-sms-message-from",
+        "sms_message_body": "id=textContent",
         "message_personalization_link": "//a[contains(text(), 'Message Personalization') or ./text() = 'Message Personalization']",
         "message_preview_link": "//a[contains(text(),'Message Preview') or ./text() = 'Message Preview']",
         "send_test_message_link": "//a[contains(text(),'Send Test Message') or ./text() = 'Send Test Message']",
@@ -404,7 +405,8 @@ sms_message_builder = {
         "header_edit": "//*[@id='ccmd-messages-table']//th[./text()='Edit']",
         "header_favorites": "//*[@id='ccmd-messages-table']//th[./text()='Favorites']",
         "header_copy": "//*[@id='ccmd-messages-table']//th[./text()='Copy']",
-        "header_delete": "//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']"
+        "header_delete": "//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']",
+        "table": "xpath=//*[@id='ccmd-messages-table']"
     }
 }
 
@@ -566,8 +568,8 @@ template = {
     "menu": "//*[@id='engage-create']/div[./text()='Create']",
     "button_add": {
         "add": "//*[@id='engage-create']//ul[@title='Template']/li",
-        "customer_name": "name=name",
-        "customer_description": "name=description",
+        "template_name": "name=name",
+        "template_description": "name=description",
         "upload_file": "name=uploadFile",
         "message_name": "name=messageName",
         "message_description": "name=messageDescription",
@@ -594,7 +596,8 @@ template = {
         "tick_check_box_to_delete": "name=deleteTemplate",
         "edit": "id=iconEdit",
         "delete": "//*[@id='iconTrash']/../../a",
-        "save": "css=#messageAccordion > form > div:nth-child(5) > table > tbody > tr > td > a:nth-child(1)"
+        "save": "css=#messageAccordion > form > div:nth-child(5) > table > tbody > tr > td > a:nth-child(1)",
+        "table": "xpath=//*[@id='ccmd-templates-table']"
     }
 }
 

@@ -20,8 +20,8 @@ transactional_message_name
     # Check no new message was created
     open content    ${transactional_message}    ${transactional_message["button_list"]["list"]}
     ${post_test_message_id}=    get table cell    ${transactional_message["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${most_recent_message_id}
-    run keyword if    ${is_equal}    fail    msg=New messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_message_id}    ${most_recent_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New messages were created with XSS data
 
 transactional_message_description
     # Get first item of transactional message table
@@ -34,8 +34,8 @@ transactional_message_description
     # Check no new message was created
     open content    ${transactional_message}    ${transactional_message["button_list"]["list"]}
     ${post_test_message_id}=    get table cell    ${transactional_message["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${most_recent_message_id}
-    run keyword if    ${is_equal}    fail    msg=New messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_message_id}    ${most_recent_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New messages were created with XSS data
 
 transactional_message_message_from
     # Get first item of transactional message table
@@ -48,8 +48,8 @@ transactional_message_message_from
     # Check no new message was created
     open content    ${transactional_message}    ${transactional_message["button_list"]["list"]}
     ${post_test_message_id}=    get table cell    ${transactional_message["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${most_recent_message_id}
-    run keyword if    ${is_equal}    fail    msg=New messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_message_id}    ${most_recent_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New messages were created with XSS data
 
 transactional_message_message_to
     # Get first item of transactional message table
@@ -62,8 +62,8 @@ transactional_message_message_to
     # Check no new message was created
     open content    ${transactional_message}    ${transactional_message["button_list"]["list"]}
     ${post_test_message_id}=    get table cell    ${transactional_message["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${most_recent_message_id}
-    run keyword if    ${is_equal}    fail    msg=New messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_message_id}    ${most_recent_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New messages were created with XSS data
 
 transactional_message_message_subject
     # Get first item of transactional message table
@@ -76,8 +76,8 @@ transactional_message_message_subject
     # Check no new message was created
     open content    ${transactional_message}    ${transactional_message["button_list"]["list"]}
     ${post_test_message_id}=    get table cell    ${transactional_message["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${most_recent_message_id}
-    run keyword if    ${is_equal}    fail    msg=New messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_message_id}    ${most_recent_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New messages were created with XSS data
 
 transactional_message_message_reply_to_emails
     # Get first item of transactional message table
@@ -90,8 +90,8 @@ transactional_message_message_reply_to_emails
     # Check no new message was created
     open content    ${transactional_message}    ${transactional_message["button_list"]["list"]}
     ${post_test_message_id}=    get table cell    ${transactional_message["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${most_recent_message_id}
-    run keyword if    ${is_equal}    fail    msg=New messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_message_id}    ${most_recent_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New messages were created with XSS data
 
 transactional_message_message_reply_to
     # Get first item of transactional message table
@@ -104,8 +104,8 @@ transactional_message_message_reply_to
     # Check no new message was created
     open content    ${transactional_message}    ${transactional_message["button_list"]["list"]}
     ${post_test_message_id}=    get table cell    ${transactional_message["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_message_id}    ${most_recent_message_id}
-    run keyword if    ${is_equal}    fail    msg=New messages were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_message_id}    ${most_recent_message_id}
+    run keyword unless    ${is_equal}    fail    msg=New messages were created with XSS data
 
 transactional_message_search
     verify xss data on search field    ${transactional_message}    ${transactional_message["button_list"]["list"]}

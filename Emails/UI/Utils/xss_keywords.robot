@@ -23,7 +23,7 @@ check for bad request
     \    return from keyword if    ${test_passed}
 
     # if error is page
-    @{error_messages}=    create list    Bad Request    Bad request    save split run error :
+    @{error_messages}=    create list    Bad Request    Bad request
     :for    ${message}    in    @{error_messages}
     \    ${test_passed}=    run keyword and return status    current frame contains    ${message}
     \    return from keyword if    ${test_passed}

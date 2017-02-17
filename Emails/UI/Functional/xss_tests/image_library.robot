@@ -32,7 +32,7 @@ image_library_create_new_folder
     \    wait until element is visible    ${navigation_bar}
     \    select frame    ${iframes["top"]}
     \    select frame    ${iframes["ccmd"]}
-    \    wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["create_new_folder"]}
+    \    wait until keyword succeeds    15x    1 sec    click element    ${image_library["button_add"]["create_new_folder"]}
     \    input text    xpath=//input[contains(@class, 'create-folder-input')]    ${line}
     \    click element    xpath=//div[2]/span[contains(text(),'Create') or ./text() = 'Create']
     \    check for bad request    ${line}    ${failed_inputs}
@@ -93,7 +93,7 @@ image_library_add_image_description
 
 *** Keywords ***
 upload file
-    wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["add_button"]}
+    wait until keyword succeeds    15x    1 sec    click element    ${image_library["button_add"]["add_button"]}
     select frame    ${image_library["button_add"]["image_library_iframe"]}
     ${file_path}=    catenate    SEPARATOR=    ${EXECDIR}    \\Emails\\UI\\Utils\\Resources\\puffin.jpg
     choose file    ${image_library["button_add"]["browse_button"]}    ${file_path}
@@ -104,6 +104,6 @@ delete image test data
     wait until element is visible    ${navigation_bar}
     select frame    ${iframes["top"]}
     select frame    ${iframes["ccmd"]}
-    wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["select_all"]}
-    wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["delete"]}
-    wait until keyword succeeds    30x    1 sec    click element    ${image_library["button_add"]["confirm_delete"]}
+    wait until keyword succeeds    15x    1 sec    click element    ${image_library["button_add"]["select_all"]}
+    wait until keyword succeeds    15x    1 sec    click element    ${image_library["button_add"]["delete"]}
+    wait until keyword succeeds    15x    1 sec    click element    ${image_library["button_add"]["confirm_delete"]}

@@ -34,19 +34,19 @@ webform_step_2_default_value
     loop through test data step 2    ${webform["button_add"]["default_value"]}
 
 webform_step_3_service_email
-    # Grab id of latest content block
+    # Grab id of latest webform
     open content    ${webform}    ${webform["button_list"]["list"]}
     wait until element is visible    ${webform["button_list"]["table"]}
     ${latest_webform_id}=    get table cell    ${webform["button_list"]["table"]}    3    1
 
-    # Check xss data on content block field description
+    # Check xss data on webform field description
     loop through test data step 3    ${webform["button_add"]["service_email_address"]}
 
-    # Check no new content blocks were created
+    # Check no new webforms were created
     open content    ${webform}    ${webform["button_list"]["list"]}
     ${post_test_webform_id}=    get table cell    ${webform["button_list"]["table"]}    3    1
-    ${is_equal}=    run keyword and return status    should not be equal    ${post_test_webform_id}    ${latest_webform_id}
-    run keyword if    ${is_equal}    fail    msg=New Webforms were created with XSS data
+    ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_webform_id}    ${latest_webform_id}
+    run keyword unless    ${is_equal}    fail    msg=New Webforms were created with XSS data
 
 webform_step_3_search
     loop through test data step 3    ${webform["button_list"]["search_input"]}
