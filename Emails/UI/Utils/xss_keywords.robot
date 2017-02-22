@@ -8,17 +8,18 @@ check for bad request
     ${test_passed}=    set variable    False
 
     # if error is alert
-    ${alert_message}=    run keyword and ignore error    get alert message
+    ${status}    ${alert_message}=    run keyword and ignore error    get alert message
     @{alert_messages}=    create list    bad request    error 200 requesting page
     :for    ${message}    in    @{alert_messages}
-    \    ${test_passed}=    run keyword and return status    should contain    ${alert_message}[1]    ${message}    ignore_case=True
+    \    exit for loop if    '${status}' == 'FAIL'
+    \    ${test_passed}=    run keyword and return status    should contain    ${alert_message}    ${message}    ignore_case=True
     \    return from keyword if    ${test_passed}
 
     # if error is notification
-    ${is_notification}=    run keyword and return status    element should be visible    //div[contains(@id, 'notification-message')]
-    ${notification_message}=    run keyword if    ${is_notification}    get text    //div[contains(@id, 'notification-message')]/div/div/div[2]
+    ${status}    ${notification_message}=    run keyword and ignore error    get text    //*[@class='text ng-binding' or contains(@class, 'notification-icon')]
     @{notification_messages}=    create list    failed to save.    bad request
     :for    ${message}    in    @{notification_messages}
+    \    exit for loop if    '${status}' == 'FAIL'
     \    ${test_passed}=    run keyword and return status    should contain    ${notification_message}    ${message}    ignore_case=True
     \    return from keyword if    ${test_passed}
 
@@ -60,8 +61,9 @@ verify xss data on search field
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${content_dictionary}    ${page}
-    \    wait until keyword succeeds    30x    1 sec    input text    ${generics["search_input"]}    ${line}
-    \    wait until keyword succeeds    30x    1 sec    click element    ${generics["search_button"]}
+    \    wait until keyword succeeds    15x    1 sec    input text    ${generics["search_input"]}    ${line}
+    \    sleep    0.5
+    \    wait until keyword succeeds    15x    1 sec    click element    ${generics["search_button"]}
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
