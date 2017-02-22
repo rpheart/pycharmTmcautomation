@@ -15,6 +15,7 @@ sms_message_search
 sms_name
     # Get first item of sms message table
     open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
+    wait until element is visible     ${sms_message_builder["button_list"]["table"]}     timeout=30
     ${most_recent_sms_message_id}=    get table cell    ${sms_message_builder["button_list"]["table"]}    3    1
 
     # Check xss data in sms message builder
@@ -29,6 +30,7 @@ sms_name
 sms_description
     # Get first item of sms message table
     open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
+    wait until element is visible     ${sms_message_builder["button_list"]["table"]}     timeout=30
     ${most_recent_sms_message_id}=    get table cell    ${sms_message_builder["button_list"]["table"]}    3    1
 
     # Check xss data in sms message builder
@@ -43,6 +45,7 @@ sms_description
 sms_from
     # Get first item of sms message table
     open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
+    wait until element is visible     ${sms_message_builder["button_list"]["table"]}     timeout=30
     ${most_recent_sms_message_id}=    get table cell    ${sms_message_builder["button_list"]["table"]}    3    1
 
     # Check xss data in sms message builder
@@ -57,6 +60,7 @@ sms_from
 sms_body
     # Get first item of sms message table
     open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
+    wait until element is visible     ${sms_message_builder["button_list"]["table"]}     timeout=30
     ${most_recent_sms_message_id}=    get table cell    ${sms_message_builder["button_list"]["table"]}    3    1
 
     # Check xss data in sms message builder

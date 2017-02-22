@@ -12,6 +12,7 @@ Suite Teardown      close all browsers
 template_name
     # Get first item of template table
     open content    ${template}    ${template["button_list"]["list"]}
+    wait until element is visible     ${template["button_list"]["table"]}     timeout=30
     ${most_recent_template_id}=    get table cell    ${template["button_list"]["table"]}    3    1
 
     # Check xss data in tempate builder
@@ -26,6 +27,7 @@ template_name
 template_description
     # Get first item of template table
     open content    ${template}    ${template["button_list"]["list"]}
+    wait until element is visible     ${template["button_list"]["table"]}     timeout=30
     ${most_recent_template_id}=    get table cell    ${template["button_list"]["table"]}    3    1
 
     # Check xss data in tempate builder
