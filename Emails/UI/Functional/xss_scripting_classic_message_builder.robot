@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       Suite description
 Resource            Emails/UI/Utils/keywords.robot
-Default Tags        ui    email    xss
+Default Tags        ui    email
 
 *** Variables ***
 
