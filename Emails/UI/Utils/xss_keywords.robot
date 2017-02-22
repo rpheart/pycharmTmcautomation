@@ -2,38 +2,38 @@
 Documentation       contains keywords specific to xss testing
 Variables           Resources/xss_test_data.py
 
-*** Variables ***
-
 *** Keywords ***
-Store Alert Message
-    ${alert_message}=    get alert message
-    set test variable    ${alert_message}
-
 check for bad request
     [Arguments]    ${input}    @{failed_inputs}
-    ${test}=    set variable    False
-    run keyword and ignore error    store alert message
+    ${test_passed}=    set variable    False
 
-    # Check for error as popup
-    @{alert_messages}=    create list    -    Error 200 requesting page
-    :FOR    ${message}    In    @{alert_messages}
-    \    Exit For Loop If    ${test}
-    \    ${test}=    Run Keyword And Return Status    Should Contain    ${alert_message}    ${message}
+    # if error is alert
+    ${alert_message}=    run keyword and ignore error    get alert message
+    @{alert_messages}=    create list    bad request    error 200 requesting page
+    :for    ${message}    in    @{alert_messages}
+    \    ${test_passed}=    run keyword and return status    should contain    ${alert_message}[1]    ${message}    ignore_case=True
+    \    return from keyword if    ${test_passed}
 
-    # Check for error as page
-    @{error_messages}=    create list    Bad Request!!!    save split run error :    A temporary error occurred when processing your request
-    :FOR    ${message}    In    @{error_messages}
-    \    exit for loop if    ${test}
-    \    ${test}=    Run Keyword And Return Status    Current Frame Contains    ${message}
+    # if error is notification
+    ${is_notification}=    run keyword and return status    element should be visible    //div[contains(@id, 'notification-message')]
+    ${notification_message}=    run keyword if    ${is_notification}    get text    //div[contains(@id, 'notification-message')]/div/div/div[2]
+    @{notification_messages}=    create list    failed to save.    bad request
+    :for    ${message}    in    @{notification_messages}
+    \    ${test_passed}=    run keyword and return status    should contain    ${notification_message}    ${message}    ignore_case=True
+    \    return from keyword if    ${test_passed}
 
-    Run Keyword If    ${test} == False    Append To List    @{failed_inputs}    ${input}
+    # if error is page
+    @{error_messages}=    create list    Bad Request    Bad request
+    :for    ${message}    in    @{error_messages}
+    \    ${test_passed}=    run keyword and return status    current frame contains    ${message}
+    \    return from keyword if    ${test_passed}
+
+    run keyword unless    ${test_passed}    append to list    @{failed_inputs}    ${input}
 
 write failed input to file
     [Arguments]    ${test_suite_name}    ${test_case_name}    @{failed_inputs}
     set test variable    ${is_failed}    False
-    run keyword if    len(@{failed_inputs}) == 0
-    ...    log    no errors
-    ...    ELSE
+    run keyword if    len(@{failed_inputs}) > 0
     ...    run keywords
     ...    append to file    ${EXECDIR}/Emails/logs/error_Log_${test_suite_name}.txt    ${test_case_name}${\n}--------------------------------${\n}
     ...    AND    write data    ${test_suite_name}    @{failed_inputs}
@@ -41,13 +41,13 @@ write failed input to file
 
 write data
     [Arguments]    ${test_suite_name}    @{failed_inputs}
-    :for    ${item}    In    @{failed_inputs}
+    :for    ${item}    in    @{failed_inputs}
     \    append to file    ${EXECDIR}/Emails/logs/error_Log_${test_suite_name}.txt    ${item}${\n}
     append to file    ${EXECDIR}/Emails/logs/error_Log_${test_suite_name}.txt    ${\n}--------------------------------${\n}
 
 create email string
     [Arguments]    ${line}
-    ${line}=    Catenate    SEPARATOR=    ${line}    @test.com
+    ${line}=    catenate    SEPARATOR=    ${line}    @test.com
     set test variable    ${line}
 
 create url string
