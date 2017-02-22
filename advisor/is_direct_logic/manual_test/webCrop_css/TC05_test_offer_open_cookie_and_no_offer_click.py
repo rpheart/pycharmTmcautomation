@@ -5,10 +5,10 @@ from random import randint
 
 import requests
 
-import Advisor.is_direct_logic.utils as utils
-import Advisor.utils.api_calls as api
-import Advisor.utils.api_settings as settings
-import Advisor.utils.tcpdump as tcp
+import advisor.is_direct_logic.utils as utils
+import advisor.utils.api_calls as api
+import advisor.utils.api_settings as settings
+import advisor.utils.tcpdump as tcp
 
 # Globals
 unique_key = randint(1000, 10000)
@@ -20,7 +20,7 @@ root = Tkinter.Tk()
 
 # Build Specific Variables
 if os.environ["BUILD_ENV"] == "QA":
-    advisor = settings.api_settings["QA"]["Advisor"]
+    advisor = settings.api_settings["QA"]["advisor"]
     renderer = settings.api_settings["QA"]["renderer"]
     guid = settings.client_settings["QA"]["SIDEV01"]["guid"]
     aid = settings.client_settings["QA"]["SIDEV01"]["aid"]
@@ -30,7 +30,7 @@ if os.environ["BUILD_ENV"] == "QA":
     tcp_username = settings.kafka_settings["QA"]["tcp_username"]
     tcp_server = settings.kafka_settings["QA"]["tcp_server"]
 elif os.environ["BUILD_ENV"] == "PREPROD":
-    advisor = settings.api_settings["PREPROD"]["Advisor"]
+    advisor = settings.api_settings["PREPROD"]["advisor"]
     renderer = settings.api_settings["PREPROD"]["renderer"]
     guid = settings.client_settings["PREPROD"]["PREPRODTMC"]["guid"]
     aid = settings.client_settings["PREPROD"]["PREPRODTMC"]["aid"]

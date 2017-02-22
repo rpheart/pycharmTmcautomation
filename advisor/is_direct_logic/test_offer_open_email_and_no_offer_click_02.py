@@ -5,10 +5,10 @@ from random import randint
 
 import requests
 
-import Advisor.is_direct_logic.utils as utils
-import Advisor.utils.api_calls as api
-import Advisor.utils.api_settings as settings
-import Advisor.utils.tcpdump as tcp
+import advisor.is_direct_logic.utils as utils
+import advisor.utils.api_calls as api
+import advisor.utils.api_settings as settings
+import advisor.utils.tcpdump as tcp
 
 # Globals
 unique_key = randint(1000, 10000)
