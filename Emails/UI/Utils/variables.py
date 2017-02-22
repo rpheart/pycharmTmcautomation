@@ -48,7 +48,23 @@ generics = {
     "search_button": "//*[contains(@id, 'searchButton') or contains(@id, 'searchInputButton') or contains(@class, 'search-button') or contains(@class, 'search-input-button') or @id='iconSearch']",
     "select_all": "//img[@id='iconSelectAll']",
     "trash": "//*[@id='iconTrash']",
-    "ok_button": "//a[contains(text(), 'OK')]"
+    "ok_button": "//a[contains(text(), 'OK')]",
+    "content_upload": {
+        "link": "//*[@id='iconToolboxContentUpload']/../../a/div[contains(text(), 'Content Upload') or ./text() = 'Content Upload']",
+        "popup_url_input": "name=uploadUrl",
+        "popup_file_btn": "//a[contains(text(),'Upload')]",
+    },
+    "link_management": {
+        "link": "//*[@id='iconToolboxLinksManagt']/../../a/div[contains(text(), 'Link Management') or ./text() = 'Link Management']",
+        "create_standard_link_btn": "//a[contains(text(),'Create Standard Link')]",
+        "create_unsubscribe_link_btn": "//a[contains(text(),'Create Unsubscribe Link')]",
+        "link_type_name": "name=linkName",
+        "link_type_url":  "name=linkURL",
+        "page_ok":  "name=linkPageOK",
+        "page_error":  "name=linkPageKO",
+        "save_link": "//a[contains(text(),'Choice1: Save Link')]",
+        "save&add_link": "//a[contains(text(),'Choice2: Save/Add Link')]"
+    }
 }
 
 # pages
@@ -374,7 +390,8 @@ classic_message_builder = {
         "header_preview": "//*[@id='ccmd-messages-table']//th[./text()='Preview']",
         "header_test_message": "//*[@id='ccmd-messages-table']//th[./text()='Test Message']",
         "header_audit_deliverability": "//*[@id='ccmd-messages-table']//th[./text()='Audit Deliverability']",
-        "header_delete": "//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']"
+        "header_delete": "//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']",
+        "table": "xpath=//table[@class='list']"
     }
 }
 
@@ -665,8 +682,8 @@ transactional_content_block = {
     "transactional_content": "//*[@id='engage-create']//span[./text()='Transactional Content']",
     "button_add": {
         "add": "//*[@id='engage-create']//span[contains(text(),'Transactional Content')]/..//ul[@title='Content Block']/li",
-        "customer_name": "name=name",
-        "customer_description": "name=description",
+        "content_block_name": "name=name",
+        "content_block_description": "name=description",
         "text_content": "id=textContent",
         "html_checkbox": "//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "//*[@id='content']//input[@type='radio' and @value='HTML']",

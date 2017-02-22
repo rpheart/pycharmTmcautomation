@@ -33,13 +33,11 @@ check for bad request
 write failed input to file
     [Arguments]    ${test_suite_name}    ${test_case_name}    @{failed_inputs}
     set test variable    ${is_failed}    False
-    run keyword if    len(@{failed_inputs}) == 0
-    ...    log    No Errors
-    ...    ELSE
+    run keyword if    len(@{failed_inputs}) > 0
     ...    run keywords
     ...    append to file    ${EXECDIR}/Emails/logs/error_Log_${test_suite_name}.txt    ${test_case_name}${\n}--------------------------------${\n}
     ...    AND    write data    ${test_suite_name}    @{failed_inputs}
-    ...    AND    set test variable    ${is_failed}    True
+    ...    AND    set test variable   ${is_failed}    True
 
 write data
     [Arguments]    ${test_suite_name}    @{failed_inputs}
@@ -67,3 +65,33 @@ verify xss data on search field
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
+content upload xss insertion
+    [Arguments]    ${line}
+    click element    ${generics["content_upload"]["link"]}
+    select frame     ${iframes["popup"]}
+    select radio button     uploadType    url
+    create url string     ${line}
+    input text      ${generics["content_upload"]["popup_url_input"]}      ${line}
+    click element      ${generics["content_upload"]["popup_file_btn"]}
+    dismiss alert
+
+link management xss insertion
+    [Arguments]    ${link_type}     ${field}    ${line}   ${save_option}
+    click element    ${generics["link_management"]["link"]}
+    select frame     ${iframes["popup"]}
+    click element     ${link_type}
+    input text    ${generics["link_management"]["link_type_name"]}    Name        # gets over-written if the field being tested is name itself!!
+    ${is_url}=    run keyword and return status    should contain     ${field}    URL
+    run keyword if     ${is_url}    create url string     ${line}
+    input text    ${field}    ${line}
+    click element      ${save_option}
+
+check if changes made to editor
+    [Arguments]    ${text}     ${TEST_NAME}    ${field}     ${line}
+    click element      ${generics["close_popup_box"]
+    unselect frame
+    select frame      ${iframes["top"]}
+    select frame      ${iframes["ccmd"]}
+    current frame contains      ${text}
+    write failed input to file      ${TEST_NAME}    ${field}     ${line}
