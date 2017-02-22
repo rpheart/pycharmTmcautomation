@@ -6,9 +6,7 @@ Default Tags        ui    email    xss
 Suite Setup         run keywords
 ...                 login
 ...                 AND    go to ${system_page["email"]}
-Suite Teardown      run keywords
-...                 delete image test data
-...                 AND    close all browsers
+Suite Teardown      close all browsers
 
 *** Test Cases ***
 image_library_search
