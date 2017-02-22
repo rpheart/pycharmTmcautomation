@@ -13,11 +13,19 @@ set message name
 
 add widget to canvas
     [Arguments]    ${widget}
-    wait until keyword succeeds    15x    1 sec    click element    ${new_message_builder["button_add"]["visual"]}    #xpath=//div[text()='Visual']
-    :for    ${n}    in range    10
-    \    ${content_open}=    run keyword and return status    click element    ${new_message_builder["button_add"]["basic"]}
+    run keyword and ignore error    click element    ${new_message_builder["button_add"]["visual"]}
+
+    :for    ${n}    in range    5
+    \    ${content_open}=    run keyword and return status    element should be visible    //*[@id="content-palette"]/div/div/div[@class='close']
     \    exit for loop if    ${content_open}
     \    click element    ${new_message_builder["button_add"]["add_content"]}
+
+    :for    ${n}    in range    5
+    \    ${widget_visible}=    run keyword and return status    element should be visible    ${widget}
+    \    exit for loop if    ${widget_visible}
+    \    run keyword and ignore error    click element    //div[@class='carousel-container']/div[@class='carousel']/div[@class='chevron left']
+    \    run keyword and ignore error    click element    ${new_message_builder["button_add"]["basic"]}
+
     ${dropped}=    run keyword and return status    wait until keyword succeeds    15x    1 sec    drag and drop    ${widget}    ${new_message_builder["button_add"]["empty_canvas"]}
     run keyword unless    ${dropped}    run keywords
     ...    click element    ${new_message_builder["button_add"]["add_empty_row"]}
