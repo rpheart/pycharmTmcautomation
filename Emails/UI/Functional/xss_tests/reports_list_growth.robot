@@ -23,3 +23,18 @@ list_growth_report_name
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
+list_growth_search_segments
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{xss_test_data}
+    \    open content    ${list_growth_reports}    ${list_growth_reports["button_add"]["add"]}
+    \    wait until element is visible    ${generics["create_new"]}
+    \    click element    ${generics["create_new"]}
+    \    click element    ${list_growth_reports["button_add"]["create_new"]["segments_radio"]}
+    \    click element    ${list_growth_reports["button_add"]["create_new"]["segments_list"]}
+    \    input text    ${list_growth_reports["button_add"]["create_new"]["segments_search_input"]}    ${line}
+    \    sleep    0.5
+    \    click element    ${list_growth_reports["button_add"]["create_new"]["segments_search_button"]}
+    \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data

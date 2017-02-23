@@ -979,7 +979,12 @@ list_growth_reports = {
         "header_created_by": "//div[./text()='Created by']",
         "create_new": {
             "report_name": "//input[contains(@id, 'reportNameInput')]",
-            "create_report": "//*[contains(text(), 'Create Report')]"
+            "create_report": "//*[contains(text(), 'Create Report')]",
+            "segments_radio": "//input[@id='gwt-uid-9']",
+            "segments_list": "//*[@id='listReportUI-builderView-segmentsExplorer-openButton']",
+            "segments_search_input": "//input[@id='listReportUI-builderView-segmentsExplorer-searchButton-textBox']",
+            "segments_search_button": "//*[@id='listReportUI-builderView-segmentsExplorer-searchButton-button']"
+
         }
     }
 }
