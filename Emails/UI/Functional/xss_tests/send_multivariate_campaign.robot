@@ -94,18 +94,7 @@ multivariate_campaign_reporting_email
     run keyword unless    ${is_equal}    fail    msg=New MultiVariate Message Campaigns were created with XSS data
 
 multivariate_campaign_search
-    # Grab count of multivariate messages
-    open content    ${multivariate_campaign}    ${multivariate_campaign["button_list"]["list"]}
-    ${message_count}=    get text    ${multivariate_campaign["button_list"]["message_count"]}
-
-    # Check xss data on multivariate message campaign name field
     verify xss data on search field    ${multivariate_campaign}    ${multivariate_campaign["button_list"]["list"]}
-
-    # Check no new multivariate messages were created
-    open content    ${multivariate_campaign}    ${multivariate_campaign["button_list"]["list"]}
-    ${post_test_message_count}=    get text    ${multivariate_campaign["button_list"]["message_count"]}
-    ${is_equal}=    run keyword and return status    should be equal    ${post_test_message_count}    ${message_count}
-    run keyword unless    ${is_equal}    fail    msg=New MultiVariate Message Campaigns were created with XSS data
 
 *** Keywords ***
 loop through test data step 1

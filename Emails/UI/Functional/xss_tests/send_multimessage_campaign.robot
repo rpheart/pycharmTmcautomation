@@ -80,18 +80,7 @@ multimessage_campaign_reporting_email
     run keyword unless    ${is_equal}    fail    msg=New MultiMessage Campaigns were created with XSS data
 
 multimessage_campaign_search
-    # Grab count of multimessages
-    open content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
-    ${message_count}=    get text    ${multimessage_campaign["button_list"]["message_count"]}
-
-    # Check xss data on multimessage campaign name field
     verify xss data on search field    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
-
-    # Check no new multimessagesa were created
-    open content    ${multimessage_campaign}    ${multimessage_campaign["button_list"]["list"]}
-    ${post_test_message_count}=    get text    ${multimessage_campaign["button_list"]["message_count"]}
-    ${is_equal}=    run keyword and return status    should be equal    ${post_test_message_count}    ${message_count}
-    run keyword unless    ${is_equal}    fail    msg=New MultiMessage Campaigns were created with XSS data
 
 *** Keywords ***
 loop through test data step 1
