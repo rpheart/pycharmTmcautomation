@@ -47,7 +47,6 @@ transactional_content_block_rename_name
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
 
-
 *** Keywords ***
 loop through test data
     [Arguments]    ${field}

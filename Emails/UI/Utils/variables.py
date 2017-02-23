@@ -634,6 +634,7 @@ transactional_message = {
         "message_reply_to": "name=messageReplyTo",
         "message_encoding": "name=messageEncoding",
         "text_content": "id=textContent",
+        "message_rename_input": "//*[@name='nmTransactionalNewName']",
         "content_upload": "//*[@id='toolbox']//a/div[normalize-space(.//text())='Creative Upload']",
         "copy_HTML_to_text": "//*[@id='iconToolboxCopyHtmlToText']/../../a/div[contains(text(),'Copy HTML to Text')]",
         "insert_dynamic_content_block": "//*[@id='iconPromotionAdsSmall']/../../a/div[contains(text(),'Insert Dynamic Content Block')]",

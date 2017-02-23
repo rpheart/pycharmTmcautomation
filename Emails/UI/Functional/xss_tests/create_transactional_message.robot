@@ -110,6 +110,17 @@ transactional_message_message_reply_to
 transactional_message_search
     verify xss data on search field    ${transactional_message}    ${transactional_message["button_list"]["list"]}
 
+transactional_message_rename_name
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{xss_test_data}
+    \    open content    ${transactional_message}    ${transactional_message["button_list"]["list"]}
+    \    click element    ${generics['copy']}
+    \    input text    ${transactional_message["button_add"]["message_rename_input"]}    ${line}
+    \    click element    ${generics['save']}
+    \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
 *** Keywords ***
 loop through test data
     [Arguments]    ${field}
