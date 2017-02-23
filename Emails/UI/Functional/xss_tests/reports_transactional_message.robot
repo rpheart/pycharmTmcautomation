@@ -10,7 +10,7 @@ Suite Teardown      close all browsers
 
 *** Test Cases ***
 transactional_message_reports_email
-    @{failed_inputs}=    Create List
+    @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${transactional_reports}    ${transactional_reports["button_add"]["add"]}
     \    wait until element is visible    ${transactional_reports["button_add"]["custom_search"]}

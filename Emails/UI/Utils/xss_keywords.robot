@@ -16,7 +16,7 @@ check for bad request
     \    return from keyword if    ${test_passed}
 
     # if error is notification
-    ${status}    ${notification_message}=    run keyword and ignore error    get text    //*[@class='text ng-binding' or contains(@class, 'notification-icon')]
+    ${status}    ${notification_message}=    run keyword and ignore error    get text    //*[@class='text ng-binding' or contains(@class, 'notification-icon') or @class='text']
     @{notification_messages}=    create list    failed to save.    bad request
     :for    ${message}    in    @{notification_messages}
     \    exit for loop if    '${status}' == 'FAIL'
