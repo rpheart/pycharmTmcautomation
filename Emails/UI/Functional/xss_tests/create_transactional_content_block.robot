@@ -8,13 +8,13 @@ Suite Setup         run keywords    login
 Suite Teardown      close all browsers
 
 *** Test Cases ***
-transactional_content_block_customer_name
+transactional_content_block_name
     # Get first item of transactional content block table
     open content    ${transactional_content_block}    ${transactional_content_block["button_list"]["list"]}
     ${most_recent_content_block_id}=    get table cell    ${transactional_content_block["button_list"]["table"]}    3    1
 
     # Check xss data in transactional content block creator
-    loop through test data    ${transactional_content_block["button_add"]["customer_name"]}
+    loop through test data    ${transactional_content_block["button_add"]["content_block_name_input"]}
 
     # Check no new content blocks were created
     open content    ${transactional_content_block}    ${transactional_content_block["button_list"]["list"]}
@@ -22,13 +22,13 @@ transactional_content_block_customer_name
     ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_content_block_id}    ${most_recent_content_block_id}
     run keyword unless    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
 
-transactional_content_block_customer_description
+transactional_content_block_description
     # Get first item of transactional content block table
     open content    ${transactional_content_block}    ${transactional_content_block["button_list"]["list"]}
     ${most_recent_content_block_id}=    get table cell    ${transactional_content_block["button_list"]["table"]}    3    1
 
     # Check xss data in transactional content block creator
-    loop through test data    ${transactional_content_block["button_add"]["customer_description"]}
+    loop through test data    ${transactional_content_block["button_add"]["content_block_description_input"]}
 
     # Check no new content blocks were created
     open content    ${transactional_content_block}    ${transactional_content_block["button_list"]["list"]}
@@ -43,7 +43,7 @@ loop through test data
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${transactional_content_block}    ${transactional_content_block["button_add"]["add"]}
     \    wait until element is visible    ${field}
-    \    input text    ${transactional_content_block["button_add"]["customer_name"]}    Name
+    \    input text    ${transactional_content_block["button_add"]["content_block_name_input"]}    Name
     \    input text    ${field}    ${line}
     \    click element    ${generics['save']}
     \    check for bad request    ${line}    ${failed_inputs}

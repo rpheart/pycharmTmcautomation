@@ -682,9 +682,9 @@ transactional_content_block = {
     "transactional_content": "//*[@id='engage-create']//span[./text()='Transactional Content']",
     "button_add": {
         "add": "//*[@id='engage-create']//span[contains(text(),'Transactional Content')]/..//ul[@title='Content Block']/li",
-        "content_block_name": "name=name",
-        "content_block_description": "name=description",
-        "text_content": "id=textContent",
+        "content_block_name_input": "name=name",
+        "content_block_description_input": "name=description",
+        "content_block_body_input": "id=textContent",
         "html_checkbox": "//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "//*[@id='content']//input[@type='radio' and @value='HTML']",
         "save": "//*[@id='iconSave']/../../a[contains(text(),'Save') or ./text()='Save']",
