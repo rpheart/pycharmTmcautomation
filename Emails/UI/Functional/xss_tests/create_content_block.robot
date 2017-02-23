@@ -44,6 +44,18 @@ content_block_description
 content_block_search
     verify xss data on search field    ${content_block}    ${content_block["button_list"]["list"]}
 
+content_block_rename_name
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{xss_test_data}
+    \    open content    ${content_block}    ${content_block["button_list"]["list"]}
+    \    click element    ${content_block["button_list"]['first_row']}
+    \    click element    ${content_block["button_list"]['copy']}
+    \    input text    ${content_block["button_list"]["rename_input"]}    ${line}
+    \    click element    ${content_block["button_list"]["duplicate"]}
+    \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
 *** Keywords ***
 loop through test data
     [Arguments]    ${field}

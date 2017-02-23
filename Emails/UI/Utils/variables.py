@@ -515,7 +515,11 @@ content_block = {
         "header_creation_date": "//*[@id='content-blocks-tablediv-header-creation-date']/div[./text()='Creation Date']",
         "header_modification_date": "//*[@id='content-blocks-tablediv-header-modification-date']/div[./text()='Modification date']",
         "header_creator": "//*[@id='content-blocks-tablediv-header-creator']/div[./text()='Creator']",
-        "first_block_id": "//div[@class='tabledivColumnText']"
+        "first_block_id": "//div[@class='tabledivColumnText']",
+        "copy": "//*[contains(@id, 'duplicateenable-icon')]",
+        "rename_input": "//*[@id='archive-duplicate-name']",
+        "first_row": "//*[@id='tabledivRow-0']",
+        "duplicate": "//div[contains(text(), 'Duplicate')]"
     }
 }
 
