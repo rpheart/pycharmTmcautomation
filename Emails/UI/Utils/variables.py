@@ -995,7 +995,8 @@ folders = {
         "header_name": "//*[@id='content']//th[./text()='Name']",
         "header_description": "//*[@id='content']//th[./text()='Description']",
         "header_content_summary": "//*[@id='content']//th[./text()='Content Summary']",
-        "delete": "//*[@id='iconTrash']/../../a"
+        "delete": "//*[@id='iconTrash']/../../a",
+        "first_folder": "//a[@class='folderName']"
     }
 
 }
