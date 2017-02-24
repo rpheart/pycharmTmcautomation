@@ -31,6 +31,34 @@ check for bad request
 
     run keyword unless    ${test_passed}    append to list    @{failed_inputs}    ${input}
 
+check for good request
+    [Arguments]    ${input}    @{failed_inputs}
+    ${test_passed}=    set variable    False
+
+    # if error is alert
+    ${status}    ${alert_message}=    run keyword and ignore error    get alert message
+    @{alert_messages}=    create list    bad request    error 200 requesting page
+    :for    ${message}    in    @{alert_messages}
+    \    exit for loop if    '${status}' == 'FAIL'
+    \    ${test_passed}=    run keyword and return status    should not contain    ${alert_message}    ${message}    ignore_case=True
+    \    return from keyword if    ${test_passed}
+
+    # if error is notification
+    ${status}    ${notification_message}=    run keyword and ignore error    get text    //*[@class='text ng-binding' or contains(@class, 'notification-icon') or @class='text']
+    @{notification_messages}=    create list    failed to save.    bad request
+    :for    ${message}    in    @{notification_messages}
+    \    exit for loop if    '${status}' == 'FAIL'
+    \    ${test_passed}=    run keyword and return status    should not contain    ${notification_message}    ${message}    ignore_case=True
+    \    return from keyword if    ${test_passed}
+
+    # if error is page
+    @{error_messages}=    create list    Bad Request    Bad request
+    :for    ${message}    in    @{error_messages}
+    \    ${test_passed}=    run keyword and return status    current frame should not contain    ${message}
+    \    return from keyword if    ${test_passed}
+
+    run keyword unless    ${test_passed}    append to list    @{failed_inputs}    ${input}
+
 write failed input to file
     [Arguments]    ${test_suite_name}    ${test_case_name}    @{failed_inputs}
     set test variable    ${is_failed}    False
@@ -65,6 +93,18 @@ verify xss data on search field
     \    sleep    0.5
     \    wait until keyword succeeds    15x    1 sec    click element    ${generics["search_button"]}
     \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
+verify non xss data on search field
+    [Arguments]    ${content_dictionary}      ${page}
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{non_xss_test_data}
+    \    open content    ${content_dictionary}    ${page}
+    \    wait until keyword succeeds    15x    1 sec    input text    ${generics["search_input"]}    ${line}
+    \    sleep    0.5
+    \    wait until keyword succeeds    15x    1 sec    click element    ${generics["search_button"]}
+    \    check for good request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
 

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 xss_test_data = [
     # r"ABCD",
     # r"<>?:\"{}|_+",
@@ -268,7 +270,7 @@ xss_test_data = [
     # r"onkeypress",
     # r"onkeyup",
     r"onload",
-    #r"onmousedown",
+    # r"onmousedown",
     # r"onmousemove",
     # r"onmouseout",
     # r"onmouseover",
@@ -288,4 +290,11 @@ xss_test_data = [
     # r"document.cookie",
     # r"document.write",
     # r"fromcharcode"
+]
+
+non_xss_test_data = [
+    r",./;'[]\-=",
+    r"!@#$%^&*()`~",
+    u"åß∂ƒ©˙∆˚¬…æ",
+    u"田中さんにあげて下さい"
 ]
