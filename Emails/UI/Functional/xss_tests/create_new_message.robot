@@ -234,6 +234,18 @@ new_message_send_test_search_recipients
     ${is_equal}=    run keyword and return status    should be equal as strings    ${post_test_message_count}    ${pre_test_message_count}
     run keyword unless    ${is_equal}    fail    msg=New Messages were created with XSS data
 
+new_message_rename_name
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{xss_test_data}
+    \    open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
+    \    click element    ${new_message_builder["button_list"]['first_row']}
+    \    click element    ${new_message_builder["button_list"]['duplicate']}
+    \    input text    ${new_message_builder["button_list"]["rename_input"]}    ${line}
+    \    click element    ${new_message_builder["button_list"]["duplicate_button"]}
+    \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
 *** Keywords ***
 search content block
     @{failed_inputs}=    create list

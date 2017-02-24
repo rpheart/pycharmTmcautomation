@@ -314,7 +314,11 @@ new_message_builder = {
         "last_modified": "//*[@id='msg-archive-tablediv-header-modification-date']/div[@title='Last modified']",
         "creator": "//*[@id='msg-archive-tablediv-header-creation-user']/div[@title='Creator']",
         "qa_auto_test_Message": "//*[@id='archive-list-container']//div[./text()='QA auto test Message']",
-        "message_count": "//span[@class='tabledivFooterText']"
+        "message_count": "//span[@class='tabledivFooterText']",
+        "first_row": "//*[@id='tabledivRow-0']",
+        "duplicate": "//*[contains(@id, 'duplicateenable')]",
+        "rename_input": "//*[@id='archive-duplicate-name']",
+        "duplicate_button": "//div[contains(text(), 'Duplicate')]"
     }
 }
 

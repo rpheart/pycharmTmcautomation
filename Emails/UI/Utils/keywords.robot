@@ -12,14 +12,14 @@ ${screenshots}    ${EMPTY}
 
 # login variables
 ${ui_server}        https://qa-sfui.themessagecloud.com
-${ui_username}      sidev_auto
+${ui_username}      emvqa_qa
 ${ui_password}      qa11focus1.
 ${browser}          chrome
 
 *** Keywords ***
 fail keyword
     log source
-    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
+#    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
 
 login
     [Documentation]    Logs in to the message cloud
