@@ -391,7 +391,8 @@ classic_message_builder = {
         "header_test_message": "//*[@id='ccmd-messages-table']//th[./text()='Test Message']",
         "header_audit_deliverability": "//*[@id='ccmd-messages-table']//th[./text()='Audit Deliverability']",
         "header_delete": "//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']",
-        "table": "xpath=//table[@class='list']"
+        "table": "xpath=//table[@class='list']",
+        "rename_input": "//*[@name='messageNewName']"
     }
 }
 
