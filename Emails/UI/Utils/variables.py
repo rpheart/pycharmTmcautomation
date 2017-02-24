@@ -423,7 +423,9 @@ sms_message_builder = {
         "header_favorites": "//*[@id='ccmd-messages-table']//th[./text()='Favorites']",
         "header_copy": "//*[@id='ccmd-messages-table']//th[./text()='Copy']",
         "header_delete": "//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']",
-        "table": "xpath=//*[@id='ccmd-messages-table']"
+        "table": "xpath=//*[@id='ccmd-messages-table']",
+        "copy": "//*[@id='iconCopy']",
+        "rename_input": "//*[@name='messageNewName']"
     }
 }
 

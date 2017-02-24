@@ -72,6 +72,17 @@ sms_body
     ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_sms_message_id}    ${most_recent_sms_message_id}
     run keyword unless    ${is_equal}    fail    msg=New sms messages were created with XSS data
 
+sms_rename_name
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{xss_test_data}
+    \    open content    ${sms_message_builder}    ${sms_message_builder["button_list"]["list"]}
+    \    click element    ${sms_message_builder["button_list"]['copy']}
+    \    input text    ${sms_message_builder["button_list"]["rename_input"]}    ${line}
+    \    click element    ${generics["save"]}
+    \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
 *** Keywords ***
 loop through test data
     [Arguments]    ${field}
