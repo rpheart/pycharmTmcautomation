@@ -97,6 +97,18 @@ landing_page_data_sync_source_field_input
     ${is_equal}=    run keyword and return status    should be equal    ${post_test_page_count}    ${pre_test_page_count}
     run keyword unless    ${is_equal}    fail    msg=New Pages were created with XSS data
 
+landing_page_rename_name
+    @{failed_inputs}=    create list
+    :for    ${line}    in     @{xss_test_data}
+    \    open content    ${landing_page}    ${landing_page["button_list"]["list"]}
+    \    click element    ${landing_page["button_list"]['first_row']}
+    \    click element    ${landing_page["button_list"]['duplicate']}
+    \    input text    ${landing_page["button_list"]["rename_input"]}    ${line}
+    \    click element    ${landing_page["button_list"]["yes"]}
+    \    check for bad request    ${line}    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
 *** Keywords ***
 loop through test data on page name
     [Arguments]    ${save_method}

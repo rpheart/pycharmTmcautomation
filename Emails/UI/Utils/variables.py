@@ -474,7 +474,11 @@ landing_page = {
         "header_status": "//*[@id='lpages-pages-tablediv-header-status']/div[./text()='Status']",
         "header_start_date": "//*[@id='lpages-pages-tablediv-header-startdate']/div[./text()='Start date']",
         "header_stop_date": "//*[@id='lpages-pages-tablediv-header-stopdate']/div[./text()='Stop date']",
-        "page_count": "//*[@id='tabledivFooterTextID']/span"
+        "page_count": "//*[@id='tabledivFooterTextID']/span",
+        "first_row": "//*[@id='tabledivRow-0']",
+        "duplicate": "//*[contains(@id, 'duplicate-icon')]",
+        "rename_input": "//*[@id='lpages-pages-duplicatePromptName-name']",
+        "yes": "//div[contains(text(), 'Yes')]"
     }
 }
 
