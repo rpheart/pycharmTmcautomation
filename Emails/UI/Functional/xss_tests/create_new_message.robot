@@ -220,19 +220,8 @@ new_message_send_test_add_recipients
     ${is_equal}=    run keyword and return status    should be equal as strings    ${post_test_message_count}    ${pre_test_message_count}
     run keyword unless    ${is_equal}    fail    msg=New Messages were created with XSS data
 
-new_message_send_test_search_recipients
-    # count current messages
-    open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
-    ${pre_test_message_count}=    get text    ${new_message_builder["button_list"]["message_count"]}
-
-    # create message
-    loop through test data and send test email    ${new_message_builder["button_add"]["send_test_search_button"]}
-
-    # check message count
-    open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
-    ${post_test_message_count}=    get text    ${new_message_builder["button_list"]["message_count"]}
-    ${is_equal}=    run keyword and return status    should be equal as strings    ${post_test_message_count}    ${pre_test_message_count}
-    run keyword unless    ${is_equal}    fail    msg=New Messages were created with XSS data
+#new_message_send_test_search_recipients
+#    loop through test data and send test email    ${new_message_builder["button_add"]["send_test_search_button"]}
 
 new_message_rename_name
     @{failed_inputs}=    create list
