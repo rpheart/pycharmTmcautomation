@@ -93,8 +93,8 @@ multivariate_campaign_reporting_email
     ${is_equal}=    run keyword and return status    should be equal    ${post_test_message_count}    ${message_count}
     run keyword unless    ${is_equal}    fail    msg=New MultiVariate Message Campaigns were created with XSS data
 
-#multivariate_campaign_search
-#    verify xss data on search field    ${multivariate_campaign}    ${multivariate_campaign["button_list"]["list"]}
+multivariate_campaign_search
+    verify xss data on search field    ${multivariate_campaign}    ${multivariate_campaign["button_list"]["list"]}
 
 *** Keywords ***
 loop through test data step 1
