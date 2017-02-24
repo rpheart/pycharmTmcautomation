@@ -19,7 +19,7 @@ ${browser}          chrome
 *** Keywords ***
 fail keyword
     log source
-#    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
+    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
 
 login
     [Documentation]    Logs in to the message cloud

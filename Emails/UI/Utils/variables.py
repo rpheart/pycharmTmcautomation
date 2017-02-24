@@ -97,7 +97,9 @@ standard_campaign = {
         "header_deliv_test": "//*[@id='content']//th[./text()='Deliv. Test']",
         "header_post": "//*[@id='content']//th[./text()='Post']",
         "header_fast_post": "//*[@id='content']//span[@class='red' and ./text()='Fast Post']",
-        "header_delete": "//*[@id='content']//span[@class='red' and ./text()='Delete']"
+        "header_delete": "//*[@id='content']//span[@class='red' and ./text()='Delete']",
+        "copy": "//*[@id='iconCopy']",
+        "rename_input": "//*[@name='campaignNewName']"
     }
 }
 
