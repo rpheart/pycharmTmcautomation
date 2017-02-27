@@ -21,14 +21,14 @@ Open Connection
     [Documentation]    Opens a connection to 'apiccmd/services/rest' and returns a session token to the suite
     Create Session    host    ${host}
     ${open}=    Get Request    host    /connect/open/${user}/${password}/${apikey}
-    Run Keyword If    ${open.status_code} != 200    Fail    ${open.content}
+    run keyword unless    ${open.ok}    fail    ${open.content}
     ${token}=    Get XML Content    ${open.content}
     Set Suite Variable    ${token}
 
 Create Email
     [Documentation]    Creates an email message with defaults from the test suite and returns the message ID to the suite
     ${create_email}=    Get Request    host     /message/createEmailMessage/${token}/${name}/${description}/${subject}/${from}/${marketingFromEmail}/${to}/${body}/${encoding}/${replyTo}/${replyToEmail}/${isBounceback}/${hotmailUnsubFlg}/${hotmailUnsubUrl}
-    run keyword if    ${create_email.status_code} != 200    fail    msg=${create_email.content}
+    run keyword unless    ${create_email.ok}    fail    ${create_email.content}
     ${message_id}=    Get XML Content    ${create_email.content}
     Should Not Be Empty    ${message_id}
     Set Suite Variable    ${message_id}
@@ -36,7 +36,7 @@ Create Email
 Create SMS
     [Documentation]    Creates an sms message with defaults from the test suite and returns the message ID to the suite
     ${create_sms}=    Get Request    host     /message/createSmsMessage/${token}/${sms_name}/${sms_desc}/${sms_from}/${sms_body}
-    run keyword if    ${create_sms.status_code} != 200    fail    msg=${create_sms.content}
+    run keyword unless    ${create_sms.ok}    fail    ${create_sms.content}
     ${message_id}=    Get XML Content    ${create_sms.content}
     Should Not Be Empty    ${message_id}
     Set Suite Variable    ${message_id}
@@ -44,7 +44,7 @@ Create SMS
 Create Template
     [Documentation]    Creates an email template with defaults from the test suite and returns the message ID to the suite
     ${create_template}=    Get Request    host     /template/create/${token}/${name}/${description}/${subject}/${from}/${fromEmail}/${to}/${encoding}/${replyTo}/${replyToEmail}/${type}
-    run keyword if    ${create_template.status_code} != 200    fail    msg=${create_template.content}
+    run keyword unless    ${create_template.ok}    fail    ${create_template.content}
     ${template_id}=    Get XML Content    ${create_template.content}
     Should Not Be Empty    ${template_id}
     Set Suite Variable    ${template_id}
@@ -54,7 +54,7 @@ create segment
     ${body}=    get file    Emails/API/Utils/Resources/ccmd_segment.xml
     ${headers}=    create dictionary    content-type=text/xml    charset=UTF-8
     ${create_segment}=    put request    host     /segmentationservice/${token}/segment    data=${body}    headers=${headers}
-    run keyword if    ${create_segment.status_code} != 200    fail    msg=${create_segment.content}
+    run keyword unless    ${create_segment.ok}    fail    ${create_segment.content}
     ${segment_id}=    get xml content    ${create_segment.content}
     should not be empty    ${segment_id}
     set suite variable    ${segment_id}
