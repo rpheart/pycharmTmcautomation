@@ -1,16 +1,16 @@
 *** Settings ***
 Documentation
-Resource            Emails/API/Utils/api_keywords.robot
+Resource            ../../Utils/api_keywords.robot
 Default Tags        api    sms
-Test Setup          Run Keywords    Open Connection
-...                 AND    Create SMS
-Test Teardown       Close Connection And Delete Test Data
+Test Setup          run keywords    open connection
+...                 AND    create sms
+Test Teardown       close connection and delete test data
 
 *** Variables ***
 ${host}           http://${server}/apiccmd/services/rest
 
 # SMS variables
-${xml_file}       Emails/API/Utils/Resources/sms_message.xml
+${xml_file}       ${EXECDIR}/Emails/API/Utils/Resources/sms_message.xml
 ${sms_name}       TestName
 ${sms_desc}       APIauto
 ${sms_from}       SmartFocus
@@ -25,7 +25,7 @@ Create SMS Message Post
     ${message}=    Get File    ${xml_file}
     ${headers}=    Create Dictionary    content-type=application/xml
     ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
-    Run Keyword If    ${create_message.status_code} != 200    Fail    ${create_message.content}
+    run keyword unless    ${create_message.ok}    fail    ${create_message.content}
     ${post_message_id}=    Get XML Content    ${create_message.content}
     Should Not Be Empty    ${post_message_id}
 
