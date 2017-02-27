@@ -10,7 +10,7 @@ Test Teardown       close connection and delete test data
 ${host}             http://${server}/apitransactional/services/rest
 
 # template variables
-${xml_file}         ../../Utils/Resources/email_template.xml
+${xml_file}         ${EXECDIR}/Emails/API/Utils/Resources/email_template.xml
 ${name}             TemplateName
 ${description}      Description
 ${subject}          Hello
