@@ -1,19 +1,20 @@
 *** Settings ***
 Documentation
-Library             Selenium2Library    10    2    run_on_failure=Fail Keyword
-Library             RequestsLibrary
 Library             OperatingSystem
+Library             RequestsLibrary
+Library             Selenium2Library    10    2
+Library             XML
 Library             api_functions.py
 
 *** Variables ***
-${server}    p1itgapie.emv2.com
-${user}    emvqae1_api_psummers
-${password}    Standard1!
-${apikey}    CdX7CrRD4EeekEUMb8M_sqWXawknQfiBuQKoBs9XKa-sH0-e2hqG8dVsgUw
+${server}       p1itgapie.emv2.com
+${user}         emvqae1_api_psummers
+${password}     Standard1!
+${apikey}       CdX7CrRD4EeekEUMb8M_sqWXawknQfiBuQKoBs9XKa-sH0-e2hqG8dVsgUw
 ${template_id}
 ${message_id}
 ${segment_id}
-${member_id}      1819306545  # QA member id, we need to find one for each client/environment and add it to jenkins
+${member_id}    1819306545  # QA member id, we need to find one for each client/environment and add it to jenkins
 
 *** Keywords ***
 Open Connection
@@ -51,14 +52,14 @@ Create Template
 create segment
     [Documentation]    creates a segment using PUT and returns the segment ID to the suite
     ${body}=    get file    Emails/API/Utils/Resources/ccmd_segment.xml
-    ${headers}=    create dictionary    content-type=text/xml; charset=UTF-8
+    ${headers}=    create dictionary    content-type=text/xml    charset=UTF-8
     ${create_segment}=    put request    host     /segmentationservice/${token}/segment    data=${body}    headers=${headers}
     run keyword if    ${create_segment.status_code} != 200    fail    msg=${create_segment.content}
-    ${segment_id}=    Get XML Content    ${create_segment.content}
-    Should Not Be Empty    ${segment_id}
-    Set Suite Variable    ${segment_id}
+    ${segment_id}=    get xml content    ${create_segment.content}
+    should not be empty    ${segment_id}
+    set suite variable    ${segment_id}
 
 Close Connection And Delete Test Data
     [Documentation]    send a delete request for any message or segment and then close all sessions in test suite
-    Close Smart Email Connection    ${host}    ${token}    message_id=${message_id}    template_id=${template_id}
+    Close Smart Email Connection    ${host}    ${token}    message_id=${message_id}    template_id=${template_id}    segment_id=${segment_id}
     Delete All Sessions
