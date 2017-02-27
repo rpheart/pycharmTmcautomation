@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+    <type>email</type>
+    <body>[EMV HTMLPART]
+        This is a test
+        href="http://www.google.co.uk"
+    </body>
+    <isBounceback>false</isBounceback>
+    <description>desc test</description>
+    <encoding>UTF8</encoding>
+    <from>johnsmith@smartfocus.com</from>
+    <name>TM_TEST</name>
+    <replyTo>johnsmith@smartfocus.com</replyTo>
+    <replyToEmail>johnsmith@smartfocus.com</replyToEmail>
+    <subject>test subject</subject>
+    <to>janescott@smartfocus.com</to>
+    <hotmailUnsubFlg>true</hotmailUnsubFlg>
+    <hotmailUnsubUrl>http://www.smartfocus.com</hotmailUnsubUrl>
+</message>
