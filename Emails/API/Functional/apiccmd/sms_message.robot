@@ -17,92 +17,92 @@ ${sms_from}       SmartFocus
 ${sms_body}       %5BEMV%20SMSPART%5DSMS%20creation%20test%20by%20API
 
 *** Test Cases ***
-Create SMS Message
-    Should Not Be Empty    ${message_id}
+create_sms_message
+    should not be empty    ${message_id}
 
-Create SMS Message Post
-    # Create SMS message using POST
-    ${message}=    Get File    ${xml_file}
-    ${headers}=    Create Dictionary    content-type=application/xml
-    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+create_sms_message_post
+    # create sms message using post
+    ${message}=    get file    ${xml_file}
+    ${headers}=    create dictionary    content-type=application/xml
+    ${create_message}=    post request    host    /message/create/${token}    data=${message}    headers=${headers}
     run keyword unless    ${create_message.ok}    fail    ${create_message.content}
-    ${post_message_id}=    Get XML Content    ${create_message.content}
-    Should Not Be Empty    ${post_message_id}
+    ${post_message_id}=    get xml content    ${create_message.content}
+    should not be empty    ${post_message_id}
 
-Delete SMS Message
-    # Delete SMS message
-    ${delete_sms}=    Get Request    host    /message/deleteMessage/${token}/${message_id}
+delete_sms_message
+    # delete sms message
+    ${delete_sms}=    get request    host    /message/deleteMessage/${token}/${message_id}
     run keyword unless    ${delete_sms.ok}    fail    ${delete_sms.content}
-    # Get Last SMS Messages
-    ${search_sms}    Get Request    host    /message/getLastSmsMessages/${token}/10
+    # get last sms messages
+    ${search_sms}    get request    host    /message/getLastSmsMessages/${token}/10
     run keyword unless    ${search_sms.ok}    fail    ${search_sms.content}
-    ${sms_id_list}=    Get XML Content List    ${search_sms.content}
-    Should Not Contain    ${sms_id_list}    ${message_id}
+    ${sms_id_list}=    get xml content list    ${search_sms.content}
+    should not contain    ${sms_id_list}    ${message_id}
 
-Update SMS Message
-    # Update SMS Message
-    ${update_sms}=    Get Request    host    /message/updateMessage/${token}/${message_id}/name/UpdatedTestName
+update_sms_message
+    # update sms message
+    ${update_sms}=    get request    host    /message/updateMessage/${token}/${message_id}/name/updatedtestname
     run keyword unless    ${update_sms.ok}    fail    ${update_sms.content}
-    # Get SMS Message
-    ${get_sms}=    Get Request    host    /message/getMessage/${token}/${message_id}
+    # get sms message
+    ${get_sms}=    get request    host    /message/getMessage/${token}/${message_id}
     run keyword unless    ${get_sms.ok}    fail    ${get_sms.content}
-    ${sms_get_name}=    Get Xml Content    ${get_sms.content}    tag=*name
-    Should Be Equal As Strings    ${sms_get_name}    UpdatedTestName
+    ${sms_get_name}=    get xml content    ${get_sms.content}    tag=*name
+    should be equal as strings    ${sms_get_name}    updatedtestname
 
-Clone SMS Message
-    # Clone SMS Message
-    ${clone_sms}=    Get Request    host    /message/cloneMessage/${token}/${message_id}/MessageClone
+clone_sms_message
+    # clone sms message
+    ${clone_sms}=    get request    host    /message/cloneMessage/${token}/${message_id}/messageclone
     run keyword unless    ${clone_sms.ok}    fail    ${clone_sms.content}
-    ${clone_sms_id}=    Get XML Content    ${clone_sms.content}
-    # Get SMS Message
-    ${get_clone_sms}=    Get Request    host    /message/getMessage/${token}/${clone_sms_id}
+    ${clone_sms_id}=    get xml content    ${clone_sms.content}
+    # get sms message
+    ${get_clone_sms}=    get request    host    /message/getMessage/${token}/${clone_sms_id}
     run keyword unless    ${get_clone_sms.ok}    fail    ${get_clone_sms.content}
-    ${get_clone_sms_name}=    Get XML Content    ${get_clone_sms.content}    tag=*name
-    Should Be Equal As Strings    ${get_clone_sms_name}    MessageClone
-    # Delete Clone SMS Message
-    ${delete_sms}=    Get Request    host    /message/deleteMessage/${token}/${clone_sms_id}
+    ${get_clone_sms_name}=    get xml content    ${get_clone_sms.content}    tag=*name
+    should be equal as strings    ${get_clone_sms_name}    messageclone
+    # delete clone sms message
+    ${delete_sms}=    get request    host    /message/deleteMessage/${token}/${clone_sms_id}
     run keyword unless    ${delete_sms.ok}    fail    ${delete_sms.content}
 
-Get SMS Message
-    # Get Message
-    ${get_sms}=    Get Request    host    /message/getMessage/${token}/${message_id}
+get_sms_message
+    # get message
+    ${get_sms}=    get request    host    /message/getMessage/${token}/${message_id}
     run keyword unless    ${get_sms.ok}    fail    ${get_sms.content}
-    ${get_sms_name}=    Get Xml Content    ${get_sms.content}    tag=*name
-    Should Be Equal As Strings    ${get_sms_name}    ${sms_name}
+    ${get_sms_name}=    get xml content    ${get_sms.content}    tag=*name
+    should be equal as strings    ${get_sms_name}    ${sms_name}
 
-Get Last SMS Messages
-    # Get Last SMS Messages
-    ${search_sms}    Get Request    host    /message/getLastSmsMessages/${token}/10
+get_last_sms_messages
+    # get last sms messages
+    ${search_sms}    get request    host    /message/getLastSmsMessages/${token}/10
     run keyword unless    ${search_sms.ok}    fail    ${search_sms.content}
-    ${sms_id_list}=    Get XML Content List    ${search_sms.content}
-    Should contain    ${sms_id_list}    ${message_id}
+    ${sms_id_list}=    get xml content list    ${search_sms.content}
+    should contain    ${sms_id_list}    ${message_id}
 
-Get SMS Messages by Field
-    # Get SMS Messages by Field
-    ${search_sms}    Get Request    host    /message/getSmsMessagesByField/${token}/name/${sms_name}/10
+get_sms_messages_by_field
+    # get sms messages by field
+    ${search_sms}    get request    host    /message/getSmsMessagesByField/${token}/name/${sms_name}/10
     run keyword unless    ${search_sms.ok}    fail    ${search_sms.content}
-    ${sms_id_list}=    Get XML Content List    ${search_sms.content}
-    Should contain    ${sms_id_list}    ${message_id}
+    ${sms_id_list}=    get xml content list    ${search_sms.content}
+    should contain    ${sms_id_list}    ${message_id}
 
-Get Messages by Period
-    # Get Messages by Period
-    ${start_time}=    Get Time    format=timestamp    time_=NOW - 1 hour
-    ${end_time}=    Get Time    format=timestamp    time_=NOW + 1 hour
-    ${search_sms}    Get Request    host    /message/getMessagesByPeriod/${token}/${start_time}/${end_time}
+get_messages_by_period
+    # get messages by period
+    ${start_time}=    get time    format=timestamp    time_=now - 1 hour
+    ${end_time}=    get time    format=timestamp    time_=now + 1 hour
+    ${search_sms}    get request    host    /message/getMessagesByPeriod/${token}/${start_time}/${end_time}
     run keyword unless    ${search_sms.ok}    fail    ${search_sms.content}
-    ${sms_id_list}=    Get XML Content List    ${search_sms.content}
-    Should contain    ${sms_id_list}    ${message_id}
+    ${sms_id_list}=    get xml content list    ${search_sms.content}
+    should contain    ${sms_id_list}    ${message_id}
 
-Get SMS Message Preview
-    # Get SMS Message Preview
-    ${search_sms}    Get Request    host    /message/getSmsMessagePreview/${token}/${message_id}
+get_sms_message_preview
+    # get sms message preview
+    ${search_sms}    get request    host    /message/getSmsMessagePreview/${token}/${message_id}
     run keyword unless    ${search_sms.ok}    fail    ${search_sms.content}
-    ${sms_content}=    Get XML Content    ${search_sms.content}
-    Should Be Equal As Strings    ${sms_content}    SMS creation test by API
+    ${sms_content}=    get xml content    ${search_sms.content}
+    should be equal as strings    ${sms_content}    SMS creation test by API
 
-Test SMS Message
-    # Test SMS Message
-    ${send_sms}    Get Request    host    /message/testSmsMessage/${token}/${message_id}/${member_id}/TestCampaign
+test_sms_message
+    # test sms message
+    ${send_sms}    get request    host    /message/testSmsMessage/${token}/${message_id}/${member_id}/testcampaign
     run keyword unless    ${send_sms.ok}    fail    ${send_sms.content}
-    ${send_content}=    Get XML Content    ${send_sms.content}
-    Should Be Equal As Strings    ${send_content}    true
+    ${send_content}=    get xml content    ${send_sms.content}
+    should be equal as strings    ${send_content}    true

@@ -26,211 +26,211 @@ ${hotmailUnsubFlg}    1
 ${hotmailUnsubUrl}    www.smarfocus.com
 
 *** Test Cases ***
-Create Email Message Get
-    Should Not Be Empty    ${message_id}
+create_email_message_get
+    should not be empty    ${message_id}
 
-Create Email Message Post
-    # Create Email message using POST
-    ${message}=    Get File    ${xml_file}
-    ${headers}=    Create Dictionary    content-type=application/xml
-    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+create_email_message_post
+    # create email message using post
+    ${message}=    get file    ${xml_file}
+    ${headers}=    create dictionary    content-type=application/xml
+    ${create_message}=    post request    host    /message/create/${token}    data=${message}    headers=${headers}
     run keyword unless    ${create_message.ok}    fail    ${create_message.content}
-    ${post_message_id}=    Get XML Content    ${create_message.content}
-    Should Not Be Empty    ${post_message_id}
+    ${post_message_id}=    get xml content    ${create_message.content}
+    should not be empty    ${post_message_id}
 
-Delete Email Message
-    # Delete Email message
-    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${message_id}
+delete_email_message
+    # delete email message
+    ${delete_email}=    get request    host    /message/deleteMessage/${token}/${message_id}
     run keyword unless    ${delete_email.ok}    fail    ${delete_email.content}
-    # Get Last Email Messages
-    ${search_email}    Get Request    host    /message/getLastSmsMessages/${token}/10
+    # get last email messages
+    ${search_email}    get request    host    /message/getLastSmsMessages/${token}/10
     run keyword unless    ${search_email.ok}    fail    ${search_email.content}
-    ${email_id_list}=    Get XML Content List    ${search_email.content}
-    Should Not Contain    ${email_id_list}    ${message_id}
+    ${email_id_list}=    get xml content list    ${search_email.content}
+    should not contain    ${email_id_list}    ${message_id}
 
-Update Email Message
-    # Update Email Message
-    ${update_email}=    Get Request    host    /message/updateMessage/${token}/${message_id}/name/UpdatedTestName
+update_email_message
+    # update email message
+    ${update_email}=    get request    host    /message/updateMessage/${token}/${message_id}/name/updatedtestname
     run keyword unless    ${update_email.ok}    fail    ${update_email.content}
-    # Get Email Message
-    ${get_email}=    Get Request    host    /message/getMessage/${token}/${message_id}
+    # get email message
+    ${get_email}=    get request    host    /message/getMessage/${token}/${message_id}
     run keyword unless    ${get_email.ok}    fail    ${get_email.content}
-    ${get_email_name}=    Get Xml Content    ${get_email.content}    tag=*name
-    Should Be Equal As Strings    ${get_email_name}    UpdatedTestName
+    ${get_email_name}=    get xml content    ${get_email.content}    tag=*name
+    should be equal as strings    ${get_email_name}    updatedtestname
 
-Clone Email Message
-    # Clone Email Message
-    ${clone_email}=    Get Request    host    /message/cloneMessage/${token}/${message_id}/MessageClone
+clone_email_message
+    # clone email message
+    ${clone_email}=    get request    host    /message/cloneMessage/${token}/${message_id}/messageclone
     run keyword unless    ${clone_email.ok}    fail    ${clone_email.content}
-    ${clone_email_id}=    Get XML Content    ${clone_email.content}
-    # Get Email Message
-    ${get_clone_email}=    Get Request    host    /message/getMessage/${token}/${clone_email_id}
+    ${clone_email_id}=    get xml content    ${clone_email.content}
+    # get email message
+    ${get_clone_email}=    get request    host    /message/getMessage/${token}/${clone_email_id}
     run keyword unless    ${get_clone_email.ok}    fail    ${get_clone_email.content}
-    ${get_clone_email_name}=    Get XML Content    ${get_clone_email.content}    tag=*name
-    Should Be Equal As Strings    ${get_clone_email_name}    MessageClone
-    # Delete Clone Email Message
-    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${clone_email_id}
+    ${get_clone_email_name}=    get xml content    ${get_clone_email.content}    tag=*name
+    should be equal as strings    ${get_clone_email_name}    messageclone
+    # delete clone email message
+    ${delete_email}=    get request    host    /message/deleteMessage/${token}/${clone_email_id}
     run keyword unless    ${delete_email.ok}    fail    ${delete_email.content}
 
-Get Email Message
-    # Get Email Message
-    ${get_email}=    Get Request    host    /message/getMessage/${token}/${message_id}
+get_email_message
+    # get email message
+    ${get_email}=    get request    host    /message/getMessage/${token}/${message_id}
     run keyword unless    ${get_email.ok}    fail    ${search_email.content}
-    ${get_email_name}=    Get Xml Content    ${get_email.content}    tag=*name
-    Should Be Equal As Strings    ${get_email_name}    ${name}
+    ${get_email_name}=    get xml content    ${get_email.content}    tag=*name
+    should be equal as strings    ${get_email_name}    ${name}
 
-Get Last Email Messages
-    # Get Last Email Messages
-    ${search_email}    Get Request    host    /message/getLastEmailMessages/${token}/10
+get_last_email_messages
+    # get last email messages
+    ${search_email}    get request    host    /message/getLastEmailMessages/${token}/10
     run keyword unless    ${search_email.ok}    fail    ${search_email.content}
-    ${email_id_list}=    Get XML Content List    ${search_email.content}
-    Should contain    ${email_id_list}    ${message_id}
+    ${email_id_list}=    get xml content list    ${search_email.content}
+    should contain    ${email_id_list}    ${message_id}
 
-Get Email Messages by Field
-    # Get Email Messages by Field
-    ${search_email}    Get Request    host    /message/getEmailMessageByField/${token}/name/${name}/10
+get_email_messages_by_field
+    # get email messages by field
+    ${search_email}    get request    host    /message/getEmailMessageByField/${token}/name/${name}/10
     run keyword unless    ${search_email.ok}    fail    ${search_email.content}
-    ${email_id_list}=    Get XML Content List    ${search_email.content}
-    Should contain    ${email_id_list}    ${message_id}
+    ${email_id_list}=    get xml content list    ${search_email.content}
+    should contain    ${email_id_list}    ${message_id}
 
-Get Messages by Period
-    # Get Messages by Period
-    ${start_time}=    Get Time    format=timestamp    time_=NOW - 1 hour
-    ${end_time}=    Get Time    format=timestamp    time_=NOW + 1 hour
-    ${search_email}    Get Request    host    /message/getMessagesByPeriod/${token}/${start_time}/${end_time}
+get_messages_by_period
+    # get messages by period
+    ${start_time}=    get time    format=timestamp    time_=now - 1 hour
+    ${end_time}=    get time    format=timestamp    time_=now + 1 hour
+    ${search_email}    get request    host    /message/getMessagesByPeriod/${token}/${start_time}/${end_time}
     run keyword unless    ${search_email.ok}    fail    ${search_email.content}
-    ${email_id_list}=    Get XML Content List    ${search_email.content}
-    Should contain    ${email_id_list}    ${message_id}
+    ${email_id_list}=    get xml content list    ${search_email.content}
+    should contain    ${email_id_list}    ${message_id}
 
-Get Email Message Preview
-    # Get Email Message Preview
-    ${search_email}    Get Request    host    /message/getEmailMessagePreview/${token}/${message_id}/HTML
+get_email_message_preview
+    # get email message preview
+    ${search_email}    get request    host    /message/getEmailMessagePreview/${token}/${message_id}/html
     run keyword unless    ${search_email.ok}    fail    ${search_email.content}
-    ${email_content}=    Get XML Content    ${search_email.content}
-    Should Contain    ${email_content}    hi there
+    ${email_content}=    get xml content    ${search_email.content}
+    should contain    ${email_content}    hi there
 
-Track All Links
-    # Create Email message using POST
-    ${message}=    Get File    ${xml_file}
-    ${headers}=    Create Dictionary    content-type=application/xml
-    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+track_all_links
+    # create email message using post
+    ${message}=    get file    ${xml_file}
+    ${headers}=    create dictionary    content-type=application/xml
+    ${create_message}=    post request    host    /message/create/${token}    data=${message}    headers=${headers}
     run keyword unless    ${create_message.ok}    fail    ${create_message.content}
-    ${post_message_id}=    Get XML Content    ${create_message.content}
-    Should Not Be Empty    ${post_message_id}
-    # Track All Links
-    ${track_links}    Get Request    host    /message/trackAllLinks/${token}/${post_message_id}
+    ${post_message_id}=    get xml content    ${create_message.content}
+    should not be empty    ${post_message_id}
+    # track all links
+    ${track_links}    get request    host    /message/trackAllLinks/${token}/${post_message_id}
     run keyword unless    ${track_links.ok}    fail    ${track_links.content}
-    ${email_content}=    Get XML Content    ${track_links.content}
+    ${email_content}=    get xml content    ${track_links.content}
     should be equal as integers    ${email_content}    1
-    # Delete Email message
-    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    # delete email message
+    ${delete_email}=    get request    host    /message/deleteMessage/${token}/${post_message_id}
     run keyword unless    ${delete_email.ok}    fail    ${delete_email.content}
 
-Untrack All Links
-    # Untrack All Links
-    ${untrack_links}    Get Request    host    /message/untrackAllLinks/${token}/${message_id}
+untrack_all_links
+    # untrack all links
+    ${untrack_links}    get request    host    /message/untrackAllLinks/${token}/${message_id}
     run keyword unless    ${untrack_links.ok}    fail    ${untrack_links.content}
-    ${email_content}=    Get XML Content    ${untrack_links.content}
+    ${email_content}=    get xml content    ${untrack_links.content}
     should be equal as strings    ${email_content}    true
 
-Track Link by Position
-    # Create Email message using POST
-    ${message}=    Get File    ${xml_file}
-    ${headers}=    Create Dictionary    content-type=application/xml
-    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+track_link_by_position
+    # create email message using post
+    ${message}=    get file    ${xml_file}
+    ${headers}=    create dictionary    content-type=application/xml
+    ${create_message}=    post request    host    /message/create/${token}    data=${message}    headers=${headers}
     run keyword unless    ${create_message.ok}    fail    ${create_message.content}
-    ${post_message_id}=    Get XML Content    ${create_message.content}
-    Should Not Be Empty    ${post_message_id}
-    # Track Link by Position
-    ${track_links}    Get Request    host    /message/trackLinkByPosition/${token}/${post_message_id}/1/HTML
+    ${post_message_id}=    get xml content    ${create_message.content}
+    should not be empty    ${post_message_id}
+    # track link by position
+    ${track_links}    get request    host    /message/trackLinkByPosition/${token}/${post_message_id}/1/html
     run keyword unless    ${track_links.ok}    fail    ${track_links.content}
-    ${email_content}=    Get XML Content    ${track_links.content}
+    ${email_content}=    get xml content    ${track_links.content}
     should be equal as integers    ${email_content}    1
-    # Delete Email message
-    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    # delete email message
+    ${delete_email}=    get request    host    /message/deleteMessage/${token}/${post_message_id}
     run keyword unless    ${delete_email.ok}    fail    ${delete_email.content}
 
-Untrack Link by Order
-    # Create Email message using POST
-    ${message}=    Get File    ${xml_file}
-    ${headers}=    Create Dictionary    content-type=application/xml
-    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+untrack_link_by_order
+    # create email message using post
+    ${message}=    get file    ${xml_file}
+    ${headers}=    create dictionary    content-type=application/xml
+    ${create_message}=    post request    host    /message/create/${token}    data=${message}    headers=${headers}
     run keyword unless    ${create_message.ok}    fail    ${create_message.content}
-    ${post_message_id}=    Get XML Content    ${create_message.content}
-    Should Not Be Empty    ${post_message_id}
-    # Untrack Link by Order
-    ${untrack_links}    Get Request    host    /message/untrackLinkByOrder/${token}/${post_message_id}/1
+    ${post_message_id}=    get xml content    ${create_message.content}
+    should not be empty    ${post_message_id}
+    # untrack link by order
+    ${untrack_links}    get request    host    /message/untrackLinkByOrder/${token}/${post_message_id}/1
     run keyword unless    ${untrack_links.ok}    fail    ${untrack_links.content}
-    ${email_content}=    Get XML Content    ${untrack_links.content}
+    ${email_content}=    get xml content    ${untrack_links.content}
     should be equal as strings    ${email_content}    true
-    # Delete Email message
-    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    # delete email message
+    ${delete_email}=    get request    host    /message/deleteMessage/${token}/${post_message_id}
     run keyword unless    ${delete_email.ok}    fail    ${delete_email.content}
 
-Get All Tracked Links
-    # Create Email message using POST
-    ${message}=    Get File    ${xml_file}
-    ${headers}=    Create Dictionary    content-type=application/xml
-    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+get_all_tracked_links
+    # create email message using post
+    ${message}=    get file    ${xml_file}
+    ${headers}=    create dictionary    content-type=application/xml
+    ${create_message}=    post request    host    /message/create/${token}    data=${message}    headers=${headers}
     run keyword unless    ${create_message.ok}    fail    ${create_message.content}
-    ${post_message_id}=    Get XML Content    ${create_message.content}
-    Should Not Be Empty    ${post_message_id}
-    # Track All Links
-    ${track_links}    Get Request    host    /message/trackAllLinks/${token}/${post_message_id}
+    ${post_message_id}=    get xml content    ${create_message.content}
+    should not be empty    ${post_message_id}
+    # track all links
+    ${track_links}    get request    host    /message/trackAllLinks/${token}/${post_message_id}
     run keyword unless    ${track_links.ok}    fail    ${track_links.content}
-    ${email_content}=    Get XML Content    ${track_links.content}
-    # Get All Tracked Links
-    ${get_tracked_links}    Get Request    host    /message/getAllTrackedLinks/${token}/${post_message_id}
+    ${email_content}=    get xml content    ${track_links.content}
+    # get all tracked links
+    ${get_tracked_links}    get request    host    /message/getAllTrackedLinks/${token}/${post_message_id}
     run keyword unless    ${get_tracked_links.ok}    fail    ${get_tracked_links.content}
-    ${email_content}=    Get XML Content List    ${get_tracked_links.content}
+    ${email_content}=    get xml content list    ${get_tracked_links.content}
     should contain    ${email_content}    1
-    # Delete Email message
-    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    # delete email message
+    ${delete_email}=    get request    host    /message/deleteMessage/${token}/${post_message_id}
     run keyword unless    ${delete_email.ok}    fail    ${delete_email.content}
 
 # This test requires a message that has tracked links that are not included in the message,
 # this can only be made through the UI and this test needs quite an update for that
-#Get All Unused Tracked Links
-#    # Create Email message using POST
-#    ${message}=    Get File    ${xml_file}
-#    ${headers}=    Create Dictionary    content-type=application/xml
-#    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+#get_all_unused_tracked_links
+#    # create email message using post
+#    ${message}=    get file    ${xml_file}
+#    ${headers}=    create dictionary    content-type=application/xml
+#    ${create_message}=    post request    host    /message/create/${token}    data=${message}    headers=${headers}
 #    run keyword unless    ${create_message.ok}    fail    ${create_message.content}
-#    ${post_message_id}=    Get XML Content    ${create_message.content}
-#    Should Not Be Empty    ${post_message_id}
-#    # Track All Links
-#    ${track_links}    Get Request    host    /message/trackAllLinks/${token}/${post_message_id}
+#    ${post_message_id}=    get xml content    ${create_message.content}
+#    should not be empty    ${post_message_id}
+#    # track all links
+#    ${track_links}    get request    host    /message/trackAllLinks/${token}/${post_message_id}
 #    run keyword unless    ${track_links.ok}    fail    ${track_links.content}
-#    ${email_content}=    Get XML Content    ${track_links.content}
-#    # Get All Unused Tracked Links
-#    ${get_tracked_links}    Get Request    host    /message/getAllUnusedTrackedLinks/${token}/${post_message_id}
+#    ${email_content}=    get xml content    ${track_links.content}
+#    # get all unused tracked links
+#    ${get_tracked_links}    get request    host    /message/getAllUnusedTrackedLinks/${token}/${post_message_id}
 #    run keyword unless    ${get_tracked_links.ok}    fail    ${get_tracked_links.content}
-#    ${email_content}=    Get XML Content List    ${get_tracked_links.content}
+#    ${email_content}=    get xml content list    ${get_tracked_links.content}
 #    should contain    ${email_content}    1
-#    # Delete Email message
-#    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+#    # delete email message
+#    ${delete_email}=    get request    host    /message/deleteMessage/${token}/${post_message_id}
 #    run keyword unless    ${delete_email.ok}    fail    ${delete_email.content}
 
-Get All Trackable Links
-    # Create Email message using POST
-    ${message}=    Get File    ${xml_file}
-    ${headers}=    Create Dictionary    content-type=application/xml
-    ${create_message}=    Post Request    host    /message/create/${token}    data=${message}    headers=${headers}
+get_all_trackable_links
+    # create email message using post
+    ${message}=    get file    ${xml_file}
+    ${headers}=    create dictionary    content-type=application/xml
+    ${create_message}=    post request    host    /message/create/${token}    data=${message}    headers=${headers}
     run keyword unless    ${create_message.ok}    fail    ${create_message.content}
-    ${post_message_id}=    Get XML Content    ${create_message.content}
-    Should Not Be Empty    ${post_message_id}
-    # Get All Trackable Links
-    ${get_trackable_links}    Get Request    host    /message/getAllTrackableLinks/${token}/${post_message_id}
+    ${post_message_id}=    get xml content    ${create_message.content}
+    should not be empty    ${post_message_id}
+    # get all trackable links
+    ${get_trackable_links}    get request    host    /message/getAllTrackableLinks/${token}/${post_message_id}
     run keyword unless    ${get_trackable_links.ok}    fail    ${get_trackable_links.content}
-    ${email_content}=    Get XML Content List    ${get_trackable_links.content}
+    ${email_content}=    get xml content list    ${get_trackable_links.content}
     should contain    ${email_content}    1
-    # Delete Email message
-    ${delete_email}=    Get Request    host    /message/deleteMessage/${token}/${post_message_id}
+    # delete email message
+    ${delete_email}=    get request    host    /message/deleteMessage/${token}/${post_message_id}
     run keyword unless    ${delete_email.ok}    fail    ${delete_email.content}
 
-Test HTML Validity
-    # Test HTML Validity
-    ${validate_html}    Get Request    host    /message/isHtmlValid/${token}/${message_id}
+test_html_validity
+    # test html validity
+    ${validate_html}    get request    host    /message/isHtmlValid/${token}/${message_id}
     run keyword unless    ${validate_html.ok}    fail    ${validate_html.content}
-    ${email_content}=    Get XML Content    ${validate_html.content}
+    ${email_content}=    get xml content    ${validate_html.content}
     should be equal as strings    ${email_content}    true
