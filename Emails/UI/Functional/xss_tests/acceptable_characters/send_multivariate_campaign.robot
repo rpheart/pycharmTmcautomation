@@ -108,7 +108,8 @@ loop through test data step 1
     \    click element    ${multivariate_campaign['button_add']['select_a_message']}
     \    click element    splitrunUI-builderView-messagesExplorer-idColumn
     \    click element    ${multivariate_campaign['button_add']['select_one_or_more_segments']}
-    \    wait until keyword succeeds    15x    1 sec    click element    splitrunUI-builderView-segmentsExplorer-nameColumn
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'Favourites')]
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'QA TEAM')]
     \    wait until keyword succeeds    15x    1 sec    click element    ${multivariate_campaign['button_add']['click_ok']}
     \    wait until keyword succeeds    15x    1 sec    click element    ${multivariate_campaign['button_add']['continue_button']}
     # Step 2
@@ -132,7 +133,8 @@ loop through test data step 2
     \    click element    ${multivariate_campaign['button_add']['select_a_message']}
     \    click element    splitrunUI-builderView-messagesExplorer-idColumn
     \    click element    ${multivariate_campaign['button_add']['select_one_or_more_segments']}
-    \    wait until keyword succeeds    15x    1 sec    click element    splitrunUI-builderView-segmentsExplorer-nameColumn
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'Favourites')]
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'QA TEAM')]
     \    wait until keyword succeeds    15x    1 sec    click element    ${multivariate_campaign['button_add']['click_ok']}
     \    wait until keyword succeeds    15x    1 sec    click element    ${multivariate_campaign['button_add']['continue_button']}
     # Step 2
@@ -156,7 +158,8 @@ loop through test data step 3
     \    click element    ${multivariate_campaign['button_add']['select_a_message']}
     \    click element    splitrunUI-builderView-messagesExplorer-idColumn
     \    click element    ${multivariate_campaign['button_add']['select_one_or_more_segments']}
-    \    wait until keyword succeeds    15x    1 sec    click element    splitrunUI-builderView-segmentsExplorer-nameColumn
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'Favourites')]
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'QA TEAM')]
     \    wait until keyword succeeds    15x    1 sec    click element    ${multivariate_campaign['button_add']['click_ok']}
     \    wait until keyword succeeds    15x    1 sec    click element    ${multivariate_campaign['button_add']['continue_button']}
     # Step 2

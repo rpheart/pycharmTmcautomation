@@ -91,7 +91,8 @@ loop through test data step 1
     \    input text    ${multimessage_campaign["button_add"]["input_name"]}    Name
     \    input text    ${field}    ${line}
     \    click element    xpath=//*[@id="splitrunUI-builderView-segmentsExplorer-openButton"]
-    \    wait until keyword succeeds    15x    1 sec    click element    splitrunUI-builderView-segmentsExplorer-nameColumn
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'Favourites')]
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'QA TEAM')]
     \    wait until keyword succeeds    15x    1 sec    click element    xpath=//*[@id="splitrunUI-builderView-segmentsExplorer-addEntitiesButton"]//div[./text()='Ok']
     \    wait until keyword succeeds    15x    1 sec    click element    xpath=//*[@id="splitrunUI-builderView-nextButton"]//div[./text()='Continue']
     \    sleep    2
@@ -116,7 +117,8 @@ loop through test data step 3
     \    open content    ${multimessage_campaign}    ${multimessage_campaign["button_add"]["add"]}
     \    input text    ${multimessage_campaign["button_add"]["input_name"]}    Name
     \    click element    xpath=//*[@id="splitrunUI-builderView-segmentsExplorer-openButton"]
-    \    wait until keyword succeeds    15x    1 sec    click element    splitrunUI-builderView-segmentsExplorer-nameColumn
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'Favourites')]
+    \    wait until keyword succeeds    15x    1 sec    click element    //*[contains(text(), 'QA TEAM')]
     \    wait until keyword succeeds    15x    1 sec    click element    xpath=//*[@id="splitrunUI-builderView-segmentsExplorer-addEntitiesButton"]//div[./text()='Ok']
     \    wait until keyword succeeds    15x    1 sec    click element    xpath=//*[@id="splitrunUI-builderView-nextButton"]//div[./text()='Continue']
     \    sleep    2
