@@ -5,22 +5,20 @@ Library             RequestsLibrary
 Library             Selenium2Library    10    2
 Library             XML
 Library             api_functions.py
+Variables           ../../Utils/credentials.py
 
 *** Variables ***
-${server}       p1itgapie.emv2.com
-${user}         emvqae1_api_psummers
-${password}     Standard1!
-${apikey}       CdX7CrRD4EeekEUMb8M_sqWXawknQfiBuQKoBs9XKa-sH0-e2hqG8dVsgUw
+${env}=             preprod
 ${template_id}
 ${message_id}
 ${segment_id}
-${member_id}    1819306545  # QA member id, we need to find one for each client/environment and add it to jenkins
+${member_id}        1819306545  # TODO QA member id, we need to find one for each client/environment and add it to jenkins
 
 *** Keywords ***
 open_connection
     [Documentation]    opens a connection to 'apiccmd/services/rest' and returns a session token to the suite
     create session    host    ${host}
-    ${open}=    get request    host    /connect/open/${user}/${password}/${apikey}
+    ${open}=    get request    host    /connect/open/${${env}_environment["api_user"]}/${${env}_environment["api_password"]}/${${env}_environment["api_key"]}
     run keyword unless    ${open.ok}    fail    ${open.content}
     ${token}=    get xml content    ${open.content}
     set suite variable    ${token}
