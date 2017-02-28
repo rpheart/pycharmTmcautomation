@@ -47,13 +47,26 @@ send test emails
     # open the panel
     :for    ${n}    in range    10
     \    ${tests_open}=    run keyword and return status    element should be visible    ${new_message_builder["button_add"]["test_panel"]}
-    \    exit for loop if    ${test_open}
-    \    click element    ${new_message_builder["button_add"]["tests"]}
+    \    exit for loop if    ${tests_open}
+    \    wait until keyword succeeds    15x    1 sec    click element    ${new_message_builder["button_add"]["tests"]}
     # check if email is already added
-    wait until keyword succeeds    15x   1 sec    input text     ${generics["search_input"]}    ${email}
+    wait until keyword succeeds    15x   1 sec    input text     name="test-email-search-input"    ${email}
     ${can_add_email}=    run keyword and return status    element should be enabled    ${new_message_builder["button_add"]["add_recipients"]}
     run keyword if    ${can_add_email}    run keywords
     ...    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["add_recipients"]}
     ...    ELSE    run keywords
     ...    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["first_test_email_slider"]}
     wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["send_test_emails"]}
+
+delete latest message
+    open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
+    click element    ${new_message_builder["button_list"]["first_row"]}
+    click element    ${new_message_builder["button_list"]["delete_button"]}
+    click element    ${generics["yes_button"]}
+
+edit text widget
+    [Arguments]    ${text}
+    click element    ${new_message_builder["button_add"]["text_content_box"]}
+    clear element text    css=div.content-cell.editable.text >h2
+    clear element text    css=div.content-cell.editable.text \ > p
+    press key    ${new_message_builder["button_add"]["text_content_box"]}    ${text}

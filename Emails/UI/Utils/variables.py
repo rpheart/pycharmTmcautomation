@@ -50,6 +50,7 @@ generics = {
     "select_all": "//img[@id='iconSelectAll']",
     "trash": "//*[@id='iconTrash']",
     "ok_button": "//a[contains(text(), 'OK')]",
+    "yes_button": "//*[contains(text(), 'Yes')]",
     "content_upload": {
         "link": "//*[@id='iconToolboxContentUpload']/../../a/div[contains(text(), 'Content Upload') or ./text() = 'Content Upload']",
         "popup_url_input": "name=uploadUrl",
@@ -306,7 +307,8 @@ new_message_builder = {
         "send_test_emails": "//*[@id='send-test-emails']/div[2]",
         "first_test_email_slider": "//*[@class='test-email']/div/div[2]",
         "send_test_search_input": "//*[@id='test-email-search-input-container']/div/input",
-        "send_test_search_button": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[2]"
+        "send_test_search_button": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[2]",
+        "text_content_box": "//*[@class='content-cell editable text']"
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message Builder']/li[2]",
@@ -321,7 +323,8 @@ new_message_builder = {
         "first_row": "//*[@id='tabledivRow-0']",
         "duplicate": "//*[contains(@id, 'duplicateenable')]",
         "rename_input": "//*[@id='archive-duplicate-name']",
-        "duplicate_button": "//div[contains(text(), 'Duplicate')]"
+        "duplicate_button": "//div[contains(text(), 'Duplicate')]",
+        "delete_button": "//*[contains(@id, 'deleteenable')]"
     }
 }
 
@@ -704,7 +707,7 @@ transactional_content_block = {
         "content_block_name_input": "name=name",
         "content_block_description_input": "name=description",
         "content_block_body_input": "id=textContent",
-        "content_block_rename_input": "//*[contains(@name, 'NewName')]",
+        "content_block_rename_input": "//*[@name='nmTransactionalNewName']",
         "html_checkbox": "//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "//*[@id='content']//input[@type='radio' and @value='HTML']",
         "save": "//*[@id='iconSave']/../../a[contains(text(),'Save') or ./text()='Save']",
@@ -1004,7 +1007,6 @@ list_growth_reports = {
             "segments_list": "//*[@id='listReportUI-builderView-segmentsExplorer-openButton']",
             "segments_search_input": "//input[@id='listReportUI-builderView-segmentsExplorer-searchButton-textBox']",
             "segments_search_button": "//*[@id='listReportUI-builderView-segmentsExplorer-searchButton-button']"
-
         }
     }
 }
