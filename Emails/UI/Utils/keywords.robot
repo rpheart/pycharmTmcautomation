@@ -1,17 +1,19 @@
 *** Settings ***
-Documentation       Suite description
-Library             Selenium2Library    10    2    run_on_failure=fail keyword    screenshot_root_directory=.
+Documentation       contains variables and keywords for the email ui test suite
+Library             Collections
 Library             OperatingSystem
+Library             Selenium2Library    15    15    run_on_failure=fail keyword
+Library             String
 Variables           variables.py
 
 *** Variables ***
 # test variables
-${screenshots}
+${screenshots}    ${EMPTY}
 
 # login variables
 ${ui_server}        https://qa-sfui.themessagecloud.com
-${ui_username}      sidevall
-${ui_password}      HeadCheese!10
+${ui_username}      emvqa_qa
+${ui_password}      qa11focus1.
 ${browser}          chrome
 
 *** Keywords ***
@@ -27,47 +29,42 @@ login
     input text    IDToken1    ${ui_username}
     input password    IDToken2    ${ui_password}
     click link    name=Login.Submit
-    wait until element is visible    ${smart_focus_logo}    timeout=30
 
 go to ${page}
     [Documentation]
     select window    ${document_title}    # Select main frame
-    click element    ${page}
-    wait until element is visible    ${navigation_bar}    timeout=30
+    wait until keyword succeeds    15x    1 sec    Click Element    ${page}
 
 open content
     [Documentation]
     [Arguments]    ${content_dictionary}      ${page}
     select window    ${document_title}    # Select main frame
-    wait until element is visible    ${content_dictionary["menu"]}    timeout=30
-    mouse over    ${content_dictionary["menu"]}
-    wait until element is visible    ${page}    timeout=30
-    click element    ${page}
-    mouse over    ${smartfocus_logo}
-    wait until element is visible    ${navigation_bar}    timeout=30
-    select frame    ${iframes["top"]}
-    select frame    ${iframes["ccmd"]}
+    wait until keyword succeeds    15x    1 sec    mouse over    ${content_dictionary["menu"]}
+    wait until keyword succeeds    15x    1 sec    click element    ${page}
+    wait until keyword succeeds    15x    1 sec    mouse over    ${smartfocus_logo}
+    wait until keyword succeeds    15x    1 sec    select frame    ${iframes["top"]}
+    wait until keyword succeeds    15x    1 sec    select frame    ${iframes["ccmd"]}
 
 send classic test message
     [Documentation]
     @{emails}=    create list    qa.auto@smartfocus.com    qa.test@smartfocus.com
-    Select Frame    ${generics["popup_window"]}
+    select frame    ${generics["popup_window"]}
     wait until page contains    Message Send Test    timeout=30
-    Input text    ${generics["campaign_name_input"]}    Add two emails for testing    # Type 'Test Campaign name'
+    input text    ${generics["campaign_name_input"]}    Add two emails for testing    # Type 'Test Campaign name'
 
     # add emails to 'Test Recipients' and to the QA_auto group
     :for    ${email}    in    @{emails}
-    \    Input text    ${generics["new_test_email_input"]}    ${email}    # Input New Test Email
-    \    Click Element    ${generics["add_criteria_button"]}    # Add email to 'Test recipients list'
+    \    input text    ${generics["new_test_email_input"]}    ${email}    # Input New Test Email
+    \    click element    ${generics["add_criteria_button"]}    # Add email to 'Test recipients list'
 
     # ensure members are part of group
     select from list    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
-    select Checkbox    ${generics["email_checkbox_qa_test"]}
-    select Checkbox    ${generics["email_checkbox_qa_auto"]}
-    Click Element    ${generics["update_button"]}    # Update Group
+    select checkbox    ${generics["email_checkbox_qa_test"]}
+    select checkbox    ${generics["email_checkbox_qa_auto"]}
+    click element    ${generics["update_button"]}    # Update Group
 
     # send test email to group
     select from list    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
-    Click Element    ${generics["send_test_button"]}    # Send a Tests
+    click element    ${generics["send_test_button"]}    # Send a Test
     wait until page contains    You will receive your test email shortly    timeout=30
     click element    ${generics["close_button"]}
