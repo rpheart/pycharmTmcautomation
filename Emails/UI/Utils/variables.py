@@ -703,7 +703,7 @@ transactional_content_block = {
         "content_block_name_input": "name=name",
         "content_block_description_input": "name=description",
         "content_block_body_input": "id=textContent",
-        "content_block_rename_input": "//*[@name='nmTransactionalNewName']",
+        "content_block_rename_input": "//*[contains(@name, 'NewName')]",
         "html_checkbox": "//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "//*[@id='content']//input[@type='radio' and @value='HTML']",
         "save": "//*[@id='iconSave']/../../a[contains(text(),'Save') or ./text()='Save']",
