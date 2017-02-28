@@ -248,6 +248,7 @@ loop through test data
     \    open message header
     \    input text    ${classic_message_builder["button_add"]["message_name_input"]}    Name        # gets over-written if the field being tested is name itself!!
     \    input text    ${classic_message_builder["button_add"]["message_reply_to_email_input"]}    test@robot.com        # gets over-written if the field being tested is body itself!!
+    \    input text    ${classic_message_builder["button_add"]["message_subject_input"]}    xss test
     \    ${is_email}=    run keyword and return status    should contain     ${field}    messageReplyToEmail
     \    run keyword if     ${is_email}    create email string     ${line}
     \    input text    ${field}    ${line}
