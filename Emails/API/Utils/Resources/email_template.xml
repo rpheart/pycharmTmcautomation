@@ -12,7 +12,7 @@
         &amp;lt;/html&amp;gt;
         [EMV TEXTPART]
         [EMV CONTENT]2[EMV /CONTENT]
-</body>
+    </body>
     <description>DESCRIPTION</description>
     <encoding>a1b2c3d4eENCODING5f6g7h8i9j0</encoding>
     <from>FROM</from>
