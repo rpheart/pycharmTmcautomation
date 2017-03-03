@@ -16,7 +16,7 @@ add widget to canvas
     run keyword and ignore error    click element    ${new_message_builder["button_add"]["visual"]}
 
     :for    ${n}    in range    5
-    \    ${content_open}=    run keyword and return status    element should be visible    //*[@id="content-palette"]/div/div/div[@class='close']
+    \    ${content_open}=    run keyword and return status    click element    ${new_message_builder["button_add"]["contents"]}
     \    exit for loop if    ${content_open}
     \    click element    ${new_message_builder["button_add"]["add_content"]}
 
@@ -45,24 +45,26 @@ set mandatory headers
 send test emails
     [Arguments]    ${email}
     # open the panel
-    :for    ${n}    in range    10
+    :for    ${n}    in range    5
     \    ${tests_open}=    run keyword and return status    element should be visible    ${new_message_builder["button_add"]["test_panel"]}
     \    exit for loop if    ${tests_open}
     \    wait until keyword succeeds    15x    1 sec    click element    ${new_message_builder["button_add"]["tests"]}
+    \    sleep    0.5
     # check if email is already added
-    wait until keyword succeeds    15x   1 sec    input text     name="test-email-search-input"    ${email}
+    sleep    0.5
+    input text     ${new_message_builder["button_add"]["send_test_search_input"]}    ${email}
     ${can_add_email}=    run keyword and return status    element should be enabled    ${new_message_builder["button_add"]["add_recipients"]}
-    run keyword if    ${can_add_email}    run keywords
-    ...    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["add_recipients"]}
-    ...    ELSE    run keywords
-    ...    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["first_test_email_slider"]}
-    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["send_test_emails"]}
+    run keyword if    ${can_add_email}    wait until keyword succeeds    15x    1 sec    click element    ${new_message_builder["button_add"]["add_recipients"]}
+    ...    ELSE    wait until keyword succeeds    15x    1 sec    click element    ${new_message_builder["button_add"]["first_test_email_slider"]}
+    wait until keyword succeeds    15x    1 sec    click element    ${new_message_builder["button_add"]["send_test_emails"]}
+    current frame contains    Test has been sent
 
 delete latest message
     open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
     click element    ${new_message_builder["button_list"]["first_row"]}
     click element    ${new_message_builder["button_list"]["delete_button"]}
     click element    ${generics["yes_button"]}
+    current frame contains    Your message has been successfully deleted.
 
 edit text widget
     [Arguments]    ${text}
@@ -78,6 +80,7 @@ create basic message
     edit text widget    Create New Message Builder\n\nThis message was created using automation
     set mandatory headers
     click element    ${new_message_builder["button_add"]["save_and_finalize"]}
+    current frame contains    Your message has been successfully saved.
 
 add image to widget
     click element    ${new_message_builder["button_add"]["add_a_picture"]}
@@ -86,5 +89,4 @@ add image to widget
     select window    ${document_title}
     select frame    ${iframes["top"]}
     select frame    ${iframes["ccmd"]}
-    press key    //*[@id="alt-tag-input"]    \\27    # press the ESC key
-
+    press key    //*[@id="alt-tag-input"]    \\27    # ESC
