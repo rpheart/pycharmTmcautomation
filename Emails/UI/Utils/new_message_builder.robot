@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Keywords specifi to the creation of messages using the new builder
+Documentation    keywords specific to the creation of messages using the new builder
 
 *** Keywords ***
 set message name
@@ -16,9 +16,10 @@ add widget to canvas
     run keyword and ignore error    click element    ${new_message_builder["button_add"]["visual"]}
 
     :for    ${n}    in range    5
-    \    ${content_open}=    run keyword and return status    click element    ${new_message_builder["button_add"]["contents"]}
+    \    ${content_open}=    run keyword and return status    click element    ${new_message_builder["button_add"]["contents_panel"]}
     \    exit for loop if    ${content_open}
     \    click element    ${new_message_builder["button_add"]["add_content"]}
+    \    sleep    0.5
 
     :for    ${n}    in range    5
     \    ${widget_visible}=    run keyword and return status    element should be visible    ${widget}
@@ -46,7 +47,7 @@ send test emails
     [Arguments]    ${email}
     # open the panel
     :for    ${n}    in range    5
-    \    ${tests_open}=    run keyword and return status    element should be visible    ${new_message_builder["button_add"]["test_panel"]}
+    \    ${tests_open}=    run keyword and return status    click element    ${new_message_builder["button_add"]["tests_panel"]}
     \    exit for loop if    ${tests_open}
     \    wait until keyword succeeds    15x    1 sec    click element    ${new_message_builder["button_add"]["tests"]}
     \    sleep    0.5
