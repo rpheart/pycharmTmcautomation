@@ -18,7 +18,8 @@ navigation_bar = "css=ul.si-module-navigation"
 iframes = {
     "top": "css=iframe.sfIFrame",
     "ccmd": "id=emv-ccmd-iframe",
-    "popup": "id=popupFrame"
+    "popup": "id=popupFrame",
+    "image_library_editor": "id=msg-editor-imagelib-iframe"
 }
 
 # generic tabs
@@ -272,16 +273,24 @@ new_message_builder = {
         "basic": "id=palette-contents-carousel-basic",
         "content_blocks": "id=palette-contents-carousel-content-blocks",
         "drop_content_here": "//*[@id='message-html']//span[normalize-space(.//text())='Drop content here']",
-        "text_icon": "//*[@id='content-type-item-text']/div[@class='icon text-icon']",
-        "image_icon": "//*[@id='content-type-item-image']/div[@class='icon image-icon']",
-        "text_image_icon": "//*[@id='content-type-item-text-image']/div[@class='icon text-image-icon']",
-        "image_text_icon": "//*[@id='content-type-item-image-text']/div[@class='icon image-text-icon']",
-        "share_icon": "//*[@id='content-type-item-share']/div[@class='icon share-icon']",
-        "html_icon": "//*[@id='content-type-item-html']/div[@class='icon html-icon']",
-        "spacer_icon": "//*[@id='content-type-item-spacer']/div[@class='icon spacer-icon']",
-        "video_icon": "//*[@id='content-type-item-video']/div[@class='icon video-icon']",
-        "reco_icon": "//*[@id='content-type-item-reco']/div[@class='icon reco-icon']",
+        # "text_icon": "//*[@id='content-type-item-text']/div[@class='icon text-icon']",
+        # "image_icon": "//*[@id='content-type-item-image']/div[@class='icon image-icon']",
+        # "text_image_icon": "//*[@id='content-type-item-text-image']/div[@class='icon text-image-icon']",
+        # "image_text_icon": "//*[@id='content-type-item-image-text']/div[@class='icon image-text-icon']",
+        # "share_icon": "//*[@id='content-type-item-share']/div[@class='icon share-icon']",
+        # "html_icon": "//*[@id='content-type-item-html']/div[@class='icon html-icon']",
+        # "spacer_icon": "//*[@id='content-type-item-spacer']/div[@class='icon spacer-icon']",
+        # "video_icon": "//*[@id='content-type-item-video']/div[@class='icon video-icon']",
+        # "reco_icon": "//*[@id='content-type-item-reco']/div[@class='icon reco-icon']",
         "text_widget": "//*[@id='content-type-item-text']",
+        "image_widget": "//*[@id='content-type-item-image']",
+        "text_image_widget": "//*[@id='content-type-item-text-image']",
+        "image_text_widget": "//*[@id='content-type-item-image-text']",
+        "share_widget": "//*[@id='content-type-item-share']",
+        "html_widget": "//*[@id='content-type-item-html']",
+        "spacer_widget": "//*[@id='content-type-item-spacer']",
+        "video_widget": "//*[@id='content-type-item-video']",
+        "smart_personalisation_widget": "//*[@id='content-type-item-reco']",
         "chevron_left": "//*[@id='editor-switch']/div/div[4]",
         "message_name": "//*[@id='action-bar-name']",
         "message_name_input": "//*[@id='action-bar-inputname']",
@@ -308,7 +317,11 @@ new_message_builder = {
         "first_test_email_slider": "//*[@class='test-email']/div/div[2]",
         "send_test_search_input": "//*[@id='test-email-search-input-container']/div/input",
         "send_test_search_button": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[2]",
-        "text_content_box": "//*[@class='content-cell editable text']"
+        "text_content_box": "//*[@class='content-cell editable text']",
+        "add_a_picture": "//*[contains(text(), 'Add a picture')]",
+        "first_image": "//*[@class='image ng-scope']",
+        "apply_and_close": "//*[@id='image-popup-options-apply']",
+        "add_a_link": "//*[contains(text(), 'Add a link')]"
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message Builder']/li[2]",
@@ -324,7 +337,10 @@ new_message_builder = {
         "duplicate": "//*[contains(@id, 'duplicateenable')]",
         "rename_input": "//*[@id='archive-duplicate-name']",
         "duplicate_button": "//div[contains(text(), 'Duplicate')]",
-        "delete_button": "//*[contains(@id, 'deleteenable')]"
+        "delete_button": "//*[contains(@id, 'deleteenable')]",
+        "edit_button": "//*[contains(@id, 'editenable')]",
+        "convert_to_html_button": "//*[contains(@id, 'convertenable')]",
+        "preview_button": "//*[contains(@id, 'preview-icon')]"
     }
 }
 
@@ -785,17 +801,18 @@ search_subscriber = {
         "header_select_operator": "//*[@id='content']//th[./text()='Select Operator']",
         "header_value": "//*[@id='content']//th[./text()='Value']",
         "header_add": "//*[@id='content']//th[./text()='Add']",
-        "select_text_field": "name=textFieldCombo",
-        "select_text_field_option_email": "//*[@id='content']//select/option[normalize-space(.//text())= 'EMAIL']",
+        "text_field_combo": "name=textFieldCombo",
+        # "select_text_field_option_email": "//*[@id='content']//select/option[normalize-space(.//text())= 'EMAIL']",
         "text_field_operator": "name=textFieldOperator",
-        "text_field_operator_option_contains": "//*[@id='content']//select/option[normalize-space(.//text())= 'contains']",
+        # "text_field_operator_option_contains": "//*[@id='content']//select/option[normalize-space(.//text())= 'contains']",
         "text_field_value": "name=textFieldValue",
-        "text_search": "id=iconSearch",
+        "add_text": "//*[@id='iconAddCriteria']",
+        "text_search": "//*[@id='iconSearch']",
         "numeric_field_combo": "name=numericFieldCombo",
         "numeric_field_operator": "name=numericFieldOperator",
         "numeric_field_value": "name=numericFieldValue",
         "numeric_search": "//tr[3]/td[4]/a/img[@id='iconAddCriteria']",
-        "add_text": "//*[@id='content']//a[@href='javascript:addText()']",
+        # "add_text": "//*[@id='content']//a[@href='javascript:addText()']",
         "select_number_field": "//*[@id='iconCriteriaNum']/../select[@name='numericFieldCombo']",
         "number_field_operator": "//*[@id='content']//select[@name='numericFieldOperator']",
         "number_field_value": "//*[@id='content']//input[@name='numericFieldValue']",
@@ -808,7 +825,8 @@ search_subscriber = {
         "add_segmentation": "//*[@id='content']//a[@href='javascript:addSegmentation()']",
         "search_criteria": "//*[@id='content']//td[./text()='Search Criteria' or normalize-space(.//text())='Search Criteria']",
         "member_count": "//*[@id='nbMembers']",
-        "delete_members": "//a[contains(text(),'Delete Members') or ./text() = 'Delete Members']"
+        "delete_members": "//a[contains(text(),'Delete Members') or ./text() = 'Delete Members']",
+        "member_table": "xpath=//table[@class='list']"
     }
 }
 
@@ -826,7 +844,10 @@ import_subscriber = {
         "header_original_filename": "//*[@id='content']//th[./text()='Original Filename']",
         "header_size_b": "//*[@id='content']//th[./text()='Size (b)']",
         "header_status": "//*[@id='content']//th[./text()='Status']",
-        "header_del": "//*[@id='content']//span[./text()='Del.']"
+        "header_del": "//*[@id='content']//span[./text()='Del.']",
+        "fail_table": "xpath=//*[@id='content']/form/table[2]",
+        "good_table": "xpath=//*[@id='content']/form/div/table[2]",
+        "import_table": "xpath=//*[@id='content']/table"
     },
     "button_list": {
         "list": "//*[@id='engage-list-management']//ul[@title='Import subscriber']/li[2]",

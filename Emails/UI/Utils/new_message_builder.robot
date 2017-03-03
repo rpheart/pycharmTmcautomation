@@ -70,3 +70,21 @@ edit text widget
     clear element text    css=div.content-cell.editable.text >h2
     clear element text    css=div.content-cell.editable.text \ > p
     press key    ${new_message_builder["button_add"]["text_content_box"]}    ${text}
+
+create basic message
+    open content    ${new_message_builder}    ${new_message_builder["button_add"]["add"]}
+    set message name    Qa Automation Test Message
+    add widget to canvas    ${new_message_builder["button_add"]["text_widget"]}
+    edit text widget    Create New Message Builder\n\nThis message was created using automation
+    set mandatory headers
+    click element    ${new_message_builder["button_add"]["save_and_finalize"]}
+
+add image to widget
+    click element    ${new_message_builder["button_add"]["add_a_picture"]}
+    select frame    ${iframes["image_library_editor"]}
+    click element    ${new_message_builder["button_add"]["first_image"]}
+    select window    ${document_title}
+    select frame    ${iframes["top"]}
+    select frame    ${iframes["ccmd"]}
+    press key    //*[@id="alt-tag-input"]    \\27    # press the ESC key
+
