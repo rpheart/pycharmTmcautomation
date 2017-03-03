@@ -7,7 +7,7 @@ Test Setup          run keywords    open connection
 Test Teardown       close connection and delete test data
 
 *** Variables ***
-${host}             http://${${env}_environment["api_server"]}/apitransactional/services/rest
+${host}             http://${${env}["api_server"]}/apitransactional/services/rest
 
 # template variables
 ${xml_file}         ${EXECDIR}/Emails/API/Utils/Resources/email_template.xml

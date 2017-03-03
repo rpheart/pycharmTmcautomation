@@ -8,7 +8,7 @@ ${server}    t1api-globalx.emv2.com
 ${user}    emvqae1_api_psummers
 ${password}    Standard1!
 ${apikey}    CdX7CrRD4EeekEUMb8M_sqWXawknQfiBuQKoBs9XKa-sH0-e2hqG8dVsgUw
-${host}    https://${${env}_environment["api_server"]}/smartemail/v1
+${host}    https://${${env}["api_server"]}/smartemail/v1
 ${email_id}
 ${member_id}      1819306545
 ${token}

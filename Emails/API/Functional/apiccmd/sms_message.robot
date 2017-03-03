@@ -7,7 +7,7 @@ Test Setup          run keywords    open connection
 Test Teardown       close connection and delete test data
 
 *** Variables ***
-${host}           http://${${env}_environment["api_server"]}/apiccmd/services/rest
+${host}           http://${${env}["api_server"]}/apiccmd/services/rest
 
 # SMS variables
 ${xml_file}       ${EXECDIR}/Emails/API/Utils/Resources/sms_message.xml

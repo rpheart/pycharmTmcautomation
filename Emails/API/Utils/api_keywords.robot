@@ -18,7 +18,7 @@ ${member_id}        1819306545  # TODO QA member id, we need to find one for eac
 open_connection
     [Documentation]    opens a connection to 'apiccmd/services/rest' and returns a session token to the suite
     create session    host    ${host}
-    ${open}=    get request    host    /connect/open/${${env}_environment["api_user"]}/${${env}_environment["api_password"]}/${${env}_environment["api_key"]}
+    ${open}=    get request    host    /connect/open/${${env}["api_user"]}/${${env}["api_password"]}/${${env}["api_key"]}
     run keyword unless    ${open.ok}    fail    ${open.content}
     ${token}=    get xml content    ${open.content}
     set suite variable    ${token}

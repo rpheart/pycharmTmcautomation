@@ -23,11 +23,11 @@ fail keyword
 
 login
     [Documentation]    Logs in to the message cloud
-    open browser    ${${env}_environment["ui_server"]}    ${browser}
+    open browser    ${${env}["ui_server"]}    ${browser}
     maximize browser window
     page should contain    Login To Your Account:
-    input text    IDToken1    ${${env}_environment["ui_username"]}
-    input password    IDToken2    ${${env}_environment["ui_password"]}
+    input text    IDToken1    ${${env}["ui_username"]}
+    input password    IDToken2    ${${env}["ui_password"]}
     click link    name=Login.Submit
 
 go to ${page}
