@@ -50,9 +50,9 @@ create a segment
     open connection
     create segment
     ${headers}=    create dictionary    content-type=text/xml    charset=UTF-8
-    ${moina}=    set variable    <?xml version="1.0" encoding="utf-8"?><stringDemographicCriteria><columnName>EMAIL</columnName><operator>CONTAINS</operator><values>moina.farheen@smartfocus.com</values></stringDemographicCriteria>
-    ${patrick}=    set variable    <?xml version="1.0" encoding="utf-8"?><stringDemographicCriteria><columnName>EMAIL</columnName><operator>CONTAINS</operator><values>patrick.summers@smartfocus.com</values></stringDemographicCriteria>
-    ${kseniya}=    set variable    <?xml version="1.0" encoding="utf-8"?><stringDemographicCriteria><columnName>EMAIL</columnName><operator>CONTAINS</operator><values>kseniya.domorad@smartfocus.com</values></stringDemographicCriteria>
+    ${moina}=    set variable    <?xml version="1.0" encoding="utf-8"?><stringDemographicCriteria><groupName>GROUP 1</groupName><groupNumber>1</groupNumber><columnName>EMAIL</columnName><operator>CONTAINS</operator><values>moina.farheen@smartfocus.com</values></stringDemographicCriteria>
+    ${patrick}=    set variable    <?xml version="1.0" encoding="utf-8"?><stringDemographicCriteria><groupName>GROUP 1</groupName><groupNumber>1</groupNumber><columnName>EMAIL</columnName><operator>CONTAINS</operator><values>patrick.summers@smartfocus.com</values></stringDemographicCriteria>
+    ${kseniya}=    set variable    <?xml version="1.0" encoding="utf-8"?><stringDemographicCriteria><groupName>GROUP 1</groupName><groupNumber>1</groupNumber><columnName>EMAIL</columnName><operator>CONTAINS</operator><values>kseniya.domorad@smartfocus.com</values></stringDemographicCriteria>
     @{emails}=    create list    ${moina}    ${patrick}    ${kseniya}
 
     :for    ${email}    in    @{emails}
