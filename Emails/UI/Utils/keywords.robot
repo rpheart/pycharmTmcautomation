@@ -45,30 +45,6 @@ open content
     wait until keyword succeeds    15x    1 sec    select frame    ${iframes["top"]}
     wait until keyword succeeds    15x    1 sec    select frame    ${iframes["ccmd"]}
 
-send classic test message
-    [Documentation]
-    @{emails}=    create list    qa.auto@smartfocus.com    qa.test@smartfocus.com
-    select frame    ${generics["popup_window"]}
-    wait until page contains    Message Send Test
-    input text    ${generics["campaign_name_input"]}    Add two emails for testing    # Type 'Test Campaign name'
-
-    # add emails to 'Test Recipients' and to the QA_auto group
-    :for    ${email}    in    @{emails}
-    \    input text    ${generics["new_test_email_input"]}    ${email}    # Input New Test Email
-    \    click element    ${generics["add_criteria_button"]}    # Add email to 'Test recipients list'
-
-    # ensure members are part of group
-    select from list    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
-    select checkbox    ${generics["email_checkbox_qa_test"]}
-    select checkbox    ${generics["email_checkbox_qa_auto"]}
-    click element    ${generics["update_button"]}    # Update Group
-
-    # send test email to group
-    select from list    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
-    click element    ${generics["send_test_button"]}    # Send a Test
-    wait until page contains    You will receive your test email shortly    timeout=30
-    click element    ${generics["close_button"]}
-
 create a segment
     [Documentation]
     open connection

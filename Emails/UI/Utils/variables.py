@@ -18,8 +18,9 @@ navigation_bar = "css=ul.si-module-navigation"
 iframes = {
     "top": "css=iframe.sfIFrame",
     "ccmd": "id=emv-ccmd-iframe",
-    "popup": "id=popupFrame",
-    "image_library_editor": "id=msg-editor-imagelib-iframe"
+    "popup_frame": "id=popupFrame",
+    "image_library_editor": "id=msg-editor-imagelib-iframe",
+    "html_preview": "//*[@id='iframeHtml']"
 }
 
 # generic tabs
@@ -35,12 +36,13 @@ generics = {
     "test_campaign_name": "name=campaignName",
     "new_test_email": "//*[@id='content']//input[@name='emailToAdd']",
     "add_email_to_test_recipients": "id=iconAddCriteria",
+    "test_group_dropdown": "//select[@name='groupSelected']",
     "group_name": "//*[@id='content']//option[contains(text(),'QA_auto')]",
     "qa_test_email": "//*[@id='content']//td[contains(.,'qa.test@smartfocus.com')]/input",
     "auto_test_email": "//*[@id='content']//td[contains(.,'qa.auto@smartfocus.com')]/input",
     "update_group_button": "id=updateGroupBtn",
     "send_test_button": "//*[@id='iconArrowBack']/../a",
-    "close_popup_box": "id=popCloseBox",
+    "close_popup_box": "//*[@id='iconCancel']",
     "send_test_message": "//*[@id='toolbox']//div[contains(text(),'Send Test Message')]",
     "create_new": "//*[contains(@class, 'applicationBar') and contains(text(), 'New')]",
     "add": "//*[contains(text(), 'Add') and (contains(@class, 'applicationBar') or contains(@class, 'appbar') or contains(@class, 'label'))]",
@@ -398,10 +400,10 @@ classic_message_builder = {
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message']/li[2]",
         "workflow": "css=#ccmd-messages-cell-workflow1.actionColumnUneven > a > #iconWfmAssign.sprite",
-        "edit": "css=#ccmd-messages-cell-edit1 > a > #iconEdit",
+        "edit": "//*[@id='iconEdit']",
         "favourites": "css=#favourites.actionColumnUneven > a > #span.checkbox",
-        "copy": "css=#ccmd-messages-cell-copy1.actionColumnUneven > a > #iconCopy.sprite",
-        "preview": "css=#ccmd-messages-cell-preview1.actionColumnUneven > a > #iconView.sprite",
+        "copy": "//*[@id='iconCopy']",
+        "preview": "//*[@id='iconView']",
         "test_message": "//*[@id='iconCampaignTest'][@title='Test']/../../a",
         "audit_deliverability": "css=#ccmd-messages-cell-deliv1.actionColumnUneven > a > #iconDeliverability.sprite",
         "delete": "//*[@id='iconTrash']/../../a",
