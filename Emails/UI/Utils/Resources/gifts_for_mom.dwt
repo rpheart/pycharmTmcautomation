@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Gifts For Mother</title>
+</head>
+<body>
+
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="font-family: 'Times New Roman', Times, serif;">
+ <tr align="center">
+  <td align="right"><!--TemplateBeginEditable name="Mirror Text" managers=""--><font style="font-family: Times New Roman, Times, serif; font-size:9px"><a href="&amp;&amp;&amp;">View this email in your browser</a></font><!--TemplateEndEditable--></td>
+ </tr>
+</table>
+ 
+<table width="600" align="center" cellpadding="5" cellspacing="0" border=""><!--Main Table //-->
+<tr>
+<td>
+
+<!--Nested Tables Begin// --> 
+<table align="center" bgcolor="#ffffff" width="600" height="450" background="http://fsr.emv2.com/lontest/web/cc_templates/Petals_Wave.jpg" cellpadding="0" cellspacing="0">
+    
+	<tr align="left" valign="bottom">
+    	<td style="padding: 30px 20px 0px 25px;">   
+        <font style="padding:25px 0px 25px 0px; font-size: 10px; color:#996666; display:block;">
+        <b>You are subscribed as [EMV FIELD]EMAIL[EMV /FIELD]</b></font>
+
+        <font style="font-family: Times New Roman, Times, serif; font-size: 36px; line-height: 36px; letter-spacing: -1px; color: #cc0033;"><!--TemplateBeginEditable name="Heading" managers=""--><font style="font-family: Times New Roman, Times, serif; font-size: 36px; line-height: 36px; letter-spacing: -1px; color: #cc0033;">Mother's Day</font><!--TemplateEndEditable--><br />
+        </font><!--TemplateBeginEditable name="Title_Block" managers=""--><font style="padding:25px 0px 25px 0px; font-size: 12px; color:#996666; display:block;">Main Heading,<br />
+Graece detraxit elaboraret ut eos, eos ex graece detracto, an oratio populo consequat his. Ei munere eleifend contentiones mea. Eu detracto reprimique has, an aeque solet utinam ius, eos setetur, in vix nulla vocibus definitionem.</font><!--TemplateEndEditable-->
+	    </td>   
+    </tr>
+</table>
+
+<table align="center" width="600" style="border-top: thick; border-top-style: dotted; border-top-color:#990066;">
+  <!--TemplateBeginRepeat name="RepeatRegion1" managers=""-->
+  <tr align="left" valign="top">
+    <td><!--TemplateBeginEditable name="Image1" managers=""--><a href="#"><img src="http://fsr.emv2.com/lontest/web/cc_templates/spa_day.jpg" alt="Spa Day" width="100" height="123" border="none" /></a><!--TemplateEndEditable--></td>
+    <td><!--TemplateBeginEditable name="TextBlock" managers=""--><font style="font-family:'Times New Roman', Times, serif; font-size:16px; color:#996666;">Mutat modus suavitate et his, at ius etiam discere moderatius. Diam deserunt inimicus duo ad, cum no convenire consetetur, in vix nulla vocibus definitionem. Graece detraxit elaboraret ut eos, eos ex graece detracto, an oratio populo <a href="#">consequat his.</a></font><!--TemplateEndEditable--></td>
+  </tr>
+  <!--TemplateEndRepeat-->
+</table>
+
+
+<table align="center" width="600" style="border-top: dotted; border-top-style: outset; border-top-color:#009966;">
+	<tr align="left" valign="top">
+    	<td><!--TemplateBeginEditable name="Image2" managers=""--><a href="#"><img src="http://fsr.emv2.com/lontest/web/cc_templates/BW_swirls.jpg" alt="Swirls" width="170" height="227" border="none" /></a><!--TemplateEndEditable--></td>
+        
+        <td valign="middle"><!--TemplateBeginEditable name="Block2" managers=""--><font style="font-family:'Times New Roman', Times, serif; font-size:14px; color:#996666;">Mutat modus suavitate et his, at ius etiam 	 		 		discere moderatius. Diam deserunt inimicus duo ad, cum no convenire consetetur, in vix nulla vocibus definitionem. Graece 	 	 		detraxit elaboraret ut eos, eos ex graece detracto, an oratio populo consequat his. Mutat modus suavitate et his, at ius etiam			 		discere moderatius. Diam deserunt inimicus duo ad, cum no <a href="#">convenire consetetur.</a></font><!--TemplateEndEditable--></td>
+        
+        <td><!--TemplateBeginEditable name="Image3" managers=""--><a href="#"><img src="http://fsr.emv2.com/lontest/web/cc_templates/BW_swirls.jpg" alt="Swirls" width="170" height="227" border="none" /></a><!--TemplateEndEditable--></td>
+    </tr>
+</table><!--Nested Tables End //-->
+</td>
+</tr></table>
+
+<table width="620" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td align="left" valign="top" width="50%"><!--TemplateBeginEditable name="Unsubscribe" managers=""--><font style="font-family:'Times New Roman', Times, serif; font-size:8px;">&nbsp;<a href="&amp;&amp;&amp;">Click Here to Unsubscribe</a></font><!--TemplateEndEditable--></td>
+
+<td align="right" width="50%"><!--TemplateBeginEditable name="Contact Us" managers=""--><font style="font-family:'Times New Roman', Times, serif; font-size:8px;">Company Name<br />
+555 Unknown Street<br />
+City, State/Province, Zipcode<br />
+Country<br />
+Phone Number</font><!--TemplateEndEditable--></td>
+</tr>
+
+</table>
+<!--Main Table Closed//-->
+</body>
+</html>

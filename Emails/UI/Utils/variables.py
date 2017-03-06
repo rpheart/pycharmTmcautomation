@@ -627,15 +627,13 @@ template = {
         "template_name": "name=name",
         "template_description": "name=description",
         "upload_file": "name=uploadFile",
-        "message_name": "name=messageName",
-        "message_description": "name=messageDescription",
-        "message_from": "name=messageFrom",
-        "message_to": "name=messageTo",
-        "message_reply_to": "name=messageReplyToEmail",
+        "create_message": "//*[@id='toolbox']/tbody/tr[2]/td/a",
+        "delete": "//*[@id='toolbox']/tbody/tr[3]/td/a",
+        "replace": "//*[@id='toolbox']/tbody/tr[4]/td/a",
+        "export": "//*[@id='toolbox']/tbody/tr[5]/td/a",
         "import_file": "//*[@id='iconUpload']/../../a[contains(text(),'Import') or ./text()='Import']",
         "happy_easter": "//*[@id='templateContent']//div[./text()='Happy Easter']",
-        "save": "//*[@id='iconButtonSave']/../../a[./text()='Save']",
-        "message_preview": "id=iconToolboxMessagePreview"
+        "save": "//*[@id='iconButtonSave']",
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Template']/li[2]",
@@ -650,10 +648,13 @@ template = {
         "header_replace": "//*[@id='ccmd-templates-table']//th[./text()='Replace']",
         "header_delete": "//*[@id='ccmd-templates-table']//span[@class='red' and ./text()='Delete']",
         "tick_check_box_to_delete": "name=deleteTemplate",
-        "edit": "id=iconEdit",
-        "delete": "//*[@id='iconTrash']/../../a",
-        "save": "css=#messageAccordion > form > div:nth-child(5) > table > tbody > tr > td > a:nth-child(1)",
-        "table": "xpath=//*[@id='ccmd-templates-table']"
+        "view": "//*[@id='iconToolboxMessagePreview']",
+        "create_message": "//*[@id='iconEdit']",
+        "replace": "//*[@id='iconReset']",
+        "delete_checkbox": "//*[@name='deleteTemplate']",
+        "delete": "//*[@id='iconTrash']",
+        "table": "xpath=//*[@id='ccmd-templates-table']",
+        "upload_button": "//*[@id='iconUpload']"
     }
 }
 
