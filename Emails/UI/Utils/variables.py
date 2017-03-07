@@ -463,7 +463,8 @@ sms_message_builder = {
         "header_delete": "//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']",
         "table": "xpath=//*[@id='ccmd-messages-table']",
         "copy": "//*[@id='iconCopy']",
-        "rename_input": "//*[@name='messageNewName']"
+        "rename_input": "//*[@name='messageNewName']",
+        "edit": "//*[@id='iconEdit']"
     }
 }
 
