@@ -42,7 +42,7 @@ generics = {
     "auto_test_email": "//*[@id='content']//td[contains(.,'qa.auto@smartfocus.com')]/input",
     "update_group_button": "id=updateGroupBtn",
     "send_test_button": "//*[@id='iconArrowBack']/../a",
-    "close_popup_box": "//*[@id='iconCancel']",
+    "close_popup_box": "//*[@id='iconCancel' or @id='popCloseBox']",
     "send_test_message": "//*[@id='toolbox']//div[contains(text(),'Send Test Message')]",
     "create_new": "//*[contains(@class, 'applicationBar') and contains(text(), 'New')]",
     "add": "//*[contains(text(), 'Add') and (contains(@class, 'applicationBar') or contains(@class, 'appbar') or contains(@class, 'label'))]",
@@ -60,7 +60,7 @@ generics = {
         "popup_file_btn": "//a[contains(text(),'Upload')]",
     },
     "link_management": {
-        "link": "//*[@id='iconToolboxLinksManagt']/../../a/div[contains(text(), 'Link Management') or ./text() = 'Link Management']",
+        "link": "//*[@id='iconToolboxLinksManagt']",
         "create_standard_link_btn": "//a[contains(text(),'Create Standard Link')]",
         "create_unsubscribe_link_btn": "//a[contains(text(),'Create Unsubscribe Link')]",
         "link_type_name": "name=linkName",
@@ -68,7 +68,16 @@ generics = {
         "page_ok":  "name=linkPageOK",
         "page_error":  "name=linkPageKO",
         "save_link": "//a[contains(text(),'Choice1: Save Link')]",
-        "save&add_link": "//a[contains(text(),'Choice2: Save/Add Link')]"
+        "save&add_link": "//a[contains(text(),'Choice2: Save/Add Link')]",
+        "create_advanced_link": "//a[contains(text(),'Create Advanced Link')]",
+        "pers_link": "//a[contains(text(),'Pers. Link')]",
+        "update_link": "//a[contains(text(),'Update Link')]",
+        "action_link": "//a[contains(text(),'Action Link')]",
+        "mirror_link": "//a[contains(text(),'Mirror Link')]",
+        "landing_pages": "//a[contains(text(),'Landing Pages')]",
+    },
+    "insert_dynamic_content_block": {
+        "link": "//*[@id='iconBannerSmall']"
     }
 }
 
@@ -521,11 +530,11 @@ content_block = {
         "description": "name=description",
         "text_content": "id=textContent",
         "tool_box": "id=toolbox",
-        "message_name": "name=messageName",
-        "message_description": "name=messageDescription",
-        "message_from": "name=messageFrom",
-        "message_to": "name=messageTo",
-        "message_reply_to": "name=messageReplyToEmail",
+        # "message_name": "name=messageName",
+        # "message_description": "name=messageDescription",
+        # "message_from": "name=messageFrom",
+        # "message_to": "name=messageTo",
+        # "message_reply_to": "name=messageReplyToEmail",
         "html_checkbox": "//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "//*[@id='content']//input[@type='radio' and @value='HTML']",
         "content_upload": "//*[@id='iconUpload']/../../a/div[./text()='Content upload']",
@@ -551,10 +560,14 @@ content_block = {
         "header_modification_date": "//*[@id='content-blocks-tablediv-header-modification-date']/div[./text()='Modification date']",
         "header_creator": "//*[@id='content-blocks-tablediv-header-creator']/div[./text()='Creator']",
         "first_block_id": "//div[@class='tabledivColumnText']",
+        "preview": "//*[contains(@id, 'preview-icon')]",
+        "edit": "//*[contains(@id, 'editenable-icon')]",
+        "delete_button": "//*[contains(@id, 'deleteenable-icon')]",
         "copy": "//*[contains(@id, 'duplicateenable-icon')]",
         "rename_input": "//*[@id='archive-duplicate-name']",
-        "first_row": "//*[@id='tabledivRow-0']",
-        "duplicate": "//div[contains(text(), 'Duplicate')]"
+        "first_row": "//div[@id='tabledivRow-0']",
+        "duplicate": "//*[@id='duplicate-confirmation-popup']//div[contains(text(), 'Duplicate')]",
+        "delete_confirm": "//*[@id='delete-confirmation-popup']//div[contains(text(), 'Delete')]"
     }
 }
 
