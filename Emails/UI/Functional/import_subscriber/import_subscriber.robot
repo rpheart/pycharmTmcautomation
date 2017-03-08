@@ -2,6 +2,7 @@
 Documentation       test importing member files and updating with email or custom keys and checking that the members have been added or updated after each import
 Default Tags        ui    email    import
 Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/subscriber.robot
 Suite Setup         run keywords    login
 ...                 AND    go to ${system_page["email"]}
 Suite Teardown      close all browsers
@@ -148,12 +149,3 @@ refresh page until import completes
     \    ${status}=    run keyword and return status
     \    ...    table row should contain    ${import_subscriber["button_add"]["import_table"]}    1    DONE WITH ERROR(S)
     \    exit for loop if    ${status}
-
-search for member
-    [Arguments]    ${id_type}    ${id_method}    ${string}
-    open content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
-    select from list    ${search_subscriber["button_add"]["text_field_combo"]}    ${id_type}
-    select from list    ${search_subscriber["button_add"]["text_field_operator"]}    ${id_method}
-    input text    ${search_subscriber["button_add"]["text_field_value"]}    ${string}
-    click element    id=iconAddCriteria
-    click element    ${search_subscriber["button_add"]["text_search"]}
