@@ -133,7 +133,7 @@ loop through test data on general properties
     \    sleep    1
     \    click element at coordinates    ${landing_page["button_add"]["input_selector"]}    0    75
     \    click element    ${landing_page["button_add"]["save_and_schedule"]}
-    \    select from list    ${landing_page["button_add"]["redirect_selector"]}    Custom URL
+    \    select from list by label    ${landing_page["button_add"]["redirect_selector"]}    Custom URL
     \    ${is_submit_url}=    run keyword and return status    should contain    ${field}    submitRedirection
     \    run keyword if    ${is_submit_url}    run keywords
     \    ...    create url string    ${line}

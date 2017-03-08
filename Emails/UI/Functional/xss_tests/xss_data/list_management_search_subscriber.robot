@@ -14,8 +14,8 @@ search_subscriber
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
     \    wait until element is visible    name=textFieldCombo
-    \    select from list    name=textFieldCombo    EMAIL
-    \    select from list    name=textFieldOperator    equals
+    \    select from list by label    name=textFieldCombo    EMAIL
+    \    select from list by label    name=textFieldOperator    equals
     \    input text    name=textFieldValue    ${line}
     \    click element    xpath=//img[@id="iconAddCriteria"]
     \    check for bad request    ${line}    ${failed_inputs}

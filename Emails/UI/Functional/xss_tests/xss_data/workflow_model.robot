@@ -47,7 +47,7 @@ loop through test data
     \    open content    ${workflow_model}    ${workflow_model["button_add"]["add"]}
     \    wait until keyword succeeds    30x    1 sec    click element    ${generics["create_new"]}
     \    input text    modelName    Name
-    \    select from list    campaignType    ${campaign_type}
+    \    select from list by label    campaignType    ${campaign_type}
     \    input text    ${field}    ${line}
     \    click element    ${generics["save"]}
     \    check for bad request    ${line}    @{failed_inputs}

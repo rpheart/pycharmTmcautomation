@@ -32,13 +32,13 @@ send test emails
     \    click element    ${generics["add_email_to_test_recipients"]}    # Add email to 'Test recipients list'
 
     # ensure members are part of group
-    select from list    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
+    select from list by label    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
     select checkbox    ${generics["qa_test_email"]}
     select checkbox    ${generics["auto_test_email"]}
     click element    ${generics["update_group_button"]}    # Update Group
 
     # send test email to group
-    select from list    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
+    select from list by label    ${generics["test_group_dropdown"]}    QA_auto    # Select Group 'QA_auto'
     click element    ${generics["send_test_button"]}    # Send a Test
     wait until page contains    You will receive your test email shortly
     click element    ${generics["close_popup_box"]}
