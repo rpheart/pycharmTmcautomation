@@ -489,7 +489,8 @@ landing_page = {
         "button_html": "//button[@class='btn btn-large lpages-editor-wizardshtml']",
         "button_form": "//button[@class='btn btn-large lpages-editor-wizardform']",
         "button_subscription_suspension": "//button[@class='btn btn-large lpages-editor-wizardform-subscriptionsuspension']",
-        "label_input_field": "//*[@id='lpages-editor-columnid-1-0']/div[1]/div/form/div/div/div[3]/input",
+        "label_input_field": "//div[contains(text(), 'Label')]",
+        "first_input_container": "//*[@class='lpages-formfiels-input-container']",
         "input_selector": "//*[@id='lpages-editorform-typepfield']",
         "save": "//*[contains(@id, 'btnsave')]",
         "save_and_schedule": "//*[@id='lpages-editor-btnsavechedule']/div",
@@ -504,7 +505,9 @@ landing_page = {
         "data_sync_button": "//*[@id='lpages-prop-datasync-toggleButton']",
         "activate": "//*[@id='lpages-prop-datasync-activation-popup']/div[2]/div[3]/div[2]",
         "source_field_slider": "//*[@id='lpages-prop-datasync-source-toggle']",
-        "source_field_input": "//*[@id='lpages-prop-datasync-source-input']"
+        "source_field_input": "//*[@id='lpages-prop-datasync-source-input']",
+        "general_properties": "//*[@id='ui-id-4']",
+        "landing_page_url": "//*[@id='lpages-prop-overview-url']/a"
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Landing page']/li[2]",
@@ -519,7 +522,12 @@ landing_page = {
         "first_row": "//*[@id='tabledivRow-0']",
         "duplicate": "//*[contains(@id, 'duplicate-icon')]",
         "rename_input": "//*[@id='lpages-pages-duplicatePromptName-name']",
-        "yes": "//div[contains(text(), 'Yes')]"
+        "yes": "//div[contains(text(), 'Yes')]",
+        "properties": "//*[contains(@id, 'lpages-pages-icon-prop-icon')]",
+        "edit": "//*[contains(@id, 'lpages-pages-icon-edit-icon')]",
+        "preview": "//*[contains(@id, 'lpages-pages-icon-view-icon')]",
+        "statistics": "//*[contains(@id, 'lpages-pages-icon-stats-icon')]",
+        "delete": "//*[contains(@id, 'lpages-pages-icon-delete-icon')]"
     }
 }
 
