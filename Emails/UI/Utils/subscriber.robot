@@ -14,6 +14,6 @@ search for member
 delete all members matching id
     [Arguments]    ${id_type}    ${id_method}    ${string}
     search for member    ${id_type}    ${id_method}    ${string}
-    click element    //*[@id='iconSelectAll']
-    click element    //*[@id='iconTrash']
-    click element    //*[@id='iconTrash']
+    wait until keyword succeeds    15x    1 sec    click element    //*[@id='iconSelectAll']
+    wait until keyword succeeds    15x    1 sec    click element    //*[@id='iconTrash']
+    wait until keyword succeeds    15x    1 sec    click element    //*[@id='iconTrash']
