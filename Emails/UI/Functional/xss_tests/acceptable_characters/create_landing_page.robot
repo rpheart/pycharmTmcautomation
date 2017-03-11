@@ -3,7 +3,7 @@ Documentation       will check the input of unicode values into the create landi
 Resource            ../../../Utils/keywords.robot
 Resource            ../../../Utils/landing_page.robot
 Resource            ../../../Utils/xss_keywords.robot
-Default Tags        ui    email    xss
+Default Tags        ui    email    non_xss
 Suite Setup         run keywords
 ...                 login
 ...                 AND    go to ${system_page["email"]}

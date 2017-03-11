@@ -3,7 +3,7 @@ Documentation       will check the input of unicode values into the create new m
 Resource            ../../../Utils/keywords.robot
 Resource            ../../../Utils/new_message_builder.robot
 Resource            ../../../Utils/xss_keywords.robot
-Default Tags        ui    email    xss
+Default Tags        ui    email    non_xss
 Suite Setup         run keywords
 ...                 login
 ...                 AND    go to ${system_page["email"]}
