@@ -172,7 +172,7 @@ multivariate_campaign = {
         "schedule_button": "//*[@id='splitrunUI-builderView-sendCampaignButton']//div[contains(text(),'Schedule')]",
         "add_recipient": "//*[@id='splitrunUI-builderView-alertRecipients-item0-emailInput']",
         "track_link_hostname": "//*[@id='splitrunUI-builderView-brandedTrackerHostInput']",
-        "track_url": "//*[@id='splitrunUI-builderView-endOfTrackingUrlInput']",
+        "track_url": "//td[contains(@class, 'firstSubjectBackground')]//input[contains(@id, 'splitrunUI-builderView')]",
     },
     "button_list": {
         "list": "//*[@id='engage-send']//ul[@title='MultiVariate']/li[2]",
@@ -751,7 +751,7 @@ transactional_content_block = {
         "content_block_name_input": "name=name",
         "content_block_description_input": "name=description",
         "content_block_body_input": "id=textContent",
-        "content_block_rename_input": "//*[@name='nmTransactionalNewName']",
+        "content_block_rename_input": "//*[contains(@name, 'NewName')]",
         "html_checkbox": "//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "//*[@id='content']//input[@type='radio' and @value='HTML']",
         "save": "//*[@id='iconSave']/../../a[contains(text(),'Save') or ./text()='Save']",

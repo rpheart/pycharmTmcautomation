@@ -192,18 +192,7 @@ new_message_send_to_save_and_finalise
     run keyword unless    ${is_equal}    fail    msg=New Messages were created with XSS data
 
 new_message_send_test_add_recipients
-    # count current messages
-    open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
-    ${pre_test_message_count}=    get text    ${new_message_builder["button_list"]["message_count"]}
-
-    # create message
     loop through test data and send test email    ${new_message_builder["button_add"]["add_recipients"]}
-
-    # check message count
-    open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
-    ${post_test_message_count}=    get text    ${new_message_builder["button_list"]["message_count"]}
-    ${is_equal}=    run keyword and return status    should be equal as strings    ${post_test_message_count}    ${pre_test_message_count}
-    run keyword unless    ${is_equal}    fail    msg=New Messages were created with XSS data
 
 #new_message_send_test_search_recipients  # Field not protected!
 #    loop through test data and send test email    ${new_message_builder["button_add"]["send_test_search_button"]}
