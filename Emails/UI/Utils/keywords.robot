@@ -32,20 +32,22 @@ login
     click link    name=Login.Submit
 
 go to ${page}
-    [Documentation]
-    select window    ${document_title}    # Select main frame
+    [Documentation]    opens the product under test (i.e. Personalisation or Email)
+    select window    ${document_title}
     wait until keyword succeeds    15x    1 sec    click element    ${page}
 
 open content
-    [Documentation]
+    [Documentation]    opens the page leading to the feature to be tested (i.e. Create > Template)
     [Arguments]    ${content_dictionary}      ${page}
-    select window    ${document_title}    # Select main frame
-    wait until keyword succeeds    15x    1 sec    mouse over    ${content_dictionary["menu"]}
-    wait until keyword succeeds    15x    1 sec    click element    ${page}
+    select window    ${document_title}
+    :for    ${n}    in range    5
+    \    mouse over    ${content_dictionary["menu"]}
+    \    ${status}    ${message}=    run keyword and ignore error    click element    ${page}
+    \    exit for loop if    '${status}' == 'PASS'
     run keyword and ignore error    dismiss alert
-    wait until keyword succeeds    15x    1 sec    mouse over    ${smartfocus_logo}
-    wait until keyword succeeds    15x    1 sec    select frame    ${iframes["top"]}
-    wait until keyword succeeds    15x    1 sec    select frame    ${iframes["ccmd"]}
+    mouse over    ${smartfocus_logo}
+    select frame    ${iframes["top"]}
+    select frame    ${iframes["ccmd"]}
 
 create a segment
     [Documentation]
