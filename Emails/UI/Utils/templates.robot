@@ -23,5 +23,5 @@ create basic template
     upload file
     current frame contains    Happy Easter
     click element    ${template["button_add"]["save"]}
-    ${alert_message}=    get alert message
-    should be equal as strings    ${alert_message}    template was successfully saved    ignore_case=True
+    sleep    1
+    alert should be present    text=Template was successfully saved

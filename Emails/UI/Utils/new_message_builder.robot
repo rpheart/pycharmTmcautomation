@@ -8,6 +8,9 @@ set message name
     wait until keyword succeeds    15x    1 sec    click element    ${new_message_builder["button_add"]["message_name_input"]}
     press key    ${new_message_builder["button_add"]["message_name_input"]}    \u0001    # Select All
     press key    ${new_message_builder["button_add"]["message_name_input"]}    \\127    # Delete
+    press key    ${new_message_builder["button_add"]["message_name_input"]}    \u0001    # Select All
+    press key    ${new_message_builder["button_add"]["message_name_input"]}    \\127    # Delete
+    sleep    0.5
     input text    ${new_message_builder["button_add"]["message_name_input"]}    ${name}
     press key    ${new_message_builder["button_add"]["message_name_input"]}    \\13    # Return
 
@@ -27,11 +30,11 @@ add widget to canvas
     \    run keyword and ignore error    click element    //div[@class='carousel-container']/div[@class='carousel']/div[@class='chevron left']
     \    run keyword and ignore error    click element    ${new_message_builder["button_add"]["basic"]}
 
-    ${dropped}=    run keyword and return status    wait until keyword succeeds    15x    1 sec    drag and drop    ${widget}    ${new_message_builder["button_add"]["empty_canvas"]}
+    ${dropped}=    run keyword and return status    drag and drop    ${widget}    ${new_message_builder["button_add"]["empty_canvas"]}
     run keyword unless    ${dropped}    run keywords
     ...    click element    ${new_message_builder["button_add"]["add_empty_row"]}
-    ...    AND    wait until keyword succeeds    15x    1 sec    click element    ${widget}
-    ...    AND    wait until keyword succeeds    15x    1 sec    drag and drop    ${widget}    ${new_message_builder["button_add"]["empty_canvas"]}
+    ...    AND    click element    ${widget}
+    ...    AND    drag and drop    ${widget}    ${new_message_builder["button_add"]["empty_canvas"]}
 
 set mandatory headers
     # get to the headers page

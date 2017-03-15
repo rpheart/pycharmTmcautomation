@@ -41,4 +41,3 @@ convert_to_html_message
 
 delete_message
     delete latest message
-    wait until keyword succeeds    15x    1 sec    element should not contain    ${new_message_builder["button_list"]["first_row"]}    Qa Automation Test Message

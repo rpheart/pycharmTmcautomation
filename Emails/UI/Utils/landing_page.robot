@@ -48,6 +48,9 @@ create and schedule basic landing page
     # setup field personalisation link
     wait until keyword succeeds    15x    1 sec    click element    //*[@id="lpages-prop-datasync-insert-and-update"]
     click element    //*[@id="lpages-prop-datasync-formField-toggle1"]
+    click element    //*[@id="lpages-prop-datasync-fieldSelector1"]
+    click element    //*[@id="lpages-prop-datasync-fieldSelector1"]/../div/*[@title='EMAIL']
+    run keyword and ignore error    click element    //div[@class='lpages-prop-datasync-formField-key-icon lpages-prop-datasync-formField-key-icon-disabled']
     click element    //*[@id="lpages-prop-datasync-formField-toggle2"]
     click element    //*[@id="lpages-prop-datasync-fieldSelector2"]
     click element    //*[@id="lpages-prop-datasync-fieldSelector2"]/../div/*[@title='FIRSTNAME']

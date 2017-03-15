@@ -3,7 +3,7 @@ Documentation    keywords specific to the creation of webforms
 
 *** Keywords ***
 create basic update webform
-    [Documentation]    creates an update wenform with email, firstname, lastname and code
+    [Documentation]    creates an update webform with email, firstname, lastname and code
     open content    ${webform}    ${webform["button_add"]["add"]}
     # page 1
     input text    ${webform["button_add"]["name"]}    Qa Automation Test Webform

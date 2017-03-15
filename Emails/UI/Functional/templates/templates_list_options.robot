@@ -32,8 +32,8 @@ replace_template
     select window    Template Replace
     choose file    ${template["button_add"]["upload_file"]}    ${EXECDIR}/Emails/UI/Utils/Resources/gifts_for_mom.dwt
     click element    ${template["button_list"]["upload_button"]}
-    ${alert_message}=    get alert message
-    should contain    ${alert_message}    You are about to overide the template
+    sleep    1
+    alert should be present
     open content    ${template}    ${template["button_list"]["list"]}
     click element    ${template["button_list"]["view"]}
     current frame contains    Mother's Day

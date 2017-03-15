@@ -23,6 +23,7 @@ fail keyword
 
 login
     [Documentation]    Logs in to the message cloud
+    set selenium speed    0.2
     open browser    ${${env}["ui_server"]}    ${browser}
     maximize browser window
     page should contain    Login To Your Account:
@@ -41,6 +42,7 @@ open content
     select window    ${document_title}    # Select main frame
     wait until keyword succeeds    15x    1 sec    mouse over    ${content_dictionary["menu"]}
     wait until keyword succeeds    15x    1 sec    click element    ${page}
+    run keyword and ignore error    dismiss alert
     wait until keyword succeeds    15x    1 sec    mouse over    ${smartfocus_logo}
     wait until keyword succeeds    15x    1 sec    select frame    ${iframes["top"]}
     wait until keyword succeeds    15x    1 sec    select frame    ${iframes["ccmd"]}

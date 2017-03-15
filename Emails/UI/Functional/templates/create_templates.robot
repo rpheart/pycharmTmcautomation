@@ -34,8 +34,8 @@ replace_template
     choose file    ${template["button_add"]["upload_file"]}    ${EXECDIR}/Emails/UI/Utils/Resources/gifts_for_mom.dwt
     sleep    0.5
     click element    ${template["button_list"]["upload_button"]}
-    ${alert_message}=    get alert message
-    should be equal as strings    ${alert_message}    you are about to override content. do you want to process?    ignore_case=True
+    sleep    1
+    alert should be present    text=You are about to override content. Do you want to process?
     select window    ${document_title}
     select frame    ${iframes["top"]}
     select frame    ${iframes["ccmd"]}

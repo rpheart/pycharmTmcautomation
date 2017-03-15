@@ -30,7 +30,6 @@ create_dynamic_content_block_with_mirror_link
     click element    ${generics["close_popup_box"]}
     # save message
     click element    ${content_block["button_add"]["save"]}
-    ${alert_message}=    get alert message
-    should be equal as strings    ${alert_message}    your dynamic content block has been saved successfully.    ignore_case=True
-    sleep    0.5
+    sleep    1
+    alert should be present    text=Your Dynamic Content Block has been saved successfully.
     delete latest content block
