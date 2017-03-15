@@ -53,7 +53,7 @@ generics = {
     "select_all": "//img[@id='iconSelectAll']",
     "trash": "//*[@id='iconTrash']",
     "ok_button": "//a[contains(text(), 'OK')]",
-    "yes_button": "//*[contains(text(), 'Yes')]",
+    "yes_button": "//button[contains(text(), 'Yes')]",
     "content_upload": {
         "link": "//*[@id='iconToolboxContentUpload']/../../a/div[contains(text(), 'Content Upload') or ./text() = 'Content Upload']",
         "popup_url_input": "name=uploadUrl",
@@ -125,18 +125,19 @@ multivariate_campaign = {
         "define_campaign_and_recipients": "//*[@id='splitrunUI-builderView-breadcrumb-1']//div[contains(text(),'Define campaign and recipients')]",
         "1_campaign_name_and_description": "//*[@id='splitrunuidiv']//legend[contains(text(),'1. Campaign name and description')]",
         "campaign_name": "//*[@id='splitrunuidiv']//div[contains(text(),'Campaign Name')]",
-        "name_input": "id=splitrunUI-builderView-nameInput",
+        "name_input": "//*[@id='splitrunUI-builderView-nameInput']",
         "campaign_description": "//*[@id='splitrunuidiv']//div[contains(text(),'Campaign description')]",
-        "description_input": "id=splitrunUI-builderView-descriptionInput",
+        "description_input": "//*[@id='splitrunUI-builderView-descriptionInput']",
         "2_select_message": "//*[@id='splitrunuidiv']//legend[contains(text(),'2. Select message')]",
         "message": "//*[@id='splitrunuidiv']//div[contains(text(),'Message')]",
         "select_a_message": "//*[@id='splitrunUI-builderView-messagesExplorer-openButton']//div[contains(text(),'Select a message')]",
-        "qa_auto_test_message": "//*[@id='splitrunUI-builderView-messagesExplorer-nameColumn' and contains(text(),'QA auto test Message')]",
+        "first_message": "//div[@id='splitrunUI-builderView-messagesExplorer-nameColumn']",
         "3_select_recipients": "//*[@id='splitrunuidiv']//legend[contains(text(),'3. Select recipients')]",
         "segment": "//*[@id='splitrunuidiv']//div[contains(text(),'Segment')]",
         "select_one_or_more_segments": "//*[@id='splitrunUI-builderView-segmentsExplorer-openButton']//div[contains(text(),'Select one or more segments')]",
-        "qa_auto_test_segment": "//*[@id='splitrunUI-builderView-segmentsExplorer-nameColumn' and contains(text(),'QA auto test Segment')]",
-        "click_ok": "//*[@id='splitrunUI-builderView-segmentsExplorer-addEntitiesButton']//div[contains(text(),'Ok')]",
+        "segment_favourites": "//*[@id='splitrunUI-builderView-segmentsExplorer-favoritesButton']",
+        "qa_team_segment": "//div[contains(text(), 'QA TEAM')]",
+        "ok_button": "//*[@id='splitrunUI-builderView-segmentsExplorer-addEntitiesButton']",
         "continue_button": "//*[@id='splitrunUI-builderView-nextButton']//div[contains(text(),'Continue')]",
         "1_select_the_variable_you_want_to_test": "//*[@id='splitrunuidiv']//legend[./text()='1. Select the variable you want to test']",
         "define_versions_and_samples": "//*[@id='splitrunUI-builderView-breadcrumb-2']//div[contains(text(),'Define versions and samples')]",
@@ -173,6 +174,9 @@ multivariate_campaign = {
         "add_recipient": "//*[@id='splitrunUI-builderView-alertRecipients-item0-emailInput']",
         "track_link_hostname": "//*[@id='splitrunUI-builderView-brandedTrackerHostInput']",
         "track_url": "//td[contains(@class, 'firstSubjectBackground')]//input[contains(@id, 'splitrunUI-builderView')]",
+        "version_one_preview": "//*[@class='GDPGA2PBNQ-com-emailvision-splitrun-ui-client-component-preview-Preview-IPreviewCssResource-previewThumbPanel']",
+        "schedule_rollout_icon": "//*[@id='splitrunUI-preview-scheduleIcon']",
+        "send_rollout_button": "//*[@id='splitrunUI-resultView-rolloutPopupLaunchButton']//div[contains(text(), 'Send')]"
     },
     "button_list": {
         "list": "//*[@id='engage-send']//ul[@title='MultiVariate']/li[2]",
@@ -182,7 +186,13 @@ multivariate_campaign = {
         "status": "//*[@id='splitrunuidiv']//div[./text()='Status']",
         "test_variable": "//*[@id='splitrunuidiv']//div[./text()='Test variable']",
         "send_date": "//*[@id='splitrunuidiv']//div[./text()='Send date']",
-        "message_count": "//*[@id='splitrunUI-archiveView-archiveFooterLabel']/tbody/tr/td/div"
+        "message_count": "//*[@id='splitrunUI-archiveView-archiveFooterLabel']/tbody/tr/td/div",
+        "first_row": "//*[@__gwt_row='0']",
+        "first_campaign_name": "//*[@__gwt_row='0']/td[1]",
+        "refresh_button": "//table//img[contains(@class, 'GreyButtonWithIcon')]",
+        "delete_button": "//*[contains(@id, 'splitrunUI-archiveView-deleteButton')]",
+        "edit_button": "//*[contains(@id, 'splitrunUI-archiveView-editButton')]",
+        "view_button": "//*[contains(@id, 'splitrunUI-archiveView-viewButton')]"
     }
 }
 
