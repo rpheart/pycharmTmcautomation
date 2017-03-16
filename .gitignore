@@ -67,3 +67,5 @@ $RECYCLE.BIN/
 /output.xml
 /production.bat
 /report.html
+/debug.log
+/geckodriver.log
