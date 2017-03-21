@@ -15,7 +15,6 @@ ${name}    TestEmail
 ${description}    This%20is%20a%20test%20message
 ${subject}    Welcome%20to%20SmartFocus%20test%20session
 ${from}    SmartFocus
-${marketingFromEmail}    test@emvqae1.ccemails.net
 ${to}    myclient
 ${body}    %5BEMV%20HTMLPART%5Dhi%20there%20
 ${encoding}    UTF-8

@@ -25,7 +25,7 @@ open_connection
 
 create_email
     [Documentation]    creates an email message with defaults from the test suite and returns the message ID to the suite
-    ${create_email}=    get request    host     /message/createEmailMessage/${token}/${name}/${description}/${subject}/${from}/${marketingFromEmail}/${to}/${body}/${encoding}/${replyTo}/${replyToEmail}/${isBounceback}/${hotmailUnsubFlg}/${hotmailUnsubUrl}
+    ${create_email}=    get request    host     /message/createEmailMessage/${token}/${name}/${description}/${subject}/${from}/${${env}["marketing_verified_email"]}/${to}/${body}/${encoding}/${replyTo}/${replyToEmail}/${isBounceback}/${hotmailUnsubFlg}/${hotmailUnsubUrl}
     run keyword unless    ${create_email.ok}    fail    ${create_email.content}
     ${message_id}=    get xml content    ${create_email.content}
     should not be empty    ${message_id}
