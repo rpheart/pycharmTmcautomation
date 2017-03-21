@@ -69,3 +69,4 @@ $RECYCLE.BIN/
 /report.html
 /debug.log
 /geckodriver.log
+/ghostdriver.log
