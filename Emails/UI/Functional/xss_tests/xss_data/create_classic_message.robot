@@ -232,7 +232,7 @@ message_rename_name
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${classic_message_builder}    ${classic_message_builder["button_list"]["list"]}
-    \    click element    ${classic_message_builder["button_list"]['copy']}
+    \    click element    ${classic_message_builder["button_list"]["copy"]}
     \    input text    ${classic_message_builder["button_list"]["rename_input"]}    ${line}
     \    click element    ${generics["save"]}
     \    check for bad request    ${line}    ${failed_inputs}

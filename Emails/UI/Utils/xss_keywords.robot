@@ -111,7 +111,7 @@ verify non xss data on search field
 content upload xss insertion
     [Arguments]    ${line}
     click element    ${generics["content_upload"]["link"]}
-    select frame     ${iframes["popup"]}
+    select frame     ${iframes["popup_frame"]}
     select radio button     uploadType    url
     create url string     ${line}
     input text      ${generics["content_upload"]["popup_url_input"]}      ${line}
@@ -121,7 +121,7 @@ content upload xss insertion
 link management xss insertion
     [Arguments]    ${link_type}     ${field}    ${line}   ${save_option}
     click element    ${generics["link_management"]["link"]}
-    select frame     ${iframes["popup"]}
+    select frame     ${iframes["popup_frame"]}
     click element     ${link_type}
     input text    ${generics["link_management"]["link_type_name"]}    Name        # gets over-written if the field being tested is name itself!!
     ${is_url}=    run keyword and return status    should contain     ${field}    URL

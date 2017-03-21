@@ -53,7 +53,7 @@ generics = {
     "select_all": "//img[@id='iconSelectAll']",
     "trash": "//*[@id='iconTrash']",
     "ok_button": "//a[contains(text(), 'OK')]",
-    "yes_button": "//button[contains(text(), 'Yes')]",
+    "yes_button": "//*[(@type='submit' or @type='button') and contains(text(), 'Yes')]",
     "content_upload": {
         "link": "//*[@id='iconToolboxContentUpload']/../../a/div[contains(text(), 'Content Upload') or ./text() = 'Content Upload']",
         "popup_url_input": "name=uploadUrl",
