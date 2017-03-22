@@ -15,7 +15,7 @@ create basic update webform
     input text    ${webform["button_add"]["error_url"]}    https://imgs.xkcd.com/comics/new_bug.png
     click element    ${webform["button_add"]["next_step"]}
     # page 2
-    select from list by label    ${webform["button_add"]["webform_type"]}    Update webform
+    select from list by label    ${webform["button_add"]["webform_type"]}    Update or subscribe webform
     # field 1
     select from list by label    //*[@id='entry[0]']/td[1]/select    EMAIL
     input text    //*[@id='entry[0]']/td[3]/input    Email
