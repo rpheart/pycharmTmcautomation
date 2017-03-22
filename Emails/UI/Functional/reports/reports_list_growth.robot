@@ -53,4 +53,4 @@ list_growth_search_segments
     input text    ${list_growth_reports["button_add"]["create_new"]["segments_search_input"]}    QA TEAM
     sleep    0.5
     click element    ${list_growth_reports["button_add"]["create_new"]["segments_search_button"]}
-    element contains    //*[@id="listReportUI-builderView-segmentsExplorer-nameColumn"]    QA TEAM
+    element should contain    //*[@id="listReportUI-builderView-segmentsExplorer-nameColumn"]    QA TEAM
