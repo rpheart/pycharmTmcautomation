@@ -64,9 +64,9 @@ generics = {
         "create_standard_link_btn": "//a[contains(text(),'Create Standard Link')]",
         "create_unsubscribe_link_btn": "//a[contains(text(),'Create Unsubscribe Link')]",
         "link_type_name": "name=linkName",
-        "link_type_url":  "name=linkURL",
-        "page_ok":  "name=linkPageOK",
-        "page_error":  "name=linkPageKO",
+        "link_type_url": "name=linkURL",
+        "page_ok": "name=linkPageOK",
+        "page_error": "name=linkPageKO",
         "save_link": "//a[contains(text(),'Choice1: Save Link')]",
         "save&add_link": "//a[contains(text(),'Choice2: Save/Add Link')]",
         "create_advanced_link": "//a[contains(text(),'Create Advanced Link')]",
@@ -292,7 +292,7 @@ new_message_builder = {
         "import": "//*[@id='action-bar-import']/span[./text()='Import']",
         "import_input": "//*[@id='action-bar-import-input' and @type='file']",
         "export": "//*[@id='action-bar-export']/a/span[./text()='Export']",
-        "headers": "//div[contains(@class, 'item ') and text()='Headers']",  # //*[@id='editor-switch']//div[./text()='Headers']",
+        "headers": "//div[contains(@class, 'item ') and text()='Headers']",
         "visual": "//*[@id='editor-switch']//div[./text()='Visual']",
         "plain_text": "//*[@id='editor-switch']//div[./text()='Plain-text']",
         "contents_panel": "//*[@id='content-palette']//div[text()='Contents']",
@@ -398,7 +398,7 @@ classic_message_builder = {
         "message_custom_header_input": "name=xheaderValue(HEADER)",
         "expert_tab": "css=#EXPERT.editorMode.editorModeActive.editorModeText",
         "text_editor": "id=textContent",
-        "message_preview": "css=span.blueBtnText",
+        "message_preview": "//*[@id='previewBtn']",
         "from_member_columns_select_firstname": "//*[@id='content']//select[@name='fromMemberColumns']//option[contains(text(),'FIRSTNAME')]",
         "to_member_columns_select_member_id": "//*[@id='content']//select[@name='toMemberColumns']//option[contains(text(),'MEMBER_ID')]",
         "subject_member_culums_select_title": "//*[@id='content']//select[@name='subjectMemberColumns']//option[contains(text(),'TITLE')]",
@@ -616,11 +616,11 @@ webform = {
         "webform_update_profile": "//*[@id='webFormTypeDesc']",
         "update_webform_option": "//*[@id='content']//option[normalize-space(.//text())='Update webform']",
         "dupe_url": "name=dupErrorUrl",
-        "field_name": "//select[@name='entry[0].field']",  #/td[1]/select/option[normalize-space(.//text())='EMAIL']",
+        "field_name": "//select[@name='entry[0].field']",
         "display_name": "//*[@id='entry[0]']/td[3]/input[@type='text']",
-        "input_type": "//select[@name='entry[0].inputType']",  #/td[4]/select/option[normalize-space(.//text())='TEXT']",
+        "input_type": "//select[@name='entry[0].inputType']",
         "default_value": "//*[@id='entry[0]']/td[6]/input[@type='text']",
-        "validation_type": "//select[@name='entry[0].fieldType']",  #/td[7]/select/option[normalize-space(.//text())='EMAIL']",
+        "validation_type": "//select[@name='entry[0].fieldType']",
         "text_length": "//*[@id='entry[0]']/td[8]/input[@type='text']",
         "select_user": "//*[@id='bounceBackSection']//select/option[./text()='User']",
         "bounce_back_type": "//*[@id='bounceBackSection']//select[@name='bounceBackType']",
@@ -1050,7 +1050,8 @@ mobile_reports = {
         "header_sent": "//div[./text()='Sent']",
         "header_delivered": "//div[./text()='Delivered']",
         "header_undelivered": "//div[./text()='Undelivered']",
-        "header_stops": "//div[./text()='Stops']"
+        "header_stops": "//div[./text()='Stops']",
+        "first_row": "//*[@id='tabledivRowColumnsID_0']"
     }
 }
 
@@ -1065,14 +1066,23 @@ list_growth_reports = {
         "header_status": "//div[./text()='Status']",
         "header_creation_date": "//div[./text()='Creation Date']",
         "header_created_by": "//div[./text()='Created by']",
+        "report_chart_window": "//div[contains(@class, 'ui-list-report-client-bundle-ListReportCSS-mainContent')]",
         "create_new": {
             "report_name": "//input[contains(@id, 'reportNameInput')]",
             "create_report": "//*[contains(text(), 'Create Report')]",
             "segments_radio": "//input[@id='gwt-uid-9']",
             "segments_list": "//*[@id='listReportUI-builderView-segmentsExplorer-openButton']",
             "segments_search_input": "//input[@id='listReportUI-builderView-segmentsExplorer-searchButton-textBox']",
-            "segments_search_button": "//*[@id='listReportUI-builderView-segmentsExplorer-searchButton-button']"
+            "segments_search_button": "//*[@id='listReportUI-builderView-segmentsExplorer-searchButton-button']",
+            "segmentss_row": "//*[@id='listReportUI-builderView-segmentsExplorer-nameColumn']",
         }
+    },
+    "button_list": {
+        "first_row": "//*[@id='emvTab1-row-0']",
+        "refresh_button": "//*[@id='listReportUI-mainMenu-refreshButton']",
+        "results_button": "//*[contains(@id, 'listReportUi-ArchiveView-resultView')]",
+        "delete_button": "//*[contains(@id, 'listReportUi-ArchiveView-deleteIcon')]",
+
     }
 }
 
