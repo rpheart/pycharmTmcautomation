@@ -1017,6 +1017,7 @@ transactional_reports = {
     "menu": "//*[@id='engage-reports']/div[./text()='Reports']",
     "button_add": {
         "add": "//*[@id='engage-reports']//ul[@title='Transactional']/li",
+        "date_range_report": "//a[contains(text(), 'Date Range Report')]",
         "custom_search": "//a[contains(text(), 'Custom Search')]",
         "email": "//input[contains(@name, 'email')]"
     }
