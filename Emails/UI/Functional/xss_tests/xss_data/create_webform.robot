@@ -75,7 +75,7 @@ loop through test data step 1
     \    open content    ${webform}    ${webform["button_add"]["add"]}
     \    wait until element is visible    ${webform["button_add"]["name"]}
     \    input text    ${webform["button_add"]["name"]}    Name
-    \    select from list    ${webform["button_add"]["select_languages"]}    English
+    \    select from list by label    ${webform["button_add"]["select_languages"]}    English
     \    click element    ${webform["button_add"]["select_date"]}
     \    click element    ${webform["button_add"]["today_date"]}
     \    input text    ${webform["button_add"]["confirm_url"]}    http://www.test.com
@@ -85,6 +85,21 @@ loop through test data step 1
     \    run keyword if    ${is_url}    create url string    ${line}
     \    input text    ${field}    ${line}
     \    click element    ${webform["button_add"]["next_step"]}
+    # Step 2 defaults
+    \    select from list by label    ${webform["button_add"]["webform_type"]}    Subscription webform (do not allow duplicate Emails)
+    \    select from list by label    ${webform["button_add"]["field_name"]}    EMAIL
+    \    select from list by label    ${webform["button_add"]["input_type"]}    TEXT
+    \    select from list by label    ${webform["button_add"]["validation_type"]}    NONE
+    \    input text    ${webform["button_add"]["dupe_url"]}    http://www.test.com
+    \    input text    ${webform["button_add"]["display_name"]}    Name
+    \    click element    ${webform["button_add"]["next_step"]}
+    # Step 3 defaults
+    \    select from list by label    ${webform["button_add"]["bounce_back_type"]}    User AND your company customer service
+    \    input text    ${webform["button_add"]["service_email_address"]}    test@test.com
+    \    input text    ${webform["button_add"]["reply_to_email"]}    test@test.com
+    \    click element    //input[@name='messageId']
+    \    click element    //input[@name='messageIdToManager']
+    \    click element    ${webform["button_add"]["save_webform"]}
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
@@ -97,17 +112,17 @@ loop through test data step 2
     \    open content    ${webform}    ${webform["button_add"]["add"]}
     \    wait until element is visible    ${webform["button_add"]["name"]}
     \    input text    ${webform["button_add"]["name"]}    Name
-    \    select from list    ${webform["button_add"]["select_languages"]}    English
+    \    select from list by label    ${webform["button_add"]["select_languages"]}    English
     \    click element    ${webform["button_add"]["select_date"]}
     \    click element    ${webform["button_add"]["today_date"]}
     \    input text    ${webform["button_add"]["confirm_url"]}    http://www.test.com
     \    input text    ${webform["button_add"]["error_url"]}    http://www.test.com
     \    click element    ${webform["button_add"]["next_step"]}
     # Step 2 defaults
-    \    select from list    ${webform["button_add"]["webform_type"]}    Subscription webform (do not allow duplicate Emails)
-    \    select from list    ${webform["button_add"]["field_name"]}    EMAIL
-    \    select from list    ${webform["button_add"]["input_type"]}    TEXT
-    \    select from list    ${webform["button_add"]["validation_type"]}    NONE
+    \    select from list by label    ${webform["button_add"]["webform_type"]}    Subscription webform (do not allow duplicate Emails)
+    \    select from list by label    ${webform["button_add"]["field_name"]}    EMAIL
+    \    select from list by label    ${webform["button_add"]["input_type"]}    TEXT
+    \    select from list by label    ${webform["button_add"]["validation_type"]}    NONE
     \    input text    ${webform["button_add"]["dupe_url"]}    http://www.test.com
     \    input text    ${webform["button_add"]["display_name"]}    Name
     # Test begins
@@ -115,6 +130,13 @@ loop through test data step 2
     \    run keyword if    ${is_url}    create url string    ${line}
     \    input text    ${field}    ${line}
     \    click element    ${webform["button_add"]["next_step"]}
+    # Step 3 defaults
+    \    select from list by label    ${webform["button_add"]["bounce_back_type"]}    User AND your company customer service
+    \    input text    ${webform["button_add"]["service_email_address"]}    test@test.com
+    \    input text    ${webform["button_add"]["reply_to_email"]}    test@test.com
+    \    click element    //input[@name='messageId']
+    \    click element    //input[@name='messageIdToManager']
+    \    click element    ${webform["button_add"]["save_webform"]}
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
@@ -127,22 +149,22 @@ loop through test data step 3
     \    open content    ${webform}    ${webform["button_add"]["add"]}
     \    wait until element is visible    ${webform["button_add"]["name"]}
     \    input text    ${webform["button_add"]["name"]}    Name
-    \    select from list    ${webform["button_add"]["select_languages"]}    English
+    \    select from list by label    ${webform["button_add"]["select_languages"]}    English
     \    click element    ${webform["button_add"]["select_date"]}
     \    click element    ${webform["button_add"]["today_date"]}
     \    input text    ${webform["button_add"]["confirm_url"]}    http://www.test.com
     \    input text    ${webform["button_add"]["error_url"]}    http://www.test.com
     \    click element    ${webform["button_add"]["next_step"]}
     # Step 2 defaults
-    \    select from list    ${webform["button_add"]["webform_type"]}    Subscription webform (do not allow duplicate Emails)
-    \    select from list    ${webform["button_add"]["field_name"]}    EMAIL
-    \    select from list    ${webform["button_add"]["input_type"]}    TEXT
-    \    select from list    ${webform["button_add"]["validation_type"]}    NONE
+    \    select from list by label    ${webform["button_add"]["webform_type"]}    Subscription webform (do not allow duplicate Emails)
+    \    select from list by label    ${webform["button_add"]["field_name"]}    EMAIL
+    \    select from list by label    ${webform["button_add"]["input_type"]}    TEXT
+    \    select from list by label    ${webform["button_add"]["validation_type"]}    NONE
     \    input text    ${webform["button_add"]["dupe_url"]}    http://www.test.com
     \    input text    ${webform["button_add"]["display_name"]}    Name
     \    click element    ${webform["button_add"]["next_step"]}
     # Step 3 defaults
-    \    select from list    ${webform["button_add"]["bounce_back_type"]}    User AND your company customer service
+    \    select from list by label    ${webform["button_add"]["bounce_back_type"]}    User AND your company customer service
     \    input text    ${webform["button_add"]["service_email_address"]}    test@test.com
     \    input text    ${webform["button_add"]["reply_to_email"]}    test@test.com
     \    click element    //input[@name='messageId']

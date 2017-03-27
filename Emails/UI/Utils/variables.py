@@ -18,7 +18,9 @@ navigation_bar = "css=ul.si-module-navigation"
 iframes = {
     "top": "css=iframe.sfIFrame",
     "ccmd": "id=emv-ccmd-iframe",
-    "popup": "id=popupFrame"
+    "popup_frame": "id=popupFrame",
+    "image_library_editor": "id=msg-editor-imagelib-iframe",
+    "html_preview": "//*[@id='iframeHtml']"
 }
 
 # generic tabs
@@ -34,14 +36,16 @@ generics = {
     "test_campaign_name": "name=campaignName",
     "new_test_email": "//*[@id='content']//input[@name='emailToAdd']",
     "add_email_to_test_recipients": "id=iconAddCriteria",
+    "test_group_dropdown": "//select[@name='groupSelected']",
     "group_name": "//*[@id='content']//option[contains(text(),'QA_auto')]",
     "qa_test_email": "//*[@id='content']//td[contains(.,'qa.test@smartfocus.com')]/input",
     "auto_test_email": "//*[@id='content']//td[contains(.,'qa.auto@smartfocus.com')]/input",
     "update_group_button": "id=updateGroupBtn",
     "send_test_button": "//*[@id='iconArrowBack']/../a",
-    "close_popup_box": "id=popCloseBox",
+    "close_popup_box": "//*[@id='iconCancel' or @id='popCloseBox']",
     "send_test_message": "//*[@id='toolbox']//div[contains(text(),'Send Test Message')]",
     "create_new": "//*[contains(@class, 'applicationBar') and contains(text(), 'New')]",
+    "add": "//*[contains(text(), 'Add') and (contains(@class, 'applicationBar') or contains(@class, 'appbar') or contains(@class, 'label'))]",
     "save": "//a[contains(text(),'Save') or ./text() = 'Save']",
     "next": "//a[contains(text(),'Next') or ./text() = 'Next']",
     "search_input": "//input[contains(@class, 'search') or contains(@class, 'Search') or contains(@name, 'search-input') or @type='text' and contains(@name, 'searchQuery') or contains(@data-ng-model, 'search')]",
@@ -49,21 +53,31 @@ generics = {
     "select_all": "//img[@id='iconSelectAll']",
     "trash": "//*[@id='iconTrash']",
     "ok_button": "//a[contains(text(), 'OK')]",
+    "yes_button": "//*[(@type='submit' or @type='button') and contains(text(), 'Yes')]",
     "content_upload": {
         "link": "//*[@id='iconToolboxContentUpload']/../../a/div[contains(text(), 'Content Upload') or ./text() = 'Content Upload']",
         "popup_url_input": "name=uploadUrl",
         "popup_file_btn": "//a[contains(text(),'Upload')]",
     },
     "link_management": {
-        "link": "//*[@id='iconToolboxLinksManagt']/../../a/div[contains(text(), 'Link Management') or ./text() = 'Link Management']",
+        "link": "//*[@id='iconToolboxLinksManagt']",
         "create_standard_link_btn": "//a[contains(text(),'Create Standard Link')]",
         "create_unsubscribe_link_btn": "//a[contains(text(),'Create Unsubscribe Link')]",
         "link_type_name": "name=linkName",
-        "link_type_url":  "name=linkURL",
-        "page_ok":  "name=linkPageOK",
-        "page_error":  "name=linkPageKO",
+        "link_type_url": "name=linkURL",
+        "page_ok": "name=linkPageOK",
+        "page_error": "name=linkPageKO",
         "save_link": "//a[contains(text(),'Choice1: Save Link')]",
-        "save&add_link": "//a[contains(text(),'Choice2: Save/Add Link')]"
+        "save&add_link": "//a[contains(text(),'Choice2: Save/Add Link')]",
+        "create_advanced_link": "//a[contains(text(),'Create Advanced Link')]",
+        "pers_link": "//a[contains(text(),'Pers. Link')]",
+        "update_link": "//a[contains(text(),'Update Link')]",
+        "action_link": "//a[contains(text(),'Action Link')]",
+        "mirror_link": "//a[contains(text(),'Mirror Link')]",
+        "landing_pages": "//a[contains(text(),'Landing Pages')]",
+    },
+    "insert_dynamic_content_block": {
+        "link": "//*[@id='iconBannerSmall']"
     }
 }
 
@@ -111,18 +125,19 @@ multivariate_campaign = {
         "define_campaign_and_recipients": "//*[@id='splitrunUI-builderView-breadcrumb-1']//div[contains(text(),'Define campaign and recipients')]",
         "1_campaign_name_and_description": "//*[@id='splitrunuidiv']//legend[contains(text(),'1. Campaign name and description')]",
         "campaign_name": "//*[@id='splitrunuidiv']//div[contains(text(),'Campaign Name')]",
-        "name_input": "id=splitrunUI-builderView-nameInput",
+        "name_input": "//*[@id='splitrunUI-builderView-nameInput']",
         "campaign_description": "//*[@id='splitrunuidiv']//div[contains(text(),'Campaign description')]",
-        "description_input": "id=splitrunUI-builderView-descriptionInput",
+        "description_input": "//*[@id='splitrunUI-builderView-descriptionInput']",
         "2_select_message": "//*[@id='splitrunuidiv']//legend[contains(text(),'2. Select message')]",
         "message": "//*[@id='splitrunuidiv']//div[contains(text(),'Message')]",
         "select_a_message": "//*[@id='splitrunUI-builderView-messagesExplorer-openButton']//div[contains(text(),'Select a message')]",
-        "qa_auto_test_message": "//*[@id='splitrunUI-builderView-messagesExplorer-nameColumn' and contains(text(),'QA auto test Message')]",
+        "first_message": "//div[@id='splitrunUI-builderView-messagesExplorer-nameColumn']",
         "3_select_recipients": "//*[@id='splitrunuidiv']//legend[contains(text(),'3. Select recipients')]",
         "segment": "//*[@id='splitrunuidiv']//div[contains(text(),'Segment')]",
         "select_one_or_more_segments": "//*[@id='splitrunUI-builderView-segmentsExplorer-openButton']//div[contains(text(),'Select one or more segments')]",
-        "qa_auto_test_segment": "//*[@id='splitrunUI-builderView-segmentsExplorer-nameColumn' and contains(text(),'QA auto test Segment')]",
-        "click_ok": "//*[@id='splitrunUI-builderView-segmentsExplorer-addEntitiesButton']//div[contains(text(),'Ok')]",
+        "segment_favourites": "//*[@id='splitrunUI-builderView-segmentsExplorer-favoritesButton']",
+        "qa_team_segment": "//div[contains(text(), 'QA TEAM')]",
+        "ok_button": "//*[@id='splitrunUI-builderView-segmentsExplorer-addEntitiesButton']",
         "continue_button": "//*[@id='splitrunUI-builderView-nextButton']//div[contains(text(),'Continue')]",
         "1_select_the_variable_you_want_to_test": "//*[@id='splitrunuidiv']//legend[./text()='1. Select the variable you want to test']",
         "define_versions_and_samples": "//*[@id='splitrunUI-builderView-breadcrumb-2']//div[contains(text(),'Define versions and samples')]",
@@ -158,7 +173,10 @@ multivariate_campaign = {
         "schedule_button": "//*[@id='splitrunUI-builderView-sendCampaignButton']//div[contains(text(),'Schedule')]",
         "add_recipient": "//*[@id='splitrunUI-builderView-alertRecipients-item0-emailInput']",
         "track_link_hostname": "//*[@id='splitrunUI-builderView-brandedTrackerHostInput']",
-        "track_url": "//*[@id='splitrunUI-builderView-endOfTrackingUrlInput']",
+        "track_url": "//td[contains(@class, 'firstSubjectBackground')]//input[contains(@id, 'splitrunUI-builderView')]",
+        "version_one_preview": "//*[@class='GDPGA2PBNQ-com-emailvision-splitrun-ui-client-component-preview-Preview-IPreviewCssResource-previewThumbPanel']",
+        "schedule_rollout_icon": "//*[@id='splitrunUI-preview-scheduleIcon']",
+        "send_rollout_button": "//*[@id='splitrunUI-resultView-rolloutPopupLaunchButton']//div[contains(text(), 'Send')]"
     },
     "button_list": {
         "list": "//*[@id='engage-send']//ul[@title='MultiVariate']/li[2]",
@@ -168,7 +186,13 @@ multivariate_campaign = {
         "status": "//*[@id='splitrunuidiv']//div[./text()='Status']",
         "test_variable": "//*[@id='splitrunuidiv']//div[./text()='Test variable']",
         "send_date": "//*[@id='splitrunuidiv']//div[./text()='Send date']",
-        "message_count": "//*[@id='splitrunUI-archiveView-archiveFooterLabel']/tbody/tr/td/div"
+        "message_count": "//*[@id='splitrunUI-archiveView-archiveFooterLabel']/tbody/tr/td/div",
+        "first_row": "//*[@__gwt_row='0']",
+        "first_campaign_name": "//*[@__gwt_row='0']/td[1]",
+        "refresh_button": "//table//img[contains(@class, 'GreyButtonWithIcon')]",
+        "delete_button": "//*[contains(@id, 'splitrunUI-archiveView-deleteButton')]",
+        "edit_button": "//*[contains(@id, 'splitrunUI-archiveView-editButton')]",
+        "view_button": "//*[contains(@id, 'splitrunUI-archiveView-viewButton')]"
     }
 }
 
@@ -180,25 +204,26 @@ multimessage_campaign = {
         "define_campaign_and_recipients": "//*[@id='splitrunUI-builderView-breadcrumb-1']//div[contains(text(),'Define campaign and recipients')]",
         "campaign_name_and_description": "//*[@id='splitrunuidiv']//legend[contains(text(),'1. Campaign name and description')]",
         "campaign_name": "//*[@id='splitrunuidiv']//div[contains(text(),'Campaign Name')]",
-        "input_name": "id=splitrunUI-builderView-nameInput",
+        "input_name": "//*[@id='splitrunUI-builderView-nameInput']",
         "campaign_description": "//*[@id='splitrunuidiv']//div[contains(text(),'Campaign description')]",
-        "input_description": "id=splitrunUI-builderView-descriptionInput",
+        "input_description": "//*[@id='splitrunUI-builderView-descriptionInput']",
         "select_recipients": "//*[@id='splitrunuidiv']//legend[contains(text(),'2. Select recipients')]",
         "segment": "//*[@id='splitrunuidiv']//div[contains(text(),'Segment')]",
         "select_one_or_more_segments": "//*[@id='splitrunUI-builderView-segmentsExplorer-openButton']//div[contains(text(),'Select one or more segments')]",
+        "segment_favourites": "//*[@id='splitrunUI-builderView-segmentsExplorer-favoritesButton']",
+        "qa_team_segment": "//div[contains(text(), 'QA TEAM')]",
         "qa_auto_test_segment": "//*[@id='splitrunUI-builderView-segmentsExplorer-nameColumn' and contains(text(),'QA auto test Segment')]",
-        "click_ok": "//*[@id='splitrunUI-builderView-segmentsExplorer-addEntitiesButton']//div[contains(text(),'Ok')]",
-        "click_continue": "//*[@id='splitrunUI-builderView-nextButton']//div[contains(text(),'Continue')]",
+        "ok_button": "//*[@id='splitrunUI-builderView-segmentsExplorer-addEntitiesButton']//div[contains(text(),'Ok')]",
+        "continue_button": "//*[@id='splitrunUI-builderView-nextButton']//div[contains(text(),'Continue')]",
         "define_campaign_messages_up_to_20": "//*[@id='splitrunuidiv']//legend[contains(text(),'1. Define campaign messages (up to 20)')]",
         "define_messages_and_partitions": "//*[@id='splitrunUI-builderView-breadcrumb-2']//div[contains(text(),'Define messages and partitions')]",
-        "message_one": "//*[@id='splitrunUI-builderView-testMessage-messagesExplorer-version1-openButton']//div[contains(text(),'Select a message')]",
-        "select_one_record_message_one": "id=splitrunUI-builderView-testMessage-messagesExplorer-version1-idColumn",
-        "message_two": "//*[@id='splitrunUI-builderView-testMessage-messagesExplorer-version2-openButton']//div[contains(text(),'Select a message')]",
-        "select_one_record_message_two": "id=splitrunUI-builderView-testMessage-messagesExplorer-version2-idColumn",
+        "message_one_list": "//*[@id='splitrunUI-builderView-testMessage-messagesExplorer-version1-openButton']",
+        "message_one_first_message": "//*[@id='splitrunUI-builderView-testMessage-messagesExplorer-version1-nameColumn']",
+        "message_two_list": "//*[@id='splitrunUI-builderView-testMessage-messagesExplorer-version2-openButton']",
+        "message_two_first_message": "//*[@id='splitrunUI-builderView-testMessage-messagesExplorer-version2-nameColumn']",
         "add_message": "//*[@id='splitrunUI-builderView-addVersionButton']//div[contains(text(),'Add message')]",
         "back_button": "//*[@id='splitrunUI-builderView-previousButton']//div[contains(text(),'Back')]",
         "preview_button": "//*[@id='splitrunUI-builderView-previewVersionsButton']//div[contains(text(),'Preview all versions')]",
-        "continue_button": "//*[@id='splitrunUI-builderView-nextButton']//div[contains(text(),'Continue')]",
         "1_schedule_the_campaign": "//*[@id='splitrunuidiv']//legend[contains(text(),'1. Schedule the campaign')]",
         "schedule_campaign": "//*[@id='splitrunUI-builderView-breadcrumb-3']//div[contains(text(),'Schedule campaign')]",
         "send_now_radio_button": "id=splitrunUI-builderView-sendNowRadioButton",
@@ -219,7 +244,12 @@ multimessage_campaign = {
         "status": "//*[@id='splitrunuidiv']//div[./text()='Status']",
         "send_date": "//*[@id='splitrunuidiv']//div[./text()='Send date']",
         "table": "xpath=//*[@id='splitrunuidiv']/div/div[2]/div/div[1]/div/div[3]/div/div[2]/div/div/table",
-        "message_count": "//*[@id='splitrunUI-archiveView-archiveFooterLabel']/tbody/tr/td/div"
+        "message_count": "//*[@id='splitrunUI-archiveView-archiveFooterLabel']/tbody/tr/td/div",
+        "first_row": "//tr[@__gwt_row='0']",
+        "refresh_button": "//table//img[contains(@class, 'GreyButtonWithIcon')]",
+        "delete_button": "//*[contains(@id, 'splitrunUI-archiveView-deleteButton')]",
+        "edit_button": "//*[contains(@id, 'splitrunUI-archiveView-editButton')]",
+        "view_button": "//*[contains(@id, 'splitrunUI-archiveView-viewButton')]"
     }
 }
 
@@ -262,24 +292,32 @@ new_message_builder = {
         "import": "//*[@id='action-bar-import']/span[./text()='Import']",
         "import_input": "//*[@id='action-bar-import-input' and @type='file']",
         "export": "//*[@id='action-bar-export']/a/span[./text()='Export']",
-        "headers": "//div[contains(@class, 'item ') and text()='Headers']",  # //*[@id='editor-switch']//div[./text()='Headers']",
+        "headers": "//div[contains(@class, 'item ') and text()='Headers']",
         "visual": "//*[@id='editor-switch']//div[./text()='Visual']",
         "plain_text": "//*[@id='editor-switch']//div[./text()='Plain-text']",
-        "contents": "//*[@id='content-palette']//div[./text()='Contents']",
+        "contents_panel": "//*[@id='content-palette']//div[text()='Contents']",
         "layout": "id=palette-contents-carousel-layout",
         "basic": "id=palette-contents-carousel-basic",
         "content_blocks": "id=palette-contents-carousel-content-blocks",
         "drop_content_here": "//*[@id='message-html']//span[normalize-space(.//text())='Drop content here']",
-        "text_icon": "//*[@id='content-type-item-text']/div[@class='icon text-icon']",
-        "image_icon": "//*[@id='content-type-item-image']/div[@class='icon image-icon']",
-        "text_image_icon": "//*[@id='content-type-item-text-image']/div[@class='icon text-image-icon']",
-        "image_text_icon": "//*[@id='content-type-item-image-text']/div[@class='icon image-text-icon']",
-        "share_icon": "//*[@id='content-type-item-share']/div[@class='icon share-icon']",
-        "html_icon": "//*[@id='content-type-item-html']/div[@class='icon html-icon']",
-        "spacer_icon": "//*[@id='content-type-item-spacer']/div[@class='icon spacer-icon']",
-        "video_icon": "//*[@id='content-type-item-video']/div[@class='icon video-icon']",
-        "reco_icon": "//*[@id='content-type-item-reco']/div[@class='icon reco-icon']",
+        # "text_icon": "//*[@id='content-type-item-text']/div[@class='icon text-icon']",
+        # "image_icon": "//*[@id='content-type-item-image']/div[@class='icon image-icon']",
+        # "text_image_icon": "//*[@id='content-type-item-text-image']/div[@class='icon text-image-icon']",
+        # "image_text_icon": "//*[@id='content-type-item-image-text']/div[@class='icon image-text-icon']",
+        # "share_icon": "//*[@id='content-type-item-share']/div[@class='icon share-icon']",
+        # "html_icon": "//*[@id='content-type-item-html']/div[@class='icon html-icon']",
+        # "spacer_icon": "//*[@id='content-type-item-spacer']/div[@class='icon spacer-icon']",
+        # "video_icon": "//*[@id='content-type-item-video']/div[@class='icon video-icon']",
+        # "reco_icon": "//*[@id='content-type-item-reco']/div[@class='icon reco-icon']",
         "text_widget": "//*[@id='content-type-item-text']",
+        "image_widget": "//*[@id='content-type-item-image']",
+        "text_image_widget": "//*[@id='content-type-item-text-image']",
+        "image_text_widget": "//*[@id='content-type-item-image-text']",
+        "share_widget": "//*[@id='content-type-item-share']",
+        "html_widget": "//*[@id='content-type-item-html']",
+        "spacer_widget": "//*[@id='content-type-item-spacer']",
+        "video_widget": "//*[@id='content-type-item-video']",
+        "smart_personalisation_widget": "//*[@id='content-type-item-reco']",
         "chevron_left": "//*[@id='editor-switch']/div/div[4]",
         "message_name": "//*[@id='action-bar-name']",
         "message_name_input": "//*[@id='action-bar-inputname']",
@@ -301,11 +339,16 @@ new_message_builder = {
         "save_template_input": "//*[@id='template-name-container']/input",
         "save_template_button": "//*[@id='template-btnsave']",
         "add_recipients": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[1]",
-        "test_panel": "//*[@id='content-palette']/div/div/div[2]",
+        "tests_panel": "//*[@id='content-palette']//div[text()='Tests']",
         "send_test_emails": "//*[@id='send-test-emails']/div[2]",
         "first_test_email_slider": "//*[@class='test-email']/div/div[2]",
         "send_test_search_input": "//*[@id='test-email-search-input-container']/div/input",
-        "send_test_search_button": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[2]"
+        "send_test_search_button": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[2]",
+        "text_content_box": "//*[@class='content-cell editable text']",
+        "add_a_picture": "//*[contains(text(), 'Add a picture')]",
+        "first_image": "//*[@class='image ng-scope']",
+        "apply_and_close": "//*[@id='image-popup-options-apply']",
+        "add_a_link": "//*[contains(text(), 'Add a link')]"
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message Builder']/li[2]",
@@ -320,7 +363,11 @@ new_message_builder = {
         "first_row": "//*[@id='tabledivRow-0']",
         "duplicate": "//*[contains(@id, 'duplicateenable')]",
         "rename_input": "//*[@id='archive-duplicate-name']",
-        "duplicate_button": "//div[contains(text(), 'Duplicate')]"
+        "duplicate_button": "//div[contains(text(), 'Duplicate')]",
+        "delete_button": "//*[contains(@id, 'deleteenable')]",
+        "edit_button": "//*[contains(@id, 'editenable')]",
+        "convert_to_html_button": "//*[contains(@id, 'convertenable')]",
+        "preview_button": "//*[contains(@id, 'preview-icon')]"
     }
 }
 
@@ -351,7 +398,7 @@ classic_message_builder = {
         "message_custom_header_input": "name=xheaderValue(HEADER)",
         "expert_tab": "css=#EXPERT.editorMode.editorModeActive.editorModeText",
         "text_editor": "id=textContent",
-        "message_preview": "css=span.blueBtnText",
+        "message_preview": "//*[@id='previewBtn']",
         "from_member_columns_select_firstname": "//*[@id='content']//select[@name='fromMemberColumns']//option[contains(text(),'FIRSTNAME')]",
         "to_member_columns_select_member_id": "//*[@id='content']//select[@name='toMemberColumns']//option[contains(text(),'MEMBER_ID')]",
         "subject_member_culums_select_title": "//*[@id='content']//select[@name='subjectMemberColumns']//option[contains(text(),'TITLE')]",
@@ -378,10 +425,10 @@ classic_message_builder = {
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message']/li[2]",
         "workflow": "css=#ccmd-messages-cell-workflow1.actionColumnUneven > a > #iconWfmAssign.sprite",
-        "edit": "css=#ccmd-messages-cell-edit1 > a > #iconEdit",
+        "edit": "//*[@id='iconEdit']",
         "favourites": "css=#favourites.actionColumnUneven > a > #span.checkbox",
-        "copy": "css=#ccmd-messages-cell-copy1.actionColumnUneven > a > #iconCopy.sprite",
-        "preview": "css=#ccmd-messages-cell-preview1.actionColumnUneven > a > #iconView.sprite",
+        "copy": "//*[@id='iconCopy']",
+        "preview": "//*[@id='iconView']",
         "test_message": "//*[@id='iconCampaignTest'][@title='Test']/../../a",
         "audit_deliverability": "css=#ccmd-messages-cell-deliv1.actionColumnUneven > a > #iconDeliverability.sprite",
         "delete": "//*[@id='iconTrash']/../../a",
@@ -432,7 +479,8 @@ sms_message_builder = {
         "header_delete": "//*[@id='ccmd-messages-table']//span[@class='red' and ./text()='Delete']",
         "table": "xpath=//*[@id='ccmd-messages-table']",
         "copy": "//*[@id='iconCopy']",
-        "rename_input": "//*[@name='messageNewName']"
+        "rename_input": "//*[@name='messageNewName']",
+        "edit": "//*[@id='iconEdit']"
     }
 }
 
@@ -457,7 +505,8 @@ landing_page = {
         "button_html": "//button[@class='btn btn-large lpages-editor-wizardshtml']",
         "button_form": "//button[@class='btn btn-large lpages-editor-wizardform']",
         "button_subscription_suspension": "//button[@class='btn btn-large lpages-editor-wizardform-subscriptionsuspension']",
-        "label_input_field": "//*[@id='lpages-editor-columnid-1-0']/div[1]/div/form/div/div/div[3]/input",
+        "label_input_field": "//div[contains(text(), 'Label')]",
+        "first_input_container": "//*[@class='lpages-formfiels-input-container']",
         "input_selector": "//*[@id='lpages-editorform-typepfield']",
         "save": "//*[contains(@id, 'btnsave')]",
         "save_and_schedule": "//*[@id='lpages-editor-btnsavechedule']/div",
@@ -472,7 +521,9 @@ landing_page = {
         "data_sync_button": "//*[@id='lpages-prop-datasync-toggleButton']",
         "activate": "//*[@id='lpages-prop-datasync-activation-popup']/div[2]/div[3]/div[2]",
         "source_field_slider": "//*[@id='lpages-prop-datasync-source-toggle']",
-        "source_field_input": "//*[@id='lpages-prop-datasync-source-input']"
+        "source_field_input": "//*[@id='lpages-prop-datasync-source-input']",
+        "general_properties": "//*[@id='ui-id-4']",
+        "landing_page_url": "//*[@id='lpages-prop-overview-url']/a"
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Landing page']/li[2]",
@@ -487,7 +538,12 @@ landing_page = {
         "first_row": "//*[@id='tabledivRow-0']",
         "duplicate": "//*[contains(@id, 'duplicate-icon')]",
         "rename_input": "//*[@id='lpages-pages-duplicatePromptName-name']",
-        "yes": "//div[contains(text(), 'Yes')]"
+        "yes": "//div[contains(text(), 'Yes')]",
+        "properties": "//*[contains(@id, 'lpages-pages-icon-prop-icon')]",
+        "edit": "//*[contains(@id, 'lpages-pages-icon-edit-icon')]",
+        "preview": "//*[contains(@id, 'lpages-pages-icon-view-icon')]",
+        "statistics": "//*[contains(@id, 'lpages-pages-icon-stats-icon')]",
+        "delete": "//*[contains(@id, 'lpages-pages-icon-delete-icon')]"
     }
 }
 
@@ -499,11 +555,11 @@ content_block = {
         "description": "name=description",
         "text_content": "id=textContent",
         "tool_box": "id=toolbox",
-        "message_name": "name=messageName",
-        "message_description": "name=messageDescription",
-        "message_from": "name=messageFrom",
-        "message_to": "name=messageTo",
-        "message_reply_to": "name=messageReplyToEmail",
+        # "message_name": "name=messageName",
+        # "message_description": "name=messageDescription",
+        # "message_from": "name=messageFrom",
+        # "message_to": "name=messageTo",
+        # "message_reply_to": "name=messageReplyToEmail",
         "html_checkbox": "//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "//*[@id='content']//input[@type='radio' and @value='HTML']",
         "content_upload": "//*[@id='iconUpload']/../../a/div[./text()='Content upload']",
@@ -529,10 +585,14 @@ content_block = {
         "header_modification_date": "//*[@id='content-blocks-tablediv-header-modification-date']/div[./text()='Modification date']",
         "header_creator": "//*[@id='content-blocks-tablediv-header-creator']/div[./text()='Creator']",
         "first_block_id": "//div[@class='tabledivColumnText']",
+        "preview": "//*[contains(@id, 'preview-icon')]",
+        "edit": "//*[contains(@id, 'editenable-icon')]",
+        "delete_button": "//*[contains(@id, 'deleteenable-icon')]",
         "copy": "//*[contains(@id, 'duplicateenable-icon')]",
         "rename_input": "//*[@id='archive-duplicate-name']",
-        "first_row": "//*[@id='tabledivRow-0']",
-        "duplicate": "//div[contains(text(), 'Duplicate')]"
+        "first_row": "//div[@id='tabledivRow-0']",
+        "duplicate": "//*[@id='duplicate-confirmation-popup']//div[contains(text(), 'Duplicate')]",
+        "delete_confirm": "//*[@id='delete-confirmation-popup']//div[contains(text(), 'Delete')]"
     }
 }
 
@@ -543,35 +603,35 @@ webform = {
         "STEP_1_settings": "//*[@id='content']//td[./text()='STEP 1: Settings']",
         "STEP_2_Fields": "//*[@id='content']//td[normalize-space(.//text())='STEP 2: Fields']",
         "STEP_3_confirmation_email": "//*[@id='content']//td[./text()='STEP 3: Confirmation Email']",
-        "name": "name=name",
-        "description": "name=description",
-        "select_languages": "name=language",
+        "name": "//input[@name='name']",
+        "description": "//input[@name='description']",
+        "select_languages": "//select[@name='language']",
         "language_option": "//*[@id='content']//option[contains(text(),'English')]",
-        "select_date": "id=datepicker",
-        "today_date": "//*[@id='datepicker_root']//button[@class='picker__button--today']",
-        "confirm_url": "name=confirmUrl",
-        "error_url": "name=errorUrl",
-        "next_step": "//*[@id='iconButtonNext']/../../a[normalize-space(.//text())='Next Step']",
+        "select_date": "//input[@id='datepicker']",
+        "today_date": "//button[@class='picker__button--today']",
+        "confirm_url": "//input[@name='confirmUrl']",
+        "error_url": "//input[@name='errorUrl']",
+        "next_step": "//*[@id='iconButtonNext']",
         "webform_type": "//*[@id='content']//select[@name='type']",
         "webform_update_profile": "//*[@id='webFormTypeDesc']",
         "update_webform_option": "//*[@id='content']//option[normalize-space(.//text())='Update webform']",
         "dupe_url": "name=dupErrorUrl",
-        "field_name": "//select[@name='entry[0].field']",  #/td[1]/select/option[normalize-space(.//text())='EMAIL']",
+        "field_name": "//select[@name='entry[0].field']",
         "display_name": "//*[@id='entry[0]']/td[3]/input[@type='text']",
-        "input_type": "//select[@name='entry[0].inputType']",  #/td[4]/select/option[normalize-space(.//text())='TEXT']",
+        "input_type": "//select[@name='entry[0].inputType']",
         "default_value": "//*[@id='entry[0]']/td[6]/input[@type='text']",
-        "validation_type": "//select[@name='entry[0].fieldType']",  #/td[7]/select/option[normalize-space(.//text())='EMAIL']",
+        "validation_type": "//select[@name='entry[0].fieldType']",
         "text_length": "//*[@id='entry[0]']/td[8]/input[@type='text']",
         "select_user": "//*[@id='bounceBackSection']//select/option[./text()='User']",
-        "bounce_back_type": "name=bounceBackType",
+        "bounce_back_type": "//*[@id='bounceBackSection']//select[@name='bounceBackType']",
         "service_email_address": "name=managerMail",
-        "reply_to_email": "name=replyTo",
-        "message_id": "name=messageId",
-        "save_webform": "//*[@id='iconButtonPersonnalisation']/../../a[@class='btn orange']",
+        "reply_to_email": "//input[@name='replyTo']",
+        "first_message_id": "//input[@name='messageId']",
+        "save_webform": "//*[@id='iconButtonPersonnalisation']",
         "previous_step": "//*[@id='content']//a[@class='btn blue']",
         "submit_form": "//*[@id='emvForm']//input[@value='Submit Form']",
         "edit_webform": "//*[@id='content']//a[normalize-space(.//text())='Edit Webform' and @class='btn orange']",
-        "": "",
+        "add_criteria": "//*[@id='iconAddCriteria']",
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Webform']/li[2]",
@@ -594,7 +654,10 @@ webform = {
         "surname_webform": "//*[@id='rows']/tr/td[./text()='SurnameWebForm']",
         "qa_auto_email": "//*[@id='rows']/tr/td[text()='qa.auto@smartfocus.com']",
         "search_input": "//input[contains(@name, 'searchPattern')]",
-        "table": "xpath=//table[@class='list']"
+        "table": "xpath=//table[@class='list']",
+        "edit": "//*[@id='iconEdit']",
+        "copy": "//*[@id='iconCopy']",
+        "preview": "//*[@id='iconView']"
     }
 }
 
@@ -605,15 +668,13 @@ template = {
         "template_name": "name=name",
         "template_description": "name=description",
         "upload_file": "name=uploadFile",
-        "message_name": "name=messageName",
-        "message_description": "name=messageDescription",
-        "message_from": "name=messageFrom",
-        "message_to": "name=messageTo",
-        "message_reply_to": "name=messageReplyToEmail",
+        "create_message": "//*[@id='toolbox']/tbody/tr[2]/td/a",
+        "delete": "//*[@id='toolbox']/tbody/tr[3]/td/a",
+        "replace": "//*[@id='toolbox']/tbody/tr[4]/td/a",
+        "export": "//*[@id='toolbox']/tbody/tr[5]/td/a",
         "import_file": "//*[@id='iconUpload']/../../a[contains(text(),'Import') or ./text()='Import']",
         "happy_easter": "//*[@id='templateContent']//div[./text()='Happy Easter']",
-        "save": "//*[@id='iconButtonSave']/../../a[./text()='Save']",
-        "message_preview": "id=iconToolboxMessagePreview"
+        "save": "//*[@id='iconButtonSave']",
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Template']/li[2]",
@@ -628,10 +689,13 @@ template = {
         "header_replace": "//*[@id='ccmd-templates-table']//th[./text()='Replace']",
         "header_delete": "//*[@id='ccmd-templates-table']//span[@class='red' and ./text()='Delete']",
         "tick_check_box_to_delete": "name=deleteTemplate",
-        "edit": "id=iconEdit",
-        "delete": "//*[@id='iconTrash']/../../a",
-        "save": "css=#messageAccordion > form > div:nth-child(5) > table > tbody > tr > td > a:nth-child(1)",
-        "table": "xpath=//*[@id='ccmd-templates-table']"
+        "view": "//*[@id='iconToolboxMessagePreview']",
+        "create_message": "//*[@id='iconEdit']",
+        "replace": "//*[@id='iconReset']",
+        "delete_checkbox": "//*[@name='deleteTemplate']",
+        "delete": "//*[@id='iconTrash']",
+        "table": "xpath=//*[@id='ccmd-templates-table']",
+        "upload_button": "//*[@id='iconUpload']"
     }
 }
 
@@ -781,17 +845,18 @@ search_subscriber = {
         "header_select_operator": "//*[@id='content']//th[./text()='Select Operator']",
         "header_value": "//*[@id='content']//th[./text()='Value']",
         "header_add": "//*[@id='content']//th[./text()='Add']",
-        "select_text_field": "name=textFieldCombo",
-        "select_text_field_option_email": "//*[@id='content']//select/option[normalize-space(.//text())= 'EMAIL']",
+        "text_field_combo": "name=textFieldCombo",
+        # "select_text_field_option_email": "//*[@id='content']//select/option[normalize-space(.//text())= 'EMAIL']",
         "text_field_operator": "name=textFieldOperator",
-        "text_field_operator_option_contains": "//*[@id='content']//select/option[normalize-space(.//text())= 'contains']",
+        # "text_field_operator_option_contains": "//*[@id='content']//select/option[normalize-space(.//text())= 'contains']",
         "text_field_value": "name=textFieldValue",
-        "text_search": "id=iconSearch",
+        "add_text": "//*[@id='iconAddCriteria']",
+        "text_search": "//*[@id='iconSearch']",
         "numeric_field_combo": "name=numericFieldCombo",
         "numeric_field_operator": "name=numericFieldOperator",
         "numeric_field_value": "name=numericFieldValue",
         "numeric_search": "//tr[3]/td[4]/a/img[@id='iconAddCriteria']",
-        "add_text": "//*[@id='content']//a[@href='javascript:addText()']",
+        # "add_text": "//*[@id='content']//a[@href='javascript:addText()']",
         "select_number_field": "//*[@id='iconCriteriaNum']/../select[@name='numericFieldCombo']",
         "number_field_operator": "//*[@id='content']//select[@name='numericFieldOperator']",
         "number_field_value": "//*[@id='content']//input[@name='numericFieldValue']",
@@ -804,7 +869,8 @@ search_subscriber = {
         "add_segmentation": "//*[@id='content']//a[@href='javascript:addSegmentation()']",
         "search_criteria": "//*[@id='content']//td[./text()='Search Criteria' or normalize-space(.//text())='Search Criteria']",
         "member_count": "//*[@id='nbMembers']",
-        "delete_members": "//a[contains(text(),'Delete Members') or ./text() = 'Delete Members']"
+        "delete_members": "//a[contains(text(),'Delete Members') or ./text() = 'Delete Members']",
+        "member_table": "xpath=//table[@class='list']"
     }
 }
 
@@ -822,7 +888,10 @@ import_subscriber = {
         "header_original_filename": "//*[@id='content']//th[./text()='Original Filename']",
         "header_size_b": "//*[@id='content']//th[./text()='Size (b)']",
         "header_status": "//*[@id='content']//th[./text()='Status']",
-        "header_del": "//*[@id='content']//span[./text()='Del.']"
+        "header_del": "//*[@id='content']//span[./text()='Del.']",
+        "fail_table": "xpath=//*[@id='content']/form/table[2]",
+        "good_table": "xpath=//*[@id='content']/form/div/table[2]",
+        "import_table": "xpath=//*[@id='content']/table"
     },
     "button_list": {
         "list": "//*[@id='engage-list-management']//ul[@title='Import subscriber']/li[2]",
@@ -948,6 +1017,7 @@ transactional_reports = {
     "menu": "//*[@id='engage-reports']/div[./text()='Reports']",
     "button_add": {
         "add": "//*[@id='engage-reports']//ul[@title='Transactional']/li",
+        "date_range_report": "//a[contains(text(), 'Date Range Report')]",
         "custom_search": "//a[contains(text(), 'Custom Search')]",
         "email": "//input[contains(@name, 'email')]"
     }
@@ -981,7 +1051,8 @@ mobile_reports = {
         "header_sent": "//div[./text()='Sent']",
         "header_delivered": "//div[./text()='Delivered']",
         "header_undelivered": "//div[./text()='Undelivered']",
-        "header_stops": "//div[./text()='Stops']"
+        "header_stops": "//div[./text()='Stops']",
+        "first_row": "//*[@id='tabledivRowColumnsID_0']"
     }
 }
 
@@ -996,15 +1067,23 @@ list_growth_reports = {
         "header_status": "//div[./text()='Status']",
         "header_creation_date": "//div[./text()='Creation Date']",
         "header_created_by": "//div[./text()='Created by']",
+        "report_chart_window": "//div[contains(@class, 'ui-list-report-client-bundle-ListReportCSS-mainContent')]",
         "create_new": {
             "report_name": "//input[contains(@id, 'reportNameInput')]",
             "create_report": "//*[contains(text(), 'Create Report')]",
             "segments_radio": "//input[@id='gwt-uid-9']",
             "segments_list": "//*[@id='listReportUI-builderView-segmentsExplorer-openButton']",
             "segments_search_input": "//input[@id='listReportUI-builderView-segmentsExplorer-searchButton-textBox']",
-            "segments_search_button": "//*[@id='listReportUI-builderView-segmentsExplorer-searchButton-button']"
-
+            "segments_search_button": "//*[@id='listReportUI-builderView-segmentsExplorer-searchButton-button']",
+            "segmentss_row": "//*[@id='listReportUI-builderView-segmentsExplorer-nameColumn']",
         }
+    },
+    "button_list": {
+        "first_row": "//*[@id='emvTab1-row-0']",
+        "refresh_button": "//*[@id='listReportUI-mainMenu-refreshButton']",
+        "results_button": "//*[contains(@id, 'listReportUi-ArchiveView-resultView')]",
+        "delete_button": "//*[contains(@id, 'listReportUi-ArchiveView-deleteIcon')]",
+
     }
 }
 

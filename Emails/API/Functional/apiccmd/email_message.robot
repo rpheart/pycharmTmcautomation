@@ -7,7 +7,7 @@ Test Setup          run keywords    open connection
 Test Teardown       close connection and delete test data
 
 *** Variables ***
-${host}    http://${server}/apiccmd/services/rest
+${host}    http://${${env}["api_server"]}/apiccmd/services/rest
 
 # Email variables
 ${xml_file}    ${EXECDIR}/Emails/API/Utils/Resources/email_message.xml
@@ -15,7 +15,6 @@ ${name}    TestEmail
 ${description}    This%20is%20a%20test%20message
 ${subject}    Welcome%20to%20SmartFocus%20test%20session
 ${from}    SmartFocus
-${marketingFromEmail}    test@emvqae1.ccemails.net
 ${to}    myclient
 ${body}    %5BEMV%20HTMLPART%5Dhi%20there%20
 ${encoding}    UTF-8

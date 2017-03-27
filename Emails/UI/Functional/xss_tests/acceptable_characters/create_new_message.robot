@@ -3,7 +3,7 @@ Documentation       will check the input of unicode values into the create new m
 Resource            ../../../Utils/keywords.robot
 Resource            ../../../Utils/new_message_builder.robot
 Resource            ../../../Utils/xss_keywords.robot
-Default Tags        ui    email    xss
+Default Tags        ui    email    non_xss
 Suite Setup         run keywords
 ...                 login
 ...                 AND    go to ${system_page["email"]}
@@ -192,18 +192,7 @@ new_message_send_to_save_and_finalise
     run keyword unless    ${is_equal}    fail    msg=No new Messages were created with non-XSS data
 
 new_message_send_test_add_recipients
-    # count current messages
-    open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
-    ${pre_test_message_count}=    get text    ${new_message_builder["button_list"]["message_count"]}
-
-    # create message
     loop through test data and send test email    ${new_message_builder["button_add"]["add_recipients"]}
-
-    # check message count
-    open content    ${new_message_builder}    ${new_message_builder["button_list"]["list"]}
-    ${post_test_message_count}=    get text    ${new_message_builder["button_list"]["message_count"]}
-    ${is_equal}=    run keyword and return status    should not be equal as strings    ${post_test_message_count}    ${pre_test_message_count}
-    run keyword unless    ${is_equal}    fail    msg=No new Messages were created with non-XSS data
 
 new_message_send_test_search_recipients
     # count current messages

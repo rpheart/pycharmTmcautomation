@@ -8,7 +8,7 @@ Test Setup          run keywords
 Test Teardown       close connection and delete test data
 
 *** Variables ***
-${host}    http://${server}/apiccmd/services/rest
+${host}    http://${${env}["api_server"]}/apiccmd/services/rest
 
 # segment variables
 ${xml_file}    ${EXECDIR}/Emails/API/Utils/Resources/ccmd_segment.xml

@@ -3,7 +3,7 @@ Documentation       will check the input of unicode values into the create landi
 Resource            ../../../Utils/keywords.robot
 Resource            ../../../Utils/landing_page.robot
 Resource            ../../../Utils/xss_keywords.robot
-Default Tags        ui    email    xss
+Default Tags        ui    email    non_xss
 Suite Setup         run keywords
 ...                 login
 ...                 AND    go to ${system_page["email"]}
@@ -133,7 +133,7 @@ loop through test data on general properties
     \    sleep    1
     \    click element at coordinates    ${landing_page["button_add"]["input_selector"]}    0    75
     \    click element    ${landing_page["button_add"]["save_and_schedule"]}
-    \    select from list    ${landing_page["button_add"]["redirect_selector"]}    Custom URL
+    \    select from list by label    ${landing_page["button_add"]["redirect_selector"]}    Custom URL
     \    ${is_submit_url}=    run keyword and return status    should contain    ${field}    submitRedirection
     \    run keyword if    ${is_submit_url}    run keywords
     \    ...    create url string    ${line}

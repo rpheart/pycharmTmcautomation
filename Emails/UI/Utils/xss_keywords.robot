@@ -9,7 +9,7 @@ check for bad request
 
     # if error is alert
     ${status}    ${alert_message}=    run keyword and ignore error    get alert message
-    @{alert_messages}=    create list    bad request    error 200 requesting page
+    @{alert_messages}=    create list    bad request
     :for    ${message}    in    @{alert_messages}
     \    exit for loop if    '${status}' == 'FAIL'
     \    ${test_passed}=    run keyword and return status    should contain    ${alert_message}    ${message}    ignore_case=True
@@ -17,7 +17,7 @@ check for bad request
 
     # if error is notification
     ${status}    ${notification_message}=    run keyword and ignore error    get text    //*[@class='text ng-binding' or contains(@class, 'notification-icon') or @class='text']
-    @{notification_messages}=    create list    failed to save.    bad request
+    @{notification_messages}=    create list    bad request
     :for    ${message}    in    @{notification_messages}
     \    exit for loop if    '${status}' == 'FAIL'
     \    ${test_passed}=    run keyword and return status    should contain    ${notification_message}    ${message}    ignore_case=True
@@ -111,7 +111,7 @@ verify non xss data on search field
 content upload xss insertion
     [Arguments]    ${line}
     click element    ${generics["content_upload"]["link"]}
-    select frame     ${iframes["popup"]}
+    select frame     ${iframes["popup_frame"]}
     select radio button     uploadType    url
     create url string     ${line}
     input text      ${generics["content_upload"]["popup_url_input"]}      ${line}
@@ -121,7 +121,7 @@ content upload xss insertion
 link management xss insertion
     [Arguments]    ${link_type}     ${field}    ${line}   ${save_option}
     click element    ${generics["link_management"]["link"]}
-    select frame     ${iframes["popup"]}
+    select frame     ${iframes["popup_frame"]}
     click element     ${link_type}
     input text    ${generics["link_management"]["link_type_name"]}    Name        # gets over-written if the field being tested is name itself!!
     ${is_url}=    run keyword and return status    should contain     ${field}    URL

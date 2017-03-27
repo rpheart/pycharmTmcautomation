@@ -2,7 +2,7 @@
 Documentation       will check the input of unicode values into the transactional content block screen
 Resource            ../../../Utils/keywords.robot
 Resource            ../../../Utils/xss_keywords.robot
-Default Tags        email    ui    xss
+Default Tags        email    ui    non_xss
 Suite Setup         run keywords    login
 ...                 AND    go to ${system_page["email"]}
 Suite Teardown      close all browsers

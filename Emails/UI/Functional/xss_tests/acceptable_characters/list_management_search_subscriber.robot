@@ -2,7 +2,7 @@
 Documentation       will check the input of unicode values into the search subscriber screen
 Resource            ../../../Utils/keywords.robot
 Resource            ../../../Utils/xss_keywords.robot
-Default Tags        ui    email    xss
+Default Tags        ui    email    non_xss
 Suite Setup         run keywords
 ...                 login
 ...                 AND    go to ${system_page["email"]}
@@ -14,8 +14,8 @@ search_subscriber
     :for    ${line}    in     @{non_xss_test_data}
     \    open content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
     \    wait until element is visible    name=textFieldCombo
-    \    select from list    name=textFieldCombo    EMAIL
-    \    select from list    name=textFieldOperator    equals
+    \    select from list by label    name=textFieldCombo    EMAIL
+    \    select from list by label    name=textFieldOperator    equals
     \    input text    name=textFieldValue    ${line}
     \    click element    xpath=//img[@id="iconAddCriteria"]
     \    check for good request    ${line}    ${failed_inputs}

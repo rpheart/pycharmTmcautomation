@@ -27,10 +27,10 @@ def get_xml_content_list(response):
     tag_list = []
 
     if tree.attrib["responseStatus"] == "success":
-        for iD in tree.itertext():
-            iD = iD.strip()
-            if iD:
-                tag_list.append(iD)
+        for object_id in tree.itertext():
+            object_id = object_id.strip()
+            if object_id:
+                tag_list.append(object_id)
         return tag_list
     else:
         return tree.attrib["responseStatus"]

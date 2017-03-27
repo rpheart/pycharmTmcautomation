@@ -39,8 +39,8 @@ add_subscriber_segment
 search_for_added_subscribers
     open content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
     wait until element is visible    ${search_subscriber["button_add"]["search_button"]}
-    select from list    ${search_subscriber["button_add"]["numeric_field_combo"]}    EMVCELLPHONE
-    select from list    ${search_subscriber["button_add"]["numeric_field_operator"]}    equals
+    select from list by label    ${search_subscriber["button_add"]["numeric_field_combo"]}    EMVCELLPHONE
+    select from list by label    ${search_subscriber["button_add"]["numeric_field_operator"]}    equals
     input text    ${search_subscriber["button_add"]["numeric_field_value"]}    777
     click element    ${search_subscriber["button_add"]["numeric_search"]}
     wait until element is visible    ${search_subscriber["button_add"]["text_search"]}
@@ -70,8 +70,8 @@ loop through test data
 delete subscribers
     open content    ${search_subscriber}    ${search_subscriber["button_add"]["add"]}
     wait until element is visible    ${search_subscriber["button_add"]["search_button"]}
-    select from list    ${search_subscriber["button_add"]["numeric_field_combo"]}    EMVCELLPHONE
-    select from list    ${search_subscriber["button_add"]["numeric_field_operator"]}    equals
+    select from list by label    ${search_subscriber["button_add"]["numeric_field_combo"]}    EMVCELLPHONE
+    select from list by label    ${search_subscriber["button_add"]["numeric_field_operator"]}    equals
     input text    ${search_subscriber["button_add"]["numeric_field_value"]}    777
     click element    ${search_subscriber["button_add"]["numeric_search"]}
     wait until element is visible    ${search_subscriber["button_add"]["text_search"]}
