@@ -9,9 +9,6 @@ Variables           variables.py
 Variables           ../../Utils/credentials.py
 
 *** Variables ***
-# test variables
-${screenshots}    ${EMPTY}
-
 # login variables
 ${env}=         preprod
 ${browser}      chrome
@@ -19,22 +16,22 @@ ${browser}      chrome
 *** Keywords ***
 fail keyword
     log source
-    run keyword unless    '${screenshots}' == 'FAIL'    capture page screenshot
+    capture page screenshot
 
 login
     [Documentation]    Logs in to the message cloud
-    set selenium speed    0.2
     open browser    ${${env}["ui_server"]}    ${browser}
     maximize browser window
     page should contain    Login To Your Account:
     input text    IDToken1    ${${env}["ui_username"]}
     input password    IDToken2    ${${env}["ui_password"]}
     click link    name=Login.Submit
+    set selenium speed    0.2
 
 go to ${page}
     [Documentation]    opens the product under test (i.e. Personalisation or Email)
     select window    ${document_title}
-    wait until keyword succeeds    15x    1 sec    click element    ${page}
+    wait until keyword succeeds    5x    1 sec    click element    ${page}
 
 open content
     [Documentation]    opens the page leading to the feature to be tested (i.e. Create > Template)
@@ -44,8 +41,10 @@ open content
     \    mouse over    ${content_dictionary["menu"]}
     \    ${status}    ${message}=    run keyword and ignore error    click element    ${page}
     \    exit for loop if    '${status}' == 'PASS'
-    run keyword and ignore error    dismiss alert
-    mouse over    ${smartfocus_logo}
+    ${status}=    run keyword and return status    mouse over    ${smartfocus_logo}
+    run keyword unless    ${status}    run keywords
+    ...    dismiss alert
+    ...    AND    mouse over    ${smartfocus_logo}
     select frame    ${iframes["top"]}
     select frame    ${iframes["ccmd"]}
 
