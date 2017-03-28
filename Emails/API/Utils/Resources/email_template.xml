@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template>
+    <body>[EMV HTMLPART]
+        &amp;lt;html&amp;gt;
+            &amp;lt;head&amp;gt;
+                &amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot; /&amp;gt;
+                &amp;lt;title&amp;gt;SmartFocus Email &amp;amp;amp; Mobile&amp;lt;/title&amp;gt;
+            &amp;lt;/head&amp;gt;
+            &amp;lt;body bgcolor=&amp;quot;#DFDFDF&amp;quot; topmargin=&amp;quot;0&amp;quot; leftmargin=&amp;quot;0&amp;quot; marginheight=&amp;quot;0&amp;quot; marginwidth=&amp;quot;0&amp;quot; style=&amp;quot;-webkit-font-smoothing:antialiased;width:100% !important;background-color:#DFDFDF;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;&amp;quot; &amp;gt;
+                [EMV CONTENT]1[EMV /CONTENT]
+            &amp;lt;/body&amp;gt;
+        &amp;lt;/html&amp;gt;
+        [EMV TEXTPART]
+        [EMV CONTENT]2[EMV /CONTENT]
+    </body>
+    <description>DESCRIPTION</description>
+    <encoding>a1b2c3d4eENCODING5f6g7h8i9j0</encoding>
+    <from>FROM</from>
+    <fromEmail>from@email.com</fromEmail>
+    <id>1585</id>
+    <name>NAME</name>
+    <replyTo>REPLY_TO</replyTo>
+    <replyToEmail>reply@email.com</replyToEmail>
+    <sent>true</sent>
+    <subject>SUBJECT</subject>
+    <to>TO</to>
+</template>

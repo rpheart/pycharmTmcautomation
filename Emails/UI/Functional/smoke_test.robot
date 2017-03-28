@@ -1,130 +1,127 @@
 *** Settings ***
-Documentation       Suite description
-Resource            Emails/UI/Utils/keywords.robot
-Default Tags        ui    smoke    email    production
-
-*** Variables ***
+Documentation       smoke tests to verify that every page loads
+Resource            ../Utils/keywords.robot
+Suite Setup         run keywords    login
+...                 AND    go to ${system_page["email"]}
+Suite Teardown      close all browsers
+Default Tags        ui    email    smoke
 
 *** Test Cases ***
-Login And Go To Email
-    Login
-    Go To ${system_page["email"]}
-
 Calendar
-    Go To ${calendar["menu"]}
-#    Verify Page Contains Campaigns    # flash
+    go to ${calendar["menu"]}
+#    page should contain    Campaigns    # flash
 
 Send
-    Open Content    ${standard_campaign}      ${standard_campaign["button_add"]}
-#    Verify Page Contains Campaigns    # flash
-    Open Content    ${standard_campaign}      ${standard_campaign["button_list"]}
-    Verify Page Contains Campaigns
-    Open Content    ${multivariate_campaign}      ${multivariate_campaign["button_add"]}
-    Verify Page Contains Campaigns
-    Open Content    ${multivariate_campaign}      ${multivariate_campaign["button_list"]}
-    Verify Page Contains Campaigns
-    Open Content    ${multimessage_campaign}      ${multimessage_campaign["button_add"]}
-    Verify Page Contains Campaigns
-    Open Content    ${multimessage_campaign}      ${multimessage_campaign["button_list"]}
-    Verify Page Contains Campaigns
-    Open Content    ${trigger_campaign}      ${trigger_campaign["button_add"]}
-    Verify Page Contains Campaigns
-    Open Content    ${trigger_campaign}      ${trigger_campaign["button_list"]}
-    Verify Page Contains Campaigns
+    open content    ${standard_campaign}      ${standard_campaign["button_add"]["add"]}
+#    page should contain    Campaigns    # flash
+    open content    ${standard_campaign}      ${standard_campaign["button_list"]["list"]}
+    page should contain    Campaigns
+    open content    ${multivariate_campaign}      ${multivariate_campaign["button_add"]["add"]}
+    page should contain    Campaigns
+    open content    ${multivariate_campaign}      ${multivariate_campaign["button_list"]["list"]}
+    page should contain    Campaigns
+    open content    ${multimessage_campaign}      ${multimessage_campaign["button_add"]["add"]}
+    page should contain    Campaigns
+    open content    ${multimessage_campaign}      ${multimessage_campaign["button_list"]["list"]}
+    page should contain    Campaigns
+    open content    ${trigger_campaign}      ${trigger_campaign["button_add"]["add"]}
+    page should contain    Campaigns
+    open content    ${trigger_campaign}      ${trigger_campaign["button_list"]["list"]}
+    page should contain    Campaigns
 
 Create
-    Open Content    ${new_message_builder}      ${new_message_builder["button_add"]}
-    Verify Page Contains Message
-    Open Content    ${new_message_builder}      ${new_message_builder["button_list"]}
-    Verify Page Contains Message
-    Open Content    ${classic_message_builder}      ${classic_message_builder["button_add"]}
-    Verify Page Contains Assets
-    Open Content    ${classic_message_builder}      ${classic_message_builder["button_list"]}
-    Verify Page Contains Assets
-    Open Content    ${sms_message_builder}      ${sms_message_builder["button_add"]}
-    Verify Page Contains Assets
-    Open Content    ${sms_message_builder}      ${sms_message_builder["button_list"]}
-    Verify Page Contains Assets
-    Open Content    ${landing_page}      ${landing_page["button_add"]}
-    Verify Page Contains Landing Pages
-    Open Content    ${landing_page}      ${landing_page["button_list"]}
-    Verify Page Contains Landing Pages
-    Open Content    ${content_block}      ${content_block["button_add"]}
-    Verify Page Contains Assets
-    Open Content    ${content_block}      ${content_block["button_list"]}
-    Verify Page Contains Dynamic Content Blocks
-    Open Content    ${webform}      ${webform["button_add"]}
-    Verify Page Contains Assets
-    Open Content    ${webform}      ${webform["button_list"]}
-    Verify Page Contains Assets
-    Open Content    ${template}      ${template["button_add"]}
-    Verify Page Contains Assets
-    Open Content    ${template}      ${template["button_list"]}
-    Verify Page Contains Assets
-    Open Content    ${transactional_message}      ${transactional_message["button_add"]}
-    Verify Page Contains Transactional Messaging
-    Open Content    ${transactional_message}      ${transactional_message["button_list"]}
-    Verify Page Contains Transactional Messaging
-    Open Content    ${transactional_content_block}      ${transactional_content_block["button_add"]}
-    Verify Page Contains Transactional Messaging
-    Open Content    ${transactional_content_block}      ${transactional_content_block["button_list"]}
-    Verify Page Contains Transactional Messaging
+    open content    ${new_message_builder}      ${new_message_builder["button_add"]["add"]}
+    page should contain    Message
+    open content    ${new_message_builder}      ${new_message_builder["button_list"]["list"]}
+    page should contain    Message
+    open content    ${classic_message_builder}      ${classic_message_builder["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${classic_message_builder}      ${classic_message_builder["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${sms_message_builder}      ${sms_message_builder["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${sms_message_builder}      ${sms_message_builder["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${landing_page}      ${landing_page["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${landing_page}      ${landing_page["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${content_block}      ${content_block["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${content_block}      ${content_block["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${webform}      ${webform["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${webform}      ${webform["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${template}      ${template["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${template}      ${template["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${transactional_message}      ${transactional_message["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${transactional_message}      ${transactional_message["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${transactional_content_block}      ${transactional_content_block["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${transactional_content_block}      ${transactional_content_block["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
 
 List_Management
-    Open Content    ${segments}      ${segments["button_add"]}
-#    Verify Page Contains Segments    # flash
-    Open Content    ${segments}      ${segments["button_list"]}
-#    Verify Page Contains Segments    # flash
-    Open Content    ${add_subscriber}      ${add_subscriber["button_add"]}
-    Verify Page Contains Lists
-    Open Content    ${search_subscriber}      ${search_subscriber["button_add"]}
-    Verify Page Contains Lists
-    Open Content    ${import_subscriber}      ${import_subscriber["button_add"]}
-    Verify Page Contains Lists
-    Open Content    ${import_subscriber}      ${import_subscriber["button_list"]}
-    Verify Page Contains Lists
-    Open Content    ${export_subscriber}      ${export_subscriber["button_add"]}
-    Verify Page Contains Lists
-    Open Content    ${export_subscriber}      ${export_subscriber["button_list"]}
-    Verify Page Contains Lists
+    open content    ${segments}      ${segments["button_add"]["add"]}
+#    page should contain    Segments    # flash
+    open content    ${segments}      ${segments["button_list"]["list"]}
+#    page should contain    Segments    # flash
+    open content    ${add_subscriber}      ${add_subscriber["button_add"]["add"]}
+    element should be visible    ${generics["add"]}
+    open content    ${search_subscriber}      ${search_subscriber["button_add"]["add"]}
+    element should be visible    ${generics["add"]}
+    open content    ${import_subscriber}      ${import_subscriber["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${import_subscriber}      ${import_subscriber["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${export_subscriber}      ${export_subscriber["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${export_subscriber}      ${export_subscriber["button_list"]["list"]}
+    element should be visible    ${generics["create_new"]}
 
 Image_Library
-    Go To ${image_library["menu"]}
-    Verify Page Contains Image Library
+    go to ${image_library["menu"]}
+    page should contain    Image Library
 
 Deliverability
-    Go To ${deliverability["menu"]}
-#    Verify Page Contains Overview    # might not be enabled per account
+    go to ${deliverability["menu"]}
+#    page should contain    Overview    # might not be enabled per account
 
 Reports
-    Open Content    ${email_reports}      ${email_reports["button_add"]}
-#    Verify Page Contains Reports    # flash
-    Open Content    ${multivariate_reports}      ${multivariate_reports["button_add"]}
-#    Verify Page Contains Reports    # flash
-    Open Content    ${multimessage_reports}      ${multimessage_reports["button_add"]}
-#    Verify Page Contains Reports    # flash
-    Open Content    ${test_reports}      ${test_reports["button_add"]}
-#    Verify Page Contains Reports    # flash
-    Open Content    ${transactional_reports}      ${transactional_reports["button_add"]}
-    Verify Page Contains Transactional Messaging
-    Open Content    ${trigger_reports}      ${trigger_reports["button_add"]}
-#    Verify Page Contains Reports    # flash
-    Open Content    ${landing_page_reports}      ${landing_page_reports["button_add"]}
-    Verify Page Contains Landing Pages
-    Open Content    ${mobile_reports}      ${mobile_reports["button_add"]}
-    Verify Page Contains Reports
-    Open Content    ${list_growth_reports}      ${list_growth_reports["button_add"]}
-    Verify Page Contains Lists
+    open content    ${email_reports}      ${email_reports["button_add"]["add"]}
+#    page should contain    Reports    # flash
+    open content    ${multivariate_reports}      ${multivariate_reports["button_add"]["add"]}
+#    page should contain    Reports    # flash
+    open content    ${multimessage_reports}      ${multimessage_reports["button_add"]["add"]}
+#    page should contain    Reports    # flash
+    open content    ${test_reports}      ${test_reports["button_add"]["add"]}
+#    page should contain    Reports    # flash
+    open content    ${transactional_reports}      ${transactional_reports["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${trigger_reports}      ${trigger_reports["button_add"]["add"]}
+#    page should contain    Reports    # flash
+    open content    ${landing_page_reports}      ${landing_page_reports["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
+    open content    ${mobile_reports}      ${mobile_reports["button_add"]["add"]}
+#    element should be visible    ${generics["search_button"]}
+    open content    ${list_growth_reports}      ${list_growth_reports["button_add"]["add"]}
+    element should be visible    ${generics["create_new"]}
 
 Folders
-    Go To ${folders["menu"]}
-    Verify Page Contains Folder
+    go to ${folders["menu"]}
+    page should contain    Folder
 
 Workflow
-    Open Content    ${workflow}      ${workflow["button_add"]}
-    Verify Page Contains Workflow
-    Open Content    ${workflow_model}      ${workflow_model["button_add"]}
-    Verify Page Contains Workflow
+    open content    ${workflow}      ${workflow["button_add"]["add"]}
+    page should contain    Workflow
+    open content    ${workflow_model}      ${workflow_model["button_add"]["add"]}
+    page should contain    Workflow
 
 #Social
 #    Click Element    xpath=//*[@id="social"]/div[1]
@@ -137,14 +134,5 @@ Workflow
 #    Click Element    xpath=//*[@id="social"]/div[2]/div/ul/li[2]/ul/li/ul/li    # Click Social Administration
 
 Approval
-    Go To ${approval["menu"]}
-    Verify Page Contains My Requests
-
-Close Browser
-    Close All Browsers
-
-*** Keywords ***
-Verify Page Contains ${text}
-    Select Frame    ${iframes["top"]}    # Click on main frame
-    Select Frame    ${iframes["ccmd"]}
-    Wait Until Page Contains    ${text}    timeout=30
+    go to ${approval["menu"]}
+    page should contain    My Requests
