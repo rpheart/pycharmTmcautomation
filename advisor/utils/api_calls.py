@@ -1,5 +1,5 @@
 def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", format="png", height="500", width="500",
-               position="default", timestamp=""):
+               cache_timeout="0", position="default", timestamp=""):
     if email:
         email = "&ue=" + email
     if cookie_id:
@@ -7,12 +7,13 @@ def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", format
     if timestamp:
         timestamp = "&tstamp=" + timestamp
 
-    url = "http://%s/api-public/3.0/personaliseemail?a=%s%s%s&e=%s&f=%s&l=en&h=%s&w=%s&pos=%s%s" % (
-        renderer_url, guid, email, cookie_id, engagement_id, format, height, width, position, timestamp)
+    url = "http://%s/renderer/web/api-public/3.0/personaliseemail?a=%s%s%s&e=%s&f=%s&l=en&h=%s&w=%s&cacheTimeout=%s&pos=%s%s" % (
+        renderer_url, guid, email, cookie_id, engagement_id, format, height, width, cache_timeout, position, timestamp)
     return url
 
 
-def offer_click(click_url, guid, engagement_id, email="", cookie_id="", language="", position="default", lid="", idx="", timestamp=""):
+def offer_click(click_url, guid, engagement_id, email="", cookie_id="", language="", cache_timeout="0",
+                position="default", lid="", idx="", timestamp=""):
     if email:
         email = "&ue=" + email
     if cookie_id:
@@ -28,8 +29,8 @@ def offer_click(click_url, guid, engagement_id, email="", cookie_id="", language
     if timestamp:
         timestamp = "&tstamp=" + timestamp
 
-    url = "http://%sa=%s&e=%s%s%s%s%s%s%s%s" % (
-        click_url, guid, engagement_id, email, cookie_id, language, position, lid, idx, timestamp)
+    url = "http://%sa=%s&e=%s%s%s%s&cacheTimeout=%s%s%s%s%s" % (
+        click_url, guid, engagement_id, email, cookie_id, language, cache_timeout, position, lid, idx, timestamp)
     return url
 
 
