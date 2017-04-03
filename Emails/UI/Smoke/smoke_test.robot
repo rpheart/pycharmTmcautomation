@@ -238,12 +238,12 @@ multivariate add
   element should be visible  ${multivariate_campaign["button_add"]["schedule_button"]}
 
 multivariate list
-  element should be visible  ${multivariate_campaign["button_list"]["multivariate_tests"]}
-  element should be visible  ${multivariate_campaign["button_list"]["campaign_name"]}
-  element should be visible  ${multivariate_campaign["button_list"]["id"]}
-  element should be visible  ${multivariate_campaign["button_list"]["status"]}
-  element should be visible  ${multivariate_campaign["button_list"]["test_variable"]}
-  element should be visible  ${multivariate_campaign["button_list"]["send_date"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multivariate_campaign["button_list"]["multivariate_tests"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multivariate_campaign["button_list"]["campaign_name"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multivariate_campaign["button_list"]["id"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multivariate_campaign["button_list"]["status"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multivariate_campaign["button_list"]["test_variable"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multivariate_campaign["button_list"]["send_date"]}
 
 multimessage add
   # define Campaign and recipients
@@ -276,11 +276,11 @@ multimessage add
   element should be visible  ${multimessage_campaign["button_add"]["schedule_button"]}
 
 multimessage list
-  element should be visible  ${multimessage_campaign["button_list"]["multi_messages"]}
-  element should be visible  ${multimessage_campaign["button_list"]["campaign_name"]}
-  element should be visible  ${multimessage_campaign["button_list"]["id"]}
-  element should be visible  ${multimessage_campaign["button_list"]["status"]}
-  element should be visible  ${multimessage_campaign["button_list"]["send_date"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multimessage_campaign["button_list"]["multi_messages"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multimessage_campaign["button_list"]["campaign_name"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multimessage_campaign["button_list"]["id"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multimessage_campaign["button_list"]["status"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  ${multimessage_campaign["button_list"]["send_date"]}
 
 trigger campaign list
   element should be visible  ${trigger_campaign["button_list"]["header_id"]}
