@@ -127,107 +127,6 @@ message_content_upload_url
     write failed input to file    ${TEST_NAME}    ${generics["content_upload"]["link"]}     @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
 
-message_link_management_standard_link_name_only_save
-    # Check xss data in link managment name field for standard link
-    ${field}=   set variable     ${generics["link_management"]["link_type_name"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion  ${generics["link_management"]["create_standard_link_btn"]}      ${field}      ${line}    ${generics["link_management"]["save_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
-message_link_management_standard_link_name_save&add
-    # Check xss data in link managment url field for standard link
-    ${field}=   set variable     ${generics["link_management"]["link_type_name"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion   ${generics["link_management"]["create_standard_link_btn"]}      ${field}      ${line}   ${generics["link_management"]["save&add_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
-message_link_management_standard_link_url_only_save
-    # Check xss data in link managment name field
-    ${field}=   set variable     ${generics["link_management"]["link_type_url"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion  ${generics["link_management"]["create_standard_link_btn"]}      ${field}      ${line}    ${generics["link_management"]["save_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
-message_link_management_standard_link_url_save&add
-    # Check xss data in link managment name field
-    ${field}=   set variable     ${generics["link_management"]["link_type_url"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion  ${generics["link_management"]["create_standard_link_btn"]}      ${field}      ${line}    ${generics["link_management"]["save&add_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
-
-message_link_management_unsubscribe_link_name_only_save
-    # Check xss data in link managment name field
-    ${field}=   set variable     ${generics["link_management"]["link_type_name"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion  ${generics["link_management"]["create_unsubscribe_link_btn"]}      ${field}      ${line}    ${generics["link_management"]["save_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
-
-message_link_management_unsubscribe_link_name_save&add
-    # Check xss data in link managment name field
-    ${field}=   set variable     ${generics["link_management"]["link_type_name"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion  ${generics["link_management"]["create_unsubscribe_link_btn"]}      ${field}      ${line}    ${generics["link_management"]["save&add_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
-message_link_management_unsubscribe_link_pageOK_only_save
-    # Check xss data in link managment name field
-    ${field}=   set variable     ${generics["link_management"]["page_ok"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion  ${generics["link_management"]["create_unsubscribe_link_btn"]}      ${field}      ${line}    ${generics["link_management"]["save_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
-message_link_management_unsubscribe_link_pageOK_save&add
-    # Check xss data in link managment name field
-    ${field}=   set variable     ${generics["link_management"]["page_ok"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion  ${generics["link_management"]["create_unsubscribe_link_btn"]}      ${field}      ${line}    ${generics["link_management"]["save&add_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
-message_link_management_unsubscribe_link_pageError_only_save
-    # Check xss data in link managment name field
-    ${field}=   set variable     ${generics["link_management"]["page_error"]}
-    @{failed_inputs}=    Create List
-    :for    ${line}    In     @{xss_test_data}
-    \   open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
-    \   link management xss insertion  ${generics["link_management"]["create_unsubscribe_link_btn"]}      ${field}      ${line}    ${generics["link_management"]["save_link"]}
-    \   check for bad request     ${line}    ${failed_inputs}
-    write failed input to file    ${TEST_NAME}    ${field}     @{failed_inputs}
-    run keyword if    ${is_failed}    fail    msg=xss verification failure, check the file
-
 message_rename_name
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
@@ -246,8 +145,8 @@ loop through test data
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${classic_message_builder}    ${classic_message_builder["button_add"]["add"]}
     \    open message header
-    \    input text    ${classic_message_builder["button_add"]["message_name_input"]}    Name        # gets over-written if the field being tested is name itself!!
-    \    input text    ${classic_message_builder["button_add"]["message_reply_to_email_input"]}    test@robot.com        # gets over-written if the field being tested is body itself!!
+    \    input text    ${classic_message_builder["button_add"]["message_name_input"]}    Name
+    \    input text    ${classic_message_builder["button_add"]["message_reply_to_email_input"]}    test@robot.com
     \    input text    ${classic_message_builder["button_add"]["message_subject_input"]}    xss test
     \    ${is_email}=    run keyword and return status    should contain     ${field}    messageReplyToEmail
     \    run keyword if     ${is_email}    create email string     ${line}
