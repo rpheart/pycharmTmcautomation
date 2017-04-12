@@ -9,14 +9,11 @@ Getting up and running with UI tests using [Robot Framework](http://robotframewo
 ### How do I get set up? ###
 
 * Runs on Python 2.7.x
-* Required dependencies (pypi plugins):
-* selenium
-* robotframework
-* robotframework-lint
-* robotframework-requests
-* robotframework-selenium2library
-* you can find a 'pip_packages.py' which will install/upgrade all the needed plugins providing you have pip installed. If not you can easy_install pip and then run this app (should be compatible with windows/UNIX)
+* you should set your PYTHONPATH to the root directory of this project
+* the requirements.txt lists all of the packages needed to run any test, you can use the makefile to install them
 * you run tests by invoking [pybot](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#executing-test-cases) and calling the source file you wish to run
+
+>pybot Emails\UI\Smoke\C01_Email_Smoke_Test.robot
 
 ### Contribution guidelines ###
 
