@@ -194,9 +194,6 @@ new_message_send_to_save_and_finalise
 new_message_send_test_add_recipients
     loop through test data and send test email    ${new_message_builder["button_add"]["add_recipients"]}
 
-#new_message_send_test_search_recipients  # Field not protected!
-#    loop through test data and send test email    ${new_message_builder["button_add"]["send_test_search_button"]}
-
 new_message_rename_name
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
