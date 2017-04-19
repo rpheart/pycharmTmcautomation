@@ -41,6 +41,17 @@ content_block_description
     ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_content_block_id}    ${latest_content_block_id}
     run keyword unless    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
 
+content_block_search
+    @{failed_inputs}=    create list
+    open content    ${content_block}    ${content_block["button_list"]["list"]}
+    # TODO find a string that you can use here and <12 characters / is valid email / is valid url and update test data
+    wait until keyword succeeds    5x    1 sec    input text    ${generics["search_input"]}    document.write
+    sleep    0.5
+    wait until keyword succeeds    5x    1 sec    click element    ${generics["search_button"]}
+    check for bad request    document.write    ${failed_inputs}
+    write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
+    run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
+
 content_block_rename_name
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
