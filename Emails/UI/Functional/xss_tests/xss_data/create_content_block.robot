@@ -41,9 +41,6 @@ content_block_description
     ${is_equal}=    run keyword and return status    should be equal as integers    ${post_test_content_block_id}    ${latest_content_block_id}
     run keyword unless    ${is_equal}    fail    msg=New Content Blocks were created with XSS data
 
-content_block_search
-    verify xss data on search field    ${content_block}    ${content_block["button_list"]["list"]}
-
 content_block_rename_name
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
