@@ -33,7 +33,8 @@ loop through test data and send test email
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
 
 open tests
-    :for    ${n}    in range    10
+    :for    ${n}    in range    5
     \    ${tests_open}=    run keyword and return status    element should be visible    ${new_message_builder["button_add"]["test_panel"]}
     \    exit for loop if    ${tests_open}
     \    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["tests"]}
+    \    sleep    1

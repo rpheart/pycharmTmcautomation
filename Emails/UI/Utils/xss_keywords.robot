@@ -76,12 +76,12 @@ write data
 
 create email string
     [Arguments]    ${line}
-    ${line}=    catenate    SEPARATOR=    ${line}    @test.com
+    ${line}=    catenate    SEPARATOR=    test    ${line}    .com
     set test variable    ${line}
 
 create url string
     [Arguments]    ${line}
-    ${line}=    catenate    SEPARATOR=    http://www.    ${line}    .com
+    ${line}=    catenate    SEPARATOR=    http://www.test.com/?p=    ${line}
     set test variable    ${line}
 
 verify xss data on search field
