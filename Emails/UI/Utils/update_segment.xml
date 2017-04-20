@@ -1,5 +1,0 @@
-<stringDemographicCriteria>
-  <columnName>EMAIL</columnName>
-  <operator>CONTAINS</operator>
-  <values>razart.hasaj@smartfocus.com</values>
-</stringDemographicCriteria>
