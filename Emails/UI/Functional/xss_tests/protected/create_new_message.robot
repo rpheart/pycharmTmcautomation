@@ -294,17 +294,17 @@ loop through test data and send test email
     \    add widget to canvas    ${new_message_builder["button_add"]["text_widget"]}
     \    sleep    1
     \    set mandatory headers
-    \    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["save"]}
+    \    wait until keyword succeeds    5x   1 sec    click element    ${new_message_builder["button_add"]["save"]}
     \    open tests
-    \    wait until keyword succeeds    15x   1 sec    input text     ${new_message_builder["button_add"]["send_test_search_input"]}    ${line}
-    \    wait until keyword succeeds    15x   1 sec    click element    ${button}
+    \    wait until keyword succeeds    5x   1 sec    input text     ${new_message_builder["button_add"]["send_test_search_input"]}    ${line}
+    \    wait until keyword succeeds    5x   1 sec    click element    ${button}
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
 
 open tests
     :for    ${n}    in range    5
-    \    ${tests_open}=    run keyword and return status    element should be visible    ${new_message_builder["button_add"]["test_panel"]}
+    \    ${tests_open}=    run keyword and return status    click element    ${new_message_builder["button_add"]["send_test_emails"]}
     \    exit for loop if    ${tests_open}
-    \    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["tests"]}
+    \    wait until keyword succeeds    5x   1 sec    click element    ${new_message_builder["button_add"]["tests"]}
     \    sleep    1
