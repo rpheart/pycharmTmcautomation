@@ -90,7 +90,7 @@ verify xss data on search field
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${content_dictionary}    ${page}
     \    wait until keyword succeeds    15x    1 sec    input text    ${generics["search_input"]}    ${line}
-    \    sleep    0.5
+    \    sleep    1
     \    wait until keyword succeeds    15x    1 sec    click element    ${generics["search_button"]}
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}

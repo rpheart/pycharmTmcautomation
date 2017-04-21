@@ -91,6 +91,7 @@ image_library_add_image_description
 
 *** Keywords ***
 upload file
+    sleep    1
     wait until keyword succeeds    15x    1 sec    click element    ${image_library["button_add"]["add_button"]}
     select frame    ${image_library["button_add"]["image_library_iframe"]}
     ${file_path}=    catenate    SEPARATOR=    ${EXECDIR}    \\Emails\\UI\\Utils\\Resources\\puffin.jpg

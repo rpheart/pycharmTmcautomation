@@ -44,7 +44,7 @@ import_valid_file
     verify import is complete    imports_good.txt    DONE
 
 verify_members_have_been_imported
-    search for member    EMAIL    equals    foo@bar.com
+    search for member    EMAIL    contains    foo@bar.com
     table column should contain    css=div#content > form > table.list    4    foo@bar.com
     table column should contain    css=div#content > form > table.list    3    foo
     table column should contain    css=div#content > form > table.list    2    bar
@@ -70,7 +70,7 @@ import_update_file
     verify import is complete    imports_good_update.txt    DONE
 
 verify_members_have_been_updated_by_email_and_code
-    search for member    EMAIL    equals    foo@bar.com
+    search for member    EMAIL    contains    foo@bar.com
     table column should contain    css=div#content > form > table.list    4    foo@bar.com
     table column should contain    css=div#content > form > table.list    3    foo2
     table column should contain    css=div#content > form > table.list    2    bar2
@@ -94,7 +94,7 @@ import_mixed_file
     verify import is complete    imports_mixed.txt    DONE WITH ERROR(S)
 
 verify_members_have_been_updated_with_incomplete_import
-    search for member    EMAIL    equals    foo@bar.com
+    search for member    EMAIL    contains    foo@bar.com
     table column should contain    css=div#content > form > table.list    4    foo@bar.com
     table column should contain    css=div#content > form > table.list    3    foo
     table column should contain    css=div#content > form > table.list    2    bar
