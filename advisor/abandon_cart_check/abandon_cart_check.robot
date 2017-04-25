@@ -13,7 +13,7 @@ ${PASSWORD}         jfJfEZHaHnwtcRWd
 ${ADVISOR_ID}       665
 ${ADVISOR_HOST}     http://api-eu1.advisor.smartfocus.com
 ${DATA}             009431
-${runs}             10
+${runs}             1000
 ${EMAIL}            ${EMPTY}
 @{email_string_list}    one    two    three    four    five    six    seven    eight    nine    ten
 
