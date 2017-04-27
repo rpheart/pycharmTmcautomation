@@ -45,7 +45,7 @@ kafka_settings = {
 api_settings = {
     "QA": {
         "advisor": "qa-eu1-advisor1-v3.advisor.smartfocus.com",
-        "renderer": "ldp-qa-tmc-mesosslavepublic-1.emv2.com",
+        "renderer": "ldp-qa-tmc-mesosslavepublic-1.emv2.com/renderer/web",
         "click_advisor": "qa-eu1-p3-api-public.advisor.smartfocus.com/api-public/3.0/click/1?",
         "click_personaliser": "qa-eu1-p3-api-public.advisor.smartfocus.com/personalization/clickback/click?"
     },

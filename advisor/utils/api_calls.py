@@ -7,7 +7,7 @@ def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", format
     if timestamp:
         timestamp = "&tstamp=" + timestamp
 
-    url = "http://%s/renderer/web/api-public/3.0/personaliseemail?a=%s%s%s&e=%s&f=%s&l=en&h=%s&w=%s&cacheTimeout=%s&pos=%s%s" % (
+    url = "http://%s/api-public/3.0/personaliseemail?a=%s%s%s&e=%s&f=%s&l=en&h=%s&w=%s&cacheTimeout=%s&pos=%s%s" % (
         renderer_url, guid, email, cookie_id, engagement_id, format, height, width, cache_timeout, position, timestamp)
     return url
 
