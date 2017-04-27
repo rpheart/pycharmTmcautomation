@@ -87,8 +87,7 @@ external_content_block
   [Documentation]  verify that you can insert external content blocks into a message and save
   open content  ${classic_message_builder}  ${classic_message_builder["button_add"]["add"]}
   set headers  Qa Automation External Content Message
-  click element  ${classic_message_builder["button_add"]["body_accordion"]}
-  input text  ${classic_message_builder["button_add"]["expert_content"]}  [EMV TEXTPART][EMV HTMLPART]<html><body>&&&</body></html>
+  set body  [EMV TEXTPART][EMV HTMLPART]<html><body>&&&</body></html>
   click element  ${classic_message_builder["button_add"]["external_content_link"]}
   select frame  ${iframes["popup_frame"]}
   input text  ${classic_message_builder["button_add"]["content_file_url"]}  https://www.google.co.uk/search?q=
