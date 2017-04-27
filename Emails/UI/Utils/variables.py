@@ -54,7 +54,7 @@ generics = {
     "trash": "//*[@id='iconTrash']",
     "ok_button": "//a[contains(text(), 'OK')]",
     "yes_button": "//*[(@type='submit' or @type='button') and contains(text(), 'Yes')]",
-    "first_add_button": "id=iconAddCriteria",
+    "first_add_button": "//*[@id='iconAddCriteria' or @id='iconAdd']",
     "content_upload": {
         "link": "//*[@id='iconToolboxContentUpload']/../../a/div[contains(text(), 'Content Upload') or ./text() = 'Content Upload']",
         "popup_url_input": "name=uploadUrl",
@@ -423,7 +423,10 @@ classic_message_builder = {
         "send_test_message_link": "//*[@id='iconToolboxMessageSendTest']/../../a/div[contains(text(), 'Send Test Message') or ./text() = 'Send Test Message']",
         "deliverability_test_link": "//*[@id='iconDeliverability']/../../a/div[contains(text(), 'Deliverability Test') or ./text() = 'Deliverability Test']",
         "first_emoji": "//table[@id='emojiTable']//img",
-        "bounce_back_checkbox": "//input[@name='bounceBckFlg']"
+        "bounce_back_checkbox": "//input[@name='bounceBckFlg']",
+        "content_file_url": "//input[@name='cmsUrl']",
+        "external_content_field_selector": "//select[@name='cmsMemberField']",
+        "generate_external_content": "//*[@id='iconButtonAdd']"
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message']/li[2]",

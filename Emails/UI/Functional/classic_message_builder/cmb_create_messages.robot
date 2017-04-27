@@ -6,7 +6,7 @@ Resource        ../../Utils/classic_message_builder.robot
 Resource        ../../Utils/dynamic_content_block.robot
 Suite Setup     run keywords  login
 ...             AND  go to ${System_Page["email"]}
-Suite Teardown  close all browsers
+#Suite Teardown  close all browsers
 
 *** Test Cases ***
 create_classic_message
@@ -80,6 +80,28 @@ create_message_with_emojis
   # verify the message is saved
   open content  ${classic_message_builder}  ${classic_message_builder["button_list"]["list"]}
   table row should contain  ${classic_message_builder["button_list"]["table"]}    3    1    Qa Automation Emoji Message
+  # delete the message when the test is complete
+  delete latest message
+
+external_content_block
+  [Documentation]  verify that you can insert external content blocks into a message and save
+  open content  ${classic_message_builder}  ${classic_message_builder["button_add"]["add"]}
+  set headers  Qa Automation External Content Message
+  click element  ${classic_message_builder["button_add"]["body_accordion"]}
+  input text  ${classic_message_builder["button_add"]["expert_content"]}  [EMV TEXTPART][EMV HTMLPART]<html><body>&&&</body></html>
+  click element  ${classic_message_builder["button_add"]["external_content_link"]}
+  select frame  ${iframes["popup_frame"]}
+  input text  ${classic_message_builder["button_add"]["content_file_url"]}  https://www.google.co.uk/search?q=
+  select from list by label  ${classic_message_builder["button_add"]["external_content_field_selector"]}  FIRSTNAME
+  click element  ${generics["first_add_button"]}
+  click element  ${classic_message_builder["button_add"]["generate_external_content"]}
+  unselect frame
+  select frame    ${iframes["top"]}
+  select frame    ${iframes["ccmd"]}
+  click element  ${classic_message_builder["button_add"]["save_button"]}
+  element should contain  ${classic_message_builder["button_add"]["expert_content"]}  [EMV URLNAME]https://www.google.co.uk/search?q=[EMV FIELD]FIRSTNAME[EMV /FIELD][EMV /URLNAME]
+  open content  ${classic_message_builder}  ${classic_message_builder["button_list"]["list"]}
+  table row should contain  ${classic_message_builder["button_list"]["table"]}    3    1    Qa Automation External Content Message
   # delete the message when the test is complete
   delete latest message
 
