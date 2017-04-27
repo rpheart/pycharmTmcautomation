@@ -13,7 +13,7 @@ vtrunk = {
 vnext = {
     "ui_server": "https://qa-sfui.themessagecloud.com",
     "ui_username": "emvqa_qa",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p1itgapie.emv2.com",
     "api_user": "emvqa_qa_api",
     "api_password": "qa11focus$",
@@ -25,7 +25,7 @@ vnext = {
 preprod = {
     "ui_server": "https://preprod.themessagecloud.com",
     "ui_username": "preprod_qa",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p0apie.emv3.com",
     "api_user": "preprod_qa_api",
     "api_password": "qa11focus$",
@@ -37,7 +37,7 @@ preprod = {
 pod_e1 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e1",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "emvapi.emv3.com",
     "api_user": "auto_e1_api",
     "api_password": "qa11focus$",
@@ -49,7 +49,7 @@ pod_e1 = {
 pod_e2 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e2",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p2apie.emv3.com",
     "api_user": "auto_e2_api",
     "api_password": "qa11focus$",
@@ -61,7 +61,7 @@ pod_e2 = {
 pod_e3 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e3",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p3apie.emv3.com",
     "api_user": "auto_e3_api",
     "api_password": "qa11focus$",
@@ -73,7 +73,7 @@ pod_e3 = {
 pod_e4 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e4",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p4apie.emv3.com",
     "api_user": "auto_e4_api",
     "api_password": "qa11focus$",
@@ -85,7 +85,7 @@ pod_e4 = {
 pod_e5 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e5",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p5apie.emv3.com",
     "api_user": "auto_e5_api",
     "api_password": "qa11focus$",
@@ -97,7 +97,7 @@ pod_e5 = {
 pod_e6 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e6",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p6apie.emv3.com",
     "api_user": "auto_e6_api",
     "api_password": "qa11focus$",
@@ -109,7 +109,7 @@ pod_e6 = {
 pod_e7 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e7",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p7apie.emv3.com",
     "api_user": "auto_e7_api",
     "api_password": "qa11focus$",
@@ -121,7 +121,7 @@ pod_e7 = {
 pod_e8 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e8",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p8apie.emv3.com",
     "api_user": "auto_e8_api",
     "api_password": "qa11focus$",
@@ -133,7 +133,7 @@ pod_e8 = {
 pod_e9 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_e9",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p9apie.emv3.com",
     "api_user": "auto_e9_api",
     "api_password": "qa11focus$",
@@ -145,7 +145,7 @@ pod_e9 = {
 pod_t1 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_t1",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "emvapi.emv2.com",
     "api_user": "auto_t1_api",
     "api_password": "qa11focus$",
@@ -157,7 +157,7 @@ pod_t1 = {
 pod_t2 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_t2",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p2apic.emv2.com",
     "api_user": "auto_t2_api",
     "api_password": "qa11focus$",
@@ -169,7 +169,7 @@ pod_t2 = {
 pod_t3 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_t3",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p3apic.emv2.com",
     "api_user": "auto_t3_api",
     "api_password": "qa11focus$",
@@ -181,7 +181,7 @@ pod_t3 = {
 pod_t4 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_t4",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p4apic.emv2.com",
     "api_user": "auto_t4_api",
     "api_password": "qa11focus$",
@@ -193,7 +193,7 @@ pod_t4 = {
 pod_t5 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_t5",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p5apic.emv2.com",
     "api_user": "auto_t5_api",
     "api_password": "qa11focus$",
@@ -205,7 +205,7 @@ pod_t5 = {
 pod_t6 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ui_username": "auto_t6",
-    "ui_password": "qa11focus1.",
+    "ui_password": "computer1.",
     "api_server": "p6apic.emv3.com",
     "api_user": "auto_t6_api",
     "api_password": "qa11focus$",

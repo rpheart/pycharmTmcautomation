@@ -1,0 +1,8 @@
+numpy
+paramiko
+requests
+robotframework
+robotframework-lint
+robotframework-requests
+robotframework-selenium2library
+selenium

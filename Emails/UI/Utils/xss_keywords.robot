@@ -76,12 +76,12 @@ write data
 
 create email string
     [Arguments]    ${line}
-    ${line}=    catenate    SEPARATOR=    ${line}    @test.com
+    ${line}=    catenate    SEPARATOR=    test    ${line}    .com
     set test variable    ${line}
 
 create url string
     [Arguments]    ${line}
-    ${line}=    catenate    SEPARATOR=    http://www.    ${line}    .com
+    ${line}=    catenate    SEPARATOR=    http://www.test.com/?p=    ${line}
     set test variable    ${line}
 
 verify xss data on search field
@@ -90,7 +90,7 @@ verify xss data on search field
     :for    ${line}    in     @{xss_test_data}
     \    open content    ${content_dictionary}    ${page}
     \    wait until keyword succeeds    15x    1 sec    input text    ${generics["search_input"]}    ${line}
-    \    sleep    0.5
+    \    sleep    1
     \    wait until keyword succeeds    15x    1 sec    click element    ${generics["search_button"]}
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}

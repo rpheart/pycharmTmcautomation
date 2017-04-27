@@ -194,9 +194,6 @@ new_message_send_to_save_and_finalise
 new_message_send_test_add_recipients
     loop through test data and send test email    ${new_message_builder["button_add"]["add_recipients"]}
 
-#new_message_send_test_search_recipients  # Field not protected!
-#    loop through test data and send test email    ${new_message_builder["button_add"]["send_test_search_button"]}
-
 new_message_rename_name
     @{failed_inputs}=    create list
     :for    ${line}    in     @{xss_test_data}
@@ -297,16 +294,17 @@ loop through test data and send test email
     \    add widget to canvas    ${new_message_builder["button_add"]["text_widget"]}
     \    sleep    1
     \    set mandatory headers
-    \    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["save"]}
+    \    wait until keyword succeeds    5x   1 sec    click element    ${new_message_builder["button_add"]["save"]}
     \    open tests
-    \    wait until keyword succeeds    15x   1 sec    input text     ${new_message_builder["button_add"]["send_test_search_input"]}    ${line}
-    \    wait until keyword succeeds    15x   1 sec    click element    ${button}
+    \    wait until keyword succeeds    5x   1 sec    input text     ${new_message_builder["button_add"]["send_test_search_input"]}    ${line}
+    \    wait until keyword succeeds    5x   1 sec    click element    ${button}
     \    check for bad request    ${line}    ${failed_inputs}
     write failed input to file    ${SUITE_NAME}    ${TEST_NAME}    @{failed_inputs}
     run keyword if    ${is_failed}    fail    msg=xss verification failed, check the logs folder for data
 
 open tests
-    :for    ${n}    in range    10
-    \    ${tests_open}=    run keyword and return status    element should be visible    ${new_message_builder["button_add"]["test_panel"]}
+    :for    ${n}    in range    5
+    \    ${tests_open}=    run keyword and return status    click element    ${new_message_builder["button_add"]["send_test_emails"]}
     \    exit for loop if    ${tests_open}
-    \    wait until keyword succeeds    15x   1 sec    click element    ${new_message_builder["button_add"]["tests"]}
+    \    wait until keyword succeeds    5x   1 sec    click element    ${new_message_builder["button_add"]["tests"]}
+    \    sleep    1
