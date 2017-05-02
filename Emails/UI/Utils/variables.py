@@ -507,6 +507,7 @@ landing_page = {
         "button_subscription_suspension": "//button[@class='btn btn-large lpages-editor-wizardform-subscriptionsuspension']",
         "label_input_field": "//div[contains(text(), 'Label')]",
         "first_input_container": "//*[@class='lpages-formfiels-input-container']",
+        "input_container_field": "//*[@class='lpages-formfiels-input-container']/input",
         "input_selector": "//*[@id='lpages-editorform-typepfield']",
         "save": "//*[contains(@id, 'btnsave')]",
         "save_and_schedule": "//*[@id='lpages-editor-btnsavechedule']/div",

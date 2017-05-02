@@ -36,7 +36,7 @@ create and schedule basic landing page
     # add surname
     click element    //*[@id='lpages-editor-form-addfield-selector-button']
     click element    //*[@id='lpages-editor-form-addfield-input']
-    input text    ${landing_page["button_add"]["label_input_field"]}    Surname
+    input text    ${landing_page["button_add"]["label_input_field"]}    Lastname
     click element    ${landing_page["button_add"]["save_and_schedule"]}
     # start landing page
     click element    //*[@id="lpages-prop-scheduler-start-date"]
@@ -70,7 +70,7 @@ fill out basic landing page
     wait until keyword succeeds    15x    1 sec    select window    url=${landing_page_url}
     input text    //input[@name='Email']    ${email}
     input text    //input[@name='Firstname']    ${firstname}
-    input text    //input[@name='Surname']    ${lastname}
+    input text    //input[@name='Lastname']    ${lastname}
     click element    //*[@type="submit"]
     close window
     select window    ${document_title}

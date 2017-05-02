@@ -17,3 +17,12 @@ delete all members matching id
     wait until keyword succeeds    15x    1 sec    click element    //*[@id='iconSelectAll']
     wait until keyword succeeds    15x    1 sec    click element    //*[@id='iconTrash']
     wait until keyword succeeds    15x    1 sec    click element    //*[@id='iconTrash']
+
+add member
+   [Arguments]    ${email_address}   ${firstname}     ${lastname}
+   open content    ${add_subscriber}   ${add_subscriber["button_add"]["add"]}
+   wait until element is visible    ${add_subscriber["button_add"]["input_fields"]["email"]}
+   input text    ${add_subscriber["button_add"]["input_fields"]["email"]}    ${email_address}
+   input text    ${add_subscriber["button_add"]["input_fields"]["firstname"]}    ${firstname}
+   input text    ${add_subscriber["button_add"]["input_fields"]["lastname"]}    ${lastname}
+   click element    ${add_subscriber["button_add"]["save_member"]}
