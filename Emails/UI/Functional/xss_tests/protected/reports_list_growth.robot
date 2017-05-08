@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       will check the input of each of the blns values into the list growth reports screen
-Resource            ../../../Utils/keywords.robot
+Resource            ../../../Utils/email_keywords.robot
 Resource            ../../../Utils/xss_keywords.robot
 Default Tags        ui    email    xss
 Suite Setup         run keywords

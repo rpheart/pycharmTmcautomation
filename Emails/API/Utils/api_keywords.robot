@@ -1,18 +1,18 @@
 *** Settings ***
-Documentation
-Library             OperatingSystem
-Library             RequestsLibrary
-Library             Selenium2Library    10    2
-Library             XML
-Library             api_functions.py
-Variables           ../../Utils/credentials.py
+Documentation   basic legacy apis for smart email platform
+Library         OperatingSystem
+Library         RequestsLibrary
+Library         Selenium2Library    10    2
+Library         XML
+Library         api_functions.py
+Variables       ../../../Utils/credentials.py
 
 *** Variables ***
-${env}=             preprod
+${env}          preprod
 ${template_id}
 ${message_id}
 ${segment_id}
-${member_id}        1819306545  # TODO QA member id, we need to find one for each client/environment and add it to jenkins
+${member_id}    1819306545  # TODO QA member id, we need to find one for each client/environment and add it to jenkins
 
 *** Keywords ***
 open_connection

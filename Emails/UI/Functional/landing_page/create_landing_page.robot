@@ -2,7 +2,7 @@
 Documentation       tests for creating different types of landing pages
 Default Tags        ui    email    landing_page
 Library             DateTime
-Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/landing_page.robot
 Resource            ../../Utils/subscriber.robot
 Suite Setup         run keywords    login
@@ -15,7 +15,7 @@ ${firstname}    landingPageFirstname
 ${lastname}    landingPageFirstname
 
 *** Test Cases ***
-create_landing_page_insert_and_update
+create_insert_and_update_landing_page
     create and schedule basic landing page
     fill out basic landing page    ${email}    ${firstname}    ${lastname}
     search for member    FIRSTNAME    equals    ${firstname}
@@ -24,8 +24,8 @@ create_landing_page_insert_and_update
     table column should contain    css=div#content > form > table.list    2    ${lastname}
     delete all members matching id        FIRSTNAME    equals    ${firstname}
 
-create_basic_landing_page_unsubscribe
-    ${date} =    get time
+create_unsubscribe_landing_page
+    ${date}=    get time
     ${date}=    Get Current Date    result_format=%m/%d/%Y
     add member    suspensiontest@qa.com    suspensionFirstname     suspensionLastname
     open content    ${landing_page}    ${landing_page["button_add"]["add"]}
@@ -91,4 +91,3 @@ create_basic_landing_page_unsubscribe
     table column should contain    css=div#content > form > table.list    2    suspensionLastname
     table column should contain    css=div#content > form > table.list    6    ${date}
     delete all members matching id        EMAIL    equals    suspensiontest@qa.com
-

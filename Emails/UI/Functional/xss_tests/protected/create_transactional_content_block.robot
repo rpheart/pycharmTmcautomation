@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       will check the input of each of the blns values into the transactional content block screen
-Resource            ../../../Utils/keywords.robot
+Resource            ../../../Utils/email_keywords.robot
 Resource            ../../../Utils/xss_keywords.robot
 Default Tags        email    ui    xss
 Suite Setup         run keywords    login
