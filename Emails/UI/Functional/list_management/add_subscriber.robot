@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation   test directly adding members to the database
 Default Tags    ui  email  subscriber
-Resource        ../../Utils/keywords.robot
+Resource        ../../Utils/email_keywords.robot
 Resource        ../../Utils/subscriber.robot
 Suite Setup     run keywords  login
 ...             AND  go to ${system_page["email"]}

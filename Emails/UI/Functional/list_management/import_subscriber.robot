@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       test importing member files and updating with email or custom keys and checking that the members have been added or updated after each import
 Default Tags        ui    email    import
-Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/subscriber.robot
 Suite Setup         run keywords    login
 ...                 AND    go to ${system_page["email"]}
