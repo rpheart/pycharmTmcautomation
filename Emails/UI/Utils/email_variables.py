@@ -1,19 +1,4 @@
 # coding=utf-8
-# navigation settings
-system_page = {
-    "view": "css=li.logo_button.insight_button",
-    "analyze": "css=li.logo_button.optimize_button",
-    "personalization": "css=li.logo_button.define_button",
-    # "email": "//*[@id='SFUI_Nav']//div[./text()='Email')]",
-    "email": "css=li.logo_button.engage_button",
-    "social": "css=li.logo_button.social_button"
-}
-
-drop_down_menu = "css=div.btn-group.pull-right"
-smart_focus_logo = "css=i.sf_logo"
-document_title = "title=SmartFocus"
-navigation_bar = "css=ul.si-module-navigation"
-
 # iframes
 iframes = {
     "top": "css=iframe.sfIFrame",

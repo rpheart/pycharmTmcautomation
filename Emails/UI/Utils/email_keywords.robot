@@ -1,38 +1,12 @@
 *** Settings ***
 Documentation       contains variables and keywords for the email ui test suite
-Library             Collections
-Library             OperatingSystem
-Library             Selenium2Library    15    15    run_on_failure=fail keyword
-Library             String
 Resource            ../../API/Utils/api_keywords.robot
-Variables           variables.py
-Variables           ../../Utils/credentials.py
+Resource            ../../../Utils/keywords.robot
+Variables           email_variables.py
 
 *** Variables ***
-# login variables
-${env}=         preprod
-${browser}      chrome
 
 *** Keywords ***
-fail keyword
-    log source
-    capture page screenshot
-
-login
-    [Documentation]    Logs in to the message cloud
-    open browser    ${${env}["ui_server"]}    ${browser}
-    maximize browser window
-    page should contain    Login To Your Account:
-    input text    IDToken1    ${${env}["ui_username"]}
-    input password    IDToken2    ${${env}["ui_password"]}
-    click link    name=Login.Submit
-    set selenium speed    0.2
-
-go to ${page}
-    [Documentation]    opens the product under test (i.e. Personalisation or Email)
-    select window    ${document_title}
-    wait until keyword succeeds    5x    1 sec    click element    ${page}
-
 open content
     [Documentation]    opens the page leading to the feature to be tested (i.e. Create > Template)
     [Arguments]    ${content_dictionary}      ${page}
