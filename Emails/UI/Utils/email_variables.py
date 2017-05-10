@@ -492,8 +492,6 @@ landing_page = {
         "button_subscription_suspension": "//button[@class='btn btn-large lpages-editor-wizardform-subscriptionsuspension']",
         "label_input_field": "//div[contains(text(), 'Label')]",
         "first_input_container": "//*[@class='lpages-formfiels-input-container']",
-        "input_container_field": "//*[@class='lpages-formfiels-input-container']/input",
-        "input_selector": "//*[@id='lpages-editorform-typepfield']",
         "save": "//*[contains(@id, 'btnsave')]",
         "save_and_schedule": "//*[@id='lpages-editor-btnsavechedule']/div",
         "submission_slider": "//*[@id='lpages-prop-submission-toggleButton']",
@@ -503,13 +501,49 @@ landing_page = {
         "submission_url": "//*[contains(@name, 'submitRedirection')]",
         "redirect_selector": "//*[@id='lpages-prop-fallback']/div/div[1]/select",
         "redirection_url": "//*[@id='lpages-prop-fallback-url-input']",
-        "data_sync_page": "//li[@aria-controls='lpages-prop-fragment-data-synchronisation']",
-        "data_sync_button": "//*[@id='lpages-prop-datasync-toggleButton']",
-        "activate": "//*[@id='lpages-prop-datasync-activation-popup']/div[2]/div[3]/div[2]",
-        "source_field_slider": "//*[@id='lpages-prop-datasync-source-toggle']",
-        "source_field_input": "//*[@id='lpages-prop-datasync-source-input']",
-        "general_properties": "//*[@id='ui-id-4']",
-        "landing_page_url": "//*[@id='lpages-prop-overview-url']/a"
+        "field_personalisation": {
+            "selector": "//div[@class='lpages-emvfields']",
+            "email": "//div[@class='lpages-emvfield' and contains(text(), 'EMAIL')]",
+            "firstname": "//div[@class='lpages-emvfield' and contains(text(), 'FIRSTNAME')]",
+            "lastname": "//div[@class='lpages-emvfield' and contains(text(), 'LASTNAME')]"
+        },
+        "field_selector": {
+            "add": "//*[@id='lpages-editor-form-addfield-selector-button']",
+            "input_field": "//*[@id='lpages-editor-form-addfield-input']",
+            "subscribe_field": "//*[@id='lpages-editor-form-addfield-optin']",
+            "checkboxes": "//*[@id='lpages-editor-form-addfield-checkbox']",
+            "radio_buttons": "//*[@id='lpages-editor-form-addfield-radio']",
+            "list_of_choices": "//*[@id='lpages-editor-form-addfield-select']",
+            "title": "//*[@id='lpages-editor-form-addfield-title']",
+            "text": "//*[@id='lpages-editor-form-addfield-textblock']",
+        },
+        "form_type": {
+            "selector": "//*[@id='lpages-editorform-selecttype']",
+            "single_line_text": "//div[@title='Single Line Text']",
+            "extended_text": "//div[@title='Extended Text']",
+            "number": "//div[@title='Number']",
+            "email": "//div[@title='Email']",
+            "date_us": "//div[@title='Date US']",
+            "date_fr": "//div[@title='Date FR']",
+        },
+        "preference_button": "//div[@class='lpages-editor-options-popup-iconpreference']",
+        "general_properties": {
+            "tab": "//*[@id='ui-id-4']",
+            "start_date": "//*[@id='lpages-prop-scheduler-start-date']",
+            "end_date": "//*[@id='lpages-prop-scheduler-stop-date']",
+            "landing_page_url": "//*[@id='lpages-prop-overview-url']/a"
+        },
+        "data_sync": {
+            "tab": "//li[@aria-controls='lpages-prop-fragment-data-synchronisation']",
+            "activate_switch": "//*[@id='lpages-prop-datasync-toggleButton']",
+            "activate_confirmation": "//*[@id='lpages-prop-datasync-activation-popup']/div[2]/div[3]/div[2]",
+            "insert_all_type": "//*[@id='lpages-prop-datasync-insert-all']",
+            "insert_and_update_type": "//*[@id='lpages-prop-datasync-insert-and-update']",
+            "update_only_type": "//*[@id='lpages-prop-datasync-update-only']",
+            "unsubscribe_type": "//*[@id='lpages-prop-datasync-unsubscribe']",
+            "source_field_slider": "//*[@id='lpages-prop-datasync-source-toggle']",
+            "source_field_input": "//*[@id='lpages-prop-datasync-source-input']"
+        }
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Landing page']/li[2]",
