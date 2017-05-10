@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       smoke tests to verify that every page loads
-Resource            ../Utils/keywords.robot
+Resource            ../Utils/email_keywords.robot
 Suite Setup         run keywords    login
 ...                 AND    go to ${system_page["email"]}
 Suite Teardown      close all browsers

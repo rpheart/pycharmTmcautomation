@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       tests for creating different types of landing pages
 Default Tags        ui    email    landing_page
-Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/landing_page.robot
 Resource            ../../Utils/subscriber.robot
 Suite Setup         run keywords    login

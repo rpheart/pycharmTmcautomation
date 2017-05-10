@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   verifies working features on the transactional message reports page
-Resource        ../../Utils/keywords.robot
+Resource        ../../Utils/email_keywords.robot
 Default Tags    ui  email  report
 Suite Setup     run keywords
 ...             login
