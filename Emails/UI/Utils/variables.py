@@ -760,6 +760,7 @@ transactional_message = {
         "custom_form_ok_button": "//*[@id='NotificationCustomForm']//a[./text()='OK']",
         "table": "xpath=//table[@class='list']",
         "first_delete_checkbox": "//input[@name='deleteNmNotification']",
+        "edit": "//*[@id='iconEdit']",
     }
 }
 
@@ -795,7 +796,8 @@ transactional_content_block = {
             "date_time": "//a[contains(text(), 'Date/Time')]",
             "add_to_body": "//*[@id='iconButtonAdd']",
         },
-        "message_preview": "//*[@id='iconToolboxMessagePreview']/../../a/div[contains(text(),'Message Preview')]"
+        "message_preview": "//*[@id='iconToolboxMessagePreview']/../../a/div[contains(text(),'Message Preview')]",
+
     },
     "button_list": {
         "list": "//*[@id='engage-create']//span[contains(text(),'Transactional Content')]/..//ul[@title='Content Block']/li[2]",
@@ -812,11 +814,13 @@ transactional_content_block = {
         "first_delete_button": "//input[@name='deleteNmInclude']",
         "preview_button": "//*[@id='iconView']",
         # "preview_button_confirmation": "//*[@id='iconView']//ul[@title='Save']/li",
-        "preview_button_confirmation": "//*[@id='content']/table[4]/tbody/tr/td/a",
+        "preview_button_confirmation": "//a/img[@id='iconView']",
         "edit_button": "//*[@id='iconEdit']",
         "copy_button": "//*[@id='iconCopy']",
         "name_input": "//*[@id='nameInput']",
         "popup_container": "//*[@id='popupContainer']",
+        "preview_personalization": "//input[@name='dyn(email)']",
+
     }
 }
 
