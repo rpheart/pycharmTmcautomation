@@ -612,8 +612,9 @@ content_block = {
         "rename_input": "//*[@id='archive-duplicate-name']",
         "first_row": "//div[@id='tabledivRow-0']",
         "duplicate": "//*[@id='duplicate-confirmation-popup']//div[contains(text(), 'Duplicate')]",
-        "delete_confirm": "//*[@id='delete-confirmation-popup']//div[contains(text(), 'Delete')]"
+        "delete_confirm": "//*[@id='delete-confirmation-popup']//div[contains(text(), 'Delete')]",
     }
+
 }
 
 webform = {
@@ -745,7 +746,8 @@ transactional_message = {
         "preview": "//*[@id='iconToolboxMessagePreview']/../../a/div[contains(text(),'Preview')]",
         "send_test": "//*[@id='iconToolboxMessageSendTest']/../../a/div[contains(text(),'Send Test')]",
         "save": "//*[@id='iconSave']/../../a[normalize-space(.//text())='Save']",
-        "save_and_back": "//*[@id='iconSave']/../../a[normalize-space(.//text())='Save & Back To Integration and Testing']"
+        "save_and_back": "//*[@id='iconSave']/../../a[normalize-space(.//text())='Save & Back To Integration and Testing']",
+        "add_button": "//*[@id='iconAddCriteria']",
     },
     "button_list": {
         "list": "//*[@id='engage-create']//span[contains(text(),'Transactional Content')]/..//ul[@title='Message']/li[2]",
@@ -775,7 +777,9 @@ transactional_message = {
         "email_lable": "//*[@id='NotificationCustomForm']//b[./text()='Email']",
         "email_input": "name=email",
         "custom_form_ok_button": "//*[@id='NotificationCustomForm']//a[./text()='OK']",
-        "table": "xpath=//table[@class='list']"
+        "table": "xpath=//table[@class='list']",
+        "first_delete_checkbox": "//input[@name='deleteNmNotification']",
+        "edit": "//*[@id='iconEdit']",
     }
 }
 
@@ -795,7 +799,23 @@ transactional_content_block = {
         "track_all_links": "//*[@id='iconToolboxTrackLinks']/../../a/div[contains(text(),'Track All Links')]",
         "link_management": "//*[@id='iconToolboxLinksManagt']/../../a/div[contains(text(),'Link Management')]",
         "message_personalization": "//*[@id='iconToolboxMessagePerso']/../../a/div[contains(text(),'Message Personalization')]",
-        "message_preview": "//*[@id='iconToolboxMessagePreview']/../../a/div[contains(text(),'Message Preview')]"
+        "message_personalization_dialog": {
+            "field": "//a[contains(text(), 'Field')]",
+            "content": "//a[contains(text(), 'Content')]",
+            "if": {
+                "tab": "//a[contains(text(), 'If')]",
+                "parameter_input": "//*[@id='tabIf']//input[@name='dynIf']",
+                "if_operator": "//*[@id='tabIf']//select[@name='comparatorIf']",
+                "value_input": "//*[@id='tabIf']//input[@name='valIf']",
+                "then_input": "//*[@id='tabIf']//textarea[@name='thenIf']",
+                "else_input": "//*[@id='tabIf']//textarea[@name='elseIf']"
+            },
+            "multiple_if": "//a[contains(text(), 'Multiple If')]",
+            "switch": "//a[contains(text(), 'Switch')]",
+            "date_time": "//a[contains(text(), 'Date/Time')]",
+            "add_to_body": "//*[@id='iconButtonAdd']",
+        },
+        "message_preview": "//*[@id='iconToolboxMessagePreview']/../../a/div[contains(text(),'Message Preview')]",
     },
     "button_list": {
         "list": "//*[@id='engage-create']//span[contains(text(),'Transactional Content')]/..//ul[@title='Content Block']/li[2]",
@@ -809,7 +829,14 @@ transactional_content_block = {
         "header_edit": "//*[@id='content']//th[normalize-space(.//text())='Edit']",
         "header_copy": "//*[@id='content']//th[normalize-space(.//text())='Copy']",
         "header_delete": "//*[@id='content']//span[@class='red' and normalize-space(.//text())='Delete']",
-        "delete": "//*[@id='iconTrash']/../../a"
+        "first_delete_button": "//input[@name='deleteNmInclude']",
+        "preview_button": "//*[@id='iconView']",
+        "preview_button_confirmation": "//a/img[@id='iconView']",
+        "edit_button": "//*[@id='iconEdit']",
+        "copy_button": "//*[@id='iconCopy']",
+        "name_input": "//*[@id='nameInput']",
+        "popup_container": "//*[@id='popupContainer']",
+        "preview_personalization": "//input[@name='dyn(email)']",
     }
 }
 
@@ -1103,7 +1130,6 @@ list_growth_reports = {
         "refresh_button": "//*[@id='listReportUI-mainMenu-refreshButton']",
         "results_button": "//*[contains(@id, 'listReportUi-ArchiveView-resultView')]",
         "delete_button": "//*[contains(@id, 'listReportUi-ArchiveView-deleteIcon')]",
-
     }
 }
 
