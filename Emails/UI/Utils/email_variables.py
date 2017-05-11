@@ -6,7 +6,6 @@ iframes = {
     "popup_frame": "id=popupFrame",
     "image_library_editor": "id=msg-editor-imagelib-iframe",
     "html_preview": "//*[@id='iframeHtml']"
-
 }
 
 # generic tabs
@@ -817,7 +816,6 @@ transactional_content_block = {
             "add_to_body": "//*[@id='iconButtonAdd']",
         },
         "message_preview": "//*[@id='iconToolboxMessagePreview']/../../a/div[contains(text(),'Message Preview')]",
-
     },
     "button_list": {
         "list": "//*[@id='engage-create']//span[contains(text(),'Transactional Content')]/..//ul[@title='Content Block']/li[2]",
@@ -833,14 +831,12 @@ transactional_content_block = {
         "header_delete": "//*[@id='content']//span[@class='red' and normalize-space(.//text())='Delete']",
         "first_delete_button": "//input[@name='deleteNmInclude']",
         "preview_button": "//*[@id='iconView']",
-        # "preview_button_confirmation": "//*[@id='iconView']//ul[@title='Save']/li",
         "preview_button_confirmation": "//a/img[@id='iconView']",
         "edit_button": "//*[@id='iconEdit']",
         "copy_button": "//*[@id='iconCopy']",
         "name_input": "//*[@id='nameInput']",
         "popup_container": "//*[@id='popupContainer']",
         "preview_personalization": "//input[@name='dyn(email)']",
-
     }
 }
 
@@ -1134,7 +1130,6 @@ list_growth_reports = {
         "refresh_button": "//*[@id='listReportUI-mainMenu-refreshButton']",
         "results_button": "//*[contains(@id, 'listReportUi-ArchiveView-resultView')]",
         "delete_button": "//*[contains(@id, 'listReportUi-ArchiveView-deleteIcon')]",
-
     }
 }
 

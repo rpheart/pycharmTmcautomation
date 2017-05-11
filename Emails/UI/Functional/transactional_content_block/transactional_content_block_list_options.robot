@@ -1,14 +1,13 @@
 *** Settings ***
 Documentation   test for transactional content block list options
 Default Tags    ui  email  cmb
-Resource        ../../Utils/keywords.robot
+Resource        ../../Utils/email_keywords.robot
 Resource        ../../Utils/transactional_content_block.robot
 Suite Setup     run keywords  login
 ...             AND  go to ${System_Page["email"]}
 ...             AND  create basic content block
 Suite Teardown  run keywords  delete latest transactional content block
 ...             AND  close all browsers
-
 
 *** Test Cases ***
 transactional_content_block_preview

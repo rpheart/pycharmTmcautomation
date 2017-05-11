@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation   test for creating a transactional message with content block
 Default Tags    ui  email  transactional
-Resource         ../../Utils/keywords.robot
+Resource        ../../Utils/email_keywords.robot
 Resource        ../../Utils/transactional_content_block.robot
 Resource        ../../Utils/transactional_message.robot
 Suite Setup     run keywords  login
@@ -20,7 +20,7 @@ create_transactional_message
   open content  ${transactional_message}  ${transactional_message["button_list"]["list"]}
   table row should contain  ${transactional_message["button_list"]["table"]}  1  	QA Auto transactional message
 
-send_test_message_with_content_block
+send_test_message_with_personalised_content_block
   open content  ${transactional_content_block}  ${transactional_content_block["button_add"]["add"]}
   input text  ${transactional_content_block["button_add"]["content_block_name_input"]}  QA Auto transactional Content Block
   add basic personlisation
@@ -44,4 +44,3 @@ send_test_message_with_content_block
   send test emails  personalisation_field=kseniya.domorad@smartfocus.com
   delete latest transactional content block
   [Teardown]
-
