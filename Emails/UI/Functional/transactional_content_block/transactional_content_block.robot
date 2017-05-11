@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation   test for creating a transactional content block
 Default Tags    ui transactional
-Resource        ../../Utils/keywords.robot
+Resource        ../../Utils/email_keywords.robot
 Resource        ../../Utils/transactional_content_block.robot
 Suite Setup     run keywords  login
 ...             AND  go to ${System_Page["email"]}
@@ -20,25 +20,23 @@ create_transactional_content_block
   open content  ${transactional_content_block}  ${transactional_content_block["button_list"]["list"]}
   wait until element is visible     ${transactional_content_block["button_list"]["table"]}
   table cell should contain  ${transactional_content_block["button_list"]["table"]}  3  2  QA Auto personalised Content Block
-  # preview the content block to verify personalisation
-  click element  ${transactional_content_block["button_list"]["preview_button"]}
-  select frame  ${iframes["popup_frame"]}
-  input text  ${transactional_content_block["button_list"]["preview_personalization"]}  kseniya.domorad@smartfocus.com
-  click element  ${transactional_content_block["button_list"]["preview_button_confirmation"]}
-  current frame contains  Your email is kseniya.domorad@smartfocus.com
-  unselect frame
-  select frame  ${iframes["top"]}
-  select frame  ${iframes["ccmd"]}
-  click element  ${generics["close_popup_box"]}
-  # preview the content block with default value
-  click element  ${transactional_content_block["button_list"]["preview_button"]}
-  select frame  ${iframes["popup_frame"]}
-  input text  ${transactional_content_block["button_list"]["preview_personalization"]}  patrick.summers@smartfocus.com
-  click element  ${transactional_content_block["button_list"]["preview_button_confirmation"]}
-  current frame contains  You are not Kseniya
-  unselect frame
-  select frame  ${iframes["top"]}
-  select frame  ${iframes["ccmd"]}
-  click element  ${generics["close_popup_box"]}
+  # preview the content block true value
+  verify personalisation value  kseniya.domorad@smartfocus.com  Your email is kseniya.domorad@smartfocus.com
+  # preview the content block false value
+  verify personalisation value  patrick.summers@smartfocus.com  You are not Kseniya
   # remove the test block
   delete latest transactional content block
+
+*** Keywords ***
+verify personalisation value
+  [Documentation]  verifies the returned value in a personlisation if statement
+  [Arguments]  ${input}  ${expected_text}
+  click element  ${transactional_content_block["button_list"]["preview_button"]}
+  select frame  ${iframes["popup_frame"]}
+  input text  ${transactional_content_block["button_list"]["preview_personalization"]}  ${input}
+  click element  ${transactional_content_block["button_list"]["preview_button_confirmation"]}
+  current frame contains  ${expected_text}
+  unselect frame
+  select frame  ${iframes["top"]}
+  select frame  ${iframes["ccmd"]}
+  click element  ${generics["close_popup_box"]}
