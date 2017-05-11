@@ -213,3 +213,13 @@ pod_t6 = {
     "marketing_verified_email": "email@emvops-t6.ccemails.com",
     "trans_verified_email": "email@emvops-t6.nmp1.com",
 }
+
+production = {
+    "ui_server": "https://sfui.themessagecloud.com",
+    "ui_username": "",
+    "ui_password": "",
+    "api_server": "",
+    "api_user": "",
+    "api_password": "",
+    "api_key": ""
+}

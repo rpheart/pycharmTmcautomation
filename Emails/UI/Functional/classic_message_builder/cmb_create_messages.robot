@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation   tests for creating different types of messages
 Default Tags    ui  email  cmb
-Resource        ../../Utils/keywords.robot
+Resource        ../../Utils/email_keywords.robot
 Resource        ../../Utils/classic_message_builder.robot
 Resource        ../../Utils/dynamic_content_block.robot
 Suite Setup     run keywords  login

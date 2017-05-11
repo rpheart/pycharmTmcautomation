@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       tests for creating multivariate campaigns
 Default Tags        ui    email    mms
-Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/multimessage_campaign.robot
 Suite Setup         run keywords    login
 ...                 AND    go to ${System_Page["email"]}

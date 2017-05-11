@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       tests the options under the list page
 Default Tags        ui    email    templates
-Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/templates.robot
 Resource            ../../Utils/classic_message_builder.robot
 Suite Setup         run keywords    login
