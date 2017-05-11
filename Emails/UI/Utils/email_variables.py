@@ -39,6 +39,7 @@ generics = {
     "trash": "//*[@id='iconTrash']",
     "ok_button": "//a[contains(text(), 'OK')]",
     "yes_button": "//*[(@type='submit' or @type='button') and contains(text(), 'Yes')]",
+    "first_add_button": "//*[@id='iconAddCriteria' or @id='iconAdd']",
     "content_upload": {
         "link": "//*[@id='iconToolboxContentUpload']/../../a/div[contains(text(), 'Content Upload') or ./text() = 'Content Upload']",
         "popup_url_input": "name=uploadUrl",
@@ -405,7 +406,12 @@ classic_message_builder = {
         "message_personalization_link": "//*[@id='iconToolboxMessagePerso']/../../a/div[contains(text(), 'Message Personalization') or ./text() = 'Message Personalization']",
         "insert_emoji_link": "//*[@id='iconToolboxMessageEmoji']/../../a/div[contains(text(), 'Insert Emoji') or ./text() = 'Insert Emoji']",
         "send_test_message_link": "//*[@id='iconToolboxMessageSendTest']/../../a/div[contains(text(), 'Send Test Message') or ./text() = 'Send Test Message']",
-        "deliverability_test_link": "//*[@id='iconDeliverability']/../../a/div[contains(text(), 'Deliverability Test') or ./text() = 'Deliverability Test']"
+        "deliverability_test_link": "//*[@id='iconDeliverability']/../../a/div[contains(text(), 'Deliverability Test') or ./text() = 'Deliverability Test']",
+        "first_emoji": "//table[@id='emojiTable']//img",
+        "bounce_back_checkbox": "//input[@name='bounceBckFlg']",
+        "content_file_url": "//input[@name='cmsUrl']",
+        "external_content_field_selector": "//select[@name='cmsMemberField']",
+        "generate_external_content": "//*[@id='iconButtonAdd']"
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message']/li[2]",
@@ -653,6 +659,7 @@ webform = {
         "submit_form": "//*[@id='emvForm']//input[@value='Submit Form']",
         "edit_webform": "//*[@id='content']//a[normalize-space(.//text())='Edit Webform' and @class='btn orange']",
         "add_criteria": "//*[@id='iconAddCriteria']",
+        "first_row_bounce_back_table": "//table[@id='msgSelection']/tbody/tr"
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Webform']/li[2]",
