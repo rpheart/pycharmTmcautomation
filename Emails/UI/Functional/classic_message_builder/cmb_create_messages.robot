@@ -6,14 +6,14 @@ Resource        ../../Utils/classic_message_builder.robot
 Resource        ../../Utils/dynamic_content_block.robot
 Suite Setup     run keywords  login
 ...             AND  go to ${System_Page["email"]}
-#Suite Teardown  close all browsers
+Test Teardown   delete latest message
+Suite Teardown  close all browsers
 
 *** Test Cases ***
 create_classic_message
   create basic message
   open content  ${classic_message_builder}  ${classic_message_builder["button_list"]["list"]}
   table row should contain  ${classic_message_builder["button_list"]["table"]}  1  Qa Automation Test Message
-  delete latest message
 
 create_classic_message_with_dynamic_content_block
   create basic content block
@@ -31,7 +31,6 @@ create_classic_message_with_dynamic_content_block
   textarea should contain  ${classic_message_builder["button_add"]["text_editor"]}  ${block_id}
   click element  ${classic_message_builder["button_add"]["save_button"]}
   sleep  0.5
-  delete latest message
   delete latest content block
 
 create_bounce_back_message
@@ -56,6 +55,7 @@ create_bounce_back_message
   verify bounce back table in webform builder
   element should not contain  ${webform["button_add"]["first_row_bounce_back_table"]}  Qa Automation Bounce Back Message
   delete bounce back messages
+  [Teardown]
 
 create_message_with_emojis
   [Documentation]  verify that you can open the emoji dialog more than once and add emojis to a message and save
@@ -80,8 +80,6 @@ create_message_with_emojis
   # verify the message is saved
   open content  ${classic_message_builder}  ${classic_message_builder["button_list"]["list"]}
   table row should contain  ${classic_message_builder["button_list"]["table"]}    3    1    Qa Automation Emoji Message
-  # delete the message when the test is complete
-  delete latest message
 
 external_content_block
   [Documentation]  verify that you can insert external content blocks into a message and save
@@ -101,8 +99,6 @@ external_content_block
   element should contain  ${classic_message_builder["button_add"]["expert_content"]}  [EMV URLNAME]https://www.google.co.uk/search?q=[EMV FIELD]FIRSTNAME[EMV /FIELD][EMV /URLNAME]
   open content  ${classic_message_builder}  ${classic_message_builder["button_list"]["list"]}
   table row should contain  ${classic_message_builder["button_list"]["table"]}    3    1    Qa Automation External Content Message
-  # delete the message when the test is complete
-  delete latest message
 
 *** Keywords ***
 verify bounce back table in webform builder
