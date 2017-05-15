@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       will check the input of each of the blns values into the add subscriber screen
-Resource            ../../../Utils/keywords.robot
+Resource            ../../../Utils/email_keywords.robot
 Resource            ../../../Utils/xss_keywords.robot
 Default Tags        ui    email    xss
 Suite Setup         run keywords
@@ -69,7 +69,7 @@ delete subscribers
     :for    ${n}    in range    10
     \    wait until element is visible    ${search_subscriber["button_add"]["member_count"]}
     \    ${subscribers}=    run keyword and return status
-    \    ...    element text should be    ${search_subscriber["button_add"]["member_count"]}    0
+    \    ...    Selenium2Library.element text should be    ${search_subscriber["button_add"]["member_count"]}    0
     \    run keyword if    ${subscribers} == False    run keywords    click element    ${generics["select_all"]}
     \    ...    AND    click element    ${generics["trash"]}
     \    ...    AND    click element    ${search_subscriber["button_add"]["delete_members"]}

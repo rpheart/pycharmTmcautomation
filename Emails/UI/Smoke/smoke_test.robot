@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation   runs to each page in email and checks for the presence of all of the elements
 Default Tags    ui  email  smoke
-Resource        ../Utils/keywords.robot
+Resource        ../Utils/email_keywords.robot
 Suite Setup     run keywords
 ...             login
 ...             AND  go to ${system_page["email"]}
@@ -575,7 +575,7 @@ transactional content block list
   element should be visible  ${transactional_content_block["button_list"]["header_edit"]}
   element should be visible  ${transactional_content_block["button_list"]["header_copy"]}
   element should be visible  ${transactional_content_block["button_list"]["header_delete"]}
-  element should be visible  ${transactional_content_block["button_list"]["delete"]}
+  element should be visible  ${generics["trash"]}
 
 add subscriber
   element should be visible  ${add_subscriber["button_add"]["header_database_field"]}

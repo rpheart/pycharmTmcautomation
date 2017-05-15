@@ -46,7 +46,7 @@ search_for_added_subscribers
     wait until element is visible    ${search_subscriber["button_add"]["text_search"]}
     click element    ${search_subscriber["button_add"]["text_search"]}
     wait until element is visible    ${search_subscriber["button_add"]["member_count"]}
-    ${subscribers}=    run keyword and return status    element text should be    ${search_subscriber["button_add"]["member_count"]}    0
+    ${subscribers}=    run keyword and return status    Selenium2Library.element text should be    ${search_subscriber["button_add"]["member_count"]}    0
     run keyword if    ${subscribers}    fail    msg=No members were created using non-xss data
 
 *** Keywords ***
@@ -79,7 +79,7 @@ delete subscribers
     wait until element is visible    ${search_subscriber["button_add"]["member_count"]}
     :for    ${n}    in range    100  # TODO Turn this into a while false loop
     \    wait until element is visible    ${search_subscriber["button_add"]["member_count"]}
-    \    ${subscribers}=    run keyword and return status    element text should be    ${search_subscriber["button_add"]["member_count"]}    0
+    \    ${subscribers}=    run keyword and return status    Selenium2Library.element text should be    ${search_subscriber["button_add"]["member_count"]}    0
     \    run keyword if    ${subscribers} == False    run keywords    click element    ${generics["select_all"]}
     \    ...    AND    click element    ${generics["trash"]}
     \    ...    AND    click element    ${search_subscriber["button_add"]["delete_members"]}

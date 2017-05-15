@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       creates different types of dynamic content blocks
 Default Tags        ui    email    dcb
-Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/dynamic_content_block.robot
 Suite Setup         run keywords    login
 ...                 AND    go to ${System_Page["email"]}

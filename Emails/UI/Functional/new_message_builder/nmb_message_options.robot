@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       tests various options within the new message builder like send tests and preview
 Default Tags        ui    email    nmb
-Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/new_message_builder.robot
 Suite Setup         run keywords    login
 ...                 AND    go to ${System_Page["email"]}

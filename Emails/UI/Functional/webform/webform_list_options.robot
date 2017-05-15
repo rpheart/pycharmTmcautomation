@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       tests for creating different types of webforms
 Default Tags        ui    email    webform
-Resource            ../../Utils/keywords.robot
+Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/webform.robot
 Suite Setup         run keywords    login
 ...                 AND    go to ${System_Page["email"]}

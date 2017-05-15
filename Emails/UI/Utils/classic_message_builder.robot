@@ -16,8 +16,9 @@ set headers
     input text    ${classic_message_builder["button_add"]["message_reply_to_label_input"]}    qa auto
 
 set body
+    [Arguments]    ${body}=[EMV TEXTPART]QA auto message test[EMV HTMLPART] <html> <body> <p>QA auto message test</p> </body> </html>
     click element    ${classic_message_builder["button_add"]["body_accordion"]}
-    wait until keyword succeeds    15x    1 sec    input text    ${classic_message_builder["button_add"]["text_editor"]}    [EMV TEXTPART]QA auto message test[EMV HTMLPART] <html> <body> <p>QA auto message test</p> </body> </html>
+    wait until keyword succeeds    5x    1 sec    input text    ${classic_message_builder["button_add"]["text_editor"]}    ${body}
 
 send test emails
     [Documentation]

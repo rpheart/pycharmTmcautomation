@@ -1,4 +1,5 @@
 EMAIL|FIRSTNAME|LASTNAME|DATEOFBIRTH|CODE
+ foo@bar.com |foo2|bar2|01/01/1900|1
 foo@bar.com|foo2|bar2|01/01/1900|1
 good@test|good2|tester2|02/02/1900|2
 validemail@alwaysgood.net|good2|data2|03/03/1933|6
