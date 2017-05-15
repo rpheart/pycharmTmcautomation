@@ -18,6 +18,7 @@ create_classic_message
 create_classic_message_with_dynamic_content_block
   create basic content block
   open content  ${content_block}  ${content_block["button_list"]["list"]}
+  wait until element is visible  //*[@id="tabledivColumn-0-0"]/div
   ${block_id}=  get text  //*[@id="tabledivColumn-0-0"]/div
   open content  ${classic_message_builder}  ${classic_message_builder["button_add"]["add"]}
   set headers  Qa Automation Test Message
