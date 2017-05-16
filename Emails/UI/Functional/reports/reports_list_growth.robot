@@ -25,6 +25,7 @@ list_growth_reports_search
 
 view_list_gowth_results
   open content  ${list_growth_reports}  ${list_growth_reports["button_add"]["add"]}
+  wait until element is visible  ${list_growth_reports["button_list"]["first_row"]}
   mouse over  ${list_growth_reports["button_list"]["first_row"]}
   click element  ${list_growth_reports["button_list"]["results_button"]}
   element should be visible  ${list_growth_reports["button_add"]["report_chart_window"]}
@@ -42,9 +43,10 @@ list_growth_search_segments
   click element  ${generics["create_new"]}
   click element  ${list_growth_reports["button_add"]["create_new"]["segments_radio"]}
   click element  ${list_growth_reports["button_add"]["create_new"]["segments_list"]}
+  click element
   input text  ${list_growth_reports["button_add"]["create_new"]["segments_search_input"]}  QA TEAM
   click element  ${list_growth_reports["button_add"]["create_new"]["segments_search_button"]}
-  element should contain  ${list_growth_reports["button_add"]["create_new"]["segmentss_row"]}  QA TEAM
+  element should contain  ${list_growth_reports["button_add"]["create_new"]["segments_table"]}  QA TEAM
 
 *** Keywords ***
 refresh page until report status

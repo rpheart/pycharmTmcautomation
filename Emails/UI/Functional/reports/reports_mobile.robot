@@ -12,4 +12,5 @@ mobile_reports_search
   open content  ${mobile_reports}  ${mobile_reports["button_add"]["add"]}
   input text  ${generics["search_input"]}  test
   click element  ${generics["search_button"]}
-  element should contain  ${mobile_reports["button_add"]["first_row"]}  test
+  ${first_row_text}=  get text  ${mobile_reports["button_add"]["first_row"]}
+  should contain  ${first_row_text}  test  ignore_case=True
