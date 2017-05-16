@@ -31,7 +31,7 @@ view_list_gowth_results
 
 delete_list_gowth_report
   open content  ${list_growth_reports}  ${list_growth_reports["button_add"]["add"]}
-  mouse over  ${list_growth_reports["button_list"]["first_row"]}
+  wait until keyword succeeds  5x  1 sec  mouse over  ${list_growth_reports["button_list"]["first_row"]}
   click element  ${list_growth_reports["button_list"]["delete_button"]}
   click element  ${generics["yes_button"]}
   current frame contains  successfully deleted
