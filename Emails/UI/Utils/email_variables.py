@@ -1108,7 +1108,8 @@ list_growth_reports = {
             "segments_list": "//*[@id='listReportUI-builderView-segmentsExplorer-openButton']",
             "segments_search_input": "//input[@id='listReportUI-builderView-segmentsExplorer-searchButton-textBox']",
             "segments_search_button": "//*[@id='listReportUI-builderView-segmentsExplorer-searchButton-button']",
-            "segmentss_row": "//*[@id='listReportUI-builderView-segmentsExplorer-nameColumn']",
+            "segments_table": "//div[@class='popupContent']//table",
+            "segments_row": "//*[@id='listReportUI-builderView-segmentsExplorer-nameColumn']",
         }
     },
     "button_list": {

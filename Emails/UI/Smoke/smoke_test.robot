@@ -382,7 +382,7 @@ classic message list
   element should be visible  ${classic_message_builder["button_list"]["header_test_message"]}
   element should be visible  ${classic_message_builder["button_list"]["header_audit_deliverability"]}
   element should be visible  ${classic_message_builder["button_list"]["header_delete"]}
-  element should be visible  ${classic_message_builder["button_list"]["delete"]}
+  element should be visible  ${generics["trash"]}
 
 sms message add
   element should be visible  ${sms_message_builder["button_add"]["sms_message_name"]}

@@ -77,7 +77,7 @@ create_message_with_emojis
   click element  ${generics["close_popup_box"]}
   # verify the emoji is present in the message
   click element  ${classic_message_builder["button_add"]["save_button"]}
-  element should contain  ${classic_message_builder["button_add"]["expert_content"]}  [EMV EMOJI]
+  element should contain  ${classic_message_builder["button_add"]["text_editor"]}  [EMV EMOJI]
   # verify the message is saved
   open content  ${classic_message_builder}  ${classic_message_builder["button_list"]["list"]}
   table row should contain  ${classic_message_builder["button_list"]["table"]}  3  1  Qa Automation Emoji Message
@@ -97,7 +97,7 @@ external_content_block
   select frame  ${iframes["top"]}
   select frame  ${iframes["ccmd"]}
   click element  ${classic_message_builder["button_add"]["save_button"]}
-  element should contain  ${classic_message_builder["button_add"]["expert_content"]}  [EMV URLNAME]https://www.google.co.uk/search?q=[EMV FIELD]FIRSTNAME[EMV /FIELD][EMV /URLNAME]
+  element should contain  ${classic_message_builder["button_add"]["text_editor"]}  [EMV URLNAME]https://www.google.co.uk/search?q=[EMV FIELD]FIRSTNAME[EMV /FIELD][EMV /URLNAME]
   open content  ${classic_message_builder}  ${classic_message_builder["button_list"]["list"]}
   table row should contain  ${classic_message_builder["button_list"]["table"]}  3  1  Qa Automation External Content Message
 
