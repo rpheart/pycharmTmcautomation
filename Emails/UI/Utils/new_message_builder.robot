@@ -89,7 +89,7 @@ create basic message
 add image to widget
   click element  ${new_message_builder["button_add"]["add_a_picture"]}
   select frame  ${iframes["image_library_editor"]}
-  click element  ${new_message_builder["button_add"]["first_image"]}
+  wait until keyword succeeds  5x  1 sec  click element  ${new_message_builder["button_add"]["first_image"]}
   select window  ${document_title}
   select frame  ${iframes["top"]}
   select frame  ${iframes["ccmd"]}
