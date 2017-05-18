@@ -87,6 +87,10 @@ create basic message
   current frame contains  Your message has been successfully saved.
 
 add image to widget
+  [Arguments]  ${link}=http://www.smartfocus.com/en
+  click element  ${new_message_builder["button_add"]["add_a_link"]}
+  input text  ${new_message_builder["button_add"]["links"]["link_input"]}  ${link}
+  click element  ${new_message_builder["button_add"]["links"]["save"]}
   click element  ${new_message_builder["button_add"]["add_a_picture"]}
   select frame  ${iframes["image_library_editor"]}
   wait until keyword succeeds  5x  1 sec  click element  ${new_message_builder["button_add"]["first_image"]}

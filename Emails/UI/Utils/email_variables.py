@@ -6,7 +6,8 @@ iframes = {
     "popup_frame": "id=popupFrame",
     "image_library_add_iframe": "//*[@id='ImageLibrary-IMAGES_THUMBNAIL_VIEW-frame']",
     "image_library_editor": "id=msg-editor-imagelib-iframe",
-    "html_preview": "//*[@id='iframeHtml']"
+    "html_preview": "//*[@id='iframeHtml']",
+    "tab_preview": "//iframe[@id='preview-iframe']"
 }
 
 # generic tabs
@@ -319,6 +320,7 @@ new_message_builder = {
         "add_recipients": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[1]",
         "tests_panel": "//*[@id='content-palette']//div[text()='Tests']",
         "send_test_emails": "//*[@id='send-test-emails']",
+        "preview_button": "//*[@id='preview-message']",
         "first_test_email_slider": "//*[@class='test-email']/div/div[2]",
         "send_test_search_input": "//*[@id='test-email-search-input-container']/div/input",
         "send_test_search_button": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[2]",
@@ -326,7 +328,17 @@ new_message_builder = {
         "add_a_picture": "//*[contains(text(), 'Add a picture')]",
         "first_image": "//*[@class='image ng-scope']",
         "apply_and_close": "//*[@id='image-popup-options-apply']",
-        "add_a_link": "//*[contains(text(), 'Add a link')]"
+        "editor_table": "//table[@class='editor-content-table']",
+        "add_a_link": "//*[contains(text(), 'Add a link')]",
+        "links": {
+            "link_input": "//*[@id='msg-editor-link-input']",
+            "save": "//div[@class='popup-confirm submit blue']"
+        },
+        "empty_block_menu": "//div[@class='icon contextual more-options']",
+        "add_column": "//div[@class='icon addcolumn']",
+        "drag_icon": "//div[@class='icon drag']",
+        "content_block_name_input": "//input[@name='content-block-name-input']",
+        "content_block_save": "//*[@id='content-block-btnsave']",
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message Builder']/li[2]",
@@ -345,7 +357,7 @@ new_message_builder = {
         "delete_button": "//*[contains(@id, 'deleteenable')]",
         "edit_button": "//*[contains(@id, 'editenable')]",
         "convert_to_html_button": "//*[contains(@id, 'convertenable')]",
-        "preview_button": "//*[contains(@id, 'preview-icon')]"
+        "preview_button": "//*[contains(@id, 'preview-icon')]",
     }
 }
 
