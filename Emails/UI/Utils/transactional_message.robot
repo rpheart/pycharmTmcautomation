@@ -32,6 +32,5 @@ send test emails
   # send test email to group
   select from list by label  ${generics["test_group_dropdown"]}  QA_auto  # Select Group 'QA_auto'
   click element  //table//img[@id="iconCampaignTest"]
-  alert should be present  text=Your message will be saved before the test is sent. Do you want to continue?
-  sleep  0.5
-  alert should be present  text=Message sent successfully
+  wait until keyword succeeds  5x  1 sec  alert should be present  text=Your message will be saved before the test is sent. Do you want to continue?
+  wait until keyword succeeds  5x  1 sec  alert should be present  text=Message sent successfully

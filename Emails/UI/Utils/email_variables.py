@@ -4,8 +4,10 @@ iframes = {
     "top": "css=iframe.sfIFrame",
     "ccmd": "id=emv-ccmd-iframe",
     "popup_frame": "id=popupFrame",
+    "image_library_add_iframe": "//*[@id='ImageLibrary-IMAGES_THUMBNAIL_VIEW-frame']",
     "image_library_editor": "id=msg-editor-imagelib-iframe",
-    "html_preview": "//*[@id='iframeHtml']"
+    "html_preview": "//*[@id='iframeHtml']",
+    "tab_preview": "//iframe[@id='preview-iframe']"
 }
 
 # generic tabs
@@ -116,7 +118,7 @@ multivariate_campaign = {
         "description_input": "//*[@id='splitrunUI-builderView-descriptionInput']",
         "2_select_message": "//*[@id='splitrunuidiv']//legend[contains(text(),'2. Select message')]",
         "message": "//*[@id='splitrunuidiv']//div[contains(text(),'Message')]",
-        "select_a_message": "//*[@id='splitrunUI-builderView-messagesExplorer-openButton']//div[contains(text(),'Select a message')]",
+        "select_a_message": "//*[@id='splitrunUI-builderView-messagesExplorer-openButton']//div",
         "first_message": "//div[@id='splitrunUI-builderView-messagesExplorer-nameColumn']",
         "3_select_recipients": "//*[@id='splitrunuidiv']//legend[contains(text(),'3. Select recipients')]",
         "segment": "//*[@id='splitrunuidiv']//div[contains(text(),'Segment')]",
@@ -286,15 +288,6 @@ new_message_builder = {
         "basic": "id=palette-contents-carousel-basic",
         "content_blocks": "id=palette-contents-carousel-content-blocks",
         "drop_content_here": "//*[@id='message-html']//span[normalize-space(.//text())='Drop content here']",
-        # "text_icon": "//*[@id='content-type-item-text']/div[@class='icon text-icon']",
-        # "image_icon": "//*[@id='content-type-item-image']/div[@class='icon image-icon']",
-        # "text_image_icon": "//*[@id='content-type-item-text-image']/div[@class='icon text-image-icon']",
-        # "image_text_icon": "//*[@id='content-type-item-image-text']/div[@class='icon image-text-icon']",
-        # "share_icon": "//*[@id='content-type-item-share']/div[@class='icon share-icon']",
-        # "html_icon": "//*[@id='content-type-item-html']/div[@class='icon html-icon']",
-        # "spacer_icon": "//*[@id='content-type-item-spacer']/div[@class='icon spacer-icon']",
-        # "video_icon": "//*[@id='content-type-item-video']/div[@class='icon video-icon']",
-        # "reco_icon": "//*[@id='content-type-item-reco']/div[@class='icon reco-icon']",
         "text_widget": "//*[@id='content-type-item-text']",
         "image_widget": "//*[@id='content-type-item-image']",
         "text_image_widget": "//*[@id='content-type-item-text-image']",
@@ -327,6 +320,7 @@ new_message_builder = {
         "add_recipients": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[1]",
         "tests_panel": "//*[@id='content-palette']//div[text()='Tests']",
         "send_test_emails": "//*[@id='send-test-emails']",
+        "preview_button": "//*[@id='preview-message']",
         "first_test_email_slider": "//*[@class='test-email']/div/div[2]",
         "send_test_search_input": "//*[@id='test-email-search-input-container']/div/input",
         "send_test_search_button": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[2]",
@@ -334,7 +328,17 @@ new_message_builder = {
         "add_a_picture": "//*[contains(text(), 'Add a picture')]",
         "first_image": "//*[@class='image ng-scope']",
         "apply_and_close": "//*[@id='image-popup-options-apply']",
-        "add_a_link": "//*[contains(text(), 'Add a link')]"
+        "editor_table": "//table[@class='editor-content-table']",
+        "add_a_link": "//*[contains(text(), 'Add a link')]",
+        "links": {
+            "link_input": "//*[@id='msg-editor-link-input']",
+            "save": "//div[@class='popup-confirm submit blue']"
+        },
+        "empty_block_menu": "//div[@class='icon contextual more-options']",
+        "add_column": "//div[@class='icon addcolumn']",
+        "drag_icon": "//div[@class='icon drag']",
+        "content_block_name_input": "//input[@name='content-block-name-input']",
+        "content_block_save": "//*[@id='content-block-btnsave']",
     },
     "button_list": {
         "list": "//*[@id='engage-create']//ul[@title='Message Builder']/li[2]",
@@ -353,7 +357,7 @@ new_message_builder = {
         "delete_button": "//*[contains(@id, 'deleteenable')]",
         "edit_button": "//*[contains(@id, 'editenable')]",
         "convert_to_html_button": "//*[contains(@id, 'convertenable')]",
-        "preview_button": "//*[contains(@id, 'preview-icon')]"
+        "preview_button": "//*[contains(@id, 'preview-icon')]",
     }
 }
 
@@ -364,23 +368,21 @@ classic_message_builder = {
         "add": "//*[@id='engage-create']//ul[@title='Message']/li",
         "header_accordion": "css=img#accordionIcon.accordionIcon.sprite",
         "body_accordion": "css=img.accordionIcon.msg-body02.sprite",
-        "expert_content": "name=expertContent",
-        "accordion_icon": "id=accordionIcon",
         "save_button": "css=#messageAccordion > form > div:nth-child(5) > table > tbody > tr > td > a:nth-child(1)",
         "save_and_view_the_result": "css=#messageAccordion > form > div:nth-child(5) > table > tbody > tr > td > a:nth-child(3)",
-        "message_name_input": "name=messageName",
-        "message_description_input": "name=messageDescription",
-        "message_from_input": "name=messageFrom",
-        "message_to_input": "name=messageTo",
-        "from_member_columns": "name=fromMemberColumns",
-        "to_member_columns": "name=toMemberColumns",
-        "subject_member_columns": "name=subjectMemberColumns",
-        "message_encoding": "name=messageEncoding",
-        "to_reply_to_email": "name=toReplyToEmail",
-        "message_reply_to_label_input": "name=messageReplyTo",
-        "to_reply_to_input": "name=toReplyTo",
-        "message_subject_input": "name=messageSubject",
-        "message_reply_to_email_input": "name=messageReplyToEmail",
+        "message_name_input": "//input[@name='messageName']",
+        "message_description_input": "//input[@name='messageDescription']",
+        "message_from_input": "//input[@name='messageFrom']",
+        "message_from_selector": "//select[@name='fromMemberColumns']",
+        "message_to_input": "//input[@name='messageTo']",
+        "message_to_selector": "//select[@name='toMemberColumns']",
+        "message_subject_input": "//input[@name='messageSubject']",
+        "message_subject_selector": "//select[@name='subjectMemberColumns']",
+        "message_reply_to_email_input": "//input[@name='messageReplyToEmail']",
+        "message_reply_to_email_selector": "//select[@name='toReplyToEmail']",
+        "message_reply_to_label_input": "//input[@name='messageReplyTo']",
+        "message_reply_to_label_selector": "//select[@name='toReplyTo']",
+        "message_encoding": "//select[@name='messageEncoding']",
         "message_custom_header_input": "name=xheaderValue(HEADER)",
         "expert_tab": "css=#EXPERT.editorMode.editorModeActive.editorModeText",
         "text_editor": "id=textContent",
@@ -581,11 +583,6 @@ content_block = {
         "description": "name=description",
         "text_content": "id=textContent",
         "tool_box": "id=toolbox",
-        # "message_name": "name=messageName",
-        # "message_description": "name=messageDescription",
-        # "message_from": "name=messageFrom",
-        # "message_to": "name=messageTo",
-        # "message_reply_to": "name=messageReplyToEmail",
         "html_checkbox": "//*[@id='content']//input[@type='radio' and @value='TEXT']",
         "text_only_checkbox": "//*[@id='content']//input[@type='radio' and @value='HTML']",
         "content_upload": "//*[@id='iconUpload']/../../a/div[./text()='Content upload']",
@@ -900,26 +897,21 @@ search_subscriber = {
         "header_value": "//*[@id='content']//th[./text()='Value']",
         "header_add": "//*[@id='content']//th[./text()='Add']",
         "text_field_combo": "name=textFieldCombo",
-        # "select_text_field_option_email": "//*[@id='content']//select/option[normalize-space(.//text())= 'EMAIL']",
         "text_field_operator": "name=textFieldOperator",
-        # "text_field_operator_option_contains": "//*[@id='content']//select/option[normalize-space(.//text())= 'contains']",
         "text_field_value": "name=textFieldValue",
-        "add_text": "//*[@id='iconAddCriteria']",
+        "add_text": "//*[@id='content']//a[@href='javascript:addText()']",
         "text_search": "//*[@id='iconSearch']",
         "numeric_field_combo": "name=numericFieldCombo",
         "numeric_field_operator": "name=numericFieldOperator",
         "numeric_field_value": "name=numericFieldValue",
-        "numeric_search": "//tr[3]/td[4]/a/img[@id='iconAddCriteria']",
-        # "add_text": "//*[@id='content']//a[@href='javascript:addText()']",
-        "select_number_field": "//*[@id='iconCriteriaNum']/../select[@name='numericFieldCombo']",
-        "number_field_operator": "//*[@id='content']//select[@name='numericFieldOperator']",
-        "number_field_value": "//*[@id='content']//input[@name='numericFieldValue']",
         "add_numeric": "//*[@id='content']//a[@href='javascript:addNumeric()']",
-        "date_field_operator": "//*[@id='content']//select[@name='dateFieldOperator']",
+        "numeric_search": "//tr[3]/td[4]/a/img[@id='iconAddCriteria']",
+        "date_field_operator": "name=dateFieldOperator",
+        "date_field_combo": "//*[@id='content']//select[@name='dateFieldOperator']",
         "date_picker": "id=datepicker",
         "add_date": "//*[@id='content']//a[@href='javascript:addDate()']",
-        "segmentation_operator": "//*[@id='content']//select[@name='segmentationOperator']",
-        "segmentation_index": "//*[@id='content']//select[@name='segmentationIndex']",
+        "segmentation_field_operator": "//*[@id='content']//select[@name='segmentationOperator']",
+        "segmentation_field_value": "//*[@id='content']//select[@name='segmentationIndex']",
         "add_segmentation": "//*[@id='content']//a[@href='javascript:addSegmentation()']",
         "search_criteria": "//*[@id='content']//td[./text()='Search Criteria' or normalize-space(.//text())='Search Criteria']",
         "member_count": "//*[@id='nbMembers']",
@@ -1028,9 +1020,8 @@ image_library = {
         "confirm_delete": "//div[2]/span[contains(text(), 'Delete')]",
         "storage": "//*[@id='action-bar']//span[./text()='Storage:']",
         "add_button": "//*[@id='appbar-add-button']//span[./text()='Add']",
-        "image_library_iframe": "id=ImageLibrary-IMAGES_THUMBNAIL_VIEW-frame",
-        "browse_button": "//*[@name='uploadFile']",
-        "start_upload_button": "//*[@id='imagelib-submit-label'][./text()='Start upload']"
+        "browse_button": "//*[@id='imagelib-browse-button']",
+        "start_upload_button": "//*[@id='imagelib-submit-button']"
     }
 
 }
@@ -1129,7 +1120,8 @@ list_growth_reports = {
             "segments_list": "//*[@id='listReportUI-builderView-segmentsExplorer-openButton']",
             "segments_search_input": "//input[@id='listReportUI-builderView-segmentsExplorer-searchButton-textBox']",
             "segments_search_button": "//*[@id='listReportUI-builderView-segmentsExplorer-searchButton-button']",
-            "segmentss_row": "//*[@id='listReportUI-builderView-segmentsExplorer-nameColumn']",
+            "segments_table": "//div[@class='popupContent']//table",
+            "segments_row": "//*[@id='listReportUI-builderView-segmentsExplorer-nameColumn']",
         }
     },
     "button_list": {
@@ -1195,5 +1187,8 @@ workflow_model = {
 }
 
 approval = {
-    "menu": "//*[@id='engage-approval']/div[./text()='Approval']"
+    "menu": "//*[@id='engage-approval']/div[./text()='Approval']",
+    "button_add": {
+        "campaign_table": "//*[@id='approval-ui-container']//table[class='table']"
+    }
 }
