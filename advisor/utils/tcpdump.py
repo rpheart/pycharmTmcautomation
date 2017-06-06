@@ -27,7 +27,6 @@ def filter_tcpdump(unfiltered_response):
                 while True:
                     if line[-3:] != ']}}':
                         line = line[:-1]
-                        # print line
                     elif line[-3:] == ']}}':
                         filtered_list.append(line)
                         break
@@ -39,40 +38,29 @@ def filter_tcpdump(unfiltered_response):
     return filtered_list
 
 
-def fetch_tcpdump(server, username, key_path, total_packets=3):
-    command = "sudo tcpdump -v -A -n -c %s -i eth0 -s 0 -c 2 src or dst port 9092" % total_packets
+def fetch_tcpdump(server, username, key_path, timeout=90):
+    # commands
+    file_path = "/tmp/tcpdump.log"
+    execute_tcpdump = "sudo timeout %d tcpdump -A -n -i eth0 -s 0 src or dst port 9092 -w %s" % (timeout, file_path)
 
+    # ssh setup
     client = paramiko.client.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.load_system_host_keys(key_path)
-
     client.connect(server, port=22, username=username, key_filename=key_path)
 
-    sleeptime = 0.001
-    outdata, errdata = '', ''
     ssh_transp = client.get_transport()
     chan = ssh_transp.open_session()
     chan.setblocking(0)
-    chan.exec_command(command)
+    chan.exec_command(execute_tcpdump)
+    time.sleep(timeout)
 
-    while True:  # monitoring process
-        # Reading from output streams
-        while chan.recv_ready():
-            outdata += chan.recv(1000)
-        while chan.recv_stderr_ready():
-            errdata += chan.recv_stderr(1000)
-        if chan.exit_status_ready():  # If completed
-            break
-        time.sleep(sleeptime)
-
-    exit_code = chan.recv_exit_status()
+    # fetch and return tcpdump output
+    sftp = client.open_sftp()
+    remote_file = sftp.file(file_path, 'r')
+    file_content = remote_file.read()
     ssh_transp.close()
-
-    print "Command exit code:", exit_code
-    print "Error:", errdata
-    print "Data:", outdata
-
     if client:
         client.close()
 
-    return outdata
+    return file_content
