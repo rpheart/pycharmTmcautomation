@@ -59,40 +59,19 @@ api_settings = {
 
 client_settings = {
     "QA": {
-        "SIDEV01": {
-            "account name": "SIDEV01",
-            "pod": "E2",
-            "guid": "e44f26b0-12c7-4c29-aabf-9d11197c9c02",
-            "aid": "20003",
-            "username": "qaTest1",
-            "password": "testPass1"
-        },
-        "EMVQA_E1": {
-            "account name": "EMVQA_E1",
-            "pod": "E1",
-            "guid": "35b21e25-6d94-4bd9-a390-6a07c8a6c845",
-            "aid": "20138",
-            "username": "u20135PErkXV8I",
-            "password": "AAA7BxDdA9JYnlyr"
-        }
+        "account name": "SIDEV01",
+        "pod": "E2",
+        "guid": "e44f26b0-12c7-4c29-aabf-9d11197c9c02",
+        "aid": "20003",
+        "username": "qaTest1",
+        "password": "testPass1"
     },
     "PREPROD": {
-        "PREPRODTMC": {
-            "account name": "PREPRODTMC",
-            "pod": "E0",
-            "guid": "f04323d7-4224-41b9-8906-17327182c866",
-            "aid": "50004",
-            "username": "u50004Z1EmS9rs",
-            "password": "gHHaHrUYo9SgXuzq"
-        },
-        "QAPREPROD": {
-            "account name": "QAPREPROD",
-            "pod": "E0",
-            "guid": "c9d07eea-3006-4bc0-aa8f-db490aefd400",
-            "aid": "50010",
-            "username": "u50011KayXn3uW",
-            "password": "VpU1mjvjVN57lxJw"
-        }
-
-    }
+        "account name": "PREPRODTMC",
+        "pod": "E0",
+        "guid": "f04323d7-4224-41b9-8906-17327182c866",
+        "aid": "50004",
+        "username": "u50004Z1EmS9rs",
+        "password": "gHHaHrUYo9SgXuzq"
+    },
 }
