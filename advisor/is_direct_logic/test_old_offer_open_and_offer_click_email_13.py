@@ -7,7 +7,7 @@ import requests
 
 import advisor.is_direct_logic.utils as utils
 import advisor.utils.api_calls as api
-import advisor.utils.api_settings as settings
+import advisor.utils.env_config as settings
 import advisor.utils.tcpdump as tcp
 
 # Globals
@@ -39,7 +39,7 @@ elif env == "PREPROD":
 
 
 def send_requests():
-    # time stamp format "2016/09/07" // "YYYY/MM/DD"
+    # time stamp format "2016/09/07" || "YYYY/MM/DD"
     timestamp_with_delta = datetime.now() - timedelta(1)  # deducts 1 day from timestamp
     one_day_past = timestamp_with_delta.strftime("%Y-%m-%d")  # formats timestamp properly
 
@@ -76,13 +76,13 @@ def get_response():
             filtered_response.append(line)
 
 
-class TestBuyEventsResponse(unittest.TestCase):
+class TestOldOfferOpenAndOfferClickEmail(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         send_requests()
         get_response()
 
-    def test_is_direct(self):
+    def test_is_direct_is_true(self):
         self.assertEqual(utils.verify_is_direct(filtered_response), "isDirect=true",
                          msg='is direct logic should be true')
 

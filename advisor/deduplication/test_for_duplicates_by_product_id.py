@@ -5,7 +5,7 @@ import unittest
 import requests
 
 import advisor.utils.api_calls as api
-import advisor.utils.api_settings as settings
+import advisor.utils.env_config as settings
 
 # Globals
 email = "deduplication@renderer.com"

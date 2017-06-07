@@ -7,7 +7,7 @@ import requests
 
 import advisor.is_direct_logic.utils as utils
 import advisor.utils.api_calls as api
-import advisor.utils.api_settings as settings
+import advisor.utils.env_config as settings
 import advisor.utils.tcpdump as tcp
 
 # Globals
@@ -28,8 +28,6 @@ password = settings.client_settings[env]["password"]
 tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
-
-# Build specific variables
 if env == "QA":
     engagement = "12875"
 elif env == "PREPROD":
@@ -37,7 +35,7 @@ elif env == "PREPROD":
 
 
 def send_requests():
-    # time stamp format "2016/09/07" // "YYYY/MM/DD"
+    # time stamp format "2016/09/07" || "YYYY/MM/DD"
     timestamp_with_delta = datetime.now() - timedelta(1)  # deducts 1 day from timestamp
     one_day_past = timestamp_with_delta.strftime("%Y-%m-%d")  # formats timestamp properly
 
@@ -61,13 +59,13 @@ def get_response():
             filtered_response.append(line)
 
 
-class TestBuyEventsResponse(unittest.TestCase):
+class TestOfferOpenEmailAndNoOfferClick(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         send_requests()
         get_response()
 
-    def test_is_direct(self):
+    def test_is_direct_is_false(self):
         self.assertEqual(utils.verify_is_direct(filtered_response), "isDirect=false",
                          msg='is direct logic should be false')
 
