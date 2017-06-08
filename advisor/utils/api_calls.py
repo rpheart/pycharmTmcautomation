@@ -8,29 +8,28 @@ def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", format
         timestamp = "&tstamp=" + timestamp
 
     url = "http://%s/api-public/3.0/personaliseemail?a=%s%s%s&e=%s&f=%s&l=en&h=%s&w=%s&cacheTimeout=%s&pos=%s%s" % (
-        renderer_url, guid, email, cookie_id, engagement_id, format, height, width, cache_timeout, position, timestamp)
+        renderer_url, guid, email, cookie_id, engagement_id, format, height, width, cache_timeout, str(position),
+        timestamp)
     return url
 
 
-def offer_click(click_url, guid, engagement_id, email="", cookie_id="", language="", cache_timeout="0",
+def offer_click(click_url, guid, engagement_id, email="", cookie_id="", language="", cache_timeout=0,
                 position="default", lid="", idx="", timestamp=""):
     if email:
         email = "&ue=" + email
     if cookie_id:
         cookie_id = "&uc=" + cookie_id
     if lid:
-        lid = "&lid=" + lid
+        lid = "&lid=" + str(lid)
     if idx:
-        idx = "&idx=" + idx
+        idx = "&idx=" + str(idx)
     if language:
         language = "&l=" + language
-    if position:
-        position = "&pos=" + position
     if timestamp:
         timestamp = "&tstamp=" + timestamp
 
-    url = "http://%sa=%s&e=%s%s%s%s&cacheTimeout=%s%s%s%s%s" % (
-        click_url, guid, engagement_id, email, cookie_id, language, cache_timeout, position, lid, idx, timestamp)
+    url = "http://%sa=%s&e=%s%s%s%s&cacheTimeout=%d&pos=%s%s%s%s" % (
+        click_url, guid, engagement_id, email, cookie_id, language, cache_timeout, str(position), lid, idx, timestamp)
     return url
 
 
