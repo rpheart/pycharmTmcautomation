@@ -1,4 +1,3 @@
-import Tkinter
 import os
 import unittest
 from random import randint
@@ -16,7 +15,6 @@ email = "TC04_%s@advisortest.com" % unique_key
 cookie_id = "44444_%s" % unique_key
 sku = "123"
 filtered_response = []
-root = Tkinter.Tk()
 
 # environment variables
 env = os.environ["BUILD_ENV"]
