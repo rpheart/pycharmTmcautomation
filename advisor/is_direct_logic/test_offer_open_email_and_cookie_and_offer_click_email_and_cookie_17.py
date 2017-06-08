@@ -57,19 +57,14 @@ def send_requests():
         requests.get(request)
 
 
-def get_response():
-    response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
-
-    for line in tcp.filter_tcpdump(response):
-        if str(unique_key) in line:
-            filtered_response.append(line)
-
-
 class TestOfferOpenEmailAndCookieAndOfferClickEmailAndCookie(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         send_requests()
-        get_response()
+        response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
+        for line in tcp.filter_tcpdump(response):
+            if str(unique_key) in line:
+                filtered_response.append(line)
 
     def test_is_direct_is_true(self):
         self.assertEqual(utils.verify_is_direct(filtered_response), "isDirect=true",
