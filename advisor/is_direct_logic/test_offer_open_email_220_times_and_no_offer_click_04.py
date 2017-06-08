@@ -55,7 +55,7 @@ def send_requests():
         requests.get(request)
 
 
-class TestNoOfferOpenAndNoOfferClick(unittest.TestCase):
+class TestOfferOpenEmail220TimesAndNoOfferClick(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         send_requests()
