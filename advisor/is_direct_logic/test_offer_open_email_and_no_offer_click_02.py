@@ -55,7 +55,7 @@ def get_response():
     response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
 
     for line in tcp.filter_tcpdump(response):
-        if email in line or cookie_id in line:
+        if str(unique_key) in line:
             filtered_response.append(line)
 
 
