@@ -61,8 +61,9 @@ class TestOldOfferOpenAndNoOfferClick(unittest.TestCase):
                 filtered_response.append(line)
 
     def test_is_direct_is_null(self):
-        self.assertEqual(utils.verify_is_direct(filtered_response), "isDirect=null",
-                         msg='is direct logic should be null')
+        self.assertIsNone(utils.verify_is_direct(filtered_response),
+                          msg="is direct logic should be null but is: %s" % str(
+                              utils.verify_is_direct(filtered_response)))
 
     def test_suggest_contains_all_event_information(self):
         self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
@@ -85,5 +86,5 @@ class TestOldOfferOpenAndNoOfferClick(unittest.TestCase):
                         msg="buy event is missing this campaign information")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

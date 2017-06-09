@@ -44,8 +44,8 @@ def send_requests():
     for request in request_list:
         response = requests.get(request)
         if response.status_code == requests.codes.ok:
-            if 'cbtt=' in response.url:
-                nonsense, cbtt = response.url.split('cbtt=')
+            if "cbtt=" in response.url:
+                nonsense, cbtt = response.url.split("cbtt=")
 
     request_list_cbtt = [
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id, cbtt=cbtt),
@@ -67,8 +67,9 @@ class TestOfferOpenEmailWithOfferClickAndBrowseCbtt(unittest.TestCase):
                 filtered_response.append(line)
 
     def test_is_direct_is_true(self):
-        self.assertEqual(utils.verify_is_direct(filtered_response), "isDirect=true",
-                         msg='is direct logic should be true')
+        self.assertTrue(utils.verify_is_direct(filtered_response),
+                        msg="is direct logic should be true but is: %s" % str(
+                            utils.verify_is_direct(filtered_response)))
 
     def test_offer_open_contains_all_event_information(self):
         self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
@@ -91,5 +92,5 @@ class TestOfferOpenEmailWithOfferClickAndBrowseCbtt(unittest.TestCase):
                         msg="buy event is missing this campaign information")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

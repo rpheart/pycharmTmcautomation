@@ -51,8 +51,8 @@ def verify_is_direct(tcpdump_data):
     for line in tcpdump_data:
         if '"evtype":"buy"' in line:
             if '"isDirect":true' in line:
-                return "isDirect=true"
+                return True
             elif '"isDirect":false' in line:
-                return "isDirect=false"
+                return False
             else:
-                return "isDirect=null"
+                return None

@@ -63,8 +63,9 @@ class TestOfferOpenEmail220TimesAndNoOfferClick(unittest.TestCase):
                 filtered_response.append(line)
 
     def test_is_direct_is_false(self):
-        self.assertEqual(utils.verify_is_direct(filtered_response), "isDirect=false",
-                         msg='is direct logic should be false')
+        self.assertFalse(utils.verify_is_direct(filtered_response),
+                         msg="is direct logic should be false but is: %s" % str(
+                             utils.verify_is_direct(filtered_response)))
 
     @unittest.skip("test fails iterating over a NoneType that shouldn't be None")
     def test_campaign_information_is_present_in_all_requests(self):
@@ -78,5 +79,5 @@ class TestOfferOpenEmail220TimesAndNoOfferClick(unittest.TestCase):
             self.assertIn(event_type, filtered_response, msg="kafka output is missing event: %s" % event_type)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
