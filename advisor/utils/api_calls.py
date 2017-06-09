@@ -25,11 +25,13 @@ def offer_click(click_url, guid, engagement_id, email="", cookie_id="", language
         idx = "&idx=" + str(idx)
     if language:
         language = "&l=" + language
+    if position:
+        position = "&pos=" + str(position)
     if timestamp:
         timestamp = "&tstamp=" + timestamp
 
-    url = "http://%sa=%s&e=%s%s%s%s&cacheTimeout=%d&pos=%s%s%s%s" % (
-        click_url, guid, engagement_id, email, cookie_id, language, cache_timeout, str(position), lid, idx, timestamp)
+    url = "http://%sa=%s&e=%s%s%s%s&cacheTimeout=%d%s%s%s%s" % (
+        click_url, guid, engagement_id, email, cookie_id, language, cache_timeout, position, lid, idx, timestamp)
     return url
 
 
