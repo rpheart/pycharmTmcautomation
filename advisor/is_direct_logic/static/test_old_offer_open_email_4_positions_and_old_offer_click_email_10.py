@@ -1,0 +1,126 @@
+import os
+import unittest
+from datetime import timedelta, datetime
+from random import randint
+
+import requests
+
+import advisor.is_direct_logic.utils as utils
+import advisor.utils.api_calls as api
+import advisor.utils.env_config as settings
+import advisor.utils.tcpdump as tcp
+
+# Globals
+unique_key = randint(1000, 10000)
+email = "TC10_%s@advisortest.com" % unique_key
+cookie_id = "1010101010_%s" % unique_key
+cbtt = None
+sku = "123"
+filtered_response = []
+
+# environment variables
+env = os.environ["BUILD_ENV"]
+advisor = settings.api_settings[env]["advisor"]
+renderer = settings.api_settings[env]["renderer"]
+click = settings.api_settings[env]["click_advisor"]
+guid = settings.client_settings[env]["guid"]
+aid = settings.client_settings[env]["aid"]
+username = settings.client_settings[env]["username"]
+password = settings.client_settings[env]["password"]
+tcp_username = settings.kafka_settings[env]["tcp_username"]
+tcp_server = settings.kafka_settings[env]["tcp_server"]
+tcp_key = settings.kafka_settings[env]["tcp_key"]
+if env == "QA":
+    engagement = ""
+elif env == "PREPROD":
+    engagement = "6946"
+
+
+def send_requests():
+    # time stamp format "2016/09/07" || "YYYY/MM/DD"
+    timestamp_with_delta = datetime.now() - timedelta(3)  # deducts 3 days from timestamp
+    three_days_past = timestamp_with_delta.strftime("%Y-%m-%d")  # formats timestamp properly
+
+    request_list = [
+        api.offer_open(renderer, guid, engagement, email=email, position=1, timestamp=three_days_past),
+        api.offer_open(renderer, guid, engagement, email=email, position=2, timestamp=three_days_past),
+        api.offer_open(renderer, guid, engagement, email=email, position=3, timestamp=three_days_past),
+        api.offer_open(renderer, guid, engagement, email=email, position=4, timestamp=three_days_past),
+        api.offer_click(click, guid, engagement, email=email, position=1, timestamp=three_days_past),
+    ]
+
+    for request in request_list:
+        response = requests.get(request)
+        if response.status_code == requests.codes.ok:
+            if "cbtt=" in response.url:
+                nonsense, cbtt = response.url.split("cbtt=")
+
+    request_list_cbtt = [
+        api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id, cbtt=cbtt, timestamp=three_days_past),
+        api.login(advisor, username, password, aid, cookie_id=cookie_id, email=email),
+        api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id),
+        api.cart_add(advisor, username, password, aid, sku, cookie_id=cookie_id),
+        api.buy(advisor, username, password, aid, sku, cookie_id=cookie_id)
+    ]
+
+    for request in request_list_cbtt:
+        requests.get(request)
+
+
+class TestOldOfferOpenEmail4PositionsAndOldOfferClickEmail(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        send_requests()
+        response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
+        for line in tcp.filter_tcpdump(response):
+            if str(unique_key) in line:
+                filtered_response.append(line)
+
+    def test_is_direct_is_null(self):
+        self.assertIsNone(utils.verify_is_direct(filtered_response),
+                          msg="is direct logic should be null but is: %s" % str(
+                              utils.verify_is_direct(filtered_response)))
+
+    def test_offer_open_1_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
+                        msg="offer open 1 event is missing this campaign information")
+
+    def test_offer_open_2_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
+                        msg="offer open 2 event is missing this campaign information")
+
+    def test_offer_open_3_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
+                        msg="offer open 3 event is missing this campaign information")
+
+    def test_offer_open_4_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
+                        msg="offer open 4 event is missing this campaign information")
+
+    def test_offer_click_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+                        msg="offer click event is missing this campaign information")
+
+    def test_browse_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[5]),
+                        msg="browse event is missing this campaign information")
+
+    def test_login_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[6]),
+                        msg="login event is missing this campaign information")
+
+    def test_browse_2_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[7]),
+                        msg="browse 2 event is missing this campaign information")
+
+    def test_cart_add_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[8]),
+                        msg="cart add event is missing this campaign information")
+
+    def test_buy_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[9]),
+                        msg="buy event is missing this campaign information")
+
+
+if __name__ == "__main__":
+    unittest.main()
