@@ -38,10 +38,10 @@ def filter_tcpdump(unfiltered_response):
     return filtered_list
 
 
-def fetch_tcpdump(server, username, key_path, timeout=180):
+def fetch_tcpdump(server, username, key_path, timeout=90):
     # commands
     file_path = "/tmp/tcpdump.log"
-    execute_tcpdump = "sudo timeout %d tcpdump -A -n -i eth0 -s 0 src or dst port 9092 -w %s" % (timeout, file_path)
+    execute_tcpdump = "sudo timeout %d tcpdump -A -n -i eth0 -s 0 dst port 9092 -w %s" % (timeout, file_path)
 
     # ssh setup
     client = paramiko.client.SSHClient()
