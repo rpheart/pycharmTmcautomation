@@ -74,7 +74,7 @@ class TestOfferOpenEmail220TimesAndNoOfferClick(unittest.TestCase):
 
     @unittest.skip("test fails iterating over a NoneType that shouldn't be None")
     def test_all_event_types_appear_in_kafka(self):
-        event_types = ["offer-open", "login", "browse", "cart-add", "buy"]
+        event_types = ["suggest", "offer-open", "login", "browse", "cart-add", "buy"]
         for event_type in event_types:
             self.assertIn(event_type, filtered_response, msg="kafka output is missing event: %s" % event_type)
 

@@ -103,19 +103,19 @@ class TestOldOfferOpenAndOfferClickEmail(unittest.TestCase):
                         msg="login event is missing this campaign information")
 
     def test_browse_cbtt_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[5]),
                         msg="browse with cbtt event is missing this campaign information")
 
     def test_browse_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[6]),
                         msg="browse event is missing this campaign information")
 
     def test_cart_add_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[7]),
                         msg="cart add event is missing this campaign information")
 
     def test_buy_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[8]),
                         msg="buy event is missing this campaign information")
 
 
