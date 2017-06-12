@@ -30,7 +30,7 @@ tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
-    engagement = ""
+    engagement = "13175"
 elif env == "PREPROD":
     engagement = "6874"
 
@@ -66,36 +66,40 @@ class TestNoOfferOpenAndNoOfferClick(unittest.TestCase):
                          msg="is direct logic should be false but is: %s" % str(
                               utils.verify_is_direct(filtered_response)))
 
-    def test_login_contains_all_event_information(self):
+    def test_offer_open_contains_all_event_information(self):
         self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
+                        msg="offer open event is missing this campaign information")
+
+    def test_login_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
                         msg="login event is missing this campaign information")
 
     def test_browse_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
                         msg="browse event is missing this campaign information")
 
     def test_cart_add_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
                         msg="cart add event is missing this campaign information")
 
     def test_buy_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
                         msg="buy event is missing this campaign information")
 
     def test_login_2_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[5]),
                         msg="login event is missing this campaign information")
 
     def test_browse_2_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[5]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[6]),
                         msg="browse event is missing this campaign information")
 
     def test_cart_add_2_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[6]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[7]),
                         msg="cart add event is missing this campaign information")
 
     def test_buy_2_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[7]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[8]),
                         msg="buy event is missing this campaign information")
 
 
