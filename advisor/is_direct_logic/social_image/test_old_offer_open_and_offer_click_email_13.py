@@ -33,7 +33,7 @@ tcp_key = settings.kafka_settings[env]["tcp_key"]
 
 # Build specific variables
 if env == "QA":
-    engagement = ""
+    engagement = "13194"
 elif env == "PREPROD":
     engagement = "6966"
 
@@ -82,28 +82,20 @@ class TestOldOfferOpenAndOfferClickEmail(unittest.TestCase):
                         msg="is direct logic should be true but is: %s" % str(
                             utils.verify_is_direct(filtered_response)))
 
-    def test_open_suggest_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
-                        msg="open suggest event is missing this campaign information")
-
     def test_offer_open_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
                         msg="offer open event is missing this campaign information")
 
-    def test_click_suggest_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
-                        msg="click suggest event is missing this campaign information")
-
     def test_offer_click_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
                         msg="offer click event is missing this campaign information")
 
     def test_login_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
                         msg="login event is missing this campaign information")
 
     def test_browse_cbtt_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
                         msg="browse with cbtt event is missing this campaign information")
 
     def test_browse_contains_all_event_information(self):
@@ -111,11 +103,11 @@ class TestOldOfferOpenAndOfferClickEmail(unittest.TestCase):
                         msg="browse event is missing this campaign information")
 
     def test_cart_add_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[5]),
                         msg="cart add event is missing this campaign information")
 
     def test_buy_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[6]),
                         msg="buy event is missing this campaign information")
 
 
