@@ -48,7 +48,7 @@ def send_requests():
     ]
 
     for request in request_list:
-        requests.get(request)
+        requests.get(request).raise_for_status()
 
 
 class TestOfferOpenCookieAndOfferClickNewCookie(unittest.TestCase):

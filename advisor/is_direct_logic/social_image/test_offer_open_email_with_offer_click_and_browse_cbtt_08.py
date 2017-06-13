@@ -54,7 +54,7 @@ def send_requests():
     ]
 
     for request in request_list_cbtt:
-        requests.get(request)
+        requests.get(request).raise_for_status()
 
 
 class TestOfferOpenEmailWithOfferClickAndBrowseCbtt(unittest.TestCase):

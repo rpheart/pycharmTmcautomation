@@ -50,10 +50,9 @@ def send_requests():
     ]
 
     for request in request_list:
-        response = requests.get(request)
-        if response.status_code == requests.codes.ok:
-            if "cbtt=" in response.url:
-                nonsense, cbtt = response.url.split("cbtt=")
+        response = requests.get(request).raise_for_status()
+        if "cbtt=" in response.url:
+            nonsense, cbtt = response.url.split("cbtt=")
 
     request_list_cbtt = [
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id, cbtt=cbtt, timestamp=three_days_past),
@@ -64,7 +63,7 @@ def send_requests():
     ]
 
     for request in request_list_cbtt:
-        requests.get(request)
+        requests.get(request).raise_for_status()
 
 
 class TestOldOfferOpenEmail4PositionsAndOldOfferClickEmail(unittest.TestCase):

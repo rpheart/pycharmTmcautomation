@@ -47,10 +47,10 @@ def send_requests():
     ]
 
     for i in range(220):
-        requests.get(offer_open)
+        requests.get(offer_open).raise_for_status()
 
     for request in request_list:
-        requests.get(request)
+        requests.get(request).raise_for_status()
 
 
 class TestOfferOpenEmail220TimesAndNoOfferClick(unittest.TestCase):

@@ -55,7 +55,7 @@ def send_requests():
     ]
 
     for request in request_list:
-        response = requests.get(request)
+        response = requests.get(request).raise_for_status()
         if "cbtt=" in response.url:
             nonsense, cbtt = response.url.split("cbtt=")
 
@@ -68,7 +68,7 @@ def send_requests():
     ]
 
     for request in request_list:
-        requests.get(request)
+        requests.get(request).raise_for_status()
 
 
 @unittest.skip("timestamps aren't supported on personalisation content")
