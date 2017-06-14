@@ -43,7 +43,7 @@ def send_requests():
 
     for request in request_list:
         response = requests.get(request)
-        if response.status_code == requests.codes.ok:
+        if not response.raise_for_status():
             if "cbtt=" in response.url:
                 nonsense, cbtt = response.url.split("cbtt=")
 

@@ -42,9 +42,10 @@ def send_requests():
     ]
 
     for request in request_list:
-        response = requests.get(request).raise_for_status()
-        if "cbtt=" in response.url:
-            nonsense, cbtt = response.url.split("cbtt=")
+        response = requests.get(request)
+        if not response.raise_for_status():
+            if "cbtt=" in response.url:
+                nonsense, cbtt = response.url.split("cbtt=")
 
     request_list = [
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id, cbtt=cbtt),
