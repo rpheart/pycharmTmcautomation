@@ -6,7 +6,7 @@ import paramiko
 
 def split_before_names(filtered_text):
     previous = 0
-    for m in re.finditer('{"names":', filtered_text):
+    for m in re.finditer('names":', filtered_text):
         yield filtered_text[previous:m.start()]
         previous = m.start()
     yield filtered_text[previous:]
@@ -22,7 +22,7 @@ def filter_tcpdump(unfiltered_response):
     unfiltered_list = list(split_before_names(content))
 
     for line in unfiltered_list:
-        if line.startswith('{"names":'):
+        if line.startswith('names":'):
             if ']}}' in line:
                 while True:
                     if line[-3:] != ']}}':
