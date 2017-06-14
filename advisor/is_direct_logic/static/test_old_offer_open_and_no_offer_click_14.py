@@ -29,7 +29,7 @@ tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
-    engagement = ""
+    engagement = "13229"
 elif env == "PREPROD":
     engagement = "6950"
 
@@ -37,10 +37,10 @@ elif env == "PREPROD":
 def send_requests():
     # time stamp format "2016/09/07" || "YYYY/MM/DD"
     timestamp_with_delta = datetime.now() - timedelta(3)  # deducts 3 days from timestamp
-    timestamp3 = timestamp_with_delta.strftime("%Y-%m-%d")  # formats timestamp properly
+    three_days_past = timestamp_with_delta.strftime("%Y-%m-%d")  # formats timestamp properly
 
     request_list = [
-        api.offer_open(renderer, guid, engagement, email=email, timestamp=timestamp3),
+        api.offer_open(renderer, guid, engagement, email=email, timestamp=three_days_past),
         api.login(advisor, username, password, aid, cookie_id=cookie_id, email=email),
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id),
         api.cart_add(advisor, username, password, aid, sku, cookie_id=cookie_id),
@@ -65,13 +65,13 @@ class TestOldOfferOpenAndNoOfferClick(unittest.TestCase):
                           msg="is direct logic should be null but is: %s" % str(
                               utils.verify_is_direct(filtered_response)))
 
-    def test_suggest_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
-                        msg="suggest event is missing this campaign information")
-
     def test_offer_open_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
                         msg="offer open event is missing this campaign information")
+
+    def test_login_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
+                        msg="login event is missing this campaign information")
 
     def test_browse_contains_all_event_information(self):
         self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),

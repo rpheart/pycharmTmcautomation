@@ -28,7 +28,7 @@ tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
-    engagement = ""
+    engagement = "13216"
 elif env == "PREPROD":
     engagement = "6883"
 
@@ -59,24 +59,20 @@ class TestOfferOpenEmailAndNoOfferClick(unittest.TestCase):
                          msg="is direct logic should be false but is: %s" % str(
                               utils.verify_is_direct(filtered_response)))
 
-    def test_suggest_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
-                        msg="suggest event is missing this campaign information")
-
     def test_offer_open_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
                         msg="offer open event is missing this campaign information")
 
     def test_login_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
                         msg="login event is missing this campaign information")
 
     def test_cart_add_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
                         msg="cart add event is missing this campaign information")
 
     def test_buy_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
                         msg="buy event is missing this campaign information")
 
 
