@@ -30,9 +30,9 @@ tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
-    engagement = ""
-    lid = ""
-    idx = ""
+    engagement = "13240"
+    lid = "2"
+    idx = "0"
 elif env == "PREPROD":
     engagement = "6893"
     lid = "5e58c980-c086-46ee-8a71-026ced096fd5"

@@ -30,9 +30,9 @@ tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
-    engagement = ""
-    lid = ""
-    idx = ""
+    engagement = "13239"
+    lid = "2"
+    idx = "0"
 elif env == "PREPROD":
     engagement = "6892"
     lid = "5e58c980-c086-46ee-8a71-026ced096fd5"
@@ -41,8 +41,8 @@ elif env == "PREPROD":
 
 def send_requests():
     request_list = [
-        api.offer_open(renderer, guid, engagement, cookie_id=cookie_id),
-        api.offer_click(click, guid, engagement, cookie_id=cookie_id, lid=lid, idx=idx, position=""),
+        api.offer_open(renderer, guid, engagement, email=email, cookie_id=cookie_id),
+        api.offer_click(click, guid, engagement, email=email, cookie_id=cookie_id_new, lid=lid, idx=idx, position=""),
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id_new),
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id_new),
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id_new),
@@ -64,10 +64,10 @@ class TestOfferOpenCookieAndOfferClickNewCookie(unittest.TestCase):
             if str(unique_key) in line:
                 filtered_response.append(line)
 
-    def test_is_direct_is_null(self):
-        self.assertIsNone(utils.verify_is_direct(filtered_response),
-                          msg="is direct logic should be null but is: %s" % str(
-                              utils.verify_is_direct(filtered_response)))
+    def test_is_direct_is_true(self):
+        self.assertTrue(utils.verify_is_direct(filtered_response),
+                        msg="is direct logic should be true but is: %s" % str(
+                            utils.verify_is_direct(filtered_response)))
 
     def test_offer_open_contains_all_event_information(self):
         self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),

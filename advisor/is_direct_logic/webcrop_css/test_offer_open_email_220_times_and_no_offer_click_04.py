@@ -28,9 +28,13 @@ tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
-    engagement = ""
+    engagement = "13236"
+    lid = "2"
+    idx = "0"
 elif env == "PREPROD":
     engagement = "6889"
+    lid = "2"
+    idx = "0"
 
 
 def send_requests():
