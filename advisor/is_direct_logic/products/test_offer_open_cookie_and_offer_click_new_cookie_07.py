@@ -37,8 +37,8 @@ elif env == "PREPROD":
 
 def send_requests():
     request_list = [
-        api.offer_open(renderer, guid, engagement, cookie_id=cookie_id),
-        api.offer_click(click, guid, engagement, cookie_id=cookie_id_new),
+        api.offer_open(renderer, guid, engagement, email=email, cookie_id=cookie_id),
+        api.offer_click(click, guid, engagement, email=email, cookie_id=cookie_id_new),
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id_new),
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id_new),
         api.browse(advisor, username, password, aid, sku, cookie_id=cookie_id_new),
@@ -60,41 +60,49 @@ class TestOfferOpenCookieAndOfferClickNewCookie(unittest.TestCase):
             if str(unique_key) in line:
                 filtered_response.append(line)
 
-    def test_is_direct_is_null(self):
-        self.assertIsNone(utils.verify_is_direct(filtered_response),
-                          msg="is direct logic should be null but is: %s" % str(
-                              utils.verify_is_direct(filtered_response)))
+    def test_is_direct_is_true(self):
+        self.assertTrue(utils.verify_is_direct(filtered_response),
+                        msg="is direct logic should be true but is: %s" % str(
+                            utils.verify_is_direct(filtered_response)))
+
+    def test_open_suggest_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
+                        msg="suggest event is missing this campaign information")
 
     def test_offer_open_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[0]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
                         msg="offer open event is missing this campaign information")
 
+    def test_click_suggest_contains_all_event_information(self):
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
+                        msg="suggest event is missing this campaign information")
+
     def test_offer_click_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[1]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
                         msg="offer click event is missing this campaign information")
 
     def test_browse_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[2]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
                         msg="browse event is missing this campaign information")
 
     def test_browse_2_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[3]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[5]),
                         msg="browse 2 event is missing this campaign information")
 
     def test_browse_3_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[4]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[6]),
                         msg="browse 3 event is missing this campaign information")
 
     def test_cart_add_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[5]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[7]),
                         msg="cart add event is missing this campaign information")
 
     def test_cart_add_2_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[6]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[8]),
                         msg="cart add 2 event is missing this campaign information")
 
     def test_buy_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[7]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[9]),
                         msg="buy event is missing this campaign information")
 
 
