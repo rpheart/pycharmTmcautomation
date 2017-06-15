@@ -8,7 +8,6 @@ import requests
 import advisor.is_direct_logic.utils as utils
 import advisor.utils.api_calls as api
 import advisor.utils.env_config as settings
-import advisor.utils.tcpdump as tcp
 
 # Globals
 unique_key = randint(1000, 10000)
@@ -31,12 +30,12 @@ tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
-    engagement = ""
-    lid = ""
-    idx = ""
+    engagement = "13259"
+    lid = "2"
+    idx = "0"
 elif env == "PREPROD":
     engagement = ""
-    lid = ""
+    lid = "5e58c980-c086-46ee-8a71-026ced096fd5"
     idx = ""
 
 
@@ -73,13 +72,13 @@ def send_requests():
 
 @unittest.skip("timestamps aren't supported on personalisation content")
 class TestOldOfferOpenEmail4PositionsAndOldOfferClickEmail(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        send_requests()
-        response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
-        for line in tcp.filter_tcpdump(response):
-            if str(unique_key) in line:
-                filtered_response.append(line)
+    # @classmethod
+    # def setUpClass(cls):
+    #     send_requests()
+    #     response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
+    #     for line in tcp.filter_tcpdump(response):
+    #         if str(unique_key) in line:
+    #             filtered_response.append(line)
 
     def test_is_direct_is_null(self):
         self.assertIsNone(utils.verify_is_direct(filtered_response),

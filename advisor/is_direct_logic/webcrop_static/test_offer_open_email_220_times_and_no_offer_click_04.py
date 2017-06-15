@@ -28,9 +28,13 @@ tcp_username = settings.kafka_settings[env]["tcp_username"]
 tcp_server = settings.kafka_settings[env]["tcp_server"]
 tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
-    engagement = ""
+    engagement = "13253"
+    lid = "2"
+    idx = "0"
 elif env == "PREPROD":
     engagement = "6906"
+    lid = "5e58c980-c086-46ee-8a71-026ced096fd5"
+    idx = "0"
 
 
 def send_requests():
@@ -47,7 +51,7 @@ def send_requests():
     ]
 
     for i in range(220):
-        requests.get(offer_open)
+        requests.get(offer_open).raise_for_status()
 
     for request in request_list:
         requests.get(request).raise_for_status()
