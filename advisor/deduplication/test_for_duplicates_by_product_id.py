@@ -5,23 +5,20 @@ import unittest
 import requests
 
 import advisor.utils.api_calls as api
-import advisor.utils.api_settings as settings
+import advisor.utils.env_config as settings
 
-# Globals
+# globals
 email = "deduplication@renderer.com"
 product_list = []
 
-# Build Specific Variables
-if os.environ["BUILD_ENV"] == "QA":
-    renderer = settings.api_settings["QA"]["renderer"]
-    guid = settings.client_settings["QA"]["SIDEV01"]["guid"]
+# environment variables
+env = os.environ["BUILD_ENV"]
+renderer = settings.api_settings[env]["renderer"]
+guid = settings.client_settings[env]["guid"]
+if env == "QA":
     engagement = "12843"
-elif os.environ["BUILD_ENV"] == "PREPROD":
-    renderer = settings.api_settings["PREPROD"]["renderer"]
-    guid = settings.client_settings["PREPROD"]["PREPRODTMC"]["guid"]
+elif env == "PREPROD":
     engagement = "6727"
-else:
-    quit()
 
 
 def verify_products_differ(product_id_list):
@@ -30,7 +27,7 @@ def verify_products_differ(product_id_list):
 
     for a, b in itertools.combinations(product_id_list, 2):
         if a is None or b is None:
-            print "image returned without suggestion"
+            print "no suggestions returned"
             return False
         elif a == b:
             print "%s and %s are duplicate suggestions" % (a, b)
