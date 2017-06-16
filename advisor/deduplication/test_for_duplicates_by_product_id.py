@@ -56,11 +56,9 @@ def get_response(renderer_url, guid_link, user_email, engagement_id, position_va
     request_url = api.offer_open(renderer_url, guid_link, engagement_id, email=user_email, position=position_value,
                                  format="sugg")
 
-    try:
-        json_handler = requests.get(request_url)  # get the specified url and store the content as a variable
+    json_handler = requests.get(request_url)  # get the specified url and store the content as a variable
+    if not json_handler.raise_for_status():
         return json_handler.json()
-    except json_handler.status_code != requests.codes.OK:
-        json_handler.raise_for_status()
 
 
 class TestForDuplication(unittest.TestCase):

@@ -9,7 +9,6 @@ kafka_settings = {
         "tcp_username": "psummers",
         "tcp_key": "C:/keys/preprod-eu-master"
     }
-
 }
 
 api_settings = {
@@ -43,5 +42,5 @@ client_settings = {
         "aid": "50004",
         "username": "u50004Z1EmS9rs",
         "password": "gHHaHrUYo9SgXuzq"
-    },
+    }
 }
