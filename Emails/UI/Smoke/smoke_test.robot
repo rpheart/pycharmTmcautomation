@@ -303,6 +303,7 @@ new message add
   wait until element is visible  ${new_message_builder["button_add"]["input_name"]}
   element should be visible  ${new_message_builder["button_add"]["add_a_row"]}
   element should be visible  ${new_message_builder["button_add"]["add_content"]}
+  element should be visible  ${new_message_builder["button_add"]["add_custom_css"]}
   element should be visible  ${new_message_builder["button_add"]["change_style"]}
   element should be visible  ${new_message_builder["button_add"]["links"]}
   element should be visible  ${new_message_builder["button_add"]["tests"]}

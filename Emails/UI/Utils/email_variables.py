@@ -275,6 +275,7 @@ new_message_builder = {
         "add_a_row": "//*[@id='action-bar-addrow']/span[./text()='Add a row']",
         "add_content": "//*[@id='action-bar-addcontent']/span[./text()='Add content']",
         "change_style": "//*[@id='action-bar-styles']/span[./text()='Change style']",
+        "add_custom_css": "//*[@id='action-bar-addcustomcss']/span[./text()='Add Custom CSS']",
         "links": "//*[@id='action-bar-links']/span[./text()='Links']",
         "tests": "//*[@id='action-bar-tests']/span[./text()='Tests']",
         "import": "//*[@id='action-bar-import']/span[./text()='Import']",
