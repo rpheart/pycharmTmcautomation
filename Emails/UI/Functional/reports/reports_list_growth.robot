@@ -43,10 +43,9 @@ list_growth_search_segments
   click element  ${generics["create_new"]}
   click element  ${list_growth_reports["button_add"]["create_new"]["segments_radio"]}
   click element  ${list_growth_reports["button_add"]["create_new"]["segments_list"]}
-  click element
   input text  ${list_growth_reports["button_add"]["create_new"]["segments_search_input"]}  QA TEAM
   click element  ${list_growth_reports["button_add"]["create_new"]["segments_search_button"]}
-  element should contain  ${list_growth_reports["button_add"]["create_new"]["segments_table"]}  QA TEAM
+  element should contain  ${list_growth_reports["button_add"]["create_new"]["segments_first_row"]}  QA TEAM
 
 *** Keywords ***
 refresh page until report status
