@@ -330,7 +330,7 @@ new_message_builder = {
         "apply_and_close": "//*[@id='image-popup-options-apply']",
         "editor_table": "//table[@class='editor-content-table']",
         "add_a_link": "//*[contains(text(), 'Add a link')]",
-        "links": {
+        "links_dialog": {
             "link_input": "//*[@id='msg-editor-link-input']",
             "save": "//div[@class='popup-confirm submit blue']"
         },
