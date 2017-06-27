@@ -70,3 +70,4 @@ $RECYCLE.BIN/
 /debug.log
 /geckodriver.log
 /ghostdriver.log
+/nosetests.xml
