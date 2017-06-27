@@ -34,10 +34,12 @@ send_trigger_campaign
   trigger campaign list
 
 create_new_message_builder
+  set selenium implicit wait  30 seconds
   open content  ${new_message_builder}  ${new_message_builder["button_add"]["add"]}
   new message add
   open content  ${new_message_builder}  ${new_message_builder["button_list"]["list"]}
   new message list
+  set selenium implicit wait  15 seconds
 
 create_classic_message
   open content  ${classic_message_builder}  ${classic_message_builder["button_add"]["add"]}
@@ -58,10 +60,12 @@ create_landing_page
   landing page list
 
 create_content_block
+  set selenium implicit wait  30 seconds
   open content  ${content_block}  ${content_block["button_add"]["add"]}
   content block add
   open content  ${content_block}  ${content_block["button_list"]["list"]}
   content block list
+  set selenium implicit wait  15 seconds
 
 create_webform
   open content  ${webform}  ${webform["button_add"]["add"]}
