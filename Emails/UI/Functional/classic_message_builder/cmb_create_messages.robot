@@ -16,23 +16,18 @@ create_classic_message
   table row should contain  ${classic_message_builder["button_list"]["table"]}  1  Qa Automation Test Message
 
 create_classic_message_with_dynamic_content_block
-  create basic content block
-  open content  ${content_block}  ${content_block["button_list"]["list"]}
-  wait until element is visible  //*[@id="tabledivColumn-0-0"]/div
-  ${block_id}=  get text  //*[@id="tabledivColumn-0-0"]/div
   open content  ${classic_message_builder}  ${classic_message_builder["button_add"]["add"]}
   set headers  Qa Automation Test Message
   click element  ${classic_message_builder["button_add"]["body_accordion"]}
   wait until keyword succeeds  5x  1 sec  click element  ${generics["insert_dynamic_content_block"]["link"]}
   select frame  ${iframes["popup_frame"]}
+  ${block_id}=  get text  //table[@class='list']//tbody/tr[1]/td[1]
   click element  ${generics["first_add_button"]}
   select window  ${document_title}
   select frame  ${iframes["top"]}
   select frame  ${iframes["ccmd"]}
   textarea should contain  ${classic_message_builder["button_add"]["text_editor"]}  ${block_id}
   click element  ${classic_message_builder["button_add"]["save_button"]}
-  sleep  0.5
-  delete latest content block
 
 create_bounce_back_message
   [Documentation]  verify that only bounce back messages appear in the webform bounce back table
