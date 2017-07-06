@@ -43,7 +43,7 @@ import_valid_file
     click element    id=iconButtonNext
     verify import is complete    imports_good.txt    DONE
 
-verify_members_have_been_imported
+    # verify members have been imported
     search for member    EMAIL    contains    foo@bar.com
     table column should contain    css=div#content > form > table.list    4    foo@bar.com
     table column should contain    css=div#content > form > table.list    3    foo
@@ -69,7 +69,7 @@ import_update_file
     click element    id=iconButtonNext
     verify import is complete    imports_good_update.txt    DONE
 
-verify_members_have_been_updated_by_email_and_code
+    # verify members have been imported
     search for member    EMAIL    contains    foo@bar.com
     table column should contain    css=div#content > form > table.list    4    foo@bar.com
     table column should contain    css=div#content > form > table.list    3    foo2
@@ -93,7 +93,7 @@ import_mixed_file
     click element    id=iconButtonNext
     verify import is complete    imports_mixed.txt    DONE WITH ERROR(S)
 
-verify_members_have_been_updated_with_incomplete_import
+    # verify members have been imported
     search for member    EMAIL    contains    foo@bar.com
     table column should contain    css=div#content > form > table.list    4    foo@bar.com
     table column should contain    css=div#content > form > table.list    3    foo
