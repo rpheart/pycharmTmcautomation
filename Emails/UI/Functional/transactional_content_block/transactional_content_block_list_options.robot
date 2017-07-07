@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   test for transactional content block list options
-Default Tags    ui  email  cmb
+Default Tags    ui  email  transactional
 Resource        ../../Utils/email_keywords.robot
 Resource        ../../Utils/transactional_content_block.robot
 Suite Setup     run keywords  login

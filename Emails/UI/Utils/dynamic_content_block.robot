@@ -8,8 +8,7 @@ create basic content block
   input text  ${content_block["button_add"]["description"]}  auto created
   input text  ${content_block["button_add"]["text_content"]}  <p>QA Auto Content Block</p>
   click element  ${content_block["button_add"]["save"]}
-  sleep  1
-  alert should be present  text=Your Dynamic Content Block has been saved successfully.
+  wait until keyword succeeds  5x  1 sec  alert should be present  text=Your Dynamic Content Block has been saved successfully.
 
 delete latest content block
   open content  ${content_block}  ${content_block["button_list"]["list"]}
