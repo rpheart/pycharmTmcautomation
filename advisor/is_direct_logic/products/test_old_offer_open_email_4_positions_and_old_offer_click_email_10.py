@@ -22,7 +22,7 @@ filtered_response = []
 env = os.environ["BUILD_ENV"]
 advisor = settings.api_settings[env]["advisor"]
 renderer = settings.api_settings[env]["renderer"]
-click = settings.api_settings[env]["click_advisor"]
+click = settings.api_settings[env]["clickback"]
 guid = settings.client_settings[env]["guid"]
 aid = settings.client_settings[env]["aid"]
 username = settings.client_settings[env]["username"]
@@ -46,7 +46,7 @@ def send_requests():
         api.offer_open(renderer, guid, engagement, email=email, position=2, timestamp=three_days_past),
         api.offer_open(renderer, guid, engagement, email=email, position=3, timestamp=three_days_past),
         api.offer_open(renderer, guid, engagement, email=email, position=4, timestamp=three_days_past),
-        api.offer_click(click, guid, engagement, email=email, position=1, timestamp=three_days_past),
+        api.offer_click(click, guid, engagement, email=email, position=1, timestamp=three_days_past)
     ]
 
     for request in request_list:
