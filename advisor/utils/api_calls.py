@@ -14,21 +14,23 @@ def offer_open(renderer_url, guid, engagement_id, email="", cookie_id="", format
 
 
 def offer_click(click_url, guid, engagement_id, email="", cookie_id="", language="en", cache_timeout=0,
-                position="default", lid="", idx="", timestamp=""):
-    if email:
-        email = "&ue=" + email
-    if cookie_id:
-        cookie_id = "&uc=" + cookie_id
-    if lid:
-        lid = "&lid=" + str(lid)
-    if idx:
-        idx = "&idx=" + str(idx)
-    if position:
+                position="default", lid=2, idx=0, timestamp=""):
+    if str(email):
+        email = "&ue=" + str(email)
+    if str(cookie_id):
+        cookie_id = "&uc=" + str(cookie_id)
+    if str(cache_timeout):
+        cache_timeout = "&cacheTimeout=" + str(cache_timeout)
+    if str(position):
         position = "&pos=" + str(position)
-    if timestamp:
-        timestamp = "&tstamp=" + timestamp
+    if str(lid):
+        lid = "&lid=" + str(lid)
+    if str(idx):
+        idx = "&idx=" + str(idx)
+    if str(timestamp):
+        timestamp = "&tstamp=" + str(timestamp)
 
-    url = "http://%sa=%s&e=%s%s%s&l=%s&cacheTimeout=%d%s%s%s%s" % (
+    url = "http://%sa=%s&e=%s%s%s&l=%s%s%s%s%s%s" % (
         click_url, guid, engagement_id, email, cookie_id, language, cache_timeout, position, lid, idx, timestamp)
     return url
 
