@@ -1,7 +1,7 @@
 vtrunk = {
     "ui_server": "https://qa-sfui.themessagecloud.com",
     "ui_username": "sidev_qa",
-    "ui_password": "computer1.",
+    "ui_password": "computer2.",
     "api_server": "p2itgapie.emv2.com",
     "api_user": "sidev_qa_api",
     "api_password": "computer1.",
@@ -13,7 +13,7 @@ vtrunk = {
 vnext = {
     "ui_server": "https://qa-sfui.themessagecloud.com",
     "ui_username": "emvqa_qa",
-    "ui_password": "computer1.",
+    "ui_password": "computer2.",
     "api_server": "p1itgapie.emv2.com",
     "api_user": "emvqa_qa_api",
     "api_password": "qa11focus$",
