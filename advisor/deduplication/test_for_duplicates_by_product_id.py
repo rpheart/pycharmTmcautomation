@@ -9,7 +9,6 @@ import advisor.utils.env_config as settings
 
 # globals
 email = "deduplication@renderer.com"
-product_list = []
 
 # environment variables
 env = os.environ["BUILD_ENV"]
@@ -62,73 +61,15 @@ def get_response(renderer_url, guid_link, user_email, engagement_id, position_va
 
 
 class TestForDuplication(unittest.TestCase):
-    def setUp(self):
-        """sends the offer open api 6 times and builds a list of
-        6 product IDs. You can change the length of the list by
-        changing the range value. The duplication checking is dynamic."""
-
-        global product_list
-
-        for position in range(6):  # range is the number of images you want to generate for comparison
-            product_list.append(
-                extract_product_id(get_response(renderer, guid, email, engagement, position + 1)))
-
-    def tearDown(self):
-        """clears the product list after each run so that the next test
-        only contains products from a single multi-position offer open"""
-
-        global product_list
-        product_list = []
-
     def test_if_loop_one_campaign_snippet_contains_duplicate(self):
-        global product_list
+        for n in range(1000):  # number of iterations to check for duplication
+            product_list = []
 
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
+            for position in range(6):  # range is the number of images you want to generate for comparison
+                product_list.append(
+                    extract_product_id(get_response(renderer, guid, email, engagement, position + 1)))
 
-    def test_if_loop_two_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
-
-    def test_if_loop_three_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
-
-    def test_if_loop_four_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
-
-    def test_if_loop_five_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
-
-    def test_if_loop_six_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
-
-    def test_if_loop_seven_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
-
-    def test_if_loop_eight_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
-
-    def test_if_loop_nine_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
-
-    def test_if_loop_ten_campaign_snippet_contains_duplicate(self):
-        global product_list
-
-        self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
+            self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
 
 
 if __name__ == '__main__':
