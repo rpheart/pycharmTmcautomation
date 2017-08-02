@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   test for creating a transactional content block
-Default Tags    ui  transactional
+Default Tags    ui  email transactional
 Resource        ../../Utils/email_keywords.robot
 Resource        ../../Utils/transactional_content_block.robot
 Suite Setup     run keywords  login
