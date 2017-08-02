@@ -106,24 +106,20 @@ class TestOfferOpenEmail4PositionsAndOfferClickEmail(unittest.TestCase):
         self.assertTrue(utils.verify_json_contains_events(filtered_response[7]),
                         msg="offer open pos 4 event is missing this campaign information")
 
-    def test_click_suggest_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[8]),
-                        msg="suggest event is missing this campaign information")
-
     def test_offer_click_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[9]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[8]),
                         msg="offer click event is missing this campaign information")
 
     def test_browse_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[10]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[9]),
                         msg="browse event is missing this campaign information")
 
     def test_cart_add_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[11]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[10]),
                         msg="cart add event is missing this campaign information")
 
     def test_buy_contains_all_event_information(self):
-        self.assertTrue(utils.verify_json_contains_events(filtered_response[12]),
+        self.assertTrue(utils.verify_json_contains_events(filtered_response[11]),
                         msg="buy event is missing this campaign information")
 
 

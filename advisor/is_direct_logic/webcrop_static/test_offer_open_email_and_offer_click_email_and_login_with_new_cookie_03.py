@@ -8,6 +8,7 @@ import requests
 import advisor.is_direct_logic.utils as utils
 import advisor.utils.api_calls as api
 import advisor.utils.env_config as settings
+import advisor.utils.tcpdump as tcp
 
 # Globals
 unique_key = randint(1000, 10000)
@@ -68,15 +69,14 @@ def send_requests():
         requests.get(request).raise_for_status()
 
 
-@unittest.skip("timestamps aren't supported on personalisation content")
 class TestOfferOpenEmailAndOfferClickEmailAndLoginWithNewCookie(unittest.TestCase):
-    # @classmethod
-    # def setUpClass(cls):
-    #     send_requests()
-    #     response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
-    #     for line in tcp.filter_tcpdump(response):
-    #         if str(unique_key) in line:
-    #             filtered_response.append(line)
+    @classmethod
+    def setUpClass(cls):
+        send_requests()
+        response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
+        for line in tcp.filter_tcpdump(response):
+            if str(unique_key) in line:
+                filtered_response.append(line)
 
     def test_is_direct_is_true(self):
         self.assertTrue(utils.verify_is_direct(filtered_response),

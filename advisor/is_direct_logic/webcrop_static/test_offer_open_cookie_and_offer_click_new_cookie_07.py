@@ -64,7 +64,6 @@ class TestOfferOpenCookieAndOfferClickNewCookie(unittest.TestCase):
             if str(unique_key) in line:
                 filtered_response.append(line)
 
-    @unittest.skip("I think this is a bug that it isn't true")
     def test_is_direct_is_true(self):
         self.assertTrue(utils.verify_is_direct(filtered_response),
                         msg="is direct logic should be true but is: %s" % str(
