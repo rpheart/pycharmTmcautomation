@@ -1,5 +1,6 @@
 import itertools
 import os
+import time
 import unittest
 
 import requests
@@ -70,6 +71,7 @@ class TestForDuplication(unittest.TestCase):
                     extract_product_id(get_response(renderer, guid, email, engagement, position + 1)))
 
             self.assertTrue(verify_products_differ(product_list), msg="Duplicates Found")
+            time.sleep(0.2)
 
 
 if __name__ == '__main__':
