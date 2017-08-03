@@ -8,6 +8,7 @@ import requests
 import advisor.is_direct_logic.utils as utils
 import advisor.utils.api_calls as api
 import advisor.utils.env_config as settings
+import advisor.utils.tcpdump as tcp
 
 # Globals
 unique_key = randint(1000, 10000)
@@ -49,7 +50,7 @@ def send_requests():
         api.offer_open(renderer, guid, engagement, email=email, position=2, timestamp=three_days_past),
         api.offer_open(renderer, guid, engagement, email=email, position=3, timestamp=three_days_past),
         api.offer_open(renderer, guid, engagement, email=email, position=4, timestamp=three_days_past),
-        api.offer_click(click, guid, engagement, email=email, lid=lid, idx=idx, timestamp=three_days_past)
+        api.offer_click(click, guid, engagement, email=email, lid=lid, idx=idx, position=1, timestamp=three_days_past)
     ]
 
     for request in request_list:
@@ -70,15 +71,14 @@ def send_requests():
         requests.get(request).raise_for_status()
 
 
-@unittest.skip("timestamps aren't supported on personalisation content")
 class TestOldOfferOpenEmail4PositionsAndOldOfferClickEmail(unittest.TestCase):
-    # @classmethod
-    # def setUpClass(cls):
-    #     send_requests()
-    #     response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
-    #     for line in tcp.filter_tcpdump(response):
-    #         if str(unique_key) in line:
-    #             filtered_response.append(line)
+    @classmethod
+    def setUpClass(cls):
+        send_requests()
+        response = tcp.fetch_tcpdump(tcp_server, tcp_username, tcp_key)
+        for line in tcp.filter_tcpdump(response):
+            if str(unique_key) in line:
+                filtered_response.append(line)
 
     def test_is_direct_is_null(self):
         self.assertIsNone(utils.verify_is_direct(filtered_response),

@@ -45,7 +45,7 @@ def send_requests():
         api.offer_open(renderer, guid, engagement, email=email, position=2),
         api.offer_open(renderer, guid, engagement, email=email, position=3),
         api.offer_open(renderer, guid, engagement, email=email, position=4),
-        api.offer_click(click, guid, engagement, email=email, lid=lid, idx=idx, position="")
+        api.offer_click(click, guid, engagement, email=email, lid=lid, idx=idx, position=1)
     ]
 
     for request in request_list:

@@ -50,7 +50,7 @@ def send_requests():
         api.offer_open(renderer, guid, engagement, email=email, position=2, timestamp=three_days_past),
         api.offer_open(renderer, guid, engagement, email=email, position=3, timestamp=three_days_past),
         api.offer_open(renderer, guid, engagement, email=email, position=4, timestamp=three_days_past),
-        api.offer_click(click, guid, engagement, email=email, lid=lid, idx=idx, timestamp=three_days_past)
+        api.offer_click(click, guid, engagement, email=email, lid=lid, idx=idx, position=1, timestamp=three_days_past)
     ]
 
     for request in request_list:
