@@ -38,7 +38,7 @@ def filter_tcpdump(unfiltered_response):
     return filtered_list
 
 
-def fetch_tcpdump(server, username, key_path, timeout=90):
+def fetch_tcpdump(server, username, key_path, timeout=150):
     # commands
     file_path = "/tmp/tcpdump.log"
     execute_tcpdump = "sudo timeout %d tcpdump -A -n -i eth0 -s 0 dst port 9092 -w %s" % (timeout, file_path)
