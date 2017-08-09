@@ -34,7 +34,7 @@ tcp_key = settings.kafka_settings[env]["tcp_key"]
 if env == "QA":
     engagement = "13167"
 elif env == "PREPROD":
-    engagement = ""
+    engagement = "6866"
 
 
 def send_requests():

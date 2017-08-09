@@ -34,12 +34,8 @@ tcp_key = settings.kafka_settings[env]["tcp_key"]
 # Build specific variables
 if env == "QA":
     engagement = "13177"
-    lid = "2"
-    idx = "0"
 elif env == "PREPROD":
-    engagement = ""
-    lid = ""
-    idx = ""
+    engagement = "6876"
 
 
 def send_requests():
@@ -52,7 +48,7 @@ def send_requests():
 
     request_list = [
         api.offer_open(renderer, guid, engagement, email=email, timestamp=three_days_past),
-        api.offer_click(click, guid, engagement, email=email, lid=lid, idx=idx, timestamp=one_day_past)
+        api.offer_click(click, guid, engagement, email=email, timestamp=one_day_past)
     ]
 
     for request in request_list:
