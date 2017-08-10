@@ -7,7 +7,7 @@ kafka_settings = {
     "PREPROD": {
         "tcp_server": "10.20.91.101",
         "tcp_username": "psummers",
-        "tcp_key": "C:/keys/preprod-eu-master"
+        "tcp_key": "C:/keys/id_rsa"
     }
 }
 
