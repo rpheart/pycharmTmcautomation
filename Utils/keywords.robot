@@ -8,7 +8,7 @@ Variables       variables.py
 Variables       credentials.py
 
 *** Variables ***
-${env}      vnext
+${env}      qa
 ${browser}  chrome
 
 *** Keywords ***
