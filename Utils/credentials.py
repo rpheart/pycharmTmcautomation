@@ -1,4 +1,4 @@
-vtrunk = {
+dev = {
     "ui_server": "https://qa-sfui.themessagecloud.com",
     "ui_username": "sidev_qa",
     "ui_password": "computer2.",
@@ -10,7 +10,7 @@ vtrunk = {
     "trans_verified_email": "email@sidev01.nmp1.com",
 }
 
-vnext = {
+qa = {
     "ui_server": "https://qa-sfui.themessagecloud.com",
     "ui_username": "emvqa_qa",
     "ui_password": "computer2.",
@@ -25,7 +25,7 @@ vnext = {
 preprod = {
     "ui_server": "https://preprod.themessagecloud.com",
     "ui_username": "preprod_qa",
-    "ui_password": "computer1.",
+    "ui_password": "computer2.",
     "api_server": "p0apie.emv3.com",
     "api_user": "preprod_qa_api",
     "api_password": "qa11focus$",
