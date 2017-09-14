@@ -86,8 +86,10 @@ get_sms_messages_by_field
 
 get_messages_by_period
     # get messages by period
-    ${start_time}=    get time    format=timestamp    time_=now - 1 hour
-    ${end_time}=    get time    format=timestamp    time_=now + 1 hour
+    ${start_time}=    get time    format=timestamp    time_=now - 2 hour
+    ${start_time}=    replace string    ${start_time}    ${space}    %20
+    ${end_time}=    get time    format=timestamp    time_=now + 2 hour
+    ${end_time}=    replace string    ${end_time}    ${space}    %20
     ${search_sms}    get request    host    /message/getMessagesByPeriod/${token}/${start_time}/${end_time}
     run keyword unless    ${search_sms.ok}    fail    ${search_sms.content}
     ${sms_id_list}=    get xml content list    ${search_sms.content}
