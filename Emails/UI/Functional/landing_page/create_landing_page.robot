@@ -11,7 +11,7 @@ Test Teardown   delete all members matching id  FIRSTNAME  equals  ${firstname}
 Suite Teardown  close all browsers
 
 *** Variables ***
-${email}        qa.auto@smartfocus.com
+${email}        qa.auto@smartfocus.smartfocussmartfocus
 ${firstname}    landingPageFirstname
 ${lastname}     landingPageFirstname
 
