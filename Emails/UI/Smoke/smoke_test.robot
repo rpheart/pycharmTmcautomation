@@ -411,7 +411,6 @@ sms message list
   element should be visible  ${sms_message_builder["button_list"]["header_favorites"]}
   element should be visible  ${sms_message_builder["button_list"]["header_copy"]}
   element should be visible  ${sms_message_builder["button_list"]["header_delete"]}
-  element should be visible  ${sms_message_builder["button_list"]["delete"]}
 
 landing page add
   wait until keyword succeeds  5x  1 sec  click element  ${landing_page["button_add"]["change_style"]}
