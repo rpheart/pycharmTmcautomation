@@ -90,6 +90,7 @@ import_mixed_file
     select checkbox    id=TOREPLACE_EMAIL
     select checkbox    id=TOREPLACE_DATEOFBIRTH
     select checkbox    id=TOREPLACE_CODE
+    select checkbox    id=TOREPLACE_EMVCELLPHONE
     click element    id=iconButtonNext
     verify import is complete    imports_mixed.txt    DONE WITH ERROR(S)
 
