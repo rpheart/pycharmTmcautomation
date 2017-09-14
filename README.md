@@ -28,15 +28,15 @@ Pycharm is a Python IDE that makes writing and running python code easier. Pycha
 ### Running tests ###
 You run tests by invoking [pybot](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#executing-test-cases) and calling the source file you wish to run.
 ```
-$ pybot Emails\UI\Smoke\C01_Email_Smoke_Test.robot
+$ pybot Emails\UI\Smoke\smoke_test.robot
 ```
 Tests are tagged for ease of running and can be run on tags using the -i flag.
 ```
-$ pybot -i apiANDsmokeNOTxss Emails
+$ pybot -i apiORuiANDsmokeNOTxss Emails
 ```
 Tests run on an environment based upon the definition of the ${env} variable found in the root Utils/ directory, but you can change it and any other variable from the cli with the -v flag.
 ```
-$ pybot -i apiANDsmokeNOTxss -v env:qa -v browser:chrome Emails
+$ pybot -i apiORuiANDsmokeNOTxss -v env:qa -v browser:chrome Emails
 ```
 
 ## Contribution guidelines ##
