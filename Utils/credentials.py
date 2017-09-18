@@ -54,8 +54,8 @@ pod_e2 = {
     "api_user": "auto_e2_api",
     "api_password": "qa11focus$",
     "api_key": "CdX7CrxH-EWArkUPb8M_svCiVSoFfM6sjzrtS5tJyJeyLkdL",
-    "marketing_verified_email": "email@emvops-e2.cccampaigns.com",
-    "trans_verified_email": "email@emvops-e2.nmp1.net",
+    "marketing_verified_email": "email@emvops-e2.cccampaigns.net",
+    "trans_verified_email": "email@emvops-e2.nmp1.com",
 }
 
 pod_e3 = {
