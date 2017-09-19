@@ -10,6 +10,7 @@ search for member
   input text  ${search_subscriber["button_add"]["text_field_value"]}  ${string}
   click element  id=iconAddCriteria
   click element  ${search_subscriber["button_add"]["text_search"]}
+  wait until keyword succeeds  5x  1 sec  element should be visible  //*[@id='iconTrash']
 
 delete all members matching id
   [Arguments]  ${id_type}  ${id_method}  ${string}
