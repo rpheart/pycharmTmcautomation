@@ -1,13 +1,13 @@
 *** Settings ***
 Documentation   test directly adding members to the database
-Default Tags    ui  email  subscriber
+Default Tags    ui  email  list
 Resource        ../../Utils/email_keywords.robot
 Resource        ../../Utils/subscriber.robot
 Suite Setup     run keywords  login
 ...             AND  go to ${system_page["email"]}
-Suite Teardown  run keywords
-...             delete subscriber
-...             close all browsers
+Test Setup      delete all members matching id   EMAIL  equals  ${email}
+Test Teardown   delete all members matching id   EMAIL  equals  ${email}
+Suite Teardown  close all browsers
 
 *** Variables ***
 ${email}        add_subscriber@test.com
@@ -28,7 +28,3 @@ add_new_subscriber
   table column should contain  css=div#content > form > table.list  4  ${email}
   table column should contain  css=div#content > form > table.list  3  ${firstname}
   table column should contain  css=div#content > form > table.list  2  ${lastname}
-
-*** Keywords ***
-delete subscriber
-  delete all members matching id   EMAIL  contains  ${email}
