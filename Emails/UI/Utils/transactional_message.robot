@@ -15,7 +15,7 @@ set headers
 delete latest transactional message
   [Documentation]  deletes the most recent transactional message
   open content  ${transactional_message}  ${transactional_message["button_list"]["list"]}
-  click element  ${transactional_message["button_list"]["first_delete_checkbox"]}
+  wait until keyword succeeds  5x  1 sec  click element  ${transactional_message["button_list"]["first_delete_checkbox"]}
   click element  ${generics["trash"]}
   click element  ${generics["trash"]}
 
