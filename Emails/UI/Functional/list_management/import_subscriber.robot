@@ -1,10 +1,11 @@
 *** Settings ***
 Documentation       test importing member files and updating with email or custom keys and checking that the members have been added or updated after each import
-Default Tags        ui    email    import
+Default Tags        ui    email    list
 Resource            ../../Utils/email_keywords.robot
 Resource            ../../Utils/subscriber.robot
 Suite Setup         run keywords    login
 ...                 AND    go to ${system_page["email"]}
+...                 AND    delete all members matching id   EMAIL  equals  ${email}
 Suite Teardown      close all browsers
 
 *** Variables ***
@@ -12,6 +13,7 @@ ${failed_import}    ${EXECDIR}/Emails/UI/Utils/Resources/imports_fail.txt
 ${good_import}      ${EXECDIR}/Emails/UI/Utils/Resources/imports_good.txt
 ${update_import}    ${EXECDIR}/Emails/UI/Utils/Resources/imports_good_update.txt
 ${mixed_import}     ${EXECDIR}/Emails/UI/Utils/Resources/imports_mixed.txt
+${email}            foo@bar.com
 
 *** Test Cases ***
 import_invalid_file
