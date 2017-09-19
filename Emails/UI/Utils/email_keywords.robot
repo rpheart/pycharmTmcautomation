@@ -21,6 +21,7 @@ open content
     ...    AND    mouse over    ${smartfocus_logo}
     select frame    ${iframes["top"]}
     select frame    ${iframes["ccmd"]}
+    wait until element is visible  //*
 
 create a segment
     [Documentation]
