@@ -318,7 +318,7 @@ new_message_builder = {
         "templates_search_button": "//*[@id='templates-region']/div/div[2]/div/div/div[2]/div[2]",
         "save_template_input": "//*[@id='template-name-container']/input",
         "save_template_button": "//*[@id='template-btnsave']",
-        "add_recipients": "//*[@id='test-email-search-input-container']/div/div/div[2]/div[1]",
+        "add_recipients": "//*[@id='test-email-search-input-container']//div[@class='icon add']",
         "tests_panel": "//*[@id='content-palette']//div[text()='Tests']",
         "send_test_emails": "//*[@id='send-test-emails']",
         "preview_button": "//*[@id='preview-message']",

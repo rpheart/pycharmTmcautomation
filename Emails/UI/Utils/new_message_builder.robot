@@ -57,9 +57,10 @@ send test emails
   # check if email is already added
   sleep  0.5
   input text  ${new_message_builder["button_add"]["send_test_search_input"]}  ${email}
-  ${can_add_email}=  run keyword and return status  element should be enabled  ${new_message_builder["button_add"]["add_recipients"]}
+  ${can_add_email}=  run keyword and return status  page should contain element  ${new_message_builder["button_add"]["add_recipients"]}
   run keyword if  ${can_add_email}  wait until keyword succeeds  5x  1 sec  click element  ${new_message_builder["button_add"]["add_recipients"]}
   ...  ELSE  wait until keyword succeeds  5x  1 sec  click element  ${new_message_builder["button_add"]["first_test_email_slider"]}
+  wait until page contains element  ${new_message_builder["button_add"]["first_test_email_slider"]}
   wait until keyword succeeds  5x  1 sec  click element  ${new_message_builder["button_add"]["send_test_emails"]}
   current frame contains  Test has been sent
 
