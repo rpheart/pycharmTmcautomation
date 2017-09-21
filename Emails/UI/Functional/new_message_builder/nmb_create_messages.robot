@@ -10,6 +10,7 @@ Suite Teardown  close all browsers
 
 *** Test Cases ***
 create_message_with_text
+  [Tags]  ssmoke
   create basic message
   verify message saved  Qa Automation Test Message
 

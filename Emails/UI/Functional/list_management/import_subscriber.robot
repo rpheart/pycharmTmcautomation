@@ -28,6 +28,7 @@ delete_failed_import
     delete from row    ${row_index}
 
 import_valid_file
+    [Tags]    smoke
     upload member file    ${good_import}
     open content    ${import_subscriber}    ${import_subscriber["button_add"]["add"]}
     refresh page until content visible    imports_good.txt
