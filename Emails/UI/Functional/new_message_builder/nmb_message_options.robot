@@ -11,7 +11,7 @@ Suite Teardown  close all browsers
 
 *** Test Cases ***
 send_test_email_on_new_message
-  send test emails  patrick.summers@smartfocus.com
+  send test emails  ramiro.blanco@smartfocus.com
 
 preview_email_on_new_message
   :for  ${n}  in range  5
