@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   open multiple browsers and point them to the liveensure login app, then attempt a regular login
-Default Tags    ui  email  performance
+Default Tags    performance
 Resource        ../Utils/email_keywords.robot
 Suite Teardown  close all browsers
 
