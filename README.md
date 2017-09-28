@@ -6,12 +6,25 @@ Getting up and running with UI tests using [Robot Framework](http://robotframewo
 UI and API automation for The Message Cloud.
 
 ## How do I get set up? ##
-Robot Framework is based on Python; we build on Python 2.7.x. To run Robot Framework, make sure you have Python installed. Python [can be downloaded and installed](https://www.python.org/downloads/) on Linux, Windows, and Mac OSX.
-Once Python is installed you will need to add the Python27 and Python27/Scripts directories to the system PATH variable. This can be done with cmd.exe but is safer performed through the GUI.
+Robot Framework is based on Python; we build on Python 2.7.x. To run Robot Framework, make sure you have Python, Git and the Google driver installed. Python [can be downloaded and installed](https://www.python.org/downloads/) on Linux, Windows, and Mac OSX.
+Once Python is installed you will need to add the Python27 and Python27/Scripts directories to the system PATH variable. This can be done with cmd.exe but is safer performed through the GUI. In the Windows GUI, go to Windows start icon and search for 
+"Edit the system environment variables". Select "Environmental variables" and under "System variables", open the Path option and add the Python folders mentioned above. To this path, you will also have to add C:\Program Files\Git\cmd and C:\Program\Files (x86)\Google
+(if these are the folders where you have installed Git and the Google driver).
 ```
 $ SETX /M PATH "%PATH%;C:\Python27;C:\Python27\Scripts"
 ```
-Once you have python you will need to download the module dependencies which can be found at the root of the project.
+Also download and install Pycharm. Once installed, go to bitbucket (https://bitbucket.org/), click on the square bitbucket icon at the top left, go to repositories, go to SmartFocus-TMC-Automate (if you do not see these repositories,
+ask the repository admin to grant you access to it) and take the repository URL (it will be something like: https://{your bit bucket user name}@bitbucket.org/smartfocus1/smartfocus-tmc-automation.git). When you open Pycharm,
+select "Check out from version control" > Git, and in the Git repository URL, enter the repository URL you copied from bitbucket. Test the connection, and if the connection is successful, clone the repository.
+
+
+You'll also need to install "pip" (Python bash) to get things running, for this, go to www.pip-installer.org/en/latest/. Go to "instalation", right click get-pip.py and select to link as on desktop. Then open your command line and enter:
+
+C:\Users\{your.user}\Desktop>python get-pip.py
+
+Then you'll have to install the requirements, for which you will have to go to the root directory of the project. This directory can vary depending on the default directory you selected when you installed Pycharm. If you chose the default
+directory, it will be something like: C:\Users\{your.user}\PycharmProjects\smartfocus-tmc-automation>. Once you are in this folder, you can fun the following command to download the module dependencies which can be found at the root of the project:
+
 ```
 $ pip install -r requirements.txt
 ```
@@ -45,4 +58,4 @@ $ pybot -i apiORuiANDsmokeNOTxss -v env:qa -v browser:chrome Emails
 * Other guidelines /TODO
 
 ## Who do I talk to? ##
-Owners: Ramiro (ramiro.blanco@smartfocus.com)
+Owners: Ramiro (ramiro.blanco@smartfocus.com)s: Ramiro (ramiro.blanco@smartfocus.com)
