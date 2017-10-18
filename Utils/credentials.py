@@ -19,7 +19,7 @@ qa = {
     "ui_username": "emvqa_qa",
     "ui_password": "computer3.",
     "ui_liveensure_username": "emvqa_live_qa",
-    "ui_liveensure_password": "computer2.",
+    "ui_liveensure_password": "computer3.",
     "api_server": "p1itgapie.emv2.com",
     "api_user": "emvqa_qa_api",
     "api_password": "qa11focus$",
