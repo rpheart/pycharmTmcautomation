@@ -17,7 +17,7 @@ qa = {
     "ui_server": "https://qa-sfui.themessagecloud.com",
     "ccmd": "https://p2itgcce.campaigncommander.com",
     "ui_username": "emvqa_qa",
-    "ui_password": "computer2.",
+    "ui_password": "computer3.",
     "ui_liveensure_username": "emvqa_live_qa",
     "ui_liveensure_password": "computer2.",
     "api_server": "p1itgapie.emv2.com",
