@@ -47,7 +47,7 @@ pod_e1 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
     "ui_username": "auto_e1",
-    "ui_password": "computer3.",
+    "ui_password": "computer4.",
     "ui_liveensure_username": "auto_e1_live_qa",
     "ui_liveensure_password": "computer4.",
     "api_server": "emvapi.emv3.com",

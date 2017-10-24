@@ -8,7 +8,7 @@ Variables       variables.py
 Variables       credentials.py
 
 *** Variables ***
-${env}      pod_t5
+${env}      pod_e1
 ${browser}  chrome
 
 *** Keywords ***
