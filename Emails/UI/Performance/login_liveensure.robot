@@ -5,7 +5,7 @@ Resource        ../Utils/email_keywords.robot
 Suite Teardown  close all browsers
 
 *** Variables ***
-${open_instances}  80
+${open_instances}  2
 ${open_connection_duration}  60
 
 *** Test Cases ***
