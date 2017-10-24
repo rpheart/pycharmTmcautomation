@@ -43,11 +43,26 @@ preprod = {
     "trans_verified_email": "email@preprodtmc.nmp1.com",
 }
 
+preprodlaur = {
+    "ui_server": "https://preprod.themessagecloud.com",
+    "ccmd": "https://p0cce.campaigncommander.com",
+    "ui_username": "lur_preprod_fd",
+    "ui_password": "testou.1",
+    "ui_liveensure_username": "lur_preprod_fd",
+    "ui_liveensure_password": "testou.1",
+    "api_server": "p0apie.emv3.com",
+    "api_user": "preprod_qa_api",
+    "api_password": "qa11focus$",
+    "api_key": "CdX7CrBW_1Sfg09Zb9MuhJuXcXYaftijmEepH9RFaPDoulZS9hGSRg",
+    "marketing_verified_email": "email@preprodtmc.ccemails.net",
+    "trans_verified_email": "email@preprodtmc.nmp1.com",
+}
+
 pod_e1 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
     "ui_username": "auto_e1",
-    "ui_password": "computer2.",
+    "ui_password": "computer3.",
     "api_server": "emvapi.emv3.com",
     "api_user": "auto_e1_api",
     "api_password": "qa11focus$",
