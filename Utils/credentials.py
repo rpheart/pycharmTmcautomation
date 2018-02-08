@@ -46,8 +46,8 @@ preprod = {
 pod_e1 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute1",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaaute1",
+    "ui_password": "computer1.",
     "ui_liveensure_username": "live_qaaute1",
     "ui_liveensure_password": "computer1.",
     "api_server": "emvapi.emv3.com",
@@ -76,8 +76,8 @@ pod_e1_ops = {
 pod_e2 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute2",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaaute2",
+    "ui_password": "computer1.",
     "api_server": "p2apie.emv3.com",
     "api_user": "qa_qaaute2_api",
     "api_password": "computer1.",
@@ -102,8 +102,8 @@ pod_e2_ops = {
 pod_e3 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute3",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaaute3",
+    "ui_password": "computer1.",
     "api_server": "p3apie.emv3.com",
     "api_user": "qa_qaaute3_api",
     "api_password": "computer1.",
@@ -128,8 +128,8 @@ pod_e3_ops = {
 pod_e4 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute4",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaaute4",
+    "ui_password": "computer1.",
     "api_server": "p4apie.emv3.com",
     "api_user": "qa_qaaute4_api",
     "api_password": "computer1.",
@@ -154,7 +154,7 @@ pod_e4_ops = {
 pod_e5 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute5",
+    "ui_username": "prod_qaaute5",
     "ui_password": "computer1.",
     "api_server": "p5apie.emv3.com",
     "api_user": "qa_qaaute5_api",
@@ -180,7 +180,7 @@ pod_e5_ops = {
 pod_e6 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute6",
+    "ui_username": "prod_qaaute6",
     "ui_password": "computer1.",
     "api_server": "p6apie.emv3.com",
     "api_user": "qa_qaaute6_api",
@@ -206,7 +206,7 @@ pod_e6_ops = {
 pod_e7 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute7",
+    "ui_username": "prod_qaaute7",
     "ui_password": "computer1.",
     "api_server": "p7apie.emv3.com",
     "api_user": "qa_qaaute7_api",
@@ -232,7 +232,7 @@ pod_e7_ops = {
 pod_e8 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute8",
+    "ui_username": "prod_qaaute8",
     "ui_password": "computer1.",
     "api_server": "p8apie.emv3.com",
     "api_user": "qa_qaaute8_api",
@@ -258,7 +258,7 @@ pod_e8_ops = {
 pod_e9 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaaute9",
+    "ui_username": "prod_qaaute9",
     "ui_password": "computer1.",
     "api_server": "p9apie.emv3.com",
     "api_user": "qa_qaaute9_api",
@@ -284,8 +284,8 @@ pod_e9_ops = {
 pod_t1 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaautt1",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaautt1",
+    "ui_password": "computer1.",
     "api_server": "emvapi.emv2.com",
     "api_user": "qa_qaautt1_api",
     "api_password": "computer1.",
@@ -310,8 +310,8 @@ pod_t1_ops = {
 pod_t2 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaautt2",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaautt2",
+    "ui_password": "computer1.",
     "api_server": "p2apic.emv2.com",
     "api_user": "qa_qaautt2_api",
     "api_password": "computer1.",
@@ -336,8 +336,8 @@ pod_t2_ops = {
 pod_t3 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaautt3",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaautt5",
+    "ui_password": "computer1.",
     "api_server": "p3apic.emv2.com",
     "api_user": "qa_qaautt3_api",
     "api_password": "computer1.",
@@ -362,8 +362,8 @@ pod_t3_ops = {
 pod_t4 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaautt4",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaautt5",
+    "ui_password": "computer1.",
     "api_server": "p4apic.emv2.com",
     "api_user": "qa_qaautt4_api",
     "api_password": "computer1.",
@@ -388,8 +388,8 @@ pod_t4_ops = {
 pod_t5 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
-    "ui_username": "qa_qaautt5",
-    "ui_password": "computer2.",
+    "ui_username": "prod_qaautt5",
+    "ui_password": "computer1.",
     "api_server": "p5apic.emv2.com",
     "api_user": "qa_qaautt5_api",
     "api_password": "computer1.",
