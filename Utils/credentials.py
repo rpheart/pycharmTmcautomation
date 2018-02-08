@@ -207,7 +207,7 @@ pod_e7 = {
     "ui_server": "https://sfui.themessagecloud.com",
     "ccmd": "https://www.campaigncommander.com",
     "ui_username": "prod_qaaute7",
-    "ui_password": "computer1",
+    "ui_password": "computer1.",
     "api_server": "p7apie.emv3.com",
     "api_user": "qa_qaaute7_api",
     "api_password": "computer1.",
