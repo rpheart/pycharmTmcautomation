@@ -1,8 +1,8 @@
 dev = {
     "ui_server": "https://qa-sfui.themessagecloud.com",
     "ccmd": "https://p2itgcce.campaigncommander.com",
-    "ui_username": "sidev_qa",
-    "ui_password": "computer2.",
+    "ui_username": "sidevall",
+    "ui_password": "HeadCheese!4",
     "ui_liveensure_username": "sidev_live_qa",
     "ui_liveensure_password": "computer2.",
     "api_server": "p2itgapie.emv2.com",
