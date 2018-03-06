@@ -8,7 +8,7 @@ Variables       variables.py
 Variables       credentials.py
 
 *** Variables ***
-${env}      dev
+${env}      preprod
 ${browser}  chrome
 
 *** Keywords ***
